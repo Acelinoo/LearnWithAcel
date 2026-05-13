@@ -1155,7 +1155,7 @@ Tech: HTML + Tailwind CDN. Dark mode. Responsive."`,
           "Hasil pertama jarang sempurna. Iterasi adalah bagian normal dari workflow:",
         ],
         list: [
-          "Warna kurang cocok? → 'Ubah warna primary jadi violet-600'",
+          "Warna kurang cocok? → 'Ubah warna primary jadi sky-600'",
           "Font terlalu kecil? → 'Perbesar heading jadi text-6xl'",
           "Kurang animasi? → 'Tambahkan hover effect di cards dan fade-in saat scroll'",
           "Tidak responsive? → 'Pastikan layout stack vertical di mobile'",
@@ -1218,7 +1218,7 @@ Tech: HTML + Tailwind CDN. Dark mode. Responsive."`,
 "Perbaiki landing page ini:
 1. Hero: ubah background jadi dark (bg-gray-900) dengan teks putih
 2. Cards: tampilkan 3 kolom di desktop (grid-cols-3), stack di mobile
-3. Tombol: tambah hover effect (hover:bg-violet-700) dan transition
+3. Tombol: tambah hover effect (hover:bg-sky-600) dan transition
 4. Mobile: pastikan semua teks wrap dengan benar, tambah padding
 5. Gambar: ganti dengan emoji atau icon dari Lucide React
    sebagai placeholder"
@@ -1257,7 +1257,7 @@ dengan emoji icons"`,
         "Coba edit MANUAL: ganti teks heading langsung di kode (cari teksnya, ketik yang baru)",
         "Coba edit DENGAN AI: select bagian yang mau diubah → tekan Ctrl+K → ketik instruksi",
         "Contoh Ctrl+K: select card section → 'ubah jadi 4 cards dengan icon emoji, warna gradient berbeda tiap card'",
-        "Coba ganti warna: cari 'blue' di kode (Ctrl+H) → replace semua jadi 'violet'",
+        "Coba ganti warna: cari 'blue' di kode (Ctrl+H) → replace semua jadi 'sky'",
         "Save (Ctrl+S) dan lihat perubahan di browser",
       ],
       tip: "Ctrl+H (Find and Replace) sangat berguna untuk ganti warna atau teks secara massal. Misalnya ganti semua 'blue-500' jadi 'purple-500' sekaligus.",
@@ -1280,7 +1280,7 @@ dengan emoji icons"`,
         ],
         list: [
           "Ganti teks: heading, paragraf, nama tombol",
-          "Ganti warna: ubah 'blue-500' jadi 'violet-500'",
+          "Ganti warna: ubah 'blue-500' jadi 'sky-500'",
           "Ganti ukuran: ubah 'text-2xl' jadi 'text-4xl'",
           "Hapus bagian: delete baris yang tidak perlu",
           "Ganti link: ubah href='#' jadi href yang benar",
@@ -1307,7 +1307,7 @@ dengan emoji icons"`,
         code: `// 1. Find and Replace (Ctrl+H)
 // Ganti semua warna sekaligus:
 Find: blue-500
-Replace: violet-500
+Replace: sky-500
 → Klik "Replace All"
 
 // 2. Multi-cursor (Alt+Click)

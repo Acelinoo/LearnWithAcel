@@ -97,7 +97,7 @@ export default function PersiapanVibePage() {
               <Bot size={12} />
               Vibe Coding — Persiapan
             </span>
-            <span className="rounded-full border border-violet-400/30 bg-violet-400/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-violet-300">
+            <span className="rounded-full border border-sky-400/30 bg-sky-400/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-sky-300">
               AI Assisted
             </span>
           </div>
@@ -191,8 +191,8 @@ export default function PersiapanVibePage() {
       {/* CTA */}
       <section className="container-page py-16">
         <Reveal>
-          <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-violet-500/15 via-card to-card p-8 sm:p-12">
-            <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-violet-500/30 blur-3xl" />
+          <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-sky-500/15 via-card to-card p-8 sm:p-12">
+            <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-sky-500/30 blur-3xl" />
             <div className="relative flex flex-col items-start gap-8 md:flex-row md:items-center md:justify-between">
               <div className="max-w-xl">
                 <span className="section-eyebrow"><Sparkles size={12} />Siap?</span>

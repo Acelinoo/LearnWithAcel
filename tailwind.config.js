@@ -16,9 +16,9 @@ module.exports = {
         foreground: "#F5F5F5",
         muted: "#A1A1AA",
         accent: {
-          DEFAULT: "#7C3AED",
-          hover: "#8B5CF6",
-          soft: "rgba(124, 58, 237, 0.15)",
+          DEFAULT: "#38BDF8",
+          hover: "#7DD3FC",
+          soft: "rgba(56, 189, 248, 0.15)",
         },
       },
       fontFamily: {
@@ -27,15 +27,15 @@ module.exports = {
         mono: ["'JetBrains Mono'", "monospace"],
       },
       boxShadow: {
-        glow: "0 0 40px -10px rgba(124, 58, 237, 0.35)",
-        "glow-lg": "0 0 80px -20px rgba(124, 58, 237, 0.45)",
+        glow: "0 0 40px -10px rgba(56, 189, 248, 0.35)",
+        "glow-lg": "0 0 80px -20px rgba(56, 189, 248, 0.45)",
         card: "0 1px 0 0 rgba(255,255,255,0.04) inset, 0 8px 24px -12px rgba(0,0,0,0.6)",
       },
       backgroundImage: {
         "grid-dark":
           "linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px)",
         "radial-fade":
-          "radial-gradient(ellipse at top, rgba(124,58,237,0.25), transparent 50%)",
+          "radial-gradient(ellipse at top, rgba(56,189,248,0.25), transparent 50%)",
       },
       animation: {
         "fade-in": "fadeIn 0.6s ease-out forwards",

@@ -29,7 +29,7 @@ export default function VibeRoadmapPage() {
             <Bot size={12} />
             Vibe Coding Roadmap
           </span>
-          <span className="rounded-full border border-violet-400/30 bg-violet-400/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-violet-300">
+          <span className="rounded-full border border-sky-400/30 bg-sky-400/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-sky-300">
             AI Assisted
           </span>
         </div>
@@ -73,10 +73,10 @@ export default function VibeRoadmapPage() {
       <Reveal delay={0.18}>
         <Link
           href="/persiapan/vibe"
-          className="group mt-8 flex items-center justify-between gap-4 rounded-2xl border border-violet-400/20 bg-gradient-to-r from-violet-400/10 via-card to-card p-5 transition-colors hover:border-violet-400/40"
+          className="group mt-8 flex items-center justify-between gap-4 rounded-2xl border border-sky-400/20 bg-gradient-to-r from-sky-400/10 via-card to-card p-5 transition-colors hover:border-sky-400/40"
         >
           <div className="flex items-center gap-3">
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl border border-violet-400/30 bg-violet-400/10 text-violet-300">
+            <span className="flex h-9 w-9 items-center justify-center rounded-xl border border-sky-400/30 bg-sky-400/10 text-sky-300">
               <Rocket size={15} />
             </span>
             <div>
@@ -84,7 +84,7 @@ export default function VibeRoadmapPage() {
               <div className="text-xs text-muted">Install Cursor, buat akun GitHub & Vercel dulu.</div>
             </div>
           </div>
-          <span className="hidden items-center gap-1 text-sm text-violet-300 group-hover:text-foreground sm:inline-flex">
+          <span className="hidden items-center gap-1 text-sm text-sky-300 group-hover:text-foreground sm:inline-flex">
             Lihat persiapan <ArrowRight size={14} />
           </span>
         </Link>
@@ -92,7 +92,7 @@ export default function VibeRoadmapPage() {
 
       {/* Levels */}
       <div className="relative mt-16">
-        <div className="absolute left-[26px] top-6 bottom-6 w-px bg-gradient-to-b from-violet-400/40 via-white/10 to-transparent md:left-[30px]" />
+        <div className="absolute left-[26px] top-6 bottom-6 w-px bg-gradient-to-b from-sky-400/40 via-white/10 to-transparent md:left-[30px]" />
 
         <div className="space-y-5">
           {vibeLevels.map((level, i) => (
@@ -110,7 +110,7 @@ export default function VibeRoadmapPage() {
                   <div className="flex flex-wrap items-start justify-between gap-4">
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-violet-300">
+                        <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-sky-300">
                           Level 0{level.number}
                         </span>
                         <LevelViewerBadge levelSlug={level.slug} seed={level.viewers} size="xs" />
@@ -146,7 +146,7 @@ export default function VibeRoadmapPage() {
 
                   <div className="mt-6 flex flex-wrap items-center gap-3 border-t border-white/5 pt-6">
                     <div className="flex items-center gap-2 text-sm text-muted">
-                      <Trophy size={14} className="text-violet-300" />
+                      <Trophy size={14} className="text-sky-300" />
                       Project: <span className="text-foreground">{level.miniProject}</span>
                     </div>
                   </div>
@@ -155,7 +155,7 @@ export default function VibeRoadmapPage() {
                   <div className="mt-6 border-t border-white/5 pt-6">
                     <Link
                       href={`/materi/vibe/${level.slug}/${level.lessons[0].slug}`}
-                      className="inline-flex items-center gap-2 rounded-xl border border-violet-400/30 bg-violet-400/10 px-4 py-2.5 text-sm font-medium text-violet-300 transition-all hover:border-violet-400/50 hover:bg-violet-400/20 hover:text-foreground"
+                      className="inline-flex items-center gap-2 rounded-xl border border-sky-400/30 bg-sky-400/10 px-4 py-2.5 text-sm font-medium text-sky-300 transition-all hover:border-sky-400/50 hover:bg-sky-400/20 hover:text-foreground"
                     >
                       <Rocket size={14} />
                       Mulai level
@@ -170,9 +170,9 @@ export default function VibeRoadmapPage() {
                         <Link
                           key={lesson.slug}
                           href={`/materi/vibe/${level.slug}/${lesson.slug}`}
-                          className="flex items-center gap-3 rounded-xl border border-white/5 bg-white/[0.02] p-3 transition-all hover:border-violet-400/30 hover:bg-violet-400/[0.04]"
+                          className="flex items-center gap-3 rounded-xl border border-white/5 bg-white/[0.02] p-3 transition-all hover:border-sky-400/30 hover:bg-sky-400/[0.04]"
                         >
-                          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] text-violet-300">
+                          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] text-sky-300">
                             <BookOpen size={14} />
                           </span>
                           <div className="min-w-0 flex-1">
