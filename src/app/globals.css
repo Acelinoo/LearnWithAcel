@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  background-color: #0d0d0d;
+  color: #f5f5f5;
+  font-feature-settings: "cv11", "ss01", "ss03";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: rgba(124, 58, 237, 0.4);
+  color: #ffffff;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0d0d0d;
+}
+::-webkit-scrollbar-thumb {
+  background: #262626;
+  border-radius: 8px;
+  border: 2px solid #0d0d0d;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3a3a3a;
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+
+  .glass-panel {
+    @apply border border-white/5 bg-white/[0.02] backdrop-blur-xl;
+  }
+
+  .card-base {
+    @apply rounded-2xl border border-white/5 bg-card transition-colors;
+  }
+
+  .card-hover {
+    @apply hover:border-accent/40 hover:bg-[#1f1f1f];
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-white shadow-glow transition-all hover:bg-accent-hover hover:shadow-glow-lg active:scale-[0.98];
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-5 py-2.5 text-sm font-medium text-foreground transition-all hover:border-white/20 hover:bg-white/[0.06];
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-muted transition-colors hover:bg-white/[0.04] hover:text-foreground;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs font-medium text-muted;
+  }
+
+  .section-eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/10 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.14em] text-accent-hover;
+  }
+
+  .prose-article {
+    @apply text-foreground/90;
+  }
+  .prose-article h2 {
+    @apply mt-12 mb-4 font-display text-2xl font-semibold tracking-tight text-foreground;
+  }
+  .prose-article h3 {
+    @apply mt-8 mb-3 font-display text-xl font-semibold text-foreground;
+  }
+  .prose-article p {
+    @apply my-4 leading-[1.8] text-foreground/85;
+  }
+  .prose-article ul {
+    @apply my-4 list-disc space-y-2 pl-5 text-foreground/85;
+  }
+  .prose-article ol {
+    @apply my-4 list-decimal space-y-2 pl-5 text-foreground/85;
+  }
+  .prose-article code {
+    @apply rounded-md border border-white/10 bg-white/[0.04] px-1.5 py-0.5 font-mono text-[0.85em] text-accent-hover;
+  }
+  .prose-article pre {
+    @apply my-6 overflow-x-auto rounded-xl border border-white/10 bg-[#0a0a0a] p-4 font-mono text-sm text-foreground/85;
+  }
+  .prose-article blockquote {
+    @apply my-6 rounded-xl border border-accent/30 bg-accent/5 px-5 py-4 text-foreground/80;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .bg-grid {
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .mask-fade-y {
+    mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+  }
+
+  .mask-fade-radial {
+    mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
+  }
+
+  .shimmer-text {
+    background: linear-gradient(90deg, #f5f5f5 0%, #8b5cf6 50%, #f5f5f5 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer 4s linear infinite;
+  }
+}
