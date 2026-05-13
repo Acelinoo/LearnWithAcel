@@ -50,7 +50,7 @@ export default function DashboardPage() {
               belajar bareng.
             </p>
           </div>
-          <Link href="/persiapan" className="btn-primary">
+          <Link href="/pilih-jalur" className="btn-primary">
             <PlayCircle size={16} />
             Mulai belajar sekarang
           </Link>

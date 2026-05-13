@@ -76,7 +76,7 @@ export default function Navbar() {
         </nav>
 
         <div className="hidden md:flex">
-          <Link href="/persiapan" className="btn-primary">
+          <Link href="/pilih-jalur" className="btn-primary">
             Mulai Belajar
           </Link>
         </div>
@@ -115,7 +115,7 @@ export default function Navbar() {
                 );
               })}
               <Link
-                href="/persiapan"
+                href="/pilih-jalur"
                 className="btn-primary mt-2 w-full"
               >
                 Mulai Belajar
