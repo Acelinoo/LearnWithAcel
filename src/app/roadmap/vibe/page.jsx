@@ -151,13 +151,26 @@ export default function VibeRoadmapPage() {
                     </div>
                   </div>
 
+                  {/* Mulai level button */}
+                  <div className="mt-6 border-t border-white/5 pt-6">
+                    <Link
+                      href={`/materi/vibe/${level.slug}/${level.lessons[0].slug}`}
+                      className="inline-flex items-center gap-2 rounded-xl border border-violet-400/30 bg-violet-400/10 px-4 py-2.5 text-sm font-medium text-violet-300 transition-all hover:border-violet-400/50 hover:bg-violet-400/20 hover:text-foreground"
+                    >
+                      <Rocket size={14} />
+                      Mulai level
+                      <ArrowRight size={14} />
+                    </Link>
+                  </div>
+
                   {/* Lesson list */}
                   {level.lessons.length > 0 && (
-                    <div className="mt-6 grid gap-2 border-t border-white/5 pt-6 sm:grid-cols-2 lg:grid-cols-3">
+                    <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
                       {level.lessons.map((lesson) => (
-                        <div
+                        <Link
                           key={lesson.slug}
-                          className="flex items-center gap-3 rounded-xl border border-white/5 bg-white/[0.02] p-3"
+                          href={`/materi/vibe/${level.slug}/${lesson.slug}`}
+                          className="flex items-center gap-3 rounded-xl border border-white/5 bg-white/[0.02] p-3 transition-all hover:border-violet-400/30 hover:bg-violet-400/[0.04]"
                         >
                           <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] text-violet-300">
                             <BookOpen size={14} />
@@ -169,7 +182,7 @@ export default function VibeRoadmapPage() {
                               {lesson.duration}
                             </div>
                           </div>
-                        </div>
+                        </Link>
                       ))}
                     </div>
                   )}
