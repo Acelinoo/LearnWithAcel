@@ -22,7 +22,7 @@ export default function Hero() {
           >
             <span className="section-eyebrow">
               <Sparkles size={12} />
-              Platform belajar web dev baru
+              Platform belajar Web Developer.
             </span>
             <ViewerBadge />
           </motion.div>

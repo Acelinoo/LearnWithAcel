@@ -42,7 +42,7 @@ const essentials = [
     link: "https://www.google.com/chrome",
     size: "~100 MB",
     icon: Chrome,
-    tone: "from-cyan-400/30 to-violet-500/10",
+    tone: "from-cyan-400/30 to-sky-500/10",
     must: true,
   },
   {
@@ -52,7 +52,7 @@ const essentials = [
     link: "https://nodejs.org",
     size: "~30 MB",
     icon: Package,
-    tone: "from-emerald-400/30 to-violet-500/10",
+    tone: "from-emerald-400/30 to-sky-500/10",
     must: true,
   },
   {
@@ -62,7 +62,7 @@ const essentials = [
     link: "https://git-scm.com",
     size: "~40 MB",
     icon: Github,
-    tone: "from-rose-400/30 to-violet-500/10",
+    tone: "from-rose-400/30 to-sky-500/10",
     must: false,
   },
 ];

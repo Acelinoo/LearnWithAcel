@@ -14,7 +14,7 @@ export const vibeLevels = [
     viewers: 2841,
     lessonsCount: 4,
     miniProject: "Mapping tools & workflow pribadi",
-    accent: "from-violet-500/30 to-fuchsia-500/10",
+    accent: "from-sky-500/30 to-sky-300/10",
     tags: ["AI", "Mindset", "Workflow", "Tools"],
     lessons: [
       { slug: "apa-itu-ai-development", title: "Apa Itu AI-Assisted Development", summary: "Memahami cara kerja AI dalam membantu coding.", duration: "6 menit", viewers: 2103 },
@@ -36,7 +36,7 @@ export const vibeLevels = [
     viewers: 3127,
     lessonsCount: 6,
     miniProject: "Landing page sederhana (live di internet)",
-    accent: "from-emerald-400/30 to-violet-500/10",
+    accent: "from-emerald-400/30 to-sky-500/10",
     tags: ["Setup", "Prompt", "Deploy", "Vercel"],
     lessons: [
       { slug: "install-tools", title: "Install Tools", summary: "Setup Cursor, GitHub, dan Vercel.", duration: "10 menit", viewers: 2456 },
@@ -60,7 +60,7 @@ export const vibeLevels = [
     viewers: 2456,
     lessonsCount: 5,
     miniProject: "Portfolio website modern",
-    accent: "from-cyan-400/30 to-violet-500/10",
+    accent: "from-cyan-400/30 to-sky-500/10",
     tags: ["React", "Next.js", "Tailwind", "UI"],
     lessons: [
       { slug: "frontend-backend", title: "Frontend & Backend", summary: "Apa bedanya dan kapan butuh masing-masing.", duration: "8 menit", viewers: 1876 },
@@ -83,7 +83,7 @@ export const vibeLevels = [
     viewers: 1892,
     lessonsCount: 7,
     miniProject: "Modern SaaS dashboard",
-    accent: "from-pink-400/30 to-violet-500/10",
+    accent: "from-pink-400/30 to-sky-500/10",
     tags: ["Design", "UI/UX", "Responsive", "SaaS"],
     lessons: [
       { slug: "design-taste", title: "Design Taste", summary: "Melatih mata untuk UI yang bagus.", duration: "8 menit", viewers: 1456 },
@@ -108,7 +108,7 @@ export const vibeLevels = [
     viewers: 1567,
     lessonsCount: 5,
     miniProject: "Todo app dengan login",
-    accent: "from-amber-400/30 to-violet-500/10",
+    accent: "from-amber-400/30 to-sky-500/10",
     tags: ["Supabase", "Database", "Auth", "CRUD"],
     lessons: [
       { slug: "database-basics", title: "Database Basics", summary: "Apa itu database dan kapan butuh.", duration: "8 menit", viewers: 1234 },
@@ -131,7 +131,7 @@ export const vibeLevels = [
     viewers: 1345,
     lessonsCount: 5,
     miniProject: "Fixing broken AI app",
-    accent: "from-rose-400/30 to-violet-500/10",
+    accent: "from-rose-400/30 to-sky-500/10",
     tags: ["Debug", "Error", "Refactor", "Deploy"],
     lessons: [
       { slug: "membaca-error", title: "Membaca Error", summary: "Error bukan musuh, tapi petunjuk.", duration: "8 menit", viewers: 1123 },
@@ -154,7 +154,7 @@ export const vibeLevels = [
     viewers: 1123,
     lessonsCount: 5,
     miniProject: "Mini SaaS app",
-    accent: "from-indigo-400/30 to-violet-500/10",
+    accent: "from-indigo-400/30 to-sky-500/10",
     tags: ["Product", "SaaS", "API", "Performance"],
     lessons: [
       { slug: "product-thinking", title: "Product Thinking", summary: "Berpikir seperti product builder.", duration: "10 menit", viewers: 987 },
@@ -177,7 +177,7 @@ export const vibeLevels = [
     viewers: 892,
     lessonsCount: 5,
     miniProject: "Build app dari ide sendiri",
-    accent: "from-violet-400/30 to-fuchsia-500/10",
+    accent: "from-sky-400/30 to-sky-300/10",
     tags: ["Advanced", "Multi-AI", "Speed", "Mastery"],
     lessons: [
       { slug: "advanced-prompting", title: "Advanced Prompting", summary: "Prompt yang menghasilkan kode production-ready.", duration: "12 menit", viewers: 756 },

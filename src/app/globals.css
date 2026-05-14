@@ -20,7 +20,7 @@ html {
 }
 
 ::selection {
-  background: rgba(124, 58, 237, 0.4);
+  background: rgba(56, 189, 248, 0.4);
   color: #ffffff;
 }
 
@@ -127,7 +127,7 @@ html {
   }
 
   .shimmer-text {
-    background: linear-gradient(90deg, #f5f5f5 0%, #8b5cf6 50%, #f5f5f5 100%);
+    background: linear-gradient(90deg, #f5f5f5 0%, #7dd3fc 50%, #f5f5f5 100%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     background-clip: text;

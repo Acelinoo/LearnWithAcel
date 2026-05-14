@@ -21,7 +21,7 @@ const paths = [
     href: "/persiapan/vibe",
     icon: Bot,
     badge: "AI Assisted",
-    badgeColor: "border-violet-400/30 bg-violet-400/10 text-violet-300",
+    badgeColor: "border-sky-400/30 bg-sky-400/10 text-sky-300",
     title: "Vibe Coding",
     tagline: "Build faster with AI.",
     subtitle:
@@ -34,8 +34,8 @@ const paths = [
       "Bisa launch app lebih cepat",
       "Tetap memahami dasar engineering",
     ],
-    accent: "from-violet-500/20 via-fuchsia-500/10 to-transparent",
-    border: "hover:border-violet-400/40",
+    accent: "from-sky-500/20 via-sky-300/10 to-transparent",
+    border: "hover:border-sky-400/40",
     glow: "group-hover:shadow-[0_0_60px_-15px_rgba(139,92,246,0.4)]",
     cta: "Mulai Vibe Coding",
   },
@@ -193,7 +193,7 @@ export default function PilihJalurPage() {
             <div className="px-5 py-4 text-xs font-semibold uppercase tracking-[0.12em] text-muted">
               Aspek
             </div>
-            <div className="flex items-center gap-2 border-l border-white/5 px-5 py-4 text-xs font-semibold uppercase tracking-[0.12em] text-violet-300">
+            <div className="flex items-center gap-2 border-l border-white/5 px-5 py-4 text-xs font-semibold uppercase tracking-[0.12em] text-sky-300">
               <Bot size={12} />
               Vibe Coding
             </div>

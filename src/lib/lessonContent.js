@@ -257,7 +257,7 @@ body {
 
 .judul {
   font-size: 32px;
-  color: #8b5cf6;
+  color: #38bdf8;
 }
 
 #intro {
@@ -313,7 +313,7 @@ body {
 
 judul {
   font-size: 32px;
-  color: #8b5cf6;
+  color: #38bdf8;
 }
 
 .card {
@@ -343,7 +343,7 @@ judul {
 
 .judul {
   font-size: 32px;
-  color: #8b5cf6;
+  color: #38bdf8;
 }
 
 .card {
@@ -404,7 +404,7 @@ judul {
 
 .judul {
   font-size: 32px
-  color: #8b5cf6;
+  color: #38bdf8;
 }`,
       hints: ["Setiap property CSS butuh tanda titik dua (:) antara nama dan nilai", "Setiap baris deklarasi CSS harus diakhiri titik koma (;)"],
       fixedCode: `body {
@@ -415,7 +415,7 @@ judul {
 
 .judul {
   font-size: 32px;
-  color: #8b5cf6;
+  color: #38bdf8;
 }`,
       explanation: "Tiga error: (1) font-family kurang titik dua (:). (2) background: #0d0d0d kurang titik koma (;) di akhir. (3) font-size: 32px juga kurang titik koma. Di CSS, setiap deklarasi wajib format: property: value;"
     },
@@ -1228,7 +1228,7 @@ console.log(semuaTeks.length);    // 2`,
         code: `const judul = document.querySelector("#judul");
 
 judul.textContent = "Halo Dunia";
-judul.style.color = "#8b5cf6";
+judul.style.color = "#38bdf8";
 judul.classList.add("aktif");`,
         body: [
           "Mengubah class lebih bersih daripada mengubah style langsung. Sebab stylingnya tetap di file CSS.",

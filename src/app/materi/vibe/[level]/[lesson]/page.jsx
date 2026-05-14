@@ -58,7 +58,7 @@ export default function VibeLessonPage({ params }) {
         </Reveal>
         <Reveal delay={0.05}>
           <div className="mt-12 flex flex-col items-center text-center">
-            <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-violet-400/20 bg-violet-400/[0.06] text-violet-300">
+            <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-sky-400/20 bg-sky-400/[0.06] text-sky-300">
               <Hourglass size={22} />
             </div>
             <span className="section-eyebrow mt-6">
@@ -104,7 +104,7 @@ export default function VibeLessonPage({ params }) {
 
         <Reveal delay={0.05}>
           <div className="mt-8 flex flex-wrap items-center gap-2">
-            <span className="rounded-full border border-violet-400/30 bg-violet-400/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-violet-300">
+            <span className="rounded-full border border-sky-400/30 bg-sky-400/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-sky-300">
               <Bot size={10} className="mr-1 inline" />
               Vibe Coding
             </span>
@@ -131,8 +131,8 @@ export default function VibeLessonPage({ params }) {
 
         {lesson.hero && (
           <Reveal delay={0.2}>
-            <div className="mt-10 flex items-center gap-4 rounded-2xl border border-violet-400/10 bg-gradient-to-br from-violet-500/10 via-card to-card p-6">
-              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-violet-400/20 bg-violet-400/[0.06] text-3xl">
+            <div className="mt-10 flex items-center gap-4 rounded-2xl border border-sky-400/10 bg-gradient-to-br from-sky-500/10 via-card to-card p-6">
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-sky-400/20 bg-sky-400/[0.06] text-3xl">
                 {lesson.hero.emoji}
               </div>
               <p className="text-[15px] italic text-foreground/80">
@@ -146,7 +146,7 @@ export default function VibeLessonPage({ params }) {
         <Reveal delay={0.2}>
           <section className="mt-10 card-base p-6">
             <div className="flex items-center gap-2">
-              <Target size={16} className="text-violet-300" />
+              <Target size={16} className="text-sky-300" />
               <h2 className="font-display text-sm font-semibold uppercase tracking-[0.12em] text-muted">
                 Poin Pembelajaran
               </h2>
@@ -157,7 +157,7 @@ export default function VibeLessonPage({ params }) {
                   key={o}
                   className="flex gap-3 text-[15px] leading-relaxed text-foreground/90"
                 >
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-violet-400" />
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-400" />
                   {o}
                 </li>
               ))}
@@ -232,7 +232,7 @@ export default function VibeLessonPage({ params }) {
           <Reveal>
             <Link
               href={lesson.nextLesson.href}
-              className="group mt-10 flex items-center justify-between gap-4 rounded-2xl border border-violet-400/10 bg-gradient-to-r from-card to-violet-500/10 p-6 transition-all hover:border-violet-400/40"
+              className="group mt-10 flex items-center justify-between gap-4 rounded-2xl border border-sky-400/10 bg-gradient-to-r from-card to-sky-500/10 p-6 transition-all hover:border-sky-400/40"
             >
               <div>
                 <div className="text-xs text-muted">Materi berikutnya</div>
@@ -240,7 +240,7 @@ export default function VibeLessonPage({ params }) {
                   {lesson.nextLesson.title}
                 </div>
               </div>
-              <span className="flex h-10 w-10 items-center justify-center rounded-full border border-violet-400/20 bg-violet-400/[0.06] text-muted transition-all group-hover:border-violet-400/40 group-hover:text-violet-300">
+              <span className="flex h-10 w-10 items-center justify-center rounded-full border border-sky-400/20 bg-sky-400/[0.06] text-muted transition-all group-hover:border-sky-400/40 group-hover:text-sky-300">
                 <ArrowRight size={16} />
               </span>
             </Link>
@@ -254,7 +254,7 @@ export default function VibeLessonPage({ params }) {
             Bagian dari{" "}
             <Link
               href={`/roadmap/vibe#${level.slug}`}
-              className="text-foreground hover:text-violet-300"
+              className="text-foreground hover:text-sky-300"
             >
               {level.title}
             </Link>
