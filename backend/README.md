@@ -87,6 +87,9 @@ prisma db push
 
 # Seed with initial data
 python -m scripts.seed
+
+# Promote a registered user to admin (required for /api/v1/admin/* endpoints)
+python -m scripts.promote_admin you@example.com
 ```
 
 ### 4. Run
