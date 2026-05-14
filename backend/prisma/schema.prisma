@@ -1,0 +1,95 @@
+// Prisma schema for LearnWithAcel backend
+// Database: PostgreSQL
+// ORM: Prisma (Python via prisma-client-py)
+
+generator client {
+  provider             = "prisma-client-py"
+  interface            = "asyncio"
+  recursive_type_depth = 5
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String         @id @default(uuid())
+  email           String         @unique
+  full_name       String
+  hashed_password String
+  avatar_url      String?
+  is_admin        Boolean        @default(false)
+  created_at      DateTime       @default(now())
+  progress        UserProgress[]
+
+  @@map("users")
+}
+
+model Category {
+  id          String  @id @default(uuid())
+  name        String
+  slug        String  @unique
+  available   Boolean @default(false)
+  role        String
+  side        String
+  description String
+  tasks       String
+  techs       Json    // [{ label: String, items: [String] }]
+  levels      Level[]
+
+  @@map("categories")
+}
+
+model Level {
+  id           String   @id @default(uuid())
+  category_id  String
+  number       Int
+  title        String
+  slug         String
+  subtitle     String
+  description  String
+  duration     String
+  difficulty   String
+  accent_color String
+  mini_project String
+  quiz_count   Int      @default(0)
+  base_viewers Int      @default(0)
+  tags         Json     // String[]
+  coming_soon  Boolean  @default(false)
+  lessons      Lesson[]
+  category     Category @relation(fields: [category_id], references: [id], onDelete: Cascade)
+
+  @@unique([category_id, slug])
+  @@map("levels")
+}
+
+model Lesson {
+  id           String         @id @default(uuid())
+  level_id     String
+  title        String
+  slug         String
+  summary      String
+  content      String         // Markdown
+  duration     String
+  base_viewers Int            @default(0)
+  order_index  Int
+  level        Level          @relation(fields: [level_id], references: [id], onDelete: Cascade)
+  progress     UserProgress[]
+
+  @@unique([level_id, slug])
+  @@map("lessons")
+}
+
+model UserProgress {
+  id           String    @id @default(uuid())
+  user_id      String
+  lesson_id    String
+  is_completed Boolean   @default(false)
+  completed_at DateTime?
+  user         User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  lesson       Lesson    @relation(fields: [lesson_id], references: [id], onDelete: Cascade)
+
+  @@unique([user_id, lesson_id])
+  @@map("user_progress")
+}
