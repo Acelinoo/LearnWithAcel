@@ -1,0 +1,21 @@
+{
+  "mcpServers": {
+    "fetch": {
+      "command": "uvx",
+      "args": [
+        "mcp-server-fetch"
+      ],
+      "env": {},
+      "disabled": false,
+      "autoApprove": []
+    },
+    "context7": {
+      "url": "https://mcp.context7.com/mcp",
+      "disabled": false,
+      "autoApprove": [],
+      "headers": {
+  "CONTEXT7_API_KEY": "ctx7sk-6e6b9efc-fa98-414b-9792-1ccda8949b02"
+}
+    }
+  }
+}
