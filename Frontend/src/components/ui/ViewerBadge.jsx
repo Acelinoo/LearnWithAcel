@@ -15,7 +15,7 @@ export default function ViewerBadge({
   return (
     <div
       className={
-        "inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 backdrop-blur-sm " +
+        "inline-flex items-center gap-2 rounded-full border border-border bg-black/30 px-3 py-1.5 backdrop-blur-sm " +
         className
       }
     >

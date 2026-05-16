@@ -28,7 +28,7 @@ function LevelCard({ level, accentClass = "" }) {
             Level 0{level.number}
           </span>
           {isComingSoon ? (
-            <span className="rounded-full border border-white/10 bg-white/[0.04] px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider text-muted">
+            <span className="rounded-full border border-border bg-black/30 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider text-muted">
               Coming Soon
             </span>
           ) : (
@@ -47,14 +47,14 @@ function LevelCard({ level, accentClass = "" }) {
           {tags.slice(0, 3).map((t) => (
             <span
               key={t}
-              className="rounded-full border border-white/10 bg-white/[0.02] px-2 py-0.5 text-[11px] text-muted"
+              className="rounded-full border border-border bg-black/30 px-2 py-0.5 text-[11px] text-muted"
             >
               {t}
             </span>
           ))}
         </div>
 
-        <div className="mt-5 flex items-center gap-4 border-t border-white/5 pt-4 text-xs text-muted">
+        <div className="mt-5 flex items-center gap-4 border-t border-border pt-4 text-xs text-muted">
           <span>{level.lessons.length} materi</span>
           <span className="h-1 w-1 rounded-full bg-white/20" />
           <span>{level.duration}</span>

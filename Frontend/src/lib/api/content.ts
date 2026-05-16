@@ -32,6 +32,8 @@ export type ApiLessonSummary = {
   duration: string;
   base_viewers: number;
   order_index: number;
+  xp_reward?: number;
+  is_project?: boolean;
 };
 
 export type ApiLevelSummary = {
@@ -68,6 +70,8 @@ export type ApiLessonDetail = {
   base_viewers: number;
   order_index: number;
   level_id: string;
+  xp_reward?: number;
+  is_project?: boolean;
 };
 
 /* ------------------------------------------------------------------ */

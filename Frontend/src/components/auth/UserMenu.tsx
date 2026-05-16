@@ -35,7 +35,7 @@ export default function UserMenu() {
 
   if (loading) {
     return (
-      <div className="h-9 w-9 animate-pulse rounded-full border border-white/10 bg-white/[0.04]" />
+      <div className="h-9 w-9 animate-pulse rounded-full border border-border bg-black/30" />
     );
   }
 
@@ -61,9 +61,9 @@ export default function UserMenu() {
         type="button"
         onClick={() => setOpen((v) => !v)}
         className={cn(
-          "flex h-9 items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] pl-1 pr-3 text-sm transition-colors",
-          "hover:border-white/20 hover:bg-white/[0.06]",
-          open && "border-accent/40 bg-white/[0.06]"
+          "flex h-9 items-center gap-2 rounded-full border border-border bg-black/30 pl-1 pr-3 text-sm transition-colors",
+          "hover:border-border hover:bg-black/40",
+          open && "border-accent/40 bg-black/40"
         )}
         aria-haspopup="menu"
         aria-expanded={open}
@@ -83,10 +83,10 @@ export default function UserMenu() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -6, scale: 0.98 }}
             transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute right-0 top-[calc(100%+8px)] w-60 overflow-hidden rounded-xl border border-white/10 bg-[#151515]/95 shadow-card backdrop-blur-xl"
+            className="absolute right-0 top-[calc(100%+8px)] w-60 overflow-hidden rounded-xl border border-border bg-[#151515]/95 shadow-card backdrop-blur-xl"
             role="menu"
           >
-            <div className="border-b border-white/5 px-4 py-3">
+            <div className="border-b border-border px-4 py-3">
               <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.14em] text-muted">
                 <User size={11} />
                 Signed in as
@@ -99,7 +99,7 @@ export default function UserMenu() {
             <div className="p-1.5">
               <Link
                 href="/dashboard"
-                className="flex items-center gap-2.5 rounded-lg px-3 py-2 text-[13px] text-foreground/90 transition-colors hover:bg-white/[0.05]"
+                className="flex items-center gap-2.5 rounded-lg px-3 py-2 text-[13px] text-foreground/90 transition-colors hover:bg-black/40"
                 role="menuitem"
                 onClick={() => setOpen(false)}
               >
@@ -118,7 +118,7 @@ export default function UserMenu() {
                     setOpen(false);
                   }
                 }}
-                className="flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-left text-[13px] text-foreground/90 transition-colors hover:bg-white/[0.05]"
+                className="flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-left text-[13px] text-foreground/90 transition-colors hover:bg-black/40"
               >
                 {signingOut ? (
                   <Loader2 size={14} className="animate-spin text-accent-hover" />

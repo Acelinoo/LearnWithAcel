@@ -21,7 +21,10 @@ def _serialize_lesson_summary(lesson) -> LessonSummary:
         summary=lesson.summary,
         duration=lesson.duration,
         base_viewers=lesson.base_viewers,
+        views=getattr(lesson, "views", 0) or 0,
         order_index=lesson.order_index,
+        xp_reward=getattr(lesson, "xp_reward", 50) or 50,
+        is_project=getattr(lesson, "is_project", False) or False,
     )
 
 
@@ -125,6 +128,9 @@ async def get_lesson_detail(level_slug: str, lesson_slug: str) -> LessonDetail:
         content=lesson.content,
         duration=lesson.duration,
         base_viewers=lesson.base_viewers,
+        views=getattr(lesson, "views", 0) or 0,
         order_index=lesson.order_index,
         level_id=lesson.level_id,
+        xp_reward=getattr(lesson, "xp_reward", 50) or 50,
+        is_project=getattr(lesson, "is_project", False) or False,
     )

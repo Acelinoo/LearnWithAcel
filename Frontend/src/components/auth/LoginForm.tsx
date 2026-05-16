@@ -82,7 +82,7 @@ export default function LoginForm() {
         <label className="flex cursor-pointer items-center gap-2 text-[13px] text-muted">
           <input
             type="checkbox"
-            className="h-4 w-4 rounded border-white/20 bg-white/[0.04] text-accent accent-accent focus:ring-accent/40"
+            className="h-4 w-4 rounded border-border bg-black/30 text-accent accent-accent focus:ring-accent/40"
             {...register("remember")}
           />
           Ingat saya

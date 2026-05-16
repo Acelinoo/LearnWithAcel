@@ -42,7 +42,7 @@ export default function Navbar() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
         scrolled
-          ? "border-b border-white/5 bg-background/70 backdrop-blur-xl"
+          ? "border-b border-border bg-background/70 backdrop-blur-xl"
           : "border-b border-transparent"
       )}
     >
@@ -51,7 +51,7 @@ export default function Navbar() {
           href="/"
           className="group flex items-center gap-2 font-display text-base font-semibold tracking-tight"
         >
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-gradient-to-br from-accent/60 to-accent-hover/40 shadow-glow">
+          <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-border bg-gradient-to-br from-accent/60 to-accent-hover/40 shadow-glow">
             <Sparkles className="h-4 w-4 text-white" />
           </span>
           <span className="text-foreground">
@@ -72,7 +72,7 @@ export default function Navbar() {
                 className={cn(
                   "rounded-full px-3.5 py-1.5 text-sm transition-colors",
                   active
-                    ? "bg-white/[0.06] text-foreground"
+                    ? "bg-black/40 text-foreground"
                     : "text-muted hover:text-foreground"
                 )}
               >
@@ -87,7 +87,7 @@ export default function Navbar() {
             <UserMenu />
           </div>
           <button
-            className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 text-muted md:hidden"
+            className="flex h-10 w-10 items-center justify-center rounded-lg border border-border text-muted md:hidden"
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle menu"
           >
@@ -112,8 +112,8 @@ export default function Navbar() {
                     className={cn(
                       "block rounded-xl px-4 py-3 text-sm transition-colors",
                       active
-                        ? "bg-white/[0.06] text-foreground"
-                        : "text-muted hover:bg-white/[0.04] hover:text-foreground"
+                        ? "bg-black/40 text-foreground"
+                        : "text-muted hover:bg-black/30 hover:text-foreground"
                     )}
                   >
                     {item.label}
@@ -126,7 +126,7 @@ export default function Navbar() {
               >
                 Mulai Belajar
               </Link>
-              <div className="mt-2 border-t border-white/5 pt-2">
+              <div className="mt-2 border-t border-border pt-2">
                 <UserMenu />
               </div>
             </div>

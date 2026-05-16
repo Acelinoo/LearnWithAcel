@@ -18,7 +18,7 @@ export default function LevelViewerBadge({
   return (
     <span
       className={
-        "inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] text-muted " +
+        "inline-flex items-center gap-1.5 rounded-full border border-border bg-black/30 text-muted " +
         sizes[size] +
         " " +
         className

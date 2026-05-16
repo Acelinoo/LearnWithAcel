@@ -17,6 +17,7 @@ import ViewerBadge from "@/components/ui/ViewerBadge";
 import LevelLeaderboard from "@/components/dashboard/LevelLeaderboard";
 import ProgressByLevel from "@/components/dashboard/ProgressByLevel";
 import ContinueLearning from "@/components/dashboard/ContinueLearning";
+import EngagementHero from "@/components/dashboard/EngagementHero";
 import LogoutButton from "@/components/auth/LogoutButton";
 import { getServerUser, getServerStats } from "@/lib/api/server";
 import { getRoadmap } from "@/lib/api/content";
@@ -60,6 +61,10 @@ export default async function DashboardPage() {
   const displayName =
     user.full_name || user.email?.split("@")[0] || "Learner";
 
+  const xp = stats?.xp_total ?? 0;
+  const streak = stats?.current_streak ?? 0;
+  const longestStreak = stats?.longest_streak ?? 0;
+
   return (
     <div className="container-page py-16">
       <Reveal>
@@ -83,6 +88,17 @@ export default async function DashboardPage() {
               Mulai belajar
             </Link>
           </div>
+        </div>
+      </Reveal>
+
+      {/* XP + streak strip (live, listens to progress events) */}
+      <Reveal delay={0.05}>
+        <div className="mt-8">
+          <EngagementHero
+            initialXp={xp}
+            initialStreak={streak}
+            initialLongestStreak={longestStreak}
+          />
         </div>
       </Reveal>
 
@@ -147,7 +163,7 @@ export default async function DashboardPage() {
         ].map((s, i) => (
           <Reveal key={s.label} delay={0.05 * (i + 1)} className="md:col-span-1">
             <div className="card-base flex h-full flex-col justify-between p-5">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] text-accent-hover">
+              <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-black/30 text-accent-hover">
                 <s.icon size={16} />
               </div>
               <div className="mt-6">
@@ -165,7 +181,10 @@ export default async function DashboardPage() {
       {stats && (
         <Reveal>
           <div className="mt-10">
-            <ContinueLearning byLevel={stats.by_level} />
+            <ContinueLearning
+              byLevel={stats.by_level}
+              continueLesson={stats.continue_lesson ?? null}
+            />
           </div>
         </Reveal>
       )}
@@ -204,9 +223,9 @@ export default async function DashboardPage() {
                 <li key={`${l.levelSlug}/${l.slug}`}>
                   <Link
                     href={`/materi/${l.levelSlug}/${l.slug}`}
-                    className="group flex items-center gap-4 rounded-xl border border-white/5 bg-white/[0.02] p-4 transition-all hover:border-accent/30 hover:bg-white/[0.04]"
+                    className="group flex items-center gap-4 rounded-xl border border-border bg-black/30 p-4 transition-all hover:border-accent/30 hover:bg-black/30"
                   >
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] font-mono text-xs text-accent-hover">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-border bg-black/30 font-mono text-xs text-accent-hover">
                       {String(idx + 1).padStart(2, "0")}
                     </span>
                     <div className="min-w-0 flex-1">

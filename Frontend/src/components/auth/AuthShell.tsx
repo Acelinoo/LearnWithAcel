@@ -50,7 +50,7 @@ export default function AuthShell({
             href="/"
             className="group flex items-center gap-2 font-display text-sm font-semibold tracking-tight"
           >
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-gradient-to-br from-accent/60 to-accent-hover/40 shadow-glow">
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-border bg-gradient-to-br from-accent/60 to-accent-hover/40 shadow-glow">
               <Sparkles className="h-4 w-4 text-white" />
             </span>
             <span className="text-foreground">

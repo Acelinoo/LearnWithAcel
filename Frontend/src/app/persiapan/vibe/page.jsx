@@ -94,7 +94,7 @@ export default async function PersiapanVibePage() {
               { icon: Sparkles, label: "Harga", value: "Semua gratis" },
             ].map((s) => (
               <div key={s.label} className="card-base flex items-center gap-3 p-4">
-                <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] text-accent-hover">
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-black/30 text-accent-hover">
                   <s.icon size={16} />
                 </div>
                 <div>
@@ -118,13 +118,13 @@ export default async function PersiapanVibePage() {
               <div className="card-base card-hover h-full p-5">
                 <div className="flex items-center justify-between">
                   <div className="font-mono text-[10px] uppercase tracking-[0.14em] text-accent-hover">{t.tag}</div>
-                  <span className={`rounded-full border px-2 py-0.5 text-[10px] font-medium ${t.must ? "border-accent/30 bg-accent/10 text-accent-hover" : "border-white/10 bg-white/[0.03] text-muted"}`}>
+                  <span className={`rounded-full border px-2 py-0.5 text-[10px] font-medium ${t.must ? "border-accent/30 bg-accent/10 text-accent-hover" : "border-border bg-black/30 text-muted"}`}>
                     {t.must ? "Wajib" : "Opsional"}
                   </span>
                 </div>
                 <h3 className="mt-3 font-display text-base font-semibold">{t.name}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted">{t.desc}</p>
-                <div className="mt-4 flex items-center justify-between border-t border-white/5 pt-3">
+                <div className="mt-4 flex items-center justify-between border-t border-border pt-3">
                   <span className="text-xs text-muted">{t.size}</span>
                   <a href={t.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sm font-medium text-accent-hover hover:text-foreground">
                     Buka <ExternalLink size={12} />
@@ -145,7 +145,7 @@ export default async function PersiapanVibePage() {
           {mindset.map((m, i) => (
             <Reveal key={m.title} delay={i * 0.05}>
               <div className="card-base card-hover h-full p-5">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-accent-hover">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-black/30 text-accent-hover">
                   <m.icon size={16} />
                 </div>
                 <h3 className="mt-4 font-display text-base font-semibold">{m.title}</h3>
@@ -158,7 +158,7 @@ export default async function PersiapanVibePage() {
 
       <section className="container-page py-16">
         <Reveal>
-          <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-sky-500/15 via-card to-card p-8 sm:p-12">
+          <div className="relative overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-sky-500/15 via-card to-card p-8 sm:p-12">
             <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-sky-500/30 blur-3xl" />
             <div className="relative flex flex-col items-start gap-8 md:flex-row md:items-center md:justify-between">
               <div className="max-w-xl">

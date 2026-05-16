@@ -16,7 +16,7 @@ export default function AboutCreator() {
         <div className="card-base overflow-hidden p-8 sm:p-10">
           <div className="grid gap-8 lg:grid-cols-[auto_1fr] lg:items-center">
             <div className="relative">
-              <div className="relative h-32 w-32 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-accent/40 to-accent-hover/20">
+              <div className="relative h-32 w-32 overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-accent/40 to-accent-hover/20">
                 <div className="absolute inset-0 flex items-center justify-center font-display text-5xl font-semibold text-foreground/90">
                   A
                 </div>

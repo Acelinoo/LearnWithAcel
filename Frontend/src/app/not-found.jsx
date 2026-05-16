@@ -5,7 +5,7 @@ export default function NotFound() {
   return (
     <div className="container-page py-24">
       <div className="mx-auto flex max-w-md flex-col items-center text-center">
-        <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03] text-accent-hover">
+        <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-border bg-black/30 text-accent-hover">
           <Compass size={22} />
         </div>
         <div className="mt-6 font-mono text-xs uppercase tracking-[0.16em] text-accent-hover">

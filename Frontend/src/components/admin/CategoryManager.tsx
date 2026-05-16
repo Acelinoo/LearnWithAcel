@@ -167,10 +167,10 @@ export default function CategoryManager({
             <li
               key={category.id}
               className={
-                "flex items-center gap-3 rounded-xl border bg-white/[0.02] p-3 transition-colors " +
+                "flex items-center gap-3 rounded-xl border bg-black/30 p-3 transition-colors " +
                 (editingId === category.id
                   ? "border-accent/40"
-                  : "border-white/5")
+                  : "border-border")
               }
             >
               <div className="min-w-0 flex-1">
@@ -180,7 +180,7 @@ export default function CategoryManager({
                       Available
                     </span>
                   ) : (
-                    <span className="rounded-full border border-white/10 bg-white/[0.04] px-1.5 py-0.5 text-[10px] text-muted">
+                    <span className="rounded-full border border-border bg-black/30 px-1.5 py-0.5 text-[10px] text-muted">
                       Hidden
                     </span>
                   )}

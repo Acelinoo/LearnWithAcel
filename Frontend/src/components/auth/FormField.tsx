@@ -42,8 +42,8 @@ const FormField = forwardRef<HTMLInputElement, Props>(function FormField(
 
       <div
         className={cn(
-          "group relative flex items-center overflow-hidden rounded-xl border bg-white/[0.02] transition-all",
-          "border-white/10 focus-within:border-accent/60 focus-within:bg-white/[0.04]",
+          "group relative flex items-center overflow-hidden rounded-xl border bg-black/30 transition-all",
+          "border-border focus-within:border-accent/60 focus-within:bg-black/30",
           "focus-within:shadow-[0_0_0_4px_rgba(78,186,236,0.12)]",
           error &&
             "border-red-500/50 focus-within:border-red-400/70 focus-within:shadow-[0_0_0_4px_rgba(239,68,68,0.15)]"
@@ -73,7 +73,7 @@ const FormField = forwardRef<HTMLInputElement, Props>(function FormField(
             type="button"
             onClick={() => setShow((v) => !v)}
             aria-label={show ? "Sembunyikan password" : "Tampilkan password"}
-            className="absolute right-1.5 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-lg text-muted transition-colors hover:bg-white/[0.05] hover:text-foreground"
+            className="absolute right-1.5 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-lg text-muted transition-colors hover:bg-black/40 hover:text-foreground"
             tabIndex={-1}
           >
             {show ? <EyeOff size={15} /> : <Eye size={15} />}

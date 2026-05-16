@@ -162,7 +162,7 @@ export default function LevelManager({ roadmaps, token, onChange }: Props) {
                 "rounded-full border px-3 py-1.5 text-xs font-medium transition-colors " +
                 (activeCategory === category.id
                   ? "border-accent/40 bg-accent/15 text-accent-hover"
-                  : "border-white/10 bg-white/[0.02] text-muted hover:border-white/20 hover:text-foreground")
+                  : "border-border bg-black/30 text-muted hover:border-border hover:text-foreground")
               }
             >
               {category.name}
@@ -192,13 +192,13 @@ export default function LevelManager({ roadmaps, token, onChange }: Props) {
               <li
                 key={level.id}
                 className={
-                  "flex items-center gap-3 rounded-xl border bg-white/[0.02] p-3 transition-colors " +
+                  "flex items-center gap-3 rounded-xl border bg-black/30 p-3 transition-colors " +
                   (editingId === level.id
                     ? "border-accent/40"
-                    : "border-white/5")
+                    : "border-border")
                 }
               >
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] font-mono text-xs text-accent-hover">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-border bg-black/30 font-mono text-xs text-accent-hover">
                   0{level.number}
                 </span>
                 <div className="min-w-0 flex-1">
@@ -265,7 +265,7 @@ export default function LevelManager({ roadmaps, token, onChange }: Props) {
                 onChange={(e) =>
                   setDraft({ ...draft, category_id: e.target.value })
                 }
-                className="mt-1.5 w-full rounded-xl border border-white/10 bg-white/[0.02] px-3 py-2.5 text-sm outline-none focus:border-accent/60 focus:bg-white/[0.04]"
+                className="mt-1.5 w-full rounded-xl border border-border bg-black/30 px-3 py-2.5 text-sm outline-none focus:border-accent/60 focus:bg-black/30"
                 required
               >
                 {roadmaps.map(({ category }) => (

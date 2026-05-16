@@ -41,7 +41,7 @@ function LevelArticle({ level, i, basePath }) {
           isComingSoon ? "opacity-60" : ""
         }`}
       >
-        <div className="absolute left-0 top-6 flex h-[52px] w-[52px] items-center justify-center rounded-2xl border border-white/10 bg-card shadow-card md:h-[60px] md:w-[60px]">
+        <div className="absolute left-0 top-6 flex h-[52px] w-[52px] items-center justify-center rounded-2xl border border-border bg-card shadow-card md:h-[60px] md:w-[60px]">
           <div
             className={`flex h-full w-full items-center justify-center rounded-2xl bg-gradient-to-br ${level.accent_color}`}
           >
@@ -59,7 +59,7 @@ function LevelArticle({ level, i, basePath }) {
                   Level 0{level.number}
                 </span>
                 {isComingSoon ? (
-                  <span className="rounded-full border border-white/10 bg-white/[0.04] px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider text-muted">
+                  <span className="rounded-full border border-border bg-black/30 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider text-muted">
                     Coming Soon
                   </span>
                 ) : (
@@ -93,7 +93,7 @@ function LevelArticle({ level, i, basePath }) {
             ].map((m) => (
               <div
                 key={m.label}
-                className="rounded-xl border border-white/5 bg-white/[0.02] px-4 py-3"
+                className="rounded-xl border border-border bg-black/30 px-4 py-3"
               >
                 <div className="text-[11px] uppercase tracking-wider text-muted">
                   {m.label}
@@ -105,7 +105,7 @@ function LevelArticle({ level, i, basePath }) {
             ))}
           </div>
 
-          <div className="mt-6 flex flex-wrap items-center gap-3 border-t border-white/5 pt-6">
+          <div className="mt-6 flex flex-wrap items-center gap-3 border-t border-border pt-6">
             <div className="flex items-center gap-2 text-sm text-muted">
               <Trophy size={14} className="text-accent-hover" />
               Mini project:{" "}
@@ -125,14 +125,14 @@ function LevelArticle({ level, i, basePath }) {
           </div>
 
           {!isComingSoon && level.lessons.length > 0 && (
-            <div className="mt-6 grid gap-2 border-t border-white/5 pt-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-6 grid gap-2 border-t border-border pt-6 sm:grid-cols-2 lg:grid-cols-3">
               {level.lessons.map((lesson) => (
                 <Link
                   key={lesson.slug}
                   href={lessonHref(lesson.slug)}
-                  className="group/lesson flex items-center gap-3 rounded-xl border border-white/5 bg-white/[0.02] p-3 transition-colors hover:border-accent/30 hover:bg-white/[0.04]"
+                  className="group/lesson flex items-center gap-3 rounded-xl border border-border bg-black/30 p-3 transition-colors hover:border-accent/30 hover:bg-black/30"
                 >
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] text-accent-hover">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-border bg-black/30 text-accent-hover">
                     <BookOpen size={14} />
                   </span>
                   <div className="min-w-0 flex-1">
@@ -157,7 +157,7 @@ function LevelArticle({ level, i, basePath }) {
           )}
 
           {isComingSoon && (
-            <div className="mt-6 border-t border-white/5 pt-6">
+            <div className="mt-6 border-t border-border pt-6">
               <p className="text-sm italic text-muted">
                 Materi sedang dalam pengembangan. Stay tuned!
               </p>
@@ -270,7 +270,7 @@ export default async function RoadmapPage() {
               key={s.label}
               className="card-base flex items-center gap-3 p-4"
             >
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] text-accent-hover">
+              <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-black/30 text-accent-hover">
                 <s.icon size={16} />
               </div>
               <div>

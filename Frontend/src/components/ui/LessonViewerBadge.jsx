@@ -13,7 +13,7 @@ export default function LessonViewerBadge({
   className = "",
 }) {
   const base = bordered
-    ? "inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-xs text-muted"
+    ? "inline-flex items-center gap-1.5 rounded-full border border-border bg-black/30 px-2.5 py-1 text-xs text-muted"
     : "inline-flex items-center gap-1.5 text-xs text-muted";
 
   return (

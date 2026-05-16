@@ -107,7 +107,7 @@ export default function PilihJalurPage() {
           >
             <Link
               href={p.href}
-              className={`group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-card p-8 transition-all duration-500 sm:p-10 ${p.border} ${p.glow}`}
+              className={`group relative flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card p-8 transition-all duration-500 sm:p-10 ${p.border} ${p.glow}`}
             >
               {/* Gradient bg */}
               <div
@@ -119,7 +119,7 @@ export default function PilihJalurPage() {
               <div className="relative flex flex-1 flex-col">
                 {/* Icon + badge */}
                 <div className="flex items-center justify-between">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03]">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-border bg-black/30">
                     <p.icon size={22} className="text-foreground" />
                   </div>
                   <span
@@ -187,17 +187,17 @@ export default function PilihJalurPage() {
           </h2>
         </div>
 
-        <div className="mt-10 overflow-hidden rounded-2xl border border-white/10">
+        <div className="mt-10 overflow-hidden rounded-2xl border border-border">
           {/* Header */}
-          <div className="grid grid-cols-3 border-b border-white/5 bg-white/[0.02]">
+          <div className="grid grid-cols-3 border-b border-border bg-black/30">
             <div className="px-5 py-4 text-xs font-semibold uppercase tracking-[0.12em] text-muted">
               Aspek
             </div>
-            <div className="flex items-center gap-2 border-l border-white/5 px-5 py-4 text-xs font-semibold uppercase tracking-[0.12em] text-sky-300">
+            <div className="flex items-center gap-2 border-l border-border px-5 py-4 text-xs font-semibold uppercase tracking-[0.12em] text-sky-300">
               <Bot size={12} />
               Vibe Coding
             </div>
-            <div className="flex items-center gap-2 border-l border-white/5 px-5 py-4 text-xs font-semibold uppercase tracking-[0.12em] text-cyan-300">
+            <div className="flex items-center gap-2 border-l border-border px-5 py-4 text-xs font-semibold uppercase tracking-[0.12em] text-cyan-300">
               <Code2 size={12} />
               Manual Coding
             </div>
@@ -207,16 +207,16 @@ export default function PilihJalurPage() {
             <div
               key={row.aspect}
               className={`grid grid-cols-3 ${
-                i < comparison.length - 1 ? "border-b border-white/5" : ""
+                i < comparison.length - 1 ? "border-b border-border" : ""
               }`}
             >
               <div className="px-5 py-4 text-sm font-medium text-foreground">
                 {row.aspect}
               </div>
-              <div className="border-l border-white/5 px-5 py-4 text-sm text-muted">
+              <div className="border-l border-border px-5 py-4 text-sm text-muted">
                 {row.vibe}
               </div>
-              <div className="border-l border-white/5 px-5 py-4 text-sm text-muted">
+              <div className="border-l border-border px-5 py-4 text-sm text-muted">
                 {row.manual}
               </div>
             </div>

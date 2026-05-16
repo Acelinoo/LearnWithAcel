@@ -139,7 +139,7 @@ export default async function PersiapanPage() {
               { icon: FolderCheck, label: "Harga", value: "Semua gratis" },
             ].map((s) => (
               <div key={s.label} className="card-base flex items-center gap-3 p-4">
-                <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] text-accent-hover">
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-black/30 text-accent-hover">
                   <s.icon size={16} />
                 </div>
                 <div>
@@ -168,7 +168,7 @@ export default async function PersiapanPage() {
                 <div className="relative flex flex-col gap-5">
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex items-center gap-3">
-                      <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-accent-hover">
+                      <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-border bg-black/30 text-accent-hover">
                         <item.icon size={18} />
                       </div>
                       <div>
@@ -178,12 +178,12 @@ export default async function PersiapanPage() {
                         <h3 className="font-display text-lg font-semibold">{item.name}</h3>
                       </div>
                     </div>
-                    <span className={"rounded-full border px-2.5 py-0.5 text-[10px] font-medium " + (item.must ? "border-accent/30 bg-accent/10 text-accent-hover" : "border-white/10 bg-white/[0.03] text-muted")}>
+                    <span className={"rounded-full border px-2.5 py-0.5 text-[10px] font-medium " + (item.must ? "border-accent/30 bg-accent/10 text-accent-hover" : "border-border bg-black/30 text-muted")}>
                       {item.must ? "Wajib" : "Opsional"}
                     </span>
                   </div>
                   <p className="text-sm leading-relaxed text-foreground/80">{item.desc}</p>
-                  <div className="mt-auto flex flex-wrap items-center justify-between gap-3 border-t border-white/5 pt-4">
+                  <div className="mt-auto flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4">
                     <span className="text-xs text-muted">Ukuran download: {item.size}</span>
                     <a href={item.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm font-medium text-accent-hover transition-colors hover:text-foreground">
                       Download <ExternalLink size={14} />
@@ -231,7 +231,7 @@ export default async function PersiapanPage() {
           {mindset.map((m, i) => (
             <Reveal key={m.title} delay={i * 0.05}>
               <div className="card-base card-hover h-full p-5">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-accent-hover">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-black/30 text-accent-hover">
                   <m.icon size={16} />
                 </div>
                 <h3 className="mt-4 font-display text-base font-semibold">{m.title}</h3>
@@ -244,7 +244,7 @@ export default async function PersiapanPage() {
 
       <section className="container-page py-20">
         <Reveal>
-          <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-accent/15 via-card to-card p-8 sm:p-12">
+          <div className="relative overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-accent/15 via-card to-card p-8 sm:p-12">
             <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-accent/30 blur-3xl" />
             <div className="pointer-events-none absolute -bottom-24 left-1/3 h-64 w-64 rounded-full bg-accent-hover/20 blur-3xl" />
             <div className="relative flex flex-col items-start gap-8 md:flex-row md:items-center md:justify-between">

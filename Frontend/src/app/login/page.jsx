@@ -14,8 +14,8 @@ function LoginFormFallback() {
     <div className="space-y-4">
       {[0, 1].map((i) => (
         <div key={i} className="space-y-1.5">
-          <div className="h-4 w-20 animate-pulse rounded bg-white/[0.06]" />
-          <div className="h-11 animate-pulse rounded-xl border border-white/10 bg-white/[0.02]" />
+          <div className="h-4 w-20 animate-pulse rounded bg-black/40" />
+          <div className="h-11 animate-pulse rounded-xl border border-border bg-black/30" />
         </div>
       ))}
       <div className="h-11 animate-pulse rounded-xl bg-accent/30" />

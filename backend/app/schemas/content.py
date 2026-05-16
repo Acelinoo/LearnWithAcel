@@ -17,7 +17,10 @@ class LessonSummary(BaseModel):
     summary: str
     duration: str
     base_viewers: int
+    views: int = 0
     order_index: int
+    xp_reward: int = 50
+    is_project: bool = False
 
     model_config = {"from_attributes": True}
 
@@ -32,8 +35,11 @@ class LessonDetail(BaseModel):
     content: str
     duration: str
     base_viewers: int
+    views: int = 0
     order_index: int
     level_id: str
+    xp_reward: int = 50
+    is_project: bool = False
 
     model_config = {"from_attributes": True}
 

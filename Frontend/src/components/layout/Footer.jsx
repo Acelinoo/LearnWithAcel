@@ -30,11 +30,11 @@ const columns = [
 
 export default function Footer() {
   return (
-    <footer className="mt-32 border-t border-white/5 bg-surface/40">
+    <footer className="mt-32 border-t border-border bg-surface/40">
       <div className="container-page grid gap-10 py-16 md:grid-cols-5">
         <div className="md:col-span-2">
           <div className="flex items-center gap-2 font-display text-lg font-semibold">
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-gradient-to-br from-accent/60 to-accent-hover/40 shadow-glow">
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-border bg-gradient-to-br from-accent/60 to-accent-hover/40 shadow-glow">
               <Sparkles className="h-4 w-4 text-white" />
             </span>
             Learn<span className="text-accent-hover">With</span>Acel
@@ -46,21 +46,21 @@ export default function Footer() {
           <div className="mt-6 flex items-center gap-2">
             <a
               href="https://github.com"
-              className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-muted transition-colors hover:border-white/20 hover:text-foreground"
+              className="flex h-9 w-9 items-center justify-center rounded-lg border border-border text-muted transition-colors hover:border-border hover:text-foreground"
               aria-label="GitHub"
             >
               <Github size={16} />
             </a>
             <a
               href="https://twitter.com"
-              className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-muted transition-colors hover:border-white/20 hover:text-foreground"
+              className="flex h-9 w-9 items-center justify-center rounded-lg border border-border text-muted transition-colors hover:border-border hover:text-foreground"
               aria-label="Twitter"
             >
               <Twitter size={16} />
             </a>
             <a
               href="https://instagram.com"
-              className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-muted transition-colors hover:border-white/20 hover:text-foreground"
+              className="flex h-9 w-9 items-center justify-center rounded-lg border border-border text-muted transition-colors hover:border-border hover:text-foreground"
               aria-label="Instagram"
             >
               <Instagram size={16} />
@@ -89,7 +89,7 @@ export default function Footer() {
         ))}
       </div>
 
-      <div className="border-t border-white/5">
+      <div className="border-t border-border">
         <div className="container-page flex flex-col items-center justify-between gap-4 py-6 text-xs text-muted md:flex-row">
           <p>© {new Date().getFullYear()} Learn With Acel. All rights reserved.</p>
           <p className="flex items-center gap-1.5">

@@ -57,7 +57,7 @@ export default function Features() {
             <div className="card-base card-hover group relative overflow-hidden p-6">
               <div className="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-accent/10 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
               <div className="relative">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-accent-hover">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-black/30 text-accent-hover">
                   <f.icon size={18} />
                 </div>
                 <h3 className="mt-5 font-display text-lg font-semibold">

@@ -24,8 +24,8 @@ export const TextField = forwardRef<HTMLInputElement, InputProps>(
           id={inputId}
           ref={ref}
           className={cn(
-            "w-full rounded-xl border border-white/10 bg-white/[0.02] px-3 py-2.5 text-sm text-foreground outline-none transition-all placeholder:text-muted/60",
-            "focus:border-accent/60 focus:bg-white/[0.04] focus:shadow-[0_0_0_3px_rgba(78,186,236,0.1)]",
+            "w-full rounded-xl border border-border bg-black/30 px-3 py-2.5 text-sm text-foreground outline-none transition-all placeholder:text-muted/60",
+            "focus:border-accent/60 focus:bg-black/30 focus:shadow-[0_0_0_3px_rgba(78,186,236,0.1)]",
             error && "border-rose-500/50",
             className
           )}
@@ -62,8 +62,8 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           id={inputId}
           ref={ref}
           className={cn(
-            "w-full rounded-xl border border-white/10 bg-white/[0.02] px-3 py-2.5 text-sm text-foreground outline-none transition-all placeholder:text-muted/60 font-mono",
-            "focus:border-accent/60 focus:bg-white/[0.04] focus:shadow-[0_0_0_3px_rgba(78,186,236,0.1)]",
+            "w-full rounded-xl border border-border bg-black/30 px-3 py-2.5 text-sm text-foreground outline-none transition-all placeholder:text-muted/60 font-mono",
+            "focus:border-accent/60 focus:bg-black/30 focus:shadow-[0_0_0_3px_rgba(78,186,236,0.1)]",
             error && "border-rose-500/50",
             className
           )}
@@ -88,7 +88,7 @@ export function CheckBox({ label, ...rest }: CheckboxProps) {
     <label className="flex cursor-pointer items-center gap-2 text-[13px] text-foreground/85">
       <input
         type="checkbox"
-        className="h-4 w-4 rounded border-white/20 bg-white/[0.04] accent-accent"
+        className="h-4 w-4 rounded border-border bg-black/30 accent-accent"
         {...rest}
       />
       {label}

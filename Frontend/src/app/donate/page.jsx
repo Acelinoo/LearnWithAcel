@@ -61,7 +61,7 @@ export default function DonatePage() {
               </p>
 
               {/* QR placeholder */}
-              <div className="mt-6 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+              <div className="mt-6 rounded-2xl border border-border bg-black/30 p-4">
                 <div className="relative h-56 w-56 rounded-xl bg-[#f5f5f5] p-3">
                   <div className="grid h-full w-full grid-cols-10 grid-rows-10 gap-[2px]">
                     {Array.from({ length: 100 }).map((_, i) => (
@@ -114,7 +114,7 @@ export default function DonatePage() {
                 {["Saweria"].map((v) => (
                   <button
                     key={v}
-                    className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-1.5 text-sm text-foreground transition-colors hover:border-accent/40 hover:bg-accent/10"
+                    className="rounded-full border border-border bg-black/30 px-4 py-1.5 text-sm text-foreground transition-colors hover:border-accent/40 hover:bg-accent/10"
                   >
                     {v}
                   </button>
@@ -136,7 +136,7 @@ export default function DonatePage() {
                   Transfer manual
                 </h3>
               </div> */}
-              {/* <div className="mt-4 divide-y divide-white/5 rounded-xl border border-white/5 bg-white/[0.02]">
+              {/* <div className="mt-4 divide-y divide-white/5 rounded-xl border border-border bg-black/30">
                 {[
                   { bank: "BCA", no: "1234567890", name: "Acel" },
                   { bank: "DANA", no: "0812-3456-7890", name: "Acel" },
@@ -155,7 +155,7 @@ export default function DonatePage() {
                       <div className="text-xs text-muted">a/n {b.name}</div>
                     </div>
                     <button
-                      className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-muted transition-colors hover:border-white/20 hover:text-foreground"
+                      className="flex h-9 w-9 items-center justify-center rounded-lg border border-border text-muted transition-colors hover:border-border hover:text-foreground"
                       aria-label="Copy"
                     >
                       <Copy size={14} />

@@ -88,8 +88,8 @@ export default function PathSelection() {
               whileTap={{ scale: 0.99 }}
               onClick={() => router.push(opt.href)}
               className={cn(
-                "group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.025] p-6 text-left backdrop-blur-xl transition-colors",
-                "hover:border-accent/40 hover:bg-white/[0.04]"
+                "group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-black/30 p-6 text-left backdrop-blur-xl transition-colors",
+                "hover:border-accent/40 hover:bg-black/40"
               )}
             >
               <div
@@ -102,7 +102,7 @@ export default function PathSelection() {
               />
 
               <div className="relative flex items-center justify-between">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-foreground transition-colors group-hover:border-accent/40 group-hover:text-accent-hover">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-border bg-black/40 text-foreground transition-colors group-hover:border-accent/40 group-hover:text-accent-hover">
                   <Icon size={19} />
                 </div>
                 <span
@@ -140,7 +140,7 @@ export default function PathSelection() {
                 ))}
               </ul>
 
-              <div className="relative mt-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-[13px] font-medium transition-colors group-hover:border-accent/40 group-hover:bg-accent/10 group-hover:text-accent-hover">
+              <div className="relative mt-6 inline-flex items-center gap-2 rounded-full border border-border bg-black/30 px-4 py-2 text-[13px] font-medium transition-colors group-hover:border-accent/40 group-hover:bg-accent/10 group-hover:text-accent-hover">
                 Lihat roadmap
                 <ArrowRight
                   size={13}
