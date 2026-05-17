@@ -18,63 +18,63 @@ from .._template import make_lesson, make_level, q
 # ─────────────────────────────────────────────────────────────────────────────
 
 LESSON_DB_VIBE = make_lesson(
-    title="Database untuk Vibe Coder",
+    title="Database buat Vibe Coder",
     slug="database-untuk-vibe-coder",
     order_index=1,
     read_time="11 menit",
     summary="Konsep database tanpa istilah ribet, plus cara prompt schema ke AI.",
     tools=["Notes app", "Browser"],
     outcomes=[
-        "Memahami konsep tabel, kolom, baris dengan analogi sehari-hari",
-        "Mengenali kapan app butuh database",
-        "Prompt AI untuk generate Prisma schema",
+        "Paham konsep tabel, kolom, baris pake analogi sehari-hari",
+        "Tau kapan app butuh database",
+        "Bisa prompt AI buat generate Prisma schema",
     ],
     tldr=(
-        "Database = lemari arsip digital. Tabel = kategori berkas. Kolom = "
-        "atribut tiap berkas. Baris = satu record. Prompt AI dengan model "
-        "data yang kamu mau, dia generate Prisma schema."
+        "Database = lemari arsip digital. Tabel = laci buat tiap kategori. "
+        "Kolom = atribut tiap berkas. Baris = satu record. Kasih AI deskripsi "
+        "model data, dia generate Prisma schema."
     ),
     pembuka=dedent(
         """\
-        Sampai sini app kamu masih hilang datanya saat refresh. Catatan ditulis, lalu hilang saat tab ditutup.
+        Sampe sini app kamu masih ilang datanya pas refresh. Catetan ditulis, langsung ilang pas tab ditutup.
 
-        Untuk app real, kamu butuh database — tempat data tersimpan permanen dan bisa di-query siapa saja yang punya akses.
+        Buat app beneran, kamu butuh database — tempat data tersimpen permanen sama bisa di-query siapa aja yang punya akses.
 
-        Lesson ini bedah konsep database dengan analogi yang tidak pakai istilah teknis.
+        Lesson ini ngebedah konsep database tanpa istilah teknis.
         """
     ),
     penjelasan=dedent(
         """\
         ### Analogi: lemari arsip kantor
 
-        Bayangkan kantor zaman dulu yang punya banyak lemari arsip:
+        Mikir kantor zaman dulu yang punya banyak lemari arsip:
 
-        - **Lemari "Karyawan"** berisi map untuk setiap karyawan. Tiap map punya: foto, nama, jabatan, tanggal masuk.
-        - **Lemari "Proyek"** berisi map untuk setiap proyek. Tiap map punya: nama proyek, status, deadline, karyawan yang terlibat.
-        - **Lemari "Gaji"** berisi map untuk setiap pembayaran. Tiap map punya: tanggal, nominal, karyawan penerima.
+        - **Lemari "Karyawan"** isinya map buat tiap karyawan. Tiap map ada: foto, nama, jabatan, tanggal masuk.
+        - **Lemari "Proyek"** isinya map buat tiap proyek. Tiap map ada: nama proyek, status, deadline, karyawan yang terlibat.
+        - **Lemari "Gaji"** isinya map buat tiap pembayaran. Tiap map ada: tanggal, nominal, karyawan penerima.
 
-        Database modern bekerja persis seperti ini:
+        Database modern kerjanya persis kayak gini:
 
         - **Lemari** = **tabel**.
         - **Map dalam lemari** = **baris** (record).
         - **Atribut di tiap map** = **kolom**.
 
-        Setiap record bisa terhubung ke record di lemari lain (proyek terhubung ke karyawan via "diisi oleh").
+        Tiap record bisa terhubung ke record di lemari lain (proyek terhubung ke karyawan lewat "diisi sama").
 
         ### Kapan app butuh database
 
-        Tidak semua app butuh database. Kamu butuh kalau salah satu kondisi ini muncul:
+        Gak semua app butuh database. Kamu butuh kalau salah satu kondisi ini muncul:
 
-        - Data harus tetap ada walau tab/HP/komputer ditutup.
+        - Data harus tetep ada walau tab/HP/komputer ditutup.
         - Data harus dishare antar user (komentar, pesan, post).
-        - Data harus dicari/di-filter berdasarkan kriteria tertentu.
-        - Data tumbuh besar dari waktu ke waktu (ribuan/jutaan record).
+        - Data harus bisa dicari/di-filter pake kriteria tertentu.
+        - Data tumbuh gede dari waktu ke waktu (ribuan/jutaan record).
 
-        Kalau cuma tampilan statis seperti landing page atau portfolio, **tidak butuh database**. Hardcode data di file sudah cukup.
+        Kalau cuma tampilan statis kayak landing page atau portfolio, **gak butuh database**. Hardcode data di file udah cukup.
 
         ### Anatomi tabel
 
-        Bayangkan tabel `users`:
+        Bayangin tabel `users`:
 
         ```text
         ┌──────┬──────────────────┬──────────────┬─────────────────────┐
@@ -86,7 +86,7 @@ LESSON_DB_VIBE = make_lesson(
         └──────┴──────────────────┴──────────────┴─────────────────────┘
         ```
 
-        - **id** — kolom unik untuk identifikasi (seperti nomor map). Disebut primary key.
+        - **id** — kolom unik buat identifikasi (kayak nomor map). Disebut primary key.
         - **email**, **full_name** — kolom data.
         - **created_at** — kolom timestamp otomatis.
         - Tiap baris = satu record.
@@ -106,46 +106,46 @@ LESSON_DB_VIBE = make_lesson(
         └─────┴─────────────────┴─────────────┘
         ```
 
-        Hasilnya: post 100 dan 101 dimiliki user 1 (Acel). Post 102 milik user 2 (Budi). Ini namanya **foreign key relationship**.
+        Hasilnya: post 100 sama 101 dimiliki user 1 (Acel). Post 102 milik user 2 (Budi). Ini namanya **foreign key relationship**.
 
         ### SQL vs NoSQL
 
-        Dua kelompok besar database:
+        Dua kelompok gede database:
 
         - **SQL (relational)** — data terstruktur dalam tabel-tabel yang saling terhubung. PostgreSQL, MySQL, SQLite.
         - **NoSQL (document)** — data lebih fleksibel, mirip JSON. MongoDB, Firebase Firestore.
 
-        Untuk vibe coder, **PostgreSQL via Supabase** adalah pilihan default. Alasannya:
+        Buat vibe coder, **PostgreSQL via Supabase** itu pilihan default. Alesannya:
 
-        - SQL skill berlaku di banyak tempat.
-        - Supabase free tier generous.
-        - Auth + storage + realtime built-in.
+        - Skill SQL berlaku di banyak tempat.
+        - Free tier Supabase gede.
+        - Auth + storage + realtime udah built-in.
 
         ### Cara prompt schema ke AI
 
-        Daripada nulis Prisma schema dari nol, deskripsikan model data ke AI:
+        Daripada nulis Prisma schema dari nol, deskripsiin model data ke AI:
 
         > Saya mau bikin app habit tracker. Model data:
         >
-        > - User: punya banyak habit dan banyak check-in.
+        > - User: punya banyak habit sama banyak check-in.
         > - Habit: dimiliki user, punya nama, deskripsi, target frekuensi (harian/mingguan).
-        > - CheckIn: dimiliki user dan habit, dengan tanggal dan catatan opsional.
+        > - CheckIn: dimiliki user sama habit, dengan tanggal sama catatan opsional.
         >
-        > Generate Prisma schema dengan PostgreSQL provider, primary key UUID, dan timestamp untuk created_at.
+        > Generate Prisma schema sama PostgreSQL provider, primary key UUID, sama timestamp buat created_at.
 
-        AI akan kasih schema lengkap dengan relasi yang benar. Kamu tinggal review.
+        AI bakal kasih schema lengkap dengan relasi yang bener. Kamu tinggal review.
 
         ### Aturan emas
 
-        - **Mulai sederhana.** 3-5 model cukup untuk MVP.
-        - **Pakai UUID untuk primary key.** Lebih aman daripada integer auto-increment.
-        - **Snake_case untuk nama kolom.** Contoh: `created_at`, `user_id`. Konvensi yang umum.
-        - **Tambah `created_at` dan `updated_at` ke semua model.** Berguna untuk debugging dan analytics.
+        - **Mulai sederhana.** 3-5 model cukup buat MVP.
+        - **Pake UUID buat primary key.** Lebih aman daripada integer auto-increment.
+        - **Snake_case buat nama kolom.** Contoh: `created_at`, `user_id`. Kebiasaan yang umum.
+        - **Tambah `created_at` sama `updated_at` ke semua model.** Berguna buat debugging sama analytics.
         """
     ),
     contoh_code_md=dedent(
         """\
-        Contoh Prisma schema untuk app habit tracker:
+        Contoh Prisma schema buat app habit tracker:
 
         ```prisma
         generator client {
@@ -196,13 +196,13 @@ LESSON_DB_VIBE = make_lesson(
         }
         ```
 
-        Tiga model, semua punya UUID, ada cascade delete (kalau user dihapus, habit dan checkin ikut terhapus), dan index untuk query cepat.
+        Tiga model, semua punya UUID, ada cascade delete (kalau user dihapus, habit sama checkin ikut kehapus), sama index buat query cepet.
         """
     ),
     practice=(
-        "Pikirkan satu app yang ingin kamu bangun. Tulis di catatan: berapa "
-        "model data yang dibutuhkan, apa kolom-kolomnya, bagaimana mereka "
-        "saling terhubung. Lalu prompt AI untuk generate Prisma schema-nya."
+        "Mikirin satu app yang pengen kamu bangun. Tulis di catetan: berapa "
+        "model data yang dibutuhin, apa kolom-kolomnya, gimana mereka saling "
+        "terhubung. Terus prompt AI buat generate Prisma schema-nya."
     ),
     fix_error={
         "language": "prisma",
@@ -222,14 +222,14 @@ LESSON_DB_VIBE = make_lesson(
             """
         ),
         "hint": (
-            "Empat masalah: penamaan model, primary key, kolom unique, dan "
+            "Empat masalah: penamaan model, primary key, kolom unique, sama "
             "deklarasi relasi."
         ),
         "answer_explanation": dedent(
             """\
             1. Nama model **wajib PascalCase** — `User` bukan `user`.
-            2. Primary key butuh `@id`. Saran modern pakai `String @default(uuid())`.
-            3. Email harus `@unique` supaya tidak ada duplikat.
+            2. Primary key butuh `@id`. Saran modern pake `String @default(uuid())`.
+            3. Email harus `@unique` biar gak ada duplikat.
             4. Relasi butuh foreign key field (`user_id`) + `@relation` mapping. `Post` dari `User` itu array (`Post[]`), bukan single.
             """
         ),
@@ -256,10 +256,10 @@ LESSON_DB_VIBE = make_lesson(
     },
     quiz=[
         q(
-            "Apa analogi paling tepat untuk database?",
+            "Mana analogi yang paling pas buat database?",
             [
                 "Aplikasi WhatsApp",
-                "Lemari arsip yang terorganisir dengan banyak laci, tiap laci untuk kategori berbeda",
+                "Lemari arsip yang terorganisir sama banyak laci, tiap laci buat kategori beda",
                 "Spreadsheet di komputer",
                 "Browser bookmark",
             ],
@@ -269,27 +269,27 @@ LESSON_DB_VIBE = make_lesson(
         q(
             "Kapan app TIDAK butuh database?",
             [
-                "Tidak ada — app selalu butuh database",
-                "Saat data statis (landing page, portfolio) dan tidak perlu disimpan untuk user",
-                "Saat ada login",
-                "Saat ada chat",
+                "Gak ada — app selalu butuh database",
+                "Pas data statis (landing page, portfolio) sama gak perlu disimpen buat user",
+                "Pas ada login",
+                "Pas ada chat",
             ],
             "B",
-            "Landing page, portfolio, dokumentasi statis tidak butuh database. Hardcode data di file lebih sederhana.",
+            "Landing page, portfolio, dokumentasi statis gak butuh database. Hardcode data di file lebih simpel.",
         ),
         q(
-            "Apa fungsi `@unique` di Prisma?",
+            "Fungsi `@unique` di Prisma itu apa?",
             [
                 "Mempercepat query",
-                "Memastikan tidak ada duplikat di kolom itu (misal: email tidak boleh sama antar user)",
+                "Mastiin gak ada duplikat di kolom itu (misal: email gak boleh sama antar user)",
                 "Auto-encrypt",
-                "Tidak ada fungsi",
+                "Gak ada fungsi",
             ],
             "B",
-            "Constraint database untuk integrity. Tanpa unique pada email, dua user bisa daftar dengan email sama — kekacauan.",
+            "Aturan database biar data konsisten. Tanpa unique di email, dua user bisa daftar pake email sama — kacau.",
         ),
         q(
-            "Mana praktik primary key yang DIREKOMENDASIKAN?",
+            "Mana primary key yang DIREKOMENDASIKAN?",
             [
                 "Integer auto-increment (1, 2, 3, ...)",
                 "UUID (`String @id @default(uuid())`)",
@@ -297,30 +297,30 @@ LESSON_DB_VIBE = make_lesson(
                 "Nama lengkap",
             ],
             "B",
-            "UUID acak panjang sehingga tidak bisa ditebak, aman dipakai di URL publik, dan tidak konflik saat data di-merge dari sumber berbeda.",
+            "UUID acak panjang jadi gak bisa ditebak, aman dipake di URL publik, sama gak konflik pas data di-merge dari sumber beda.",
         ),
         q(
-            "Apa yang dilakukan `onDelete: Cascade` di relasi Prisma?",
+            "Apa yang dilakuin `onDelete: Cascade` di relasi Prisma?",
             [
                 "Backup otomatis sebelum delete",
-                "Saat parent dihapus, semua child yang terhubung ikut terhapus",
+                "Pas parent dihapus, semua child yang terhubung ikut kehapus",
                 "Mencegah delete",
-                "Tidak ada efek",
+                "Gak ada efek",
             ],
             "B",
-            "Cascade delete menjaga konsistensi. Kalau User dihapus, Post-nya juga harus terhapus — tidak boleh ada Post tanpa author.",
+            "Cascade delete jaga konsistensi. Kalau User dihapus, Post-nya juga harus kehapus — gak boleh ada Post tanpa author.",
         ),
     ],
     common_mistakes=[
-        "Lowercase model name di Prisma. Generator complain.",
-        "Lupa `@unique` di kolom email. Bisa duplikat, masalah saat login.",
-        "Pakai integer auto-increment di production. Bocor info jumlah user, tidak aman di URL.",
+        "Lowercase nama model di Prisma. Generator-nya bakal complain.",
+        "Lupa `@unique` di kolom email. Bisa duplikat, masalah pas login.",
+        "Pake integer auto-increment di production. Bocor info jumlah user, gak aman di URL.",
     ],
     checkpoint=[
-        "Bisa jelaskan database dengan analogi lemari arsip.",
-        "Bisa membaca dan menulis Prisma schema sederhana.",
-        "Tahu kapan app butuh database.",
-        "Bisa prompt AI untuk generate schema dari deskripsi model data.",
+        "Bisa jelasin database pake analogi lemari arsip.",
+        "Bisa baca dan nulis Prisma schema sederhana.",
+        "Tau kapan app butuh database.",
+        "Bisa prompt AI buat generate schema dari deskripsi model data.",
     ],
     xp_reward=120,
 )
@@ -338,19 +338,19 @@ LESSON_SUPABASE = make_lesson(
     summary="Database hosted dalam 5 menit, terhubung ke project Next.js.",
     tools=["Akun Supabase", "Project Next.js", "Cursor", "Terminal"],
     outcomes=[
-        "Membuat project Supabase dan database PostgreSQL",
-        "Setup Prisma di Next.js",
-        "Push schema dan eksekusi query pertama",
+        "Bisa bikin project Supabase sama database PostgreSQL",
+        "Bisa setup Prisma di Next.js",
+        "Bisa push schema sama jalanin query pertama",
     ],
     tldr=(
-        "Supabase kasih PostgreSQL gratis dalam < 5 menit. Connect ke Next.js "
-        "via Prisma. Setelah `prisma db push`, tabel siap dipakai."
+        "Supabase kasih PostgreSQL gratis dalam < 5 menit. Konek ke Next.js "
+        "lewat Prisma. Habis `prisma db push`, tabel siap dipake."
     ),
     pembuka=dedent(
         """\
-        Bikin database dari nol biasanya ribet: install PostgreSQL, set password, manage versi. Memakan waktu sebelum nulis satu baris kode pun.
+        Bikin database dari nol biasanya ribet: install PostgreSQL, set password, manage versi. Makan waktu sebelum nulis satu baris kode pun.
 
-        Supabase hapus semua hambatan itu. Sign up, klik new project, tunggu 2 menit. Selesai. Kamu punya PostgreSQL siap pakai.
+        Supabase ngehapus semua hambatan itu. Sign up, klik new project, tunggu 2 menit. Selesai. Kamu punya PostgreSQL siap pake.
 
         Lesson ini step by step setup-nya plus integrasi ke project Next.js.
         """
@@ -359,35 +359,35 @@ LESSON_SUPABASE = make_lesson(
         """\
         ### Apa itu Supabase
 
-        Supabase adalah platform "Firebase alternative" yang built on PostgreSQL. Free tier-nya generous untuk hobi/MVP.
+        Supabase itu platform "alternatif Firebase" yang dibangun di atas PostgreSQL. Free tier-nya gede banget buat hobi/MVP.
 
-        Yang kamu dapat:
+        Yang kamu dapet:
 
-        - **PostgreSQL database** dengan dashboard SQL editor.
+        - **PostgreSQL database** sama dashboard SQL editor.
         - **Auth** built-in (email + OAuth Google/GitHub/dll).
-        - **Storage** untuk upload file.
-        - **Realtime** subscriptions ke perubahan database.
-        - **Auto-generated REST + GraphQL API** kalau mau pakai langsung tanpa backend custom.
+        - **Storage** buat upload file.
+        - **Realtime** buat dengerin perubahan database.
+        - **Auto-generated REST + GraphQL API** kalau mau pake langsung tanpa backend custom.
 
-        Untuk vibe coder, kombinasi yang paling sering: Supabase untuk database + auth, Prisma sebagai ORM.
+        Buat vibe coder, kombinasi yang paling sering: Supabase buat database + auth, Prisma sebagai ORM.
 
         ### Step 1 — Bikin project Supabase
 
-        - Buka [supabase.com](https://supabase.com), Sign up dengan GitHub.
-        - **New Project** → kasih nama, password DB yang kuat (simpan di password manager), pilih region terdekat (Singapore untuk Asia).
-        - Tunggu sekitar 2 menit untuk provisioning.
+        - Buka [supabase.com](https://supabase.com), Sign up pake GitHub.
+        - **New Project** → kasih nama, password DB yang kuat (simpen di password manager), pilih region terdekat (Singapore buat Asia).
+        - Tunggu sekitar 2 menit buat provisioning.
 
-        Setelah selesai, kamu masuk ke dashboard project. Di sini ada SQL editor, Auth panel, Storage, dan Logs.
+        Habis selesai, kamu masuk ke dashboard project. Di sini ada SQL editor, Auth panel, Storage, sama Logs.
 
         ### Step 2 — Salin connection string
 
         - Buka **Project Settings → Database**.
         - Cari section **Connection string**. Ada beberapa format:
-          - **Direct connection (port 5432)** — untuk migration dan dev.
-          - **Connection pooling - Transaction (port 6543)** — untuk runtime, **paling sering dipakai**.
-          - **Connection pooling - Session (port 5432)** — untuk session-based.
+          - **Direct connection (port 5432)** — buat migration sama dev.
+          - **Connection pooling - Transaction (port 6543)** — buat runtime, **paling sering dipake**.
+          - **Connection pooling - Session (port 5432)** — buat session-based.
 
-        Untuk Prisma + Next.js, paling aman pakai **Direct (5432)** untuk migration dan **Pooler Transaction (6543)** untuk runtime.
+        Buat Prisma + Next.js, paling aman pake **Direct (5432)** buat migration sama **Pooler Transaction (6543)** buat runtime.
 
         Format URL:
 
@@ -428,14 +428,14 @@ LESSON_SUPABASE = make_lesson(
         Edit `.env.local`:
 
         ```bash
-        # Untuk runtime (pooler)
+        # Buat runtime (pooler)
         DATABASE_URL="postgresql://postgres.xxx:password@aws-0-region.pooler.supabase.com:6543/postgres?pgbouncer=true"
 
-        # Untuk migration (direct)
+        # Buat migration (direct)
         DIRECT_URL="postgresql://postgres.xxx:password@aws-0-region.pooler.supabase.com:5432/postgres"
         ```
 
-        Salin URL dari Supabase dashboard. Pastikan password sudah di-replace.
+        Salin URL dari dashboard Supabase. Pastiin password udah di-replace.
 
         ### Step 4 — Push schema
 
@@ -443,17 +443,17 @@ LESSON_SUPABASE = make_lesson(
         npx prisma db push
         ```
 
-        Prisma bikin tabel di Supabase. Buka dashboard Supabase → Table Editor → kamu harusnya lihat tabel `User` muncul.
+        Prisma bikin tabel di Supabase. Buka dashboard Supabase → Table Editor → kamu harusnya ngeliat tabel `User` muncul.
 
         ```bash
         npx prisma generate
         ```
 
-        Generate Prisma Client TypeScript. Sekarang kamu bisa import dan pakai dari kode.
+        Generate Prisma Client TypeScript. Sekarang kamu bisa import sama pake dari kode.
 
         ### Step 5 — Singleton Prisma di Next.js
 
-        Next.js dev mode hot-reload sering bikin Prisma Client multiple instance → memory leak warning. Solusi: bikin singleton.
+        Next.js dev mode hot-reload sering bikin Prisma Client multiple instance → memory leak warning. Solusinya: bikin singleton.
 
         ```ts
         // lib/db.ts
@@ -470,7 +470,7 @@ LESSON_SUPABASE = make_lesson(
         }
         ```
 
-        Pakai dari mana saja:
+        Pake dari mana aja:
 
         ```ts
         import { db } from "@/lib/db";
@@ -478,7 +478,7 @@ LESSON_SUPABASE = make_lesson(
         const users = await db.user.findMany();
         ```
 
-        ### Test cepat
+        ### Test cepet
 
         Bikin endpoint API route Next.js:
 
@@ -493,15 +493,15 @@ LESSON_SUPABASE = make_lesson(
         }
         ```
 
-        Buka `http://localhost:3000/api/test`. Kamu harusnya dapat `{ count: 0, users: [] }`.
+        Buka `http://localhost:3000/api/test`. Kamu harusnya dapet `{ count: 0, users: [] }`.
 
         Coba bikin user dari Supabase Table Editor (klik "Insert row"). Refresh API → user-nya muncul.
 
         ### Aturan keamanan
 
-        - **JANGAN commit `.env.local`**. Tambahkan ke `.gitignore`.
-        - **JANGAN expose `DATABASE_URL` ke client.** Variabel TANPA prefix `NEXT_PUBLIC_` aman di server, tidak ter-bundle ke browser.
-        - **Pakai password manager** untuk simpan password DB.
+        - **JANGAN commit `.env.local`**. Tambahin ke `.gitignore`.
+        - **JANGAN expose `DATABASE_URL` ke client.** Variabel TANPA prefix `NEXT_PUBLIC_` aman di server, gak ke-bundle ke browser.
+        - **Pake password manager** buat simpen password DB.
         """
     ),
     contoh_code_md=dedent(
@@ -542,7 +542,7 @@ LESSON_SUPABASE = make_lesson(
 
           if (!email || !full_name) {
             return NextResponse.json(
-              { error: "Email dan full_name wajib" },
+              { error: "Email sama full_name wajib" },
               { status: 400 },
             );
           }
@@ -557,9 +557,9 @@ LESSON_SUPABASE = make_lesson(
         """
     ),
     practice=(
-        "Setup Supabase project baru, Prisma di project Next.js kamu, dan "
+        "Setup Supabase project baru, Prisma di project Next.js kamu, sama "
         "push schema model `User` sederhana. Bikin endpoint `/api/users` "
-        "dengan GET dan POST. Test create user dari Postman, lalu list "
+        "dengan GET sama POST. Test create user dari Postman, terus list "
         "user-nya."
     ),
     fix_error={
@@ -578,12 +578,12 @@ LESSON_SUPABASE = make_lesson(
             """
         ),
         "hint": (
-            "Saat dev mode hot-reload, kamu akan dapat warning multiple "
+            "Pas dev mode hot-reload, kamu bakal dapet warning multiple "
             "PrismaClient instance. Apa yang salah?"
         ),
         "answer_explanation": dedent(
             """\
-            Kesalahan: `new PrismaClient()` dipanggil di setiap render. Hot-reload bikin instance baru terus, akhirnya warning "too many connections".
+            Salahnya: `new PrismaClient()` dipanggil tiap render. Hot-reload bikin instance baru terus, akhirnya warning "too many connections".
 
             Solusi: bikin singleton di `lib/db.ts` yang reuse instance lewat globalThis (selama bukan di production).
             """
@@ -614,71 +614,71 @@ LESSON_SUPABASE = make_lesson(
     },
     quiz=[
         q(
-            "Apa yang ditawarkan Supabase free tier?",
+            "Apa yang ditawarin Supabase free tier?",
             [
-                "Hanya database",
+                "Cuma database",
                 "PostgreSQL + Auth + Storage + Realtime + auto-generated API",
                 "Cuma hosting",
-                "Tidak ada",
+                "Gak ada",
             ],
             "B",
-            "Supabase = backend-as-a-service. Untuk MVP, sering tidak butuh backend custom — Supabase saja cukup.",
+            "Supabase = backend-as-a-service. Buat MVP, sering gak butuh backend custom — Supabase aja udah cukup.",
         ),
         q(
-            "Apa beda DATABASE_URL dan DIRECT_URL di Prisma + Supabase?",
+            "Beda DATABASE_URL sama DIRECT_URL di Prisma + Supabase?",
             [
-                "Tidak ada beda",
-                "DATABASE_URL untuk runtime (pooler), DIRECT_URL untuk migration",
-                "Salah satu cuma untuk testing",
-                "DIRECT_URL untuk frontend",
+                "Gak ada bedanya",
+                "DATABASE_URL buat runtime (pooler), DIRECT_URL buat migration",
+                "Salah satu cuma buat testing",
+                "DIRECT_URL buat frontend",
             ],
             "B",
-            "Pooler aman untuk runtime karena handle banyak connection. Migration butuh direct connection karena pooler tidak support DDL.",
+            "Pooler aman buat runtime karena handle banyak connection. Migration butuh direct karena pooler gak support DDL.",
         ),
         q(
-            "Mengapa kita butuh singleton PrismaClient di Next.js dev mode?",
+            "Kenapa kita butuh singleton PrismaClient di Next.js dev mode?",
             [
-                "Untuk gaya",
+                "Buat gaya",
                 "Hot-reload bikin instance PrismaClient baru terus → warning 'too many connections'",
-                "Lebih cepat",
-                "Tidak butuh",
+                "Lebih cepet",
+                "Gak butuh",
             ],
             "B",
-            "Pola singleton via globalThis adalah workaround standar di komunitas Next.js + Prisma.",
+            "Pola singleton lewat globalThis itu workaround standar di komunitas Next.js + Prisma.",
         ),
         q(
-            "Apa yang HARUS dilakukan dengan `.env.local`?",
+            "Apa yang HARUS dilakuin sama `.env.local`?",
             [
-                "Commit ke GitHub supaya teman bisa pakai",
-                "Tambahkan ke `.gitignore` dan jangan pernah commit",
+                "Commit ke GitHub biar temen bisa pake",
+                "Tambahin ke `.gitignore` sama jangan pernah commit",
                 "Upload ke cloud",
                 "Email ke supabase",
             ],
             "B",
-            "DATABASE_URL berisi password database. Bocor sekali, akses penuh ke data. .gitignore wajib.",
+            "DATABASE_URL isinya password database. Bocor sekali, akses penuh ke data. .gitignore wajib.",
         ),
         q(
-            "Apa yang terjadi setelah `npx prisma db push`?",
+            "Apa yang terjadi habis `npx prisma db push`?",
             [
-                "Tidak ada",
-                "Prisma sinkronkan tabel di database sesuai schema.prisma",
+                "Gak ada",
+                "Prisma sinkronin tabel di database sesuai schema.prisma",
                 "Schema dihapus",
                 "Database di-format",
             ],
             "B",
-            "`db push` cocok untuk dev. Untuk production sebaiknya pakai `prisma migrate` agar history schema tersimpan rapi.",
+            "`db push` cocok buat dev. Buat production sebaiknya pake `prisma migrate` biar history schema kesimpen rapi.",
         ),
     ],
     common_mistakes=[
-        "Commit `.env.local` ke GitHub. Database password bocor.",
-        "Pakai DATABASE_URL pooler untuk migration. Migration gagal karena pooler tidak support DDL.",
-        "`new PrismaClient()` di setiap file. Memory leak di dev mode.",
+        "Commit `.env.local` ke GitHub. Password database bocor.",
+        "Pake DATABASE_URL pooler buat migration. Migration gagal karena pooler gak support DDL.",
+        "`new PrismaClient()` di tiap file. Memory leak di dev mode.",
     ],
     checkpoint=[
-        "Project Supabase aktif dengan PostgreSQL siap pakai.",
-        "Prisma terhubung dan schema ter-push.",
+        "Project Supabase aktif sama PostgreSQL siap pake.",
+        "Prisma terhubung sama schema ke-push.",
         "Bisa CRUD lewat API route Next.js.",
-        "Singleton db.ts terbentuk dan dipakai konsisten.",
+        "Singleton db.ts udah dibikin sama dipake konsisten.",
     ],
     xp_reward=160,
 )
@@ -689,44 +689,44 @@ LESSON_SUPABASE = make_lesson(
 # ─────────────────────────────────────────────────────────────────────────────
 
 LESSON_AUTH_NEXT = make_lesson(
-    title="Auth dengan NextAuth",
+    title="Auth Pake NextAuth",
     slug="auth-dengan-nextauth",
     order_index=3,
     read_time="14 menit",
-    summary="Login/register dengan NextAuth + Prisma adapter, plus protected routes.",
-    tools=["Project Next.js + Prisma + Supabase", "Akun Google (untuk OAuth)", "Cursor"],
+    summary="Login/register pake NextAuth + Prisma adapter, plus protected routes.",
+    tools=["Project Next.js + Prisma + Supabase", "Akun Google (buat OAuth)", "Cursor"],
     outcomes=[
-        "Setup NextAuth (Auth.js v5) di project Next.js",
-        "Auth dengan email/password + Google OAuth",
-        "Protect halaman dengan session check",
+        "Bisa setup NextAuth (Auth.js v5) di project Next.js",
+        "Bisa auth pake email/password + Google OAuth",
+        "Bisa proteksi halaman lewat session check",
     ],
     tldr=(
-        "NextAuth (Auth.js) handle auth flow lengkap. Setup provider (email/"
-        "Google), pakai Prisma adapter untuk simpan session/user di DB. "
-        "Protect halaman dengan `auth()` di server component."
+        "NextAuth (Auth.js) handle alur auth lengkap. Setup provider (email/"
+        "Google), pake Prisma adapter buat simpen session/user di DB. "
+        "Proteksi halaman pake `auth()` di server component."
     ),
     pembuka=dedent(
         """\
-        Auth itu fitur yang hampir setiap app butuh. Tapi nulis dari nol berarti kamu harus handle: hash password, generate token, manage session, OAuth flow, password reset.
+        Auth itu fitur yang hampir tiap app butuh. Tapi kalau nulis dari nol, kamu harus handle: hash password, generate token, manage session, OAuth flow, password reset.
 
-        NextAuth (sekarang Auth.js) abstrak semua itu. Kamu kasih config, dia urusin sisanya.
+        NextAuth (sekarang Auth.js) abstrakin semua itu. Kamu kasih config, dia urusin sisanya.
 
-        Untuk vibe coder, ini stack default — sebagian besar SaaS production di komunitas Next.js pakai pattern ini.
+        Buat vibe coder, ini stack default — sebagian besar SaaS production di komunitas Next.js pake pola kayak gini.
         """
     ),
     penjelasan=dedent(
         """\
         ### Apa itu NextAuth (Auth.js)
 
-        NextAuth adalah authentication library untuk Next.js. Versi terbaru namanya **Auth.js v5** (masih sering disebut NextAuth).
+        NextAuth itu library authentication buat Next.js. Versi terbarunya namanya **Auth.js v5** (masih sering disebut NextAuth).
 
-        Yang kamu dapat:
+        Yang kamu dapet:
 
-        - Login dengan **provider** (email/password, Google, GitHub, Discord, dll).
+        - Login pake **provider** (email/password, Google, GitHub, Discord, dll).
         - Session management (cookie httpOnly, otomatis).
-        - Database adapter (Prisma, Drizzle, dll) untuk simpan user.
-        - Protected route helper.
-        - Built-in CSRF protection.
+        - Database adapter (Prisma, Drizzle, dll) buat simpen user.
+        - Helper buat protected route.
+        - CSRF protection udah built-in.
 
         ### Setup di Next.js 14 (App Router)
 
@@ -745,7 +745,7 @@ LESSON_AUTH_NEXT = make_lesson(
           ├── login/page.tsx
           └── dashboard/page.tsx     ← protected
         auth.ts                      ← config utama
-        middleware.ts                ← optional: protect via middleware
+        middleware.ts                ← opsional: protect lewat middleware
         ```
 
         ### Config dasar (Google OAuth)
@@ -778,13 +778,13 @@ LESSON_AUTH_NEXT = make_lesson(
         export const { GET, POST } = handlers;
         ```
 
-        ### Schema yang dibutuhkan Prisma adapter
+        ### Schema yang dibutuhin Prisma adapter
 
-        Prisma adapter butuh model `User`, `Account`, `Session`, dan `VerificationToken`. Generate dengan:
+        Prisma adapter butuh model `User`, `Account`, `Session`, sama `VerificationToken`. Generate pake:
 
         ```bash
-        # Di docs Auth.js, ada SQL schema yang siap pakai
-        # Atau prompt AI: "Bikin Prisma schema untuk Auth.js v5 adapter"
+        # Di docs Auth.js, ada SQL schema yang siap pake
+        # Atau prompt AI: "Bikin Prisma schema buat Auth.js v5 adapter"
         ```
 
         Saran: copy schema standar dari [authjs.dev/getting-started/adapters/prisma](https://authjs.dev/getting-started/adapters/prisma).
@@ -795,8 +795,8 @@ LESSON_AUTH_NEXT = make_lesson(
         - Bikin project baru.
         - **APIs & Services → Credentials → Create Credentials → OAuth Client ID**.
         - Application type: Web Application.
-        - Authorized redirect URI: `http://localhost:3000/api/auth/callback/google` (untuk dev) dan domain Vercel (untuk production).
-        - Salin Client ID dan Client Secret ke `.env.local`.
+        - Authorized redirect URI: `http://localhost:3000/api/auth/callback/google` (buat dev) sama domain Vercel (buat production).
+        - Salin Client ID sama Client Secret ke `.env.local`.
 
         ### Login button
 
@@ -810,7 +810,7 @@ LESSON_AUTH_NEXT = make_lesson(
               "use server";
               await signIn("google", { redirectTo: "/dashboard" });
             }}>
-              <button type="submit">Login dengan Google</button>
+              <button type="submit">Login pake Google</button>
             </form>
           );
         }
@@ -836,9 +836,9 @@ LESSON_AUTH_NEXT = make_lesson(
         }
         ```
 
-        Tidak butuh `useState`, tidak butuh fetch token manual. NextAuth handle semua di balik layar.
+        Gak butuh `useState`, gak butuh fetch token manual. NextAuth handle semua di balik layar.
 
-        ### Protect via middleware (alternatif)
+        ### Proteksi lewat middleware (alternatif)
 
         ```ts
         // middleware.ts
@@ -856,7 +856,7 @@ LESSON_AUTH_NEXT = make_lesson(
         };
         ```
 
-        Middleware jalan di edge sebelum request masuk ke route. Lebih efisien untuk redirect blanket.
+        Middleware jalan di edge sebelum request masuk ke route. Lebih efisien buat redirect blanket.
 
         ### Logout
 
@@ -877,14 +877,14 @@ LESSON_AUTH_NEXT = make_lesson(
         DATABASE_URL="..."
         DIRECT_URL="..."
 
-        AUTH_SECRET="generate dengan: openssl rand -base64 32"
+        AUTH_SECRET="generate pake: openssl rand -base64 32"
         AUTH_URL="http://localhost:3000"
 
         GOOGLE_CLIENT_ID="xxx.apps.googleusercontent.com"
         GOOGLE_CLIENT_SECRET="xxx"
         ```
 
-        Saat deploy ke Vercel, salin semua ke Vercel env (kecuali AUTH_URL — Vercel set otomatis).
+        Pas deploy ke Vercel, salin semua ke env Vercel (kecuali AUTH_URL — Vercel set otomatis).
         """
     ),
     contoh_code_md=dedent(
@@ -925,9 +925,9 @@ LESSON_AUTH_NEXT = make_lesson(
               </header>
 
               <div className="rounded-2xl border p-6">
-                <h2 className="font-semibold">Welcome ke dashboard</h2>
+                <h2 className="font-semibold">Selamat datang di dashboard</h2>
                 <p className="mt-2 text-sm text-gray-600">
-                  Halaman ini cuma bisa diakses kalau kamu sudah login.
+                  Halaman ini cuma bisa diakses kalau kamu udah login.
                 </p>
               </div>
             </main>
@@ -937,9 +937,9 @@ LESSON_AUTH_NEXT = make_lesson(
         """
     ),
     practice=(
-        "Setup NextAuth dengan Google OAuth di project Next.js kamu. Bikin "
-        "halaman `/login` dengan tombol Google, dan halaman `/dashboard` yang "
-        "protected (redirect ke login kalau belum auth). Test login dan "
+        "Setup NextAuth pake Google OAuth di project Next.js kamu. Bikin "
+        "halaman `/login` sama tombol Google, sama halaman `/dashboard` yang "
+        "protected (redirect ke login kalau belum auth). Test login sama "
         "logout."
     ),
     fix_error={
@@ -967,18 +967,18 @@ LESSON_AUTH_NEXT = make_lesson(
             """
         ),
         "hint": (
-            "Pendekatan ini bekerja, tapi rentan dan rumit untuk Next.js modern. "
-            "Apa cara yang lebih elegan dengan NextAuth?"
+            "Cara ini jalan, tapi rentan sama ribet buat Next.js modern. Apa "
+            "cara yang lebih elegan pake NextAuth?"
         ),
         "answer_explanation": dedent(
             """\
             Masalah:
 
-            1. Pakai `localStorage` untuk token = rentan XSS.
+            1. Pake `localStorage` buat token = rentan XSS.
             2. Loading state manual = flickering UX.
-            3. Client-side redirect = halaman sempat muncul sebelum redirect.
+            3. Client-side redirect = halaman sempet muncul sebelum redirect.
 
-            Solusi: pakai server component dengan `auth()`. Cek session di server, redirect sebelum HTML dikirim. NextAuth pakai cookie httpOnly otomatis — aman dari XSS.
+            Solusi: pake server component sama `auth()`. Cek session di server, redirect sebelum HTML dikirim. NextAuth pake cookie httpOnly otomatis — aman dari XSS.
             """
         ),
         "fixed_code": dedent(
@@ -998,37 +998,37 @@ LESSON_AUTH_NEXT = make_lesson(
     },
     quiz=[
         q(
-            "Apa fungsi Prisma adapter di NextAuth?",
+            "Fungsi Prisma adapter di NextAuth?",
             [
                 "Generate UI",
-                "Menyimpan user, account, session, dan verification token ke database via Prisma",
-                "Untuk styling",
-                "Tidak ada",
+                "Nyimpen user, account, session, sama verification token ke database lewat Prisma",
+                "Buat styling",
+                "Gak ada",
             ],
             "B",
-            "Adapter adalah jembatan antara NextAuth dan database kamu. Tanpa adapter, session disimpan in-memory.",
+            "Adapter itu jembatan antara NextAuth sama database kamu. Tanpa adapter, session disimpen di memori.",
         ),
         q(
-            "Mana cara protect halaman yang LEBIH BAIK di Next.js App Router?",
+            "Mana cara protect halaman yang LEBIH BAGUS di Next.js App Router?",
             [
                 "Cek `localStorage` di useEffect",
-                "Pakai `auth()` di server component, redirect kalau tidak ada session",
-                "Tidak perlu protect",
-                "Hide tombol saja",
+                "Pake `auth()` di server component, redirect kalau gak ada session",
+                "Gak perlu protect",
+                "Hide tombol aja",
             ],
             "B",
-            "Server-side protection lebih aman dan UX lebih baik (no flicker). Server tahu session sebelum HTML dikirim.",
+            "Server-side protection lebih aman sama UX lebih bagus (gak flicker). Server tau session sebelum HTML dikirim.",
         ),
         q(
-            "Apa yang HARUS ada di `.env.local` untuk NextAuth + Google?",
+            "Apa yang HARUS ada di `.env.local` buat NextAuth + Google?",
             [
                 "Cuma DATABASE_URL",
                 "AUTH_SECRET, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, DATABASE_URL",
                 "Cuma password",
-                "Tidak ada env",
+                "Gak ada env",
             ],
             "B",
-            "AUTH_SECRET untuk sign cookie, Google credentials untuk OAuth, DATABASE_URL untuk simpan session. Semua wajib.",
+            "AUTH_SECRET buat sign cookie, Google credentials buat OAuth, DATABASE_URL buat simpen session. Semua wajib.",
         ),
         q(
             "Mana token storage yang LEBIH AMAN dari XSS?",
@@ -1039,30 +1039,30 @@ LESSON_AUTH_NEXT = make_lesson(
                 "URL parameter",
             ],
             "B",
-            "httpOnly cookie tidak bisa diakses JavaScript = aman dari XSS. NextAuth pakai ini secara default.",
+            "httpOnly cookie gak bisa diakses JavaScript = aman dari XSS. NextAuth pake ini secara default.",
         ),
         q(
-            "Apa yang dimaksud `redirect URI` saat setup Google OAuth?",
+            "Apa yang dimaksud `redirect URI` pas setup Google OAuth?",
             [
-                "URL untuk login",
-                "URL callback yang Google panggil setelah user login (misal `/api/auth/callback/google`)",
+                "URL buat login",
+                "URL callback yang Google panggil habis user login (misal `/api/auth/callback/google`)",
                 "URL homepage",
                 "URL dashboard",
             ],
             "B",
-            "Setelah user login di Google, Google redirect balik ke aplikasi kamu di URL ini. Wajib di-whitelist di Google Console.",
+            "Habis user login di Google, Google redirect balik ke aplikasi kamu di URL ini. Wajib di-whitelist di Google Console.",
         ),
     ],
     common_mistakes=[
-        "Pakai localStorage untuk token. Rentan XSS.",
-        "Lupa whitelist redirect URI di Google Console. OAuth gagal dengan error 'redirect_uri_mismatch'.",
-        "Cek session di client component padahal bisa di server component. Hasilnya flickering UX.",
+        "Pake localStorage buat token. Rentan XSS.",
+        "Lupa whitelist redirect URI di Google Console. OAuth gagal sama error 'redirect_uri_mismatch'.",
+        "Cek session di client component padahal bisa di server component. Hasilnya UX flickering.",
     ],
     checkpoint=[
-        "NextAuth setup dengan Google OAuth aktif.",
-        "Halaman protected redirect ke /login kalau tidak ada session.",
-        "Logout berfungsi.",
-        "Schema Prisma adapter (User, Account, Session, VerificationToken) ter-push.",
+        "NextAuth setup sama Google OAuth aktif.",
+        "Halaman protected redirect ke /login kalau gak ada session.",
+        "Logout jalan.",
+        "Schema Prisma adapter (User, Account, Session, VerificationToken) ke-push.",
     ],
     xp_reward=200,
 )
@@ -1073,29 +1073,29 @@ LESSON_AUTH_NEXT = make_lesson(
 # ─────────────────────────────────────────────────────────────────────────────
 
 PROJECT_TODO_AUTH = make_lesson(
-    title="Mini Project — Todo App dengan Auth",
+    title="Mini Project — Todo App sama Auth",
     slug="mini-project-todo-with-auth",
     order_index=4,
     read_time="180 menit",
     summary="Fullstack todo: login Google, data per user, deploy live.",
     tools=["Next.js + Prisma + Supabase + NextAuth", "Cursor", "Vercel"],
     outcomes=[
-        "Membangun fullstack app dengan auth dan database",
-        "Memakai owner-based authorization",
-        "Deploy ke production dengan environment variables yang benar",
+        "Bisa bikin fullstack app sama auth dan database",
+        "Bisa pake owner-based authorization",
+        "Bisa deploy ke production sama environment variables yang bener",
     ],
     tldr=(
-        "Bangun todo app dengan login Google. Setiap user cuma lihat dan "
-        "edit todo miliknya. Deploy ke Vercel. Stack: Next.js + Prisma + "
+        "Bangun todo app sama login Google. Tiap user cuma lihat sama edit "
+        "todo miliknya. Deploy ke Vercel. Stack: Next.js + Prisma + "
         "Supabase + NextAuth + shadcn."
     ),
     pembuka=dedent(
         """\
-        Saatnya gabungkan semua di Level 4: database, schema, auth, owner-based access, deploy.
+        Saatnya gabungin semua di Level 4: database, schema, auth, owner-based access, deploy.
 
-        Hasilnya: todo app yang real, bisa dipakai banyak user secara aman.
+        Hasilnya: todo app yang real, bisa dipake banyak user secara aman.
 
-        Selesai project ini, kamu sudah bisa bilang dengan jujur: 'Saya bisa bikin SaaS dasar dari nol.'
+        Selesai project ini, kamu udah bisa bilang dengan jujur: 'Saya bisa bikin SaaS dasar dari nol.'
         """
     ),
     penjelasan=dedent(
@@ -1106,8 +1106,8 @@ PROJECT_TODO_AUTH = make_lesson(
 
         Halaman:
 
-        - `/` — landing page singkat dengan tombol login.
-        - `/login` — tombol "Login dengan Google".
+        - `/` — landing page singkat sama tombol login.
+        - `/login` — tombol "Login pake Google".
         - `/todos` — protected. List + form bikin todo + toggle selesai + hapus. Cuma todo milik user yang login.
 
         ### Schema Prisma
@@ -1173,9 +1173,9 @@ PROJECT_TODO_AUTH = make_lesson(
         }
         ```
 
-        ### Server actions untuk mutate
+        ### Server actions buat mutate
 
-        Pakai server actions untuk CRUD — lebih simpel daripada API route + fetch.
+        Pake server actions buat CRUD — lebih simpel daripada API route + fetch.
 
         ```ts
         // app/todos/actions.ts
@@ -1203,7 +1203,7 @@ PROJECT_TODO_AUTH = make_lesson(
           const session = await auth();
           if (!session?.user?.id) throw new Error("Unauthorized");
 
-          // Pastikan owner
+          // Pastiin owner
           const todo = await db.todo.findFirst({
             where: { id, user_id: session.user.id },
           });
@@ -1231,7 +1231,7 @@ PROJECT_TODO_AUTH = make_lesson(
         }
         ```
 
-        Kunci di sini: `where: { id, user_id: session.user.id }` — query ini secara otomatis cuma cocok kalau todo benar-benar milik user yang sedang login.
+        Kunci di sini: `where: { id, user_id: session.user.id }` — query ini otomatis cuma cocok kalau todo bener-bener milik user yang lagi login.
 
         ### Halaman /todos
 
@@ -1291,13 +1291,13 @@ PROJECT_TODO_AUTH = make_lesson(
         }
         ```
 
-        Tidak ada `useState`, tidak ada `useEffect`, tidak ada fetch manual. Semua server-side.
+        Gak ada `useState`, gak ada `useEffect`, gak ada fetch manual. Semua server-side.
 
         ### Test owner-based authorization
 
-        Bikin dua akun Google. Login akun A, bikin todo. Logout. Login akun B. Halaman `/todos` harus kosong (todo milik A tidak terlihat).
+        Bikin dua akun Google. Login akun A, bikin todo. Logout. Login akun B. Halaman `/todos` harus kosong (todo milik A gak keliatan).
 
-        Coba "trick" lebih jauh: dapatkan ID todo milik A, lalu coba toggle/delete sebagai user B. Server harus reject.
+        Coba "trick" lebih lanjut: dapetin ID todo milik A, terus coba toggle/delete sebagai user B. Server harus reject.
 
         ### Deploy ke Vercel
 
@@ -1312,18 +1312,18 @@ PROJECT_TODO_AUTH = make_lesson(
         GOOGLE_CLIENT_SECRET=...
         ```
 
-        Update Google Console: tambah `https://your-app.vercel.app/api/auth/callback/google` ke Authorized redirect URIs.
+        Update Google Console: tambahin `https://your-app.vercel.app/api/auth/callback/google` ke Authorized redirect URIs.
 
         Deploy. Test login + bikin todo + logout di production URL.
 
         ### Submit
 
-        Bagikan URL ke teman. Pastikan dua orang berbeda bisa pakai tanpa lihat data satu sama lain.
+        Share URL ke temen. Pastiin dua orang beda bisa pake tanpa lihat data satu sama lain.
         """
     ),
     contoh_code_md=dedent(
         """\
-        Server action untuk create todo dengan validasi:
+        Server action buat create todo sama validasi:
 
         ```ts
         // app/todos/actions.ts
@@ -1340,7 +1340,7 @@ PROJECT_TODO_AUTH = make_lesson(
           }
 
           const title = String(formData.get("title") ?? "").trim();
-          if (!title) return { error: "Title tidak boleh kosong" };
+          if (!title) return { error: "Title gak boleh kosong" };
           if (title.length > 200) return { error: "Title terlalu panjang" };
 
           await db.todo.create({
@@ -1354,7 +1354,7 @@ PROJECT_TODO_AUTH = make_lesson(
         }
         ```
 
-        Pakai dari form di halaman:
+        Pake dari form di halaman:
 
         ```tsx
         <form action={createTodo} className="flex gap-2">
@@ -1365,13 +1365,13 @@ PROJECT_TODO_AUTH = make_lesson(
         </form>
         ```
 
-        Form action server-side = tidak perlu fetch manual, tidak perlu state management.
+        Form action server-side = gak perlu fetch manual, gak perlu state management.
         """
     ),
     practice=(
         "Bangun todo app sesuai spec di atas. Test owner-based authorization "
-        "dengan dua akun Google. Deploy ke Vercel. Catat URL — share ke "
-        "minimal satu teman dan pastikan data kalian terpisah."
+        "pake dua akun Google. Deploy ke Vercel. Catet URL — share ke "
+        "minimal satu temen sama pastiin data kalian terpisah."
     ),
     fix_error={
         "language": "ts",
@@ -1386,14 +1386,14 @@ PROJECT_TODO_AUTH = make_lesson(
             }
             """
         ),
-        "hint": "Endpoint ini punya celah keamanan besar. User bisa delete todo milik orang lain.",
+        "hint": "Endpoint ini punya celah keamanan gede. User bisa delete todo milik orang lain.",
         "answer_explanation": dedent(
             """\
-            Kesalahan: cuma cek user login (`session` ada), tapi tidak cek apakah todo itu milik user.
+            Salahnya: cuma cek user login (`session` ada), tapi gak cek apakah todo itu milik user.
 
-            Skenario: user A login, dapat list todo-nya. User A tahu format ID. User A coba delete dengan ID todo milik user B → terhapus. Itu vulnerability.
+            Skenario: user A login, dapet list todo-nya. User A tau format ID. User A coba delete pake ID todo milik user B → kehapus. Itu vulnerability.
 
-            Solusi: query dengan filter `user_id: session.user.id`. Kalau tidak match (tidak ditemukan), berarti bukan milik user — return 404 atau 403.
+            Solusi: query sama filter `user_id: session.user.id`. Kalau gak match (gak ditemukan), berarti bukan miliknya — return 404 atau 403.
             """
         ),
         "fixed_code": dedent(
@@ -1402,11 +1402,11 @@ PROJECT_TODO_AUTH = make_lesson(
               const session = await auth();
               if (!session?.user?.id) throw new Error("Unauthorized");
 
-              // Pastikan todo milik user yang login
+              // Pastiin todo milik user yang login
               const todo = await db.todo.findFirst({
                 where: { id, user_id: session.user.id },
               });
-              if (!todo) throw new Error("Tidak ditemukan");
+              if (!todo) throw new Error("Gak ditemukan");
 
               await db.todo.delete({ where: { id: todo.id } });
               revalidatePath("/todos");
@@ -1419,68 +1419,68 @@ PROJECT_TODO_AUTH = make_lesson(
             "Apa keuntungan Server Actions dibanding API route + fetch di project ini?",
             [
                 "Lebih lambat",
-                "Lebih ringkas: tidak butuh API route, tidak butuh fetch manual, tidak butuh state management untuk form",
-                "Tidak ada keuntungan",
-                "Wajib pakai",
+                "Lebih ringkes: gak butuh API route, gak butuh fetch manual, gak butuh state management buat form",
+                "Gak ada keuntungan",
+                "Wajib pake",
             ],
             "B",
-            "Server Actions kurangi boilerplate. Form langsung connect ke server function. Cocok untuk mutation simpel.",
+            "Server Actions ngurangin boilerplate. Form langsung connect ke server function. Cocok buat mutation simpel.",
         ),
         q(
-            "Mengapa cek `where: { id, user_id: session.user.id }` lebih aman daripada cek session saja?",
+            "Kenapa cek `where: { id, user_id: session.user.id }` lebih aman daripada cek session aja?",
             [
-                "Tidak ada bedanya",
-                "Pastikan operasi cuma jalan kalau todo benar-benar milik user — mencegah user lain manipulasi via ID",
-                "Lebih cepat",
-                "Untuk styling",
+                "Gak ada bedanya",
+                "Pastiin operasi cuma jalan kalau todo bener-bener milik user — mencegah user lain manipulasi lewat ID",
+                "Lebih cepet",
+                "Buat styling",
             ],
             "B",
-            "Authorization beda dari authentication. Session cek 'siapa kamu', tapi belum tentu kamu boleh akses resource itu. Filter berdasarkan owner = layer kedua.",
+            "Authorization beda dari authentication. Session cek 'siapa kamu', tapi belum tentu kamu boleh akses resource itu. Filter berdasarkan owner = lapisan kedua.",
         ),
         q(
-            "Apa yang dilakukan `revalidatePath('/todos')` setelah mutation?",
+            "Apa yang dilakuin `revalidatePath('/todos')` habis mutation?",
             [
                 "Reload halaman",
-                "Memberitahu Next.js untuk fetch ulang data di halaman /todos saat user kembali",
+                "Ngasih tau Next.js buat fetch ulang data di halaman /todos pas user balik",
                 "Refresh database",
-                "Tidak ada efek",
+                "Gak ada efek",
             ],
             "B",
-            "Tanpa revalidatePath, halaman tetap menampilkan data lama (cached). Setelah revalidate, data fresh saat di-render lagi.",
+            "Tanpa revalidatePath, halaman tetep nampilin data lama (cached). Habis revalidate, data fresh pas di-render lagi.",
         ),
         q(
-            "Apa yang HARUS di-update di Google Console setelah deploy ke Vercel?",
+            "Apa yang HARUS di-update di Google Console habis deploy ke Vercel?",
             [
-                "Tidak ada",
-                "Tambahkan production URL ke Authorized redirect URIs (`https://your-app.vercel.app/api/auth/callback/google`)",
+                "Gak ada",
+                "Tambahin URL production ke Authorized redirect URIs (`https://your-app.vercel.app/api/auth/callback/google`)",
                 "Hapus akun Google",
                 "Restart Cloud Console",
             ],
             "B",
-            "Google butuh tahu production URL eksplisit. Tanpa ini, OAuth callback gagal dengan error 'redirect_uri_mismatch'.",
+            "Google butuh tau URL production secara eksplisit. Tanpa ini, OAuth callback gagal sama error 'redirect_uri_mismatch'.",
         ),
         q(
             "Mana cara test owner-based authorization yang TEPAT?",
             [
                 "Cuma test sebagai satu user",
-                "Login dengan dua akun berbeda, pastikan masing-masing tidak bisa lihat/edit data milik yang lain",
-                "Tidak perlu test",
-                "Test dengan production",
+                "Login pake dua akun beda, pastiin masing-masing gak bisa lihat/edit data milik yang lain",
+                "Gak perlu test",
+                "Test pake production",
             ],
             "B",
-            "Multi-account testing adalah satu-satunya cara konfirm authorization bener-bener jalan. Single account test = blind spot.",
+            "Multi-account testing itu satu-satunya cara konfirm authorization bener-bener jalan. Single account test = blind spot.",
         ),
     ],
     common_mistakes=[
         "Cek session tapi lupa filter berdasarkan owner. Vulnerability authorization.",
-        "Lupa update Google Console redirect URIs setelah deploy. Login gagal di production.",
-        "Tidak revalidatePath setelah mutate. Data tampil basi.",
+        "Lupa update Google Console redirect URIs habis deploy. Login gagal di production.",
+        "Gak revalidatePath habis mutate. Data tampilannya basi.",
     ],
     checkpoint=[
         "Todo app live di Vercel.",
-        "Login dengan Google bisa, logout bisa.",
-        "Multi-account test pass: user A tidak bisa lihat todo user B.",
-        "Server action pakai pola filter owner, bukan cuma cek session.",
+        "Login pake Google bisa, logout bisa.",
+        "Multi-account test pass: user A gak bisa lihat todo user B.",
+        "Server action pake pola filter owner, bukan cuma cek session.",
     ],
     xp_reward=600,
     is_project=True,
@@ -1497,9 +1497,9 @@ LEVEL = make_level(
     title="Database & Backend Basics",
     subtitle="Data yang beneran tersimpan",
     description=(
-        "Konsep database, setup Supabase + Prisma, auth dengan NextAuth + "
-        "Google OAuth. Tutup dengan todo app fullstack yang punya owner-based "
-        "authorization dan deployed ke production."
+        "Konsep database, setup Supabase + Prisma, auth pake NextAuth + "
+        "Google OAuth. Tutup sama todo app fullstack yang punya owner-based "
+        "authorization sama deployed ke production."
     ),
     duration="~3 minggu",
     difficulty="Menengah",

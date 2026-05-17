@@ -25,61 +25,70 @@ LESSON_HTML = make_lesson(
     summary="Struktur dasar halaman web dan tag yang sering dipakai.",
     tools=["Browser modern (Chrome/Firefox/Edge)", "VS Code"],
     outcomes=[
-        "Membuat halaman HTML pertama dari nol",
-        "Memakai tag heading, paragraf, link, dan gambar",
-        "Membaca dan menulis tag HTML semantik",
+        "Bisa bikin halaman HTML pertama dari nol",
+        "Bisa pake tag heading, paragraf, link, dan gambar",
+        "Bisa baca dan nulis tag HTML yang punya makna",
     ],
     tldr=(
-        "HTML adalah kerangka halaman web. Setiap tag punya makna: judul, "
-        "paragraf, link, gambar, atau pembungkus. Browser membaca tag dan "
-        "menampilkannya jadi halaman."
+        "HTML itu kerangka halaman web. Tiap tag punya makna sendiri — judul, "
+        "paragraf, link, gambar. Browser baca tag-nya, terus nampilin jadi "
+        "halaman."
     ),
     pembuka=dedent(
         """\
-        Bayangkan kamu mau bangun rumah. Sebelum dicat atau dikasih furnitur, kamu butuh dulu dinding, pintu, jendela, dan atap.
+        Coba bayangin kamu lagi mau bikin rumah. Sebelum dicat, sebelum dikasih furniture, kamu harus pasang dindingnya dulu, pintunya, jendelanya, atapnya.
 
-        HTML itu adalah kerangka rumahmu. Dia yang menentukan ada heading di sini, paragraf di sini, gambar di sini.
+        HTML itu kerangka rumahnya. Dia yang nentuin "ini judul, ini paragraf, ini gambar".
 
-        Setiap halaman web yang pernah kamu buka — Google, YouTube, TikTok — kerangkanya pakai HTML.
+        Tiap halaman web yang pernah kamu buka — Google, YouTube, TikTok — kerangkanya pake HTML. Beneran semua.
         """
     ),
     penjelasan=dedent(
         """\
-        HTML kepanjangan dari **HyperText Markup Language**. Kata "markup" artinya "menandai". Jadi HTML adalah cara kita menandai isi halaman: ini judul, ini paragraf, ini link.
+        ### HTML itu sebenernya apa
 
-        Tanda yang dipakai disebut **tag**. Tag selalu berpasangan: tag pembuka dan tag penutup. Misal `<p>...</p>` artinya "mulai paragraf di sini, selesai paragraf di sini".
+        HTML kepanjangannya **HyperText Markup Language**. Kata "markup" artinya "menandai".
 
-        Beberapa tag tidak butuh penutup karena tidak punya isi, contohnya `<img>` (gambar) dan `<br>` (baris baru).
+        Jadi HTML itu cara kita nandain isi halaman: ini judul, ini paragraf, ini link.
 
-        ### Struktur dasar dokumen HTML
+        Tanda yang dipake namanya **tag**. Tag selalu berpasangan: tag pembuka sama tag penutup. Misal `<p>...</p>` artinya "mulai paragraf di sini, selesai paragraf di sini".
 
-        Setiap file HTML punya kerangka standar. Anggap ini "denah dasar rumah":
+        Beberapa tag gak butuh penutup karena gak punya isi, contohnya `<img>` (gambar) sama `<br>` (baris baru).
 
-        - `<!DOCTYPE html>` memberitahu browser ini HTML versi modern.
-        - `<html>` membungkus semua isi halaman.
-        - `<head>` berisi info yang **tidak terlihat user**, seperti judul tab dan link CSS.
-        - `<body>` berisi semua yang **terlihat user**.
+        ### Anatomi dokumen HTML
 
-        ### Tag yang sering dipakai
+        Tiap file HTML punya kerangka standar. Kayak denah dasar rumah:
 
-        - `<h1>` sampai `<h6>` untuk judul, dari paling besar ke paling kecil.
-        - `<p>` untuk paragraf.
-        - `<a>` untuk link, misal `<a href="https://example.com">Klik aku</a>`.
-        - `<img>` untuk gambar, misal `<img src="foto.jpg" alt="Foto saya">`.
-        - `<div>` pembungkus block, ambil baris penuh.
-        - `<span>` pembungkus inline, mengikuti alur teks.
+        - `<!DOCTYPE html>` — ngasih tau browser ini HTML versi modern
+        - `<html>` — pembungkus semua isi halaman
+        - `<head>` — info yang **gak keliatan user**, kayak judul tab dan link CSS
+        - `<body>` — semua yang **keliatan user**
+
+        ### Tag yang sering dipake
+
+        - `<h1>` sampe `<h6>` — judul, dari paling gede ke paling kecil
+        - `<p>` — paragraf
+        - `<a>` — link, misal `<a href="https://example.com">Klik aku</a>`
+        - `<img>` — gambar, misal `<img src="foto.jpg" alt="Foto saya">`
+        - `<div>` — pembungkus block, ngambil baris penuh
+        - `<span>` — pembungkus inline, ngikutin alur teks
 
         ### Atribut
 
-        Atribut adalah info tambahan di dalam tag. `src` menentukan sumber gambar. `alt` adalah teks pengganti kalau gambar gagal muncul. `href` adalah alamat tujuan untuk link.
+        Atribut itu info tambahan di dalem tag. `src` nentuin sumber gambar. `alt` itu teks pengganti kalau gambar gagal muncul. `href` alamat tujuan buat link.
 
-        Atribut `alt` itu wajib di `<img>`. Kalau gambar gagal muncul, teks `alt` yang dipakai sebagai pengganti. Teks ini juga membantu orang yang tidak bisa melihat gambar memahami isi gambarnya.
+        Atribut `alt` itu wajib di `<img>`. Selain buat fallback kalau gambar gak load, teks ini juga bantu orang yang gak bisa lihat gambar (pake aplikasi pembaca layar) buat ngerti isi gambarnya.
 
         ### Tag yang punya makna khusus
 
-        Daripada bungkus semua pakai `<div>`, pilih tag yang sesuai isinya. `<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<footer>`.
+        Daripada bungkus semua pake `<div>`, mendingan pilih tag yang sesuai isinya. Ada `<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<footer>`.
 
-        Kenapa ini penting? Mesin pencari seperti Google jadi lebih paham bagian mana judul, mana navigasi, mana isi utama — itu membantu halamanmu muncul di hasil pencarian. Aplikasi pembaca layar (yang dipakai orang yang sulit melihat) juga bisa lompat antar bagian dengan rapi.
+        Kenapa ini penting? Dua alasan:
+
+        - Mesin pencari kayak Google jadi lebih ngerti bagian mana judul, mana navigasi, mana isi utama. Itu ngebantu halaman kamu muncul di hasil pencarian.
+        - Aplikasi pembaca layar (yang dipake orang yang susah lihat) bisa lompat antar bagian dengan rapi.
+
+        Banyak yang awal-awal mikir tag-tag ini ribet. Padahal cuma ngegantiin `<div>` dengan nama yang lebih jelas.
         """
     ),
     contoh_code_md=dedent(
@@ -115,10 +124,10 @@ LESSON_HTML = make_lesson(
         """
     ),
     practice=(
-        "Buat satu file `index.html` berisi nama kamu di `<h1>`, satu foto "
-        "(boleh placeholder dari `https://placehold.co/200x200`), dan tiga hal "
-        "yang kamu suka dalam list `<ul>` + `<li>`. Buka file di browser dengan "
-        "klik dua kali."
+        "Bikin satu file `index.html` isinya nama kamu di `<h1>`, satu foto "
+        "(boleh placeholder dari `https://placehold.co/200x200`), dan tiga "
+        "hal yang kamu suka dalam list `<ul>` + `<li>`. Buka file di browser "
+        "dengan klik dua kali."
     ),
     fix_error={
         "language": "html",
@@ -139,13 +148,13 @@ LESSON_HTML = make_lesson(
         ),
         "hint": (
             "Ada tiga kesalahan. Cek penutup tag judul, penutup tag heading, "
-            "dan satu atribut yang wajib ada di tag gambar."
+            "sama satu atribut yang wajib ada di tag gambar."
         ),
         "answer_explanation": dedent(
             """\
             1. `<title>` belum ditutup. Harusnya `</title>`, bukan `<title>` lagi.
             2. `</h1` kurang `>` di akhir tag penutup.
-            3. `<img>` wajib punya atribut `alt` supaya gambar punya teks pengganti.
+            3. `<img>` wajib punya atribut `alt` biar gambarnya punya teks pengganti.
             """
         ),
         "fixed_code": dedent(
@@ -166,21 +175,21 @@ LESSON_HTML = make_lesson(
     },
     quiz=[
         q(
-            "Apa fungsi tag `<head>` dalam HTML?",
+            "Tag `<head>` fungsinya buat apa?",
             [
-                "Menampilkan konten utama halaman",
-                "Menyimpan informasi tentang halaman yang tidak terlihat user",
-                "Membuat heading paling besar",
-                "Mengatur warna background",
+                "Nampilin konten utama halaman",
+                "Nyimpen info tentang halaman yang gak keliatan user",
+                "Bikin heading paling gede",
+                "Ngatur warna background",
             ],
             "B",
-            "`<head>` berisi metadata seperti title, link CSS, dan script. Isinya tidak ditampilkan langsung ke user.",
+            "`<head>` isinya metadata kayak title, link CSS, sama script. Isinya gak ditampilin langsung ke user.",
         ),
         q(
-            "Tag mana yang paling tepat untuk judul utama halaman?",
+            "Tag mana yang paling tepat buat judul utama halaman?",
             ["`<title>`", "`<header>`", "`<h1>`", "`<bold>`"],
             "C",
-            "`<h1>` adalah heading level 1, dipakai untuk judul paling penting di halaman. `<title>` cuma muncul di tab browser, bukan di halaman.",
+            "`<h1>` itu heading level 1, dipake buat judul paling penting di halaman. `<title>` cuma muncul di tab browser, bukan di halaman.",
         ),
         q(
             "Apa output dari kode `<p>Halo <strong>Dunia</strong>!</p>`?",
@@ -191,41 +200,41 @@ LESSON_HTML = make_lesson(
                 "Halo (Dunia) !",
             ],
             "B",
-            "`<strong>` membuat teks di dalamnya jadi tebal dan punya makna penekanan.",
+            "`<strong>` bikin teks di dalemnya jadi tebel dan punya makna penekanan.",
         ),
         q(
             "Atribut apa yang WAJIB ada di tag `<img>`?",
             [
-                "`src` dan `width`",
-                "`src` dan `alt`",
-                "`href` dan `src`",
-                "`class` dan `id`",
+                "`src` sama `width`",
+                "`src` sama `alt`",
+                "`href` sama `src`",
+                "`class` sama `id`",
             ],
             "B",
-            "`src` menentukan lokasi gambar, `alt` memberikan teks pengganti kalau gambar tidak muncul, dan dipakai aplikasi pembaca layar untuk menjelaskan gambar.",
+            "`src` nentuin lokasi gambar, `alt` ngasih teks pengganti kalau gambar gak muncul, dan dipake aplikasi pembaca layar buat jelasin gambar.",
         ),
         q(
-            "Apa perbedaan `<div>` dan `<span>`?",
+            "Apa bedanya `<div>` sama `<span>`?",
             [
-                "Tidak ada perbedaan",
-                "`<div>` untuk teks, `<span>` untuk gambar",
-                "`<div>` adalah block element, `<span>` adalah inline element",
+                "Gak ada bedanya",
+                "`<div>` buat teks, `<span>` buat gambar",
+                "`<div>` itu block element, `<span>` itu inline element",
                 "`<span>` lebih modern dari `<div>`",
             ],
             "C",
-            "Block element seperti `<div>` ambil lebar penuh dan masuk baris baru. Inline element seperti `<span>` mengikuti alur teks tanpa pindah baris.",
+            "Block element kayak `<div>` ngambil lebar penuh dan masuk baris baru. Inline element kayak `<span>` ngikutin alur teks tanpa pindah baris.",
         ),
     ],
     common_mistakes=[
-        "Lupa menutup tag, terutama `<title>` dan `<a>`. Browser bisa salah nampilin sisa halaman.",
-        "Menulis `<img>` tanpa `alt`. Gambar yang gagal muncul tidak punya teks pengganti, dan orang yang pakai pembaca layar tidak tahu isi gambar.",
-        "Pakai `<br>` berlebihan untuk bikin jarak. Itu tugas CSS, bukan HTML.",
+        "Lupa nutup tag, terutama `<title>` sama `<a>`. Browser bisa salah nampilin sisa halaman.",
+        "Nulis `<img>` tanpa `alt`. Kalau gambarnya gak load, gak ada teks pengganti, dan orang yang pake pembaca layar gak tau isi gambar.",
+        "Pake `<br>` kebanyakan buat bikin jarak. Itu kerjaan CSS, bukan HTML.",
     ],
     checkpoint=[
-        "Bisa membuat file HTML dari nol tanpa contekan kerangka.",
-        "Paham bedanya `<head>` dan `<body>`.",
-        "Bisa pasang heading, paragraf, link, dan gambar dengan atribut yang benar.",
-        "Tahu kapan pakai `<section>` vs `<div>`.",
+        "Bisa bikin file HTML dari nol tanpa contekan",
+        "Paham bedanya `<head>` sama `<body>`",
+        "Bisa pasang heading, paragraf, link, dan gambar dengan atribut yang bener",
+        "Tau kapan pake `<section>` vs `<div>`",
     ],
     xp_reward=50,
 )
@@ -236,74 +245,74 @@ LESSON_HTML = make_lesson(
 # ─────────────────────────────────────────────────────────────────────────────
 
 LESSON_CSS = make_lesson(
-    title="CSS Fundamental",
+    title="CSS Dasar — Bikin Halaman Jadi Rapi",
     slug="css-fundamental",
     order_index=2,
     read_time="10 menit",
-    summary="Selector, box model, dan cara menata tampilan modern.",
+    summary="Selector, box model, sama cara bikin tampilan modern.",
     tools=["Browser modern", "VS Code", "DevTools (F12)"],
     outcomes=[
-        "Menghubungkan file CSS ke HTML",
-        "Memilih elemen dengan selector dasar",
-        "Mengatur ruang dengan box model (margin, padding, border)",
-        "Memakai CSS variable untuk warna konsisten",
+        "Bisa nyambungin file CSS ke HTML",
+        "Bisa milih elemen pake selector dasar",
+        "Bisa ngatur jarak pake box model (margin, padding, border)",
+        "Bisa pake CSS variable biar warna konsisten",
     ],
     tldr=(
-        "CSS itu cat dan dekorasinya HTML. Kamu pilih elemen pakai selector, "
-        "lalu kasih property + value. Ingat box model: content, padding, border, "
-        "margin."
+        "CSS itu cat sama dekorasinya HTML. Kamu pilih elemen pake selector, "
+        "terus kasih property + value. Inget box model: content, padding, "
+        "border, margin."
     ),
     pembuka=dedent(
         """\
-        Kalau HTML adalah kerangka rumah, CSS itu cat, lampu, dan dekorasinya.
+        Kalau HTML itu kerangka rumah, CSS itu cat, lampu, sama dekorasinya.
 
-        Dengan CSS kamu atur warna, ukuran, jarak, font — semua hal yang bikin website kamu enak dilihat.
+        Sama CSS kamu ngatur warna, ukuran, jarak, font — semua hal yang bikin website kamu enak diliat.
 
-        CSS yang sama bisa dipakai banyak halaman sekaligus, jadi sekali ubah, semuanya ikut berubah.
+        CSS yang sama bisa dipake banyak halaman sekaligus. Sekali ubah, semuanya ikut berubah.
         """
     ),
     penjelasan=dedent(
         """\
-        ### Tiga cara pakai CSS
+        ### Tiga cara pake CSS
 
-        Ada tiga cara, tapi yang dipakai di project nyata cuma satu.
+        Ada tiga cara, tapi yang dipake di project nyata cuma satu.
 
-        - **Inline style** langsung di tag HTML. Cepat, tapi berantakan kalau banyak.
-        - **Internal style** di dalam `<style>` di `<head>`. Cocok untuk halaman tunggal.
-        - **External stylesheet** file `.css` terpisah, di-link dari HTML. Ini yang paling sering dipakai.
+        - **Inline style** — langsung di tag HTML. Cepet, tapi berantakan kalau banyak.
+        - **Internal style** — di dalem `<style>` di `<head>`. Cocok buat halaman tunggal.
+        - **External stylesheet** — file `.css` terpisah, di-link dari HTML. Ini yang paling sering dipake.
 
-        Aturan praktis: untuk project nyata, selalu pakai external. Memisahkan struktur (HTML) dan tampilan (CSS) bikin kode lebih rapi.
+        Aturan praktisnya: buat project nyata, selalu pake external. Misahin struktur (HTML) sama tampilan (CSS) bikin kode lebih rapi.
 
         ### Anatomi aturan CSS
 
-        Satu aturan CSS terdiri dari tiga bagian: selector, property, value. Selector menunjuk elemen mana yang mau di-style. Property nama hal yang mau diubah. Value nilainya.
+        Satu aturan CSS terdiri dari tiga bagian: selector, property, value. Selector nunjuk elemen mana yang mau di-style. Property itu nama hal yang mau diubah. Value itu nilainya.
 
-        Tanda `:` memisahkan property dan value. Tanda `;` menutup tiap baris.
+        Tanda `:` misahin property sama value. Tanda `;` nutup tiap baris.
 
         ### Selector
 
-        - `h1` memilih semua tag h1.
-        - `.judul` memilih semua elemen dengan `class="judul"`.
-        - `#hero` memilih elemen dengan `id="hero"` (id harus unik di satu halaman).
-        - `nav a` memilih semua link di dalam nav.
-        - `button:hover` aktif saat mouse di atas tombol.
+        - `h1` — milih semua tag h1
+        - `.judul` — milih semua elemen dengan `class="judul"`
+        - `#hero` — milih elemen dengan `id="hero"` (id harus unik di satu halaman)
+        - `nav a` — milih semua link di dalem nav
+        - `button:hover` — aktif pas mouse di atas tombol
 
-        ### CSS Box Model
+        ### Box Model — anggep aja kardus
 
-        Bayangkan setiap elemen HTML adalah sebuah kardus. Isinya = content. Bantalan dalam = padding. Dinding kardus = border. Jarak ke kardus lain = margin.
+        Tiap elemen HTML itu kayak kardus. Isinya = content. Bantalan dalemnya = padding. Dinding kardusnya = border. Jarak ke kardus lain = margin.
 
-        Property yang sering dipakai: `color`, `background`, `font-size`, `font-family`, `width`, `height`, `padding`, `margin`, `border`, `border-radius`, `text-align`.
+        Property yang sering dipake: `color`, `background`, `font-size`, `font-family`, `width`, `height`, `padding`, `margin`, `border`, `border-radius`, `text-align`.
 
         ### Units
 
-        - `px` ukuran tetap. Cocok untuk border tipis.
-        - `%` persentase dari elemen pembungkus.
-        - `rem` kelipatan dari font root (default 16px). **Direkomendasikan** untuk ukuran font dan spacing besar.
-        - `em` kelipatan dari font elemen pembungkus.
+        - `px` — ukuran tetep. Cocok buat border tipis.
+        - `%` — persentase dari elemen pembungkus.
+        - `rem` — kelipatan dari font root (default 16px). **Direkomendasiin** buat ukuran font sama spacing gede.
+        - `em` — kelipatan dari font elemen pembungkus.
 
         ### CSS Variables
 
-        Mau warna utama dipakai di banyak tempat? Bikin sekali, panggil banyak. Definisikan dengan `--nama` di dalam `:root`, panggil dengan `var(--nama)`.
+        Mau warna utama dipake di banyak tempat? Bikin sekali, panggil banyak. Definisiin pake `--nama` di dalem `:root`, panggil pake `var(--nama)`.
 
         Kalau mau ganti tema, kamu cuma ubah satu tempat.
         """
@@ -351,10 +360,10 @@ LESSON_CSS = make_lesson(
         """
     ),
     practice=(
-        "Buat file `style.css` lalu sambungkan ke `index.html` dari lesson "
-        "sebelumnya pakai `<link rel=\"stylesheet\">`. Ubah background jadi gelap "
-        "(`#0D0D0D`), warna teks putih, padding `body` 32px, dan kasih warna aksen "
-        "biru (`#4EBAEC`) ke nama kamu."
+        "Bikin file `style.css` terus sambungin ke `index.html` dari lesson "
+        "sebelumnya pake `<link rel=\"stylesheet\">`. Ubah background jadi "
+        "gelap (`#0D0D0D`), warna teks putih, padding `body` 32px, dan kasih "
+        "warna aksen biru (`#4EBAEC`) ke nama kamu."
     ),
     fix_error={
         "language": "css",
@@ -373,8 +382,8 @@ LESSON_CSS = make_lesson(
             """
         ),
         "hint": (
-            "Property dan value dipisahkan oleh titik dua. Tiap baris diakhiri "
-            "titik koma. Cek baris yang kelihatan 'polos'."
+            "Property sama value dipisahin pake titik dua. Tiap baris diakhirin "
+            "titik koma. Cek baris yang keliatan 'polos'."
         ),
         "answer_explanation": dedent(
             """\
@@ -401,18 +410,18 @@ LESSON_CSS = make_lesson(
     },
     quiz=[
         q(
-            "Apa cara paling direkomendasikan untuk pakai CSS di project nyata?",
+            "Cara paling direkomendasiin buat pake CSS di project nyata?",
             [
-                "Inline style di setiap tag",
-                "Internal style di dalam `<style>` di `<head>`",
+                "Inline style di tiap tag",
+                "Internal style di dalem `<style>` di `<head>`",
                 "External stylesheet (.css terpisah) yang di-link",
-                "Tidak pakai CSS sama sekali",
+                "Gak pake CSS sama sekali",
             ],
             "C",
-            "External stylesheet memisahkan tampilan dari struktur, mudah di-maintain, dan bisa dipakai ulang di banyak halaman.",
+            "External stylesheet misahin tampilan dari struktur, gampang di-maintain, dan bisa dipake ulang di banyak halaman.",
         ),
         q(
-            "Apa yang dipilih oleh selector `.judul`?",
+            "Apa yang dipilih sama selector `.judul`?",
             [
                 "Semua tag dengan id `judul`",
                 "Semua elemen dengan class `judul`",
@@ -420,47 +429,47 @@ LESSON_CSS = make_lesson(
                 "Error karena syntax salah",
             ],
             "B",
-            "Tanda `.` di depan nama menandakan class selector. Untuk id, pakai `#`.",
+            "Tanda `.` di depan nama berarti class selector. Buat id, pake `#`.",
         ),
         q(
-            "Dalam CSS Box Model, apa fungsi `padding`?",
+            "Di Box Model, fungsi `padding` apa?",
             [
                 "Jarak antar elemen",
                 "Garis tepi elemen",
-                "Bantalan di dalam elemen, antara isi dan border",
+                "Bantalan di dalem elemen, antara isi sama border",
                 "Lebar maksimal elemen",
             ],
             "C",
-            "`padding` adalah jarak antara isi dan border. `margin` adalah jarak ke elemen di luarnya.",
+            "`padding` itu jarak antara isi sama border. `margin` itu jarak ke elemen di luarnya.",
         ),
         q(
-            "Mana unit yang paling direkomendasikan untuk ukuran font supaya scalable?",
+            "Mana unit yang paling direkomendasiin buat ukuran font biar scalable?",
             ["`px`", "`rem`", "`pt`", "`cm`"],
             "B",
-            "`rem` mengikuti ukuran font root, jadi kalau user perbesar teks di browser, semua ikut menyesuaikan. `px` itu fixed.",
+            "`rem` ngikutin ukuran font root, jadi kalau user ngegedein teks di browser, semua ikut nyesuaiin. `px` itu fixed.",
         ),
         q(
             "Apa fungsi `var(--primary)` di CSS?",
             [
-                "Membuat variabel baru bernama `primary`",
-                "Memanggil nilai dari custom property `--primary` yang sudah didefinisikan",
-                "Menamai warna baru",
+                "Bikin variable baru bernama `primary`",
+                "Manggil nilai dari custom property `--primary` yang udah didefinisiin",
+                "Namain warna baru",
                 "Error syntax",
             ],
             "B",
-            "`--primary: ...` mendefinisikan variabel. `var(--primary)` cara memanggilnya.",
+            "`--primary: ...` mendefinisiin variable. `var(--primary)` cara manggilnya.",
         ),
     ],
     common_mistakes=[
-        "Lupa `;` di akhir baris CSS. Aturan setelahnya jadi tidak jalan.",
-        "Mencampur ID dan class tanpa alasan. Default pakai class, ID untuk hal yang benar-benar unik.",
-        "Spacing pakai `<br>` atau spasi, bukan `margin`/`padding`.",
+        "Lupa `;` di akhir baris CSS. Aturan setelahnya jadi gak jalan.",
+        "Nyampurin ID sama class tanpa alasan. Default pake class, ID buat hal yang bener-bener unik.",
+        "Spacing pake `<br>` atau spasi, bukan `margin`/`padding`.",
     ],
     checkpoint=[
-        "Bisa link external stylesheet ke HTML.",
-        "Tahu beda margin dan padding.",
-        "Bisa pakai CSS variable untuk warna utama.",
-        "Bisa baca dan menulis selector class, id, dan kombinasi.",
+        "Bisa link external stylesheet ke HTML",
+        "Tau bedanya margin sama padding",
+        "Bisa pake CSS variable buat warna utama",
+        "Bisa baca dan nulis selector class, id, dan kombinasi",
     ],
     xp_reward=70,
 )
@@ -471,72 +480,72 @@ LESSON_CSS = make_lesson(
 # ─────────────────────────────────────────────────────────────────────────────
 
 LESSON_FLEX_GRID = make_lesson(
-    title="Flexbox & Grid Modern",
+    title="Flexbox & Grid — Layout Modern",
     slug="flexbox-grid-modern",
     order_index=3,
     read_time="12 menit",
-    summary="Layout modern dengan Flexbox satu dimensi dan Grid dua dimensi.",
+    summary="Layout modern: Flexbox satu arah, Grid dua arah.",
     tools=["Browser modern", "VS Code", "DevTools layout panel"],
     outcomes=[
-        "Membuat navbar dengan Flexbox",
-        "Centering elemen di tengah halaman",
-        "Membuat gallery responsive dengan Grid",
-        "Memilih Flexbox vs Grid untuk kasus tertentu",
+        "Bisa bikin navbar pake Flexbox",
+        "Bisa centering elemen di tengah halaman",
+        "Bisa bikin gallery responsive pake Grid",
+        "Bisa milih Flexbox vs Grid buat kasus tertentu",
     ],
     tldr=(
-        "Flexbox untuk layout satu arah (rak panjang). Grid untuk layout dua "
-        "arah (papan catur). `gap` jaga jarak. `justify-content` dan "
-        "`align-items` untuk posisi."
+        "Flexbox buat layout satu arah (rak panjang). Grid buat layout dua "
+        "arah (papan catur). `gap` buat jaga jarak. `justify-content` sama "
+        "`align-items` buat posisi."
     ),
     pembuka=dedent(
         """\
-        Dulu mengatur tata letak website itu menyiksa. Orang pakai `<table>`, lalu pakai `float`, dan semua berantakan.
+        Dulu ngatur tata letak website itu nyiksa banget. Orang pake `<table>`, terus pake `float`, semua berantakan.
 
-        Sekarang ada dua senjata utama: Flexbox dan Grid. Keduanya bagian dari CSS modern.
+        Sekarang ada dua senjata utama: Flexbox sama Grid. Dua-duanya bagian dari CSS modern.
 
-        Flexbox seperti mengatur barang dalam satu rak panjang. Grid seperti mengatur barang di papan catur.
+        Flexbox kayak ngatur barang di satu rak panjang. Grid kayak ngatur barang di papan catur.
         """
     ),
     penjelasan=dedent(
         """\
         ### Flexbox
 
-        Untuk pakai Flexbox, kasih `display: flex` ke elemen pembungkus. Anak-anaknya otomatis tersusun horizontal.
+        Buat pake Flexbox, kasih `display: flex` ke elemen pembungkus. Anak-anaknya otomatis tersusun horizontal.
 
-        Property utama:
+        Property utamanya:
 
-        - `flex-direction` arah: `row` (kiri ke kanan, default) atau `column` (atas ke bawah).
-        - `justify-content` posisi sepanjang arah utama. Pilihan populer: `flex-start`, `center`, `space-between`, `space-around`.
-        - `align-items` posisi tegak lurus arah utama. Pilihan populer: `flex-start`, `center`, `stretch`.
-        - `gap` jarak antar item, lebih bersih daripada margin.
-        - `flex-wrap: wrap` membuat item turun baris kalau tidak muat.
+        - `flex-direction` — arah: `row` (kiri ke kanan, default) atau `column` (atas ke bawah)
+        - `justify-content` — posisi sepanjang arah utama. Pilihan populer: `flex-start`, `center`, `space-between`, `space-around`
+        - `align-items` — posisi tegak lurus arah utama. Pilihan populer: `flex-start`, `center`, `stretch`
+        - `gap` — jarak antar item, lebih bersih daripada margin
+        - `flex-wrap: wrap` — bikin item turun baris kalau gak muat
 
-        Centering yang dulu butuh tiga jam, sekarang tiga baris: `display: flex`, `justify-content: center`, `align-items: center`.
+        Centering yang dulu butuh tiga jam, sekarang tiga baris doang: `display: flex`, `justify-content: center`, `align-items: center`.
 
         ### CSS Grid
 
-        Untuk pakai Grid, kasih `display: grid` plus `grid-template-columns`.
+        Buat pake Grid, kasih `display: grid` plus `grid-template-columns`.
 
-        - `repeat(3, 1fr)` artinya tiga kolom sama lebar.
-        - `1fr` artinya "satu pecahan dari ruang yang tersedia".
-        - `gap` sama seperti di Flexbox.
+        - `repeat(3, 1fr)` artinya tiga kolom sama lebar
+        - `1fr` artinya "satu pecahan dari ruang yang tersedia"
+        - `gap` sama kayak di Flexbox
 
-        Untuk grid yang otomatis menyesuaikan layar, pakai `repeat(auto-fit, minmax(240px, 1fr))`. Hasilnya: setiap card minimal lebar 240px, sisanya dibagi rata. Layar lebar = banyak kolom, layar sempit = sedikit. Tidak butuh media query.
+        Buat grid yang otomatis nyesuaiin layar, pake `repeat(auto-fit, minmax(240px, 1fr))`. Hasilnya: tiap card minimal lebar 240px, sisanya dibagi rata. Layar lebar = banyak kolom, layar sempit = sedikit. Gak butuh media query.
 
-        Kalau ada satu card yang harus lebih lebar, pakai `grid-column: span 2` di card itu.
+        Kalau ada satu card yang harus lebih lebar, pake `grid-column: span 2` di card itu.
 
-        ### Kapan pakai apa
+        ### Kapan pake apa
 
-        Pakai Flexbox untuk navbar, deretan tombol, list horizontal, centering, dan layout satu arah.
+        Pake Flexbox buat navbar, deretan tombol, list horizontal, centering, dan layout satu arah.
 
-        Pakai Grid untuk gallery, dashboard, dan layout dua dimensi (sidebar + konten + footer).
+        Pake Grid buat gallery, dashboard, dan layout dua dimensi (sidebar + konten + footer).
 
-        Sering kombinasi keduanya: Grid untuk layout besar, Flexbox di dalam tiap card untuk atur isinya.
+        Sering dikombinasiin: Grid buat layout gede, Flexbox di dalem tiap card buat ngatur isinya.
         """
     ),
     contoh_code_md=dedent(
         """\
-        Navbar dengan Flexbox:
+        Navbar pake Flexbox:
 
         ```html
         <nav class="navbar">
@@ -563,7 +572,7 @@ LESSON_FLEX_GRID = make_lesson(
         }
         ```
 
-        Gallery responsive dengan Grid:
+        Gallery responsive pake Grid:
 
         ```css
         .cards {
@@ -575,9 +584,9 @@ LESSON_FLEX_GRID = make_lesson(
         """
     ),
     practice=(
-        "Buat satu section berisi tiga card sejajar pakai Flexbox. Tiap card "
-        "punya judul dan deskripsi singkat. Tambah `gap: 16px` antar card dan "
-        "`align-items: stretch` supaya tinggi card sama walau isinya beda."
+        "Bikin satu section isinya tiga card sejajar pake Flexbox. Tiap card "
+        "punya judul sama deskripsi singkat. Tambahin `gap: 16px` antar card "
+        "sama `align-items: stretch` biar tinggi card sama walau isinya beda."
     ),
     fix_error={
         "language": "css",
@@ -597,14 +606,14 @@ LESSON_FLEX_GRID = make_lesson(
             """
         ),
         "hint": (
-            "Untuk Flexbox, ada dua nama property yang salah dipasangkan. Untuk "
+            "Buat Flexbox, ada dua nama property yang salah dipasangkan. Buat "
             "Grid, satu property kurang huruf 's' di akhir."
         ),
         "answer_explanation": dedent(
             """\
-            1. `justify-items` valid di Grid, bukan Flexbox. Untuk Flexbox pakai `justify-content`.
-            2. `align-content` valid di Flexbox tapi untuk multi-line. Untuk single line pakai `align-items`.
-            3. `grid-template-column` salah eja. Yang benar `grid-template-columns` (plural).
+            1. `justify-items` itu valid di Grid, bukan Flexbox. Buat Flexbox pake `justify-content`.
+            2. `align-content` itu valid di Flexbox tapi buat multi-line. Buat single line pake `align-items`.
+            3. `grid-template-column` salah ketik. Yang bener `grid-template-columns` (plural).
             """
         ),
         "fixed_code": dedent(
@@ -625,26 +634,26 @@ LESSON_FLEX_GRID = make_lesson(
     },
     quiz=[
         q(
-            "Property apa yang menentukan jarak antar item di Flexbox dan Grid modern?",
+            "Property apa yang nentuin jarak antar item di Flexbox sama Grid modern?",
             ["`margin`", "`space`", "`gap`", "`padding`"],
             "C",
-            "`gap` adalah cara modern untuk atur jarak antar item, lebih bersih daripada `margin` di tiap anak.",
+            "`gap` itu cara modern buat ngatur jarak antar item, lebih bersih daripada `margin` di tiap anak.",
         ),
         q(
-            "Apa output `justify-content: space-between` di flex container yang berisi 3 item?",
+            "Apa output `justify-content: space-between` di flex container yang isinya 3 item?",
             [
-                "Item pertama dan terakhir nempel ke pinggir, item kedua di tengah dengan jarak rata",
+                "Item pertama sama terakhir nempel ke pinggir, item kedua di tengah dengan jarak rata",
                 "Semua item rapat ke kiri",
-                "Semua item di tengah, tidak ada jarak",
+                "Semua item di tengah, gak ada jarak",
                 "Item membentuk grid",
             ],
             "A",
-            "`space-between` menaruh item pertama di paling kiri, terakhir di paling kanan, sisanya jaraknya merata.",
+            "`space-between` naro item pertama di paling kiri, terakhir di paling kanan, sisanya jaraknya merata.",
         ),
         q(
-            "Mana yang paling cocok pakai CSS Grid (bukan Flexbox)?",
+            "Mana yang paling cocok pake CSS Grid (bukan Flexbox)?",
             [
-                "Navbar dengan logo kiri dan menu kanan",
+                "Navbar dengan logo kiri sama menu kanan",
                 "Tombol-tombol horizontal di footer",
                 "Gallery foto 4 kolom 3 baris",
                 "Centering satu kotak di tengah halaman",
@@ -661,37 +670,37 @@ LESSON_FLEX_GRID = make_lesson(
                 "Error syntax",
             ],
             "B",
-            "`fr` (fraction) berarti pecahan dari sisa ruang. `1fr 2fr` berarti kolom pertama dapat 1/3, kolom kedua 2/3.",
+            "`fr` (fraction) berarti pecahan dari sisa ruang. `1fr 2fr` berarti kolom pertama dapet 1/3, kolom kedua 2/3.",
         ),
         q(
             "Apa fungsi `repeat(auto-fit, minmax(240px, 1fr))`?",
             [
                 "Bikin tepat 3 kolom selalu",
-                "Otomatis bikin sebanyak mungkin kolom dengan minimal lebar 240px, sisanya dibagi rata",
+                "Otomatis bikin kolom sebanyak mungkin dengan minimal lebar 240px, sisanya dibagi rata",
                 "Error",
                 "Bikin baris, bukan kolom",
             ],
             "B",
-            "Pola ini untuk grid responsive: layar lebar = banyak kolom, layar sempit = sedikit. Tanpa media query.",
+            "Pola ini buat grid responsive: layar lebar = banyak kolom, layar sempit = sedikit. Tanpa media query.",
         ),
     ],
     common_mistakes=[
-        "Tertukar `justify-content` dengan `justify-items`. Yang pertama untuk Flexbox, yang kedua untuk Grid.",
-        "Pakai Flexbox untuk gallery dua dimensi. Hasilnya repot. Pakai Grid.",
-        "Lupa `gap`. Akhirnya kasih margin di setiap anak yang berakibat ada margin di pinggir yang tidak diinginkan.",
+        "Ketuker `justify-content` sama `justify-items`. Yang pertama buat Flexbox, yang kedua buat Grid.",
+        "Pake Flexbox buat gallery dua dimensi. Ribet hasilnya. Pake Grid.",
+        "Lupa `gap`. Akhirnya kasih margin di tiap anak yang berakibat ada margin di pinggir yang gak diinginkan.",
     ],
     checkpoint=[
-        "Bisa bikin navbar dengan logo kiri dan menu kanan pakai Flexbox.",
-        "Bisa centering satu elemen di tengah halaman.",
-        "Bisa bikin gallery card responsive dengan Grid.",
-        "Tahu kapan pilih Flexbox vs Grid.",
+        "Bisa bikin navbar dengan logo kiri sama menu kanan pake Flexbox",
+        "Bisa centering satu elemen di tengah halaman",
+        "Bisa bikin gallery card responsive pake Grid",
+        "Tau kapan pilih Flexbox vs Grid",
     ],
     xp_reward=80,
 )
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Lesson 4 — Mini Project (LAST in level)
+# Lesson 4 — Mini Project
 # ─────────────────────────────────────────────────────────────────────────────
 
 PROJECT_LANDING = make_lesson(
@@ -699,58 +708,57 @@ PROJECT_LANDING = make_lesson(
     slug="mini-project-personal-landing-page",
     order_index=4,
     read_time="60 menit",
-    summary="Bangun halaman pertamamu dan deploy ke internet.",
+    summary="Bikin halaman pertamamu dan deploy ke internet.",
     tools=["VS Code", "GitHub", "Vercel atau Netlify"],
     outcomes=[
-        "Membangun halaman tunggal end-to-end",
-        "Memakai HTML semantik dan CSS modern di project nyata",
-        "Deploy ke hosting gratis dan punya URL publik",
+        "Bisa bangun halaman tunggal end-to-end",
+        "Bisa pake HTML semantik sama CSS modern di project nyata",
+        "Bisa deploy ke hosting gratis dan punya URL publik",
     ],
     tldr=(
-        "Bangun halaman perkenalan diri pakai HTML + CSS murni. "
-        "Pakai Flexbox untuk navbar, Grid untuk skill section, dan deploy "
-        "gratis ke Vercel."
+        "Bangun halaman perkenalan diri pake HTML + CSS murni. Pake Flexbox "
+        "buat navbar, Grid buat skill section, dan deploy gratis ke Vercel."
     ),
     pembuka=dedent(
         """\
         Saatnya bikin sesuatu yang nyata. Selesai project ini, kamu punya halaman pertama yang layak masuk portfolio.
 
-        Ini bukan latihan biasa. Ini akan jadi proof bahwa kamu bisa pakai HTML + CSS dari nol sampai live di internet.
+        Ini bukan latihan biasa. Ini bakal jadi bukti kalau kamu bisa pake HTML + CSS dari nol sampe live di internet.
         """
     ),
     penjelasan=dedent(
         """\
-        ### Apa yang kamu bangun
+        ### Yang kamu bangun
 
-        Sebuah halaman tunggal (single-page) yang memperkenalkan dirimu ke dunia.
+        Halaman tunggal (single-page) yang ngenalin diri kamu ke dunia.
 
-        Tech stack: HTML5 semantic + CSS3 dengan Flexbox dan/atau Grid. Tanpa framework. Fokus ke yang sudah dipelajari.
+        Tech stack: HTML5 semantic + CSS3 dengan Flexbox dan/atau Grid. Tanpa framework. Fokus ke yang udah dipelajari.
 
         ### Section minimal
 
-        - **Hero** dengan nama besar, tagline satu kalimat, dan foto profil.
-        - **Tentang Saya** dua sampai tiga kalimat, gaya santai.
-        - **Skills atau Hobi** minimal empat item, ditata dalam grid (bukan list biasa).
-        - **Kontak** dengan email atau social media sebagai link yang bisa diklik.
+        - **Hero** — nama gede, tagline kuat satu kalimat, foto profil
+        - **Tentang Saya** — dua sampe tiga kalimat, gaya santai
+        - **Skills atau Hobi** — minimal empat item, ditata dalam grid (bukan list biasa)
+        - **Kontak** — email atau social media sebagai link yang bisa diklik
 
-        ### Tips agar hasil bagus
+        ### Tips biar hasilnya bagus
 
-        Mulai dari mock-up kasar di kertas atau Figma. Tahu mau ke mana sebelum nulis kode menghemat banyak waktu.
+        Mulai dari mock-up kasar di kertas atau Figma. Tau mau ke mana sebelum nulis kode itu ngehemat banyak waktu.
 
-        Pakai `gap` untuk jarak antar item, bukan `margin` random di tiap anak. Hasilnya lebih bersih.
+        Pake `gap` buat jarak antar item, bukan `margin` random di tiap anak. Hasilnya lebih bersih.
 
-        Pilih satu warna utama, satu warna teks, satu warna muted. Itu sudah cukup untuk halaman pertama.
+        Pilih satu warna utama, satu warna teks, satu warna muted. Itu udah cukup buat halaman pertama.
 
-        Buka di mode HP via DevTools (F12 → Toggle device toolbar). Pastikan tidak ada teks yang keluar layar.
+        Buka di mode HP via DevTools (F12 → Toggle device toolbar). Pastiin gak ada teks yang keluar layar.
 
         ### Cara deploy ke Vercel
 
-        Buat akun di vercel.com (gratis). Buat repo GitHub, push file project kamu. Klik **Add New Project** di Vercel, pilih repo. Klik Deploy. Selesai dalam tiga puluh detik. Kamu dapat URL `nama-project.vercel.app`.
+        Bikin akun di vercel.com (gratis). Bikin repo GitHub, push file project kamu. Klik **Add New Project** di Vercel, pilih repo. Klik Deploy. Selesai dalam tiga puluh detik. Kamu dapet URL `nama-project.vercel.app`.
         """
     ),
     contoh_code_md=dedent(
         """\
-        Sketsa kerangka untuk memulai. Boleh kamu modifikasi sesuai keinginan.
+        Sketsa kerangka buat mulai. Boleh kamu modif sesuai keinginan.
 
         ```html
         <!DOCTYPE html>
@@ -798,7 +806,7 @@ PROJECT_LANDING = make_lesson(
         """
     ),
     practice=(
-        "Selesaikan proyek di atas sampai live di Vercel. Salin URL hasilnya "
+        "Selesain proyek di atas sampe live di Vercel. Salin URL hasilnya "
         "ke catatan kamu. Itu jadi item pertama portfolio kamu."
     ),
     fix_error={
@@ -818,7 +826,7 @@ PROJECT_LANDING = make_lesson(
             }
             """
         ),
-        "hint": "Cek dua baris yang property dan value-nya tidak dipisah dengan benar.",
+        "hint": "Cek dua baris yang property sama value-nya gak dipisah dengan bener.",
         "answer_explanation": dedent(
             """\
             1. `gap 16px;` kurang `:` setelah `gap`.
@@ -843,71 +851,71 @@ PROJECT_LANDING = make_lesson(
     },
     quiz=[
         q(
-            "Untuk hero section dengan satu judul besar dan satu tagline, layout-nya cocok pakai apa?",
+            "Buat hero section dengan satu judul gede sama satu tagline, layout-nya cocok pake apa?",
             [
                 "Grid 4 kolom",
-                "Flexbox dengan `flex-direction: column` dan `align-items: center`",
+                "Flexbox dengan `flex-direction: column` sama `align-items: center`",
                 "Tabel HTML",
-                "Tidak perlu layout, biar default",
+                "Gak perlu layout, biar default",
             ],
             "B",
             "Hero biasanya susunan vertikal yang di-center. Flexbox dengan column + center cocok dan ringkas.",
         ),
         q(
-            "Mana praktik yang paling baik untuk warna di project ini?",
+            "Mana praktik yang paling baik buat warna di project ini?",
             [
-                "Hardcode warna di setiap selector",
-                "Pakai CSS variable di `:root` lalu panggil dengan `var()`",
-                "Pakai inline style supaya cepat",
+                "Hardcode warna di tiap selector",
+                "Pake CSS variable di `:root` terus panggil pake `var()`",
+                "Pake inline style biar cepet",
                 "Random tiap section",
             ],
             "B",
-            "CSS variable membuat ganti tema cukup di satu tempat dan menjaga konsistensi.",
+            "CSS variable bikin ganti tema cuma di satu tempat dan jaga konsistensi.",
         ),
         q(
-            "Apa langkah deploy yang BENAR ke Vercel?",
+            "Apa langkah deploy yang BENER ke Vercel?",
             [
                 "Upload file ZIP ke email Vercel",
-                "Push ke GitHub, lalu hubungkan repo ke Vercel dan klik Deploy",
+                "Push ke GitHub, terus konekin repo ke Vercel dan klik Deploy",
                 "Salin file ke server sendiri",
-                "Tidak bisa deploy HTML statis di Vercel",
+                "Gak bisa deploy HTML statis di Vercel",
             ],
             "B",
-            "Vercel deploy dari Git repo. Push ke GitHub lalu import repo di Vercel.",
+            "Vercel deploy dari Git repo. Push ke GitHub terus import repo di Vercel.",
         ),
         q(
-            "Mana yang TIDAK perlu untuk landing page sederhana ini?",
+            "Mana yang GAK perlu buat landing page sederhana ini?",
             [
-                "Tag `<meta viewport>` untuk responsive",
-                "Tag `<title>` untuk tab browser",
+                "Tag `<meta viewport>` buat responsive",
+                "Tag `<title>` buat tab browser",
                 "Database PostgreSQL",
-                "Tag `<link rel=\"stylesheet\">` untuk CSS",
+                "Tag `<link rel=\"stylesheet\">` buat CSS",
             ],
             "C",
-            "Halaman statis HTML/CSS tidak butuh database. Itu untuk app dinamis.",
+            "Halaman statis HTML/CSS gak butuh database. Itu buat app dinamis.",
         ),
         q(
-            "Setelah deploy, bagaimana cara cek halaman tampil benar di HP?",
+            "Habis deploy, gimana cara cek halaman tampil bener di HP?",
             [
                 "Beli HP baru",
-                "Buka URL di browser HP, atau pakai DevTools → Toggle device toolbar",
-                "Tidak perlu cek, default sudah responsive",
-                "Print halaman lalu lipat",
+                "Buka URL di browser HP, atau pake DevTools → Toggle device toolbar",
+                "Gak perlu cek, default udah responsive",
+                "Print halaman terus dilipet",
             ],
             "B",
-            "DevTools punya simulator perangkat. Buka URL deploy di HP juga oke. Default tidak otomatis responsive — kamu yang bikin responsive.",
+            "DevTools punya simulator perangkat. Buka URL deploy di HP juga oke. Default gak otomatis responsive — kamu yang bikin responsive.",
         ),
     ],
     common_mistakes=[
-        "Foto terlalu besar tanpa `max-width`. Akhirnya halaman scroll horizontal di HP.",
-        "Lupa `<meta viewport>`. Mobile rendering jadi seperti desktop kecil.",
-        "Warna terlalu banyak. Tetap di tiga sampai empat warna utama.",
+        "Foto kegedean tanpa `max-width`. Akhirnya halaman scroll horizontal di HP.",
+        "Lupa `<meta viewport>`. Mobile rendering jadi kayak desktop kecil.",
+        "Warna kebanyakan. Tetep di tiga sampe empat warna utama.",
     ],
     checkpoint=[
-        "Halaman live di internet dengan URL publik.",
-        "Tampil rapi di desktop dan HP.",
-        "Pakai HTML semantik dan CSS variable.",
-        "Repo GitHub punya README minimal.",
+        "Halaman live di internet dengan URL publik",
+        "Tampil rapi di desktop dan HP",
+        "Pake HTML semantik sama CSS variable",
+        "Repo GitHub punya README minimal",
     ],
     xp_reward=200,
     is_project=True,
@@ -922,11 +930,11 @@ LEVEL = make_level(
     number=1,
     slug="html-css-dasar",
     title="HTML & CSS Dasar",
-    subtitle="Fondasi setiap halaman web",
+    subtitle="Dasar yang harus kamu kuasain dulu",
     description=(
-        "Pahami struktur HTML semantik dan styling dengan CSS modern. "
-        "Belajar layout dengan Flexbox dan Grid dari nol, lalu tutup dengan "
-        "personal landing page yang live di internet."
+        "Pahami struktur HTML semantik dan styling pake CSS modern. Belajar "
+        "layout dengan Flexbox dan Grid dari nol, terus tutup dengan personal "
+        "landing page yang live di internet."
     ),
     duration="~1 minggu",
     difficulty="Pemula",

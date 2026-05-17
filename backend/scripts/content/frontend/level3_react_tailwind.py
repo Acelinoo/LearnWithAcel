@@ -18,43 +18,43 @@ from .._template import make_lesson, make_level, q
 # ─────────────────────────────────────────────────────────────────────────────
 
 LESSON_REACT_INTRO = make_lesson(
-    title="Pengenalan React",
+    title="Kenalan sama React",
     slug="pengenalan-react",
     order_index=1,
     read_time="14 menit",
-    summary="Component, JSX, props, dan cara berpikir React.",
+    summary="Component, JSX, props, sama cara mikir pas pake React.",
     tools=["Node.js LTS", "VS Code", "Browser modern"],
     outcomes=[
-        "Setup project React baru dengan Vite",
-        "Menulis component dengan JSX",
-        "Mengirim data lewat props",
-        "Memecah UI jadi bagian kecil yang reusable",
+        "Bisa setup project React baru pake Vite",
+        "Bisa nulis component pake JSX",
+        "Bisa kirim data antar component lewat props",
+        "Bisa pecah UI jadi bagian kecil yang reusable",
     ],
     tldr=(
-        "React = UI library berbasis component. JSX itu HTML di dalam JS. "
-        "Component fungsinya seperti lego — nulis sekali, pakai berkali-kali. "
-        "Kirim data antar component pakai props."
+        "React = library buat bikin UI berbasis component. JSX itu HTML di "
+        "dalem JS. Component fungsinya mirip lego — nulis sekali, pake "
+        "berkali-kali. Kirim data antar component pake props."
     ),
     pembuka=dedent(
         """\
-        Bayangkan kamu bikin website dengan 100 tombol yang tampilannya sama tapi isinya beda.
+        Coba kamu bayangin bikin website sama 100 tombol yang tampilannya sama tapi isinya beda.
 
-        Dengan HTML biasa, kamu harus tulis `<button>` 100 kali. Lelah. Salah satu, harus fix di 100 tempat.
+        Pake HTML biasa, kamu harus nulis `<button>` 100 kali. Capek. Salah satu, harus benerin di 100 tempat.
 
-        Dengan React, kamu tulis `Button` sekali — pakai 100 kali dengan props yang berbeda. Itu inti React.
+        Pake React, kamu nulis `Button` sekali — pake 100 kali dengan props yang beda. Itu inti React.
         """
     ),
     penjelasan=dedent(
         """\
         ### Apa itu React
 
-        React adalah library JavaScript untuk bangun UI. Buatan Facebook, sekarang dipakai Instagram, Netflix, Airbnb, dan ratusan ribu app lain.
+        React itu library JavaScript buat bangun UI. Buatan Facebook, sekarang dipake Instagram, Netflix, Airbnb, sama ratusan ribu app lain.
 
-        Ide utamanya: UI dipecah jadi **component** — potongan kecil yang berdiri sendiri. Tiap component punya tampilan dan logikanya sendiri.
+        Ide utamanya: UI dipecah jadi **component** — potongan kecil yang berdiri sendiri. Tiap component punya tampilan sama logikanya sendiri.
 
-        ### Setup project pertama dengan Vite
+        ### Setup project pertama pake Vite
 
-        Vite adalah bundler modern yang cepat. Buka terminal di folder kosong:
+        Vite itu bundler modern yang cepet. Buka terminal di folder kosong:
 
         ```bash
         npm create vite@latest portfolio -- --template react
@@ -63,11 +63,11 @@ LESSON_REACT_INTRO = make_lesson(
         npm run dev
         ```
 
-        Buka `http://localhost:5173`. Kamu sudah punya project React yang jalan.
+        Buka `http://localhost:5173`. Kamu udah punya project React yang jalan.
 
-        ### JSX — HTML di dalam JavaScript
+        ### JSX — HTML di dalem JavaScript
 
-        Buka `src/App.jsx`. Kamu akan lihat sesuatu seperti ini:
+        Buka `src/App.jsx`. Kamu bakal lihat sesuatu kayak gini:
 
         ```jsx
         function App() {
@@ -80,19 +80,19 @@ LESSON_REACT_INTRO = make_lesson(
         }
         ```
 
-        Itu JSX. Kelihatan seperti HTML, tapi sebenarnya ditulis di dalam JavaScript. Bedanya:
+        Itu JSX. Keliatan kayak HTML, tapi sebenernya ditulis di dalem JavaScript. Bedanya:
 
-        - `class` jadi `className` (karena `class` keyword JavaScript).
+        - `class` jadi `className` (karena `class` itu keyword JavaScript).
         - `for` (di label) jadi `htmlFor`.
         - Tag self-closing wajib slash, misal `<img />`, bukan `<img>`.
-        - Bisa sisipkan JS pakai kurung kurawal `{ }`.
+        - Bisa selipin JS pake kurung kurawal `{ }`.
 
         ### Component itu cuma function
 
-        Component React adalah function yang return JSX. Aturannya:
+        Component React itu function yang return JSX. Aturannya:
 
-        - Nama component **harus diawali huruf kapital** (`Card`, `Button`, `Hero`).
-        - Cuma boleh return **satu** root element. Kalau butuh lebih, bungkus dengan `<>...</>` (Fragment).
+        - Nama component **wajib diawali huruf kapital** (`Card`, `Button`, `Hero`).
+        - Cuma boleh return **satu** root element. Kalau butuh lebih, bungkus pake `<>...</>` (Fragment).
 
         ```jsx
         function Card() {
@@ -105,11 +105,11 @@ LESSON_REACT_INTRO = make_lesson(
         }
         ```
 
-        Pakai dengan `<Card />` di component lain.
+        Pake pake `<Card />` di component lain.
 
         ### Props — kirim data antar component
 
-        Component sering butuh data dari luar. Kamu kirim lewat **props** seperti atribut HTML.
+        Component sering butuh data dari luar. Kamu kirim lewat **props** kayak atribut HTML.
 
         ```jsx
         function Card({ judul, deskripsi }) {
@@ -125,26 +125,26 @@ LESSON_REACT_INTRO = make_lesson(
           return (
             <main>
               <Card judul="Halo" deskripsi="Component reusable" />
-              <Card judul="Lagi" deskripsi="Pakai berkali-kali" />
+              <Card judul="Lagi" deskripsi="Pake berkali-kali" />
             </main>
           );
         }
         ```
 
-        Notasi `{ judul, deskripsi }` itu **destructuring** — ambil property dari object yang masuk.
+        Notasi `{ judul, deskripsi }` itu **destructuring** — ngambil property dari object yang masuk.
 
-        ### Cara berpikir React
+        ### Cara mikir pas pake React
 
-        Lupakan dulu kebiasaan "ambil elemen, ubah pakai DOM". Ganti dengan:
+        Lupain dulu kebiasaan "ambil elemen, ubah pake DOM". Ganti pake:
 
         - **Pecah UI jadi component kecil.** Hero, Card, Button, Navbar — masing-masing satu file.
-        - **Data mengalir top-down.** Parent component kirim props ke child, bukan sebaliknya.
-        - **JSX itu deskriptif.** Kamu mendeskripsikan tampilan akhir, React yang urus DOM.
+        - **Data ngalir dari atas ke bawah.** Parent component kirim props ke child, bukan sebaliknya.
+        - **JSX itu deskripsi.** Kamu mendeskripsikan tampilan akhir, React yang urus DOM.
         """
     ),
     contoh_code_md=dedent(
         """\
-        Card list dengan props dan array map:
+        Card list pake props sama array map:
 
         ```jsx
         // src/components/Card.jsx
@@ -190,13 +190,13 @@ LESSON_REACT_INTRO = make_lesson(
         export default App;
         ```
 
-        Kunci: `key` di tiap item. React butuh ini untuk track tiap item secara unik.
+        Kunci: `key` di tiap item. React butuh ini buat track tiap item secara unik.
         """
     ),
     practice=(
-        "Buat component `Profile` yang menerima props `nama`, `role`, dan "
-        "`bio`. Pakai di `App.jsx` dua kali dengan data berbeda. Tampilannya "
-        "boleh sederhana — fokus dulu pada cara kirim data lewat props."
+        "Bikin component `Profile` yang nerima props `nama`, `role`, sama "
+        "`bio`. Pake di `App.jsx` dua kali sama data beda. Tampilannya boleh "
+        "sederhana — fokus dulu di cara kirim data lewat props."
     ),
     fix_error={
         "language": "jsx",
@@ -216,13 +216,13 @@ LESSON_REACT_INTRO = make_lesson(
             """
         ),
         "hint": (
-            "Tiga masalah: penamaan component, atribut JSX, dan jumlah root element."
+            "Tiga masalah: penamaan component, atribut JSX, sama jumlah root element."
         ),
         "answer_explanation": dedent(
             """\
-            1. Nama component HARUS diawali huruf kapital: `Card`, bukan `card`. Lowercase dianggap HTML tag biasa.
-            2. JSX pakai `className`, bukan `class`. `class` itu keyword JavaScript.
-            3. Component cuma boleh return satu root element. Bungkus pakai Fragment `<>...</>` atau `<div>` jika butuh dua atau lebih siblings.
+            1. Nama component WAJIB diawali huruf kapital: `Card`, bukan `card`. Lowercase dianggep HTML tag biasa.
+            2. JSX pake `className`, bukan `class`. `class` itu keyword JavaScript.
+            3. Component cuma boleh return satu root element. Bungkus pake Fragment `<>...</>` atau `<div>` kalau butuh dua atau lebih siblings.
             """
         ),
         "fixed_code": dedent(
@@ -245,61 +245,61 @@ LESSON_REACT_INTRO = make_lesson(
     },
     quiz=[
         q(
-            "Apa nama tempat menulis HTML di dalam JavaScript di React?",
+            "Apa nama tempat nulis HTML di dalem JavaScript di React?",
             ["HTMX", "JSX", "TSX-only", "Mustache"],
             "B",
-            "JSX (JavaScript XML) adalah ekstensi sintaks yang memungkinkan menulis tag mirip HTML di dalam JavaScript.",
+            "JSX (JavaScript XML) itu ekstensi sintaks yang ngebolehin nulis tag mirip HTML di dalem JavaScript.",
         ),
         q(
             "Kenapa nama component WAJIB diawali huruf kapital?",
             [
-                "Untuk estetika",
-                "Karena nama lowercase dianggap HTML tag biasa oleh React",
-                "Karena diwajibkan ECMAScript",
-                "Tidak wajib, opsional",
+                "Buat estetika",
+                "Karena nama lowercase dianggep HTML tag biasa sama React",
+                "Karena diwajibin ECMAScript",
+                "Gak wajib, opsional",
             ],
             "B",
-            "React membedakan component dari HTML tag lewat huruf kapital. `<Card />` dianggap component, `<card />` dianggap HTML.",
+            "React ngebedain component dari HTML tag lewat huruf kapital. `<Card />` dianggep component, `<card />` dianggep HTML.",
         ),
         q(
-            "Cara mengirim data dari parent ke child component?",
-            ["Pakai global variable", "Lewat props", "Lewat localStorage", "Pakai cookies"],
+            "Cara ngirim data dari parent ke child component?",
+            ["Pake global variable", "Lewat props", "Lewat localStorage", "Pake cookies"],
             "B",
-            "Props adalah cara standar mengirim data top-down dari parent ke child di React.",
+            "Props itu cara standar ngirim data dari atas ke bawah dari parent ke child di React.",
         ),
         q(
-            "Apa beda `className` dengan `class` di JSX?",
+            "Apa beda `className` sama `class` di JSX?",
             [
-                "Tidak ada beda",
-                "JSX pakai `className` karena `class` adalah keyword JavaScript",
+                "Gak ada bedanya",
+                "JSX pake `className` karena `class` itu keyword JavaScript",
                 "`className` lebih lambat",
-                "`class` cuma untuk TypeScript",
+                "`class` cuma buat TypeScript",
             ],
             "B",
-            "`class` di JavaScript dipakai untuk class declaration. JSX pakai `className` agar tidak bentrok.",
+            "`class` di JavaScript dipake buat class declaration. JSX pake `className` biar gak bentrok.",
         ),
         q(
-            "Apa fungsi prop `key` saat render list dengan `.map()`?",
+            "Apa fungsi prop `key` pas render list pake `.map()`?",
             [
-                "Untuk styling",
-                "Untuk membantu React mengenali item secara unik saat list berubah",
-                "Tidak ada fungsi, opsional",
-                "Untuk login",
+                "Buat styling",
+                "Buat ngebantu React kenalin tiap item secara unik pas list berubah",
+                "Gak ada fungsi, opsional",
+                "Buat login",
             ],
             "B",
-            "`key` membantu React men-track tiap item. Tanpa key (atau key yang sama), React bisa keliru saat update list — re-render jadi tidak efisien.",
+            "`key` ngebantu React track tiap item. Tanpa key (atau key yang sama), React bisa keliru pas update list — re-render jadi gak efisien.",
         ),
     ],
     common_mistakes=[
-        "Pakai `class` bukan `className`. Browser tetap render, tapi React kasih warning.",
-        "Lupa `key` saat `.map()`. List tetap muncul, tapi update bisa aneh.",
+        "Pake `class` bukan `className`. Browser tetep render, tapi React kasih warning.",
+        "Lupa `key` pas `.map()`. List tetep muncul, tapi update bisa aneh.",
         "Return dua sibling tanpa Fragment. Error: 'Adjacent JSX elements must be wrapped'.",
     ],
     checkpoint=[
-        "Bisa setup project React baru dengan Vite.",
-        "Bisa buat component dan pakai di parent.",
-        "Bisa kirim data lewat props dan render list dengan `.map()`.",
-        "Tahu kapan butuh Fragment.",
+        "Bisa setup project React baru pake Vite.",
+        "Bisa bikin component sama pake di parent.",
+        "Bisa kirim data lewat props sama render list pake `.map()`.",
+        "Tau kapan butuh Fragment.",
     ],
     xp_reward=120,
 )
@@ -314,38 +314,38 @@ LESSON_STATE = make_lesson(
     slug="state-dan-hooks",
     order_index=2,
     read_time="16 menit",
-    summary="useState, useEffect, conditional rendering, dan event di React.",
+    summary="useState, useEffect, conditional rendering, sama event di React.",
     tools=["Project React + Vite dari lesson 1", "Browser DevTools"],
     outcomes=[
-        "Memakai `useState` untuk data yang berubah",
-        "Memakai `useEffect` untuk side effect",
-        "Conditional rendering dan event handler",
+        "Bisa pake `useState` buat data yang berubah",
+        "Bisa pake `useEffect` buat side effect",
+        "Bisa conditional rendering sama event handler",
     ],
     tldr=(
-        "State = kondisi sekarang component. Pakai `useState` untuk data "
-        "berubah, `useEffect` untuk side effect (fetch, timer, listener). "
+        "State = kondisi sekarang component. Pake `useState` buat data yang "
+        "berubah, `useEffect` buat side effect (fetch, timer, listener). "
         "Update state = component re-render."
     ),
     pembuka=dedent(
         """\
-        Sampai sini component kamu masih statis. Saatnya kasih dia kondisi yang bisa berubah.
+        Sampe sini component kamu masih statis. Saatnya kasih dia kondisi yang bisa berubah.
 
-        Bayangkan tombol yang menampilkan jumlah klik. Counternya berubah, dan halaman ikut update.
+        Bayangin tombol yang nampilin jumlah klik. Counternya berubah, sama halaman ikut update.
 
-        Itulah yang disebut state. Dan cara React mengelolanya disebut hooks.
+        Itu yang disebut state. Sama cara React ngeurusinnya disebut hooks.
         """
     ),
     penjelasan=dedent(
         """\
         ### Apa itu state
 
-        State adalah data yang **dimiliki component** dan bisa berubah seiring waktu.
+        State itu data yang **dimiliki component** dan bisa berubah seiring waktu.
 
-        Saat state berubah, React otomatis re-render component itu. Kamu tidak perlu manipulasi DOM manual.
+        Pas state berubah, React otomatis nge-render ulang component itu. Kamu gak perlu otak-atik DOM manual.
 
         ### useState — hook pertama
 
-        `useState` mengembalikan dua hal: nilai sekarang dan function untuk update.
+        `useState` ngembaliin dua hal: nilai sekarang sama function buat update.
 
         ```jsx
         import { useState } from "react";
@@ -362,15 +362,15 @@ LESSON_STATE = make_lesson(
         }
         ```
 
-        Notasi `[count, setCount]` itu array destructuring. Convention-nya nama setter pakai prefix `set`.
+        Notasi `[count, setCount]` itu array destructuring. Kebiasaan-nya nama setter pake prefix `set`.
 
-        Setiap kali `setCount` dipanggil, React re-render component dengan nilai baru.
+        Tiap kali `setCount` dipanggil, React nge-render ulang component sama nilai baru.
 
         ### Aturan penting
 
-        - **Jangan ubah state langsung.** Salah: `count = count + 1`. Benar: `setCount(count + 1)`.
-        - **State bersifat asynchronous.** Kalau update beberapa kali sekaligus, pakai callback: `setCount(prev => prev + 1)`.
-        - **Hooks cuma dipanggil di top level component.** Jangan di dalam if, loop, atau function nested.
+        - **Jangan ubah state langsung.** Salah: `count = count + 1`. Bener: `setCount(count + 1)`.
+        - **State itu asynchronous.** Kalau update beberapa kali sekaligus, pake callback: `setCount(prev => prev + 1)`.
+        - **Hooks cuma dipanggil di top level component.** Jangan di dalem if, loop, atau function nested.
 
         ### Event handling
 
@@ -400,18 +400,18 @@ LESSON_STATE = make_lesson(
 
         ### Conditional rendering
 
-        Kalau mau tampilkan UI berbeda berdasarkan state:
+        Kalau mau nampilin UI beda berdasarkan state:
 
         ```jsx
         {isLogin ? <Dashboard /> : <LoginForm />}
         {error && <p className="error">{error}</p>}
         ```
 
-        Operator ternary untuk dua kemungkinan. `&&` untuk render kalau true.
+        Operator ternary buat dua kemungkinan. `&&` buat render kalau true.
 
         ### useEffect — side effect
 
-        Kalau butuh ngerjain sesuatu di luar render (fetch data, set timer, pasang listener), pakai `useEffect`.
+        Kalau butuh ngerjain sesuatu di luar render (fetch data, set timer, pasang listener), pake `useEffect`.
 
         ```jsx
         import { useState, useEffect } from "react";
@@ -428,13 +428,13 @@ LESSON_STATE = make_lesson(
         }
         ```
 
-        Argumen kedua `[]` adalah dependency array:
+        Argumen kedua `[]` itu dependency array:
 
-        - `[]` jalan **sekali** saat component pertama mount.
-        - `[var]` jalan saat `var` berubah.
-        - Tanpa array, jalan **setiap render** (jarang dipakai).
+        - `[]` jalan **sekali** pas component pertama mount.
+        - `[var]` jalan pas `var` berubah.
+        - Tanpa array, jalan **tiap render** (jarang dipake).
 
-        Function yang di-return adalah cleanup, jalan saat component unmount.
+        Function yang di-return itu cleanup, jalan pas component unmount.
         """
     ),
     contoh_code_md=dedent(
@@ -460,7 +460,7 @@ LESSON_STATE = make_lesson(
               <button onClick={() => setCount((prev) => prev - 1)}>-1</button>
               <button onClick={() => setCount(0)}>Reset</button>
 
-              {count > 5 && <p>Kamu sudah klik banyak banget!</p>}
+              {count > 5 && <p>Kamu udah klik banyak banget!</p>}
             </div>
           );
         }
@@ -468,13 +468,13 @@ LESSON_STATE = make_lesson(
         export default App;
         ```
 
-        Perhatikan: `setCount((prev) => prev - 1)` versi callback — aman saat ada beberapa update beruntun.
+        Perhatiin: `setCount((prev) => prev - 1)` versi callback — aman pas ada beberapa update beruntun.
         """
     ),
     practice=(
-        "Buat component `LoginForm` dengan dua input (email, password) yang "
-        "controlled. Pasang tombol 'Login'. Saat submit, tampilkan pesan "
-        "'Halo, [email]!' dan kosongkan password. Pakai `useState` dan "
+        "Bikin component `LoginForm` sama dua input (email, password) yang "
+        "controlled. Pasang tombol 'Login'. Pas submit, tampilin pesan "
+        "'Halo, [email]!' sama kosongin password. Pake `useState` sama "
         "`onSubmit`."
     ),
     fix_error={
@@ -500,14 +500,14 @@ LESSON_STATE = make_lesson(
             """
         ),
         "hint": (
-            "Tampilan tidak update saat tombol diklik. Perhatikan cara "
-            "menyimpan dan mengubah `count`."
+            "Tampilan gak update pas tombol diklik. Perhatiin cara nyimpen "
+            "sama ngubah `count`."
         ),
         "answer_explanation": dedent(
             """\
-            Kesalahan: `count` ditulis sebagai `let` biasa. React tidak tahu data ini berubah, jadi tidak re-render.
+            Salahnya: `count` ditulis pake `let` biasa. React gak tau data ini berubah, jadinya gak re-render.
 
-            Solusi: pakai `useState`. Update dengan `setCount`, jangan assign langsung.
+            Solusinya: pake `useState`. Update pake `setCount`, jangan assign langsung.
             """
         ),
         "fixed_code": dedent(
@@ -529,71 +529,71 @@ LESSON_STATE = make_lesson(
     },
     quiz=[
         q(
-            "Apa yang dikembalikan `useState`?",
+            "Apa yang dikembaliin `useState`?",
             [
                 "Single value",
-                "Array dengan dua elemen: nilai sekarang dan function untuk update",
+                "Array sama dua elemen: nilai sekarang sama function buat update",
                 "Object",
                 "Promise",
             ],
             "B",
-            "`useState(initial)` mengembalikan `[value, setValue]`. Ini array destructuring.",
+            "`useState(initial)` ngembaliin `[value, setValue]`. Ini array destructuring.",
         ),
         q(
-            "Mana cara yang BENAR update state?",
+            "Mana cara yang BENER buat update state?",
             [
                 "`count = count + 1`",
                 "`setCount(count + 1)`",
                 "`useState(count + 1)`",
-                "`document.querySelector` lalu ubah",
+                "`document.querySelector` terus ubah",
             ],
             "B",
-            "State HARUS di-update lewat setter (`setCount`). Assign langsung tidak trigger re-render.",
+            "State HARUS di-update lewat setter (`setCount`). Assign langsung gak trigger re-render.",
         ),
         q(
-            "Kapan callback `useEffect` dengan `[]` dijalankan?",
+            "Kapan callback `useEffect` sama `[]` dijalanin?",
             [
-                "Setiap render",
-                "Sekali saat component pertama mount",
-                "Tidak pernah",
-                "Saat user logout",
+                "Tiap render",
+                "Sekali pas component pertama mount",
+                "Gak pernah",
+                "Pas user logout",
             ],
             "B",
-            "Dependency array kosong `[]` artinya 'jalan sekali saat mount, tidak peduli render selanjutnya'.",
+            "Dependency array kosong `[]` artinya 'jalan sekali pas mount, gak peduli render selanjutnya'.",
         ),
         q(
             "Apa yang terjadi kalau kamu return function dari useEffect?",
             [
                 "Error",
-                "Function itu jadi cleanup — dipanggil saat component unmount atau effect dijalankan ulang",
+                "Function itu jadi cleanup — dipanggil pas component unmount atau effect dijalanin ulang",
                 "Function dieksekusi tiap detik",
-                "Tidak ada efek",
+                "Gak ada efek",
             ],
             "B",
-            "Cleanup function ideal untuk `clearInterval`, `removeEventListener`, atau abort request — supaya tidak ada memory leak.",
+            "Cleanup function pas banget buat `clearInterval`, `removeEventListener`, atau abort request — biar gak ada memory leak.",
         ),
         q(
-            "Mana cara yang AMAN saat update state berdasarkan nilai sebelumnya?",
+            "Mana cara yang AMAN pas update state berdasarkan nilai sebelumnya?",
             [
                 "`setCount(count + 1)` di dua tempat berturut-turut",
                 "`setCount(prev => prev + 1)` versi callback",
-                "Tidak ada bedanya",
-                "Pakai global variable",
+                "Gak ada bedanya",
+                "Pake global variable",
             ],
             "B",
-            "Update beruntun dengan `setCount(count + 1)` bisa miss karena state asynchronous. Versi callback `prev => prev + 1` selalu pakai nilai terbaru.",
+            "Update beruntun pake `setCount(count + 1)` bisa miss karena state asynchronous. Versi callback `prev => prev + 1` selalu pake nilai terbaru.",
         ),
     ],
     common_mistakes=[
-        "Update state pakai `=` langsung. Component tidak re-render.",
+        "Update state pake `=` langsung. Component gak re-render.",
         "Pasang useEffect tanpa dependency array. Effect jalan tiap render — sering bikin infinite loop.",
-        "Lupa `e.preventDefault()` di handler form. Halaman reload setiap submit.",
+        "Lupa `e.preventDefault()` di handler form. Halaman reload tiap submit.",
     ],
     checkpoint=[
-        "Bisa pakai `useState` untuk data yang berubah.",
+        "Bisa pake `useState` buat data yang berubah.",
         "Bisa handle event `onClick`, `onChange`, `onSubmit`.",
-        "Bisa render conditional dengan `?` dan `&&`.",
-        "Tahu fungsi dependency array di `useEffect`.",
+        "Bisa render conditional pake `?` sama `&&`.",
+        "Tau fungsi dependency array di `useEffect`.",
     ],
     xp_reward=160,
 )
@@ -604,36 +604,36 @@ LESSON_STATE = make_lesson(
 # ─────────────────────────────────────────────────────────────────────────────
 
 LESSON_TAILWIND = make_lesson(
-    title="Tailwind untuk React",
+    title="Tailwind buat React",
     slug="tailwind-untuk-react",
     order_index=3,
     read_time="12 menit",
-    summary="Utility-first styling, responsive, dark mode, dan setup di Vite.",
+    summary="Utility-first styling, responsive, dark mode, sama setup di Vite.",
     tools=["Project React + Vite dari lesson 1", "Tailwind CSS"],
     outcomes=[
-        "Setup Tailwind di project Vite",
-        "Memakai utility class untuk styling cepat",
-        "Membuat layout responsive dan dark mode",
+        "Bisa setup Tailwind di project Vite",
+        "Bisa pake utility class buat styling cepet",
+        "Bisa bikin layout responsive sama dark mode",
     ],
     tldr=(
         "Tailwind = library CSS utility-first. Daripada nulis CSS manual, "
-        "kamu pasang class kecil di JSX. Cepat, konsisten, mudah responsive "
-        "dengan prefix `sm:`, `md:`, `lg:`."
+        "kamu pasang class kecil di JSX. Cepet, konsisten, gampang bikin "
+        "responsive lewat prefix `sm:`, `md:`, `lg:`."
     ),
     pembuka=dedent(
         """\
-        Setiap kali nulis CSS dari nol untuk button, kamu pasti ulangi pola yang sama: padding, border-radius, hover.
+        Tiap kali nulis CSS dari nol buat button, kamu pasti ngulang pola yang sama: padding, border-radius, hover.
 
-        Tailwind menyederhanakan ini. Daripada bikin class baru, kamu pasang class utility yang sudah jadi.
+        Tailwind nyederhanain ini. Daripada bikin class baru, kamu pasang class utility yang udah jadi.
 
-        Kelihatan ribet di awal, tapi setelah beberapa hari kamu jadi sangat cepat — dan style-nya konsisten antar component.
+        Keliatan ribet di awal, tapi habis beberapa hari kamu jadi cepet banget — sama style-nya konsisten antar component.
         """
     ),
     penjelasan=dedent(
         """\
         ### Setup di Vite
 
-        Di project React + Vite kamu, jalankan:
+        Di project React + Vite kamu, jalanin:
 
         ```bash
         npm install -D tailwindcss postcss autoprefixer
@@ -658,11 +658,11 @@ LESSON_TAILWIND = make_lesson(
         @tailwind utilities;
         ```
 
-        Pastikan `index.css` di-import di `src/main.jsx`. Jalankan `npm run dev`. Selesai.
+        Pastiin `index.css` di-import di `src/main.jsx`. Jalanin `npm run dev`. Selesai.
 
         ### Anatomi class Tailwind
 
-        Class Tailwind itu pendek dan konsisten:
+        Class Tailwind itu pendek sama konsisten:
 
         - **Spacing** — `p-4` (padding 1rem), `m-2` (margin 0.5rem), `gap-3`.
         - **Color** — `bg-blue-500`, `text-white`, `border-gray-200`.
@@ -679,11 +679,11 @@ LESSON_TAILWIND = make_lesson(
         </button>
         ```
 
-        Tidak ada CSS file untuk button ini. Semua di JSX.
+        Gak ada CSS file buat button ini. Semua di JSX.
 
         ### Responsive — prefix breakpoint
 
-        Tailwind mobile-first. Class tanpa prefix berlaku untuk semua. Prefix `sm:`, `md:`, `lg:`, `xl:` aktif **dari ukuran itu ke atas**.
+        Tailwind itu mobile-first. Class tanpa prefix berlaku buat semua. Prefix `sm:`, `md:`, `lg:`, `xl:` aktif **dari ukuran itu ke atas**.
 
         ```jsx
         <h1 className="text-2xl md:text-4xl lg:text-6xl">
@@ -701,11 +701,11 @@ LESSON_TAILWIND = make_lesson(
         </button>
         ```
 
-        Prefix `hover:`, `focus:`, `active:` aktif saat user interact.
+        Prefix `hover:`, `focus:`, `active:` aktif pas user interact.
 
         ### Dark mode
 
-        Tambahkan di `tailwind.config.js`:
+        Tambahin di `tailwind.config.js`:
 
         ```js
         export default {
@@ -714,7 +714,7 @@ LESSON_TAILWIND = make_lesson(
         };
         ```
 
-        Pasang class `dark` di `<html>` (atau elemen wrapper) untuk activate. Lalu pakai prefix `dark:`:
+        Pasang class `dark` di `<html>` (atau elemen wrapper) buat aktifin. Terus pake prefix `dark:`:
 
         ```jsx
         <div className="bg-white text-black dark:bg-gray-900 dark:text-white">
@@ -724,14 +724,14 @@ LESSON_TAILWIND = make_lesson(
 
         ### Aturan praktis
 
-        - **Pendek tapi banyak.** Tailwind mengandalkan kombinasi class. Itu normal.
-        - **Buang class yang ragu.** Kalau kamu copy-paste class dari ChatGPT yang banyak, biasanya bisa diringkas.
-        - **Pakai `clsx` atau template string** untuk conditional class.
+        - **Pendek tapi banyak.** Tailwind ngandalin kombinasi class. Itu normal.
+        - **Buang class yang ragu.** Kalau kamu copy-paste class dari ChatGPT yang banyak, biasanya bisa diringkes.
+        - **Pake `clsx` atau template string** buat conditional class.
         """
     ),
     contoh_code_md=dedent(
         """\
-        Card dengan Tailwind, responsive, dan hover state:
+        Card sama Tailwind, responsive, sama hover state:
 
         ```jsx
         function Card({ judul, deskripsi }) {
@@ -762,13 +762,13 @@ LESSON_TAILWIND = make_lesson(
         }
         ```
 
-        Notasi `bg-white/5` berarti white dengan opacity 5%. Pola ini sering dipakai di dark mode untuk subtle layering.
+        Notasi `bg-white/5` artinya white sama opacity 5%. Pola ini sering dipake di dark mode buat layering halus.
         """
     ),
     practice=(
-        "Style ulang component `Profile` dari lesson 1 pakai Tailwind. "
-        "Buat layout dua kolom di desktop (`md:grid-cols-2`), satu kolom di "
-        "mobile. Tambahkan hover state pada card."
+        "Style ulang component `Profile` dari lesson 1 pake Tailwind. Bikin "
+        "layout dua kolom di desktop (`md:grid-cols-2`), satu kolom di "
+        "mobile. Tambahin hover state di card."
     ),
     fix_error={
         "language": "jsx",
@@ -780,13 +780,13 @@ LESSON_TAILWIND = make_lesson(
             </div>
             """
         ),
-        "hint": "Cek nama class — apakah sesuai konvensi Tailwind. Dan ingat aturan JSX untuk class.",
+        "hint": "Cek nama class — apakah sesuai pola Tailwind. Sama inget aturan JSX buat class.",
         "answer_explanation": dedent(
             """\
-            1. JSX pakai `className`, bukan `class`.
-            2. Tailwind: padding pakai `p-4`, bukan `padding-4`.
-            3. Tailwind: ukuran teks pakai `text-lg`, `text-xl`, dst — bukan `font-size-large`.
-            4. Tailwind: hover state pakai prefix `hover:bg-blue-600`, bukan `hover-bg-blue-600`.
+            1. JSX pake `className`, bukan `class`.
+            2. Tailwind: padding pake `p-4`, bukan `padding-4`.
+            3. Tailwind: ukuran teks pake `text-lg`, `text-xl`, dst — bukan `font-size-large`.
+            4. Tailwind: hover state pake prefix `hover:bg-blue-600`, bukan `hover-bg-blue-600`.
             """
         ),
         "fixed_code": dedent(
@@ -800,21 +800,21 @@ LESSON_TAILWIND = make_lesson(
     },
     quiz=[
         q(
-            "Apa filosofi utama Tailwind CSS?",
+            "Apa cara kerja utama Tailwind CSS?",
             [
-                "Setiap component butuh CSS file sendiri",
-                "Utility-first: pasang class kecil di markup, jarang nulis CSS sendiri",
+                "Tiap component butuh CSS file sendiri",
+                "Pasang class kecil di markup, jarang nulis CSS sendiri",
                 "Auto-generate kode CSS",
-                "Wajib pakai SCSS",
+                "Wajib pake SCSS",
             ],
             "B",
             "Tailwind = utility-first. Class kecil yang dikombinasi langsung di JSX, bukan abstraksi tinggi.",
         ),
         q(
-            "Mana penulisan padding 1rem yang BENAR di Tailwind?",
+            "Mana penulisan padding 1rem yang BENER di Tailwind?",
             ["`padding-4`", "`p-4`", "`padding: 1rem`", "`pad-1`"],
             "B",
-            "Tailwind pakai `p-4` (padding 1rem). Skala 1 = 0.25rem, jadi 4 = 1rem.",
+            "Tailwind pake `p-4` (padding 1rem). Skala 1 = 0.25rem, jadi 4 = 1rem.",
         ),
         q(
             "Apa arti class `md:text-4xl`?",
@@ -825,41 +825,41 @@ LESSON_TAILWIND = make_lesson(
                 "Error syntax",
             ],
             "B",
-            "Prefix `md:` aktif dari breakpoint medium ke atas. Mobile-first: kalau tidak ada prefix, berlaku untuk semua ukuran.",
+            "Prefix `md:` aktif dari breakpoint medium ke atas. Mobile-first: kalau gak ada prefix, berlaku buat semua ukuran.",
         ),
         q(
-            "Bagaimana cara aktifkan dark mode di Tailwind?",
+            "Gimana cara aktifin dark mode di Tailwind?",
             [
                 "Otomatis aktif",
-                "Set `darkMode: 'class'` di config, lalu pasang class `dark` di parent, dan pakai prefix `dark:` di class",
-                "Install plugin terpisah saja",
-                "Tidak support dark mode",
+                "Set `darkMode: 'class'` di config, terus pasang class `dark` di parent, sama pake prefix `dark:` di class",
+                "Install plugin terpisah aja",
+                "Gak support dark mode",
             ],
             "B",
-            "Mode `class` paling fleksibel — kamu yang kontrol kapan dark active dengan toggle class `dark`.",
+            "Mode `class` paling fleksibel — kamu yang kontrol kapan dark active sama toggle class `dark`.",
         ),
         q(
             "Apa fungsi `hover:bg-blue-600` di Tailwind?",
             [
                 "Background biru selalu",
-                "Background jadi biru-600 saat di-hover",
+                "Background jadi biru-600 pas di-hover",
                 "Animasi otomatis",
-                "Tidak ada fungsi",
+                "Gak ada fungsi",
             ],
             "B",
-            "Prefix `hover:` mengubah utility menjadi state-aware — aktif hanya saat mouse di atas elemen.",
+            "Prefix `hover:` ngubah utility jadi state-aware — aktif cuma pas mouse di atas elemen.",
         ),
     ],
     common_mistakes=[
-        "Pakai `class` bukan `className`. JSX akan complain.",
-        "Hafal class yang tidak ada (misal `hover-bg-blue`). Dokumentasi Tailwind teman terbaik.",
-        "Setup tanpa update `content` di config. Class tidak ter-generate, halaman terlihat polos.",
+        "Pake `class` bukan `className`. JSX bakal complain.",
+        "Hafal class yang gak ada (misal `hover-bg-blue`). Dokumentasi Tailwind temen terbaik.",
+        "Setup tanpa update `content` di config. Class gak ke-generate, halaman keliatan polos.",
     ],
     checkpoint=[
         "Bisa setup Tailwind di project Vite.",
-        "Bisa style component pakai utility class.",
-        "Bisa bikin layout responsive dengan prefix `sm:`/`md:`/`lg:`.",
-        "Bisa pakai dark mode dengan prefix `dark:`.",
+        "Bisa style component pake utility class.",
+        "Bisa bikin layout responsive sama prefix `sm:`/`md:`/`lg:`.",
+        "Bisa pake dark mode sama prefix `dark:`.",
     ],
     xp_reward=140,
 )
@@ -874,23 +874,23 @@ PROJECT_PORTFOLIO_REACT = make_lesson(
     slug="mini-project-portfolio-react",
     order_index=4,
     read_time="120 menit",
-    summary="Bangun portfolio responsive berbasis component dan deploy ke Vercel.",
+    summary="Bangun portfolio responsive berbasis component sama deploy ke Vercel.",
     tools=["Vite + React", "Tailwind CSS", "GitHub", "Vercel"],
     outcomes=[
-        "Membangun multi-component app dari nol",
-        "Memakai props dan map untuk data-driven UI",
-        "Deploy build production ke Vercel",
+        "Bisa bangun multi-component app dari nol",
+        "Bisa pake props sama map buat data-driven UI",
+        "Bisa deploy build production ke Vercel",
     ],
     tldr=(
-        "Bangun portfolio dengan minimum 4 component (Navbar, Hero, About, "
+        "Bangun portfolio sama minimum 4 component (Navbar, Hero, About, "
         "Projects, Footer). Project list dari array, bukan hardcode. "
         "Responsive + dark mode + deploy."
     ),
     pembuka=dedent(
         """\
-        Saatnya gabungkan semua: component, props, state, hooks, Tailwind, dan deploy.
+        Saatnya gabungin semua: component, props, state, hooks, Tailwind, sama deploy.
 
-        Hasilnya akan jadi portfolio yang lebih profesional dari Level 1 — kali ini berbasis component yang bisa dimaintain.
+        Hasilnya bakal jadi portfolio yang lebih profesional dari Level 1 — kali ini berbasis component yang bisa di-maintain.
 
         Yang ini layak masuk ke CV beneran.
         """
@@ -901,7 +901,7 @@ PROJECT_PORTFOLIO_REACT = make_lesson(
 
         Tech stack: Vite + React + Tailwind. Tanpa backend.
 
-        Struktur file yang disarankan:
+        Struktur file yang disaranin:
 
         ```text
         src/
@@ -921,34 +921,34 @@ PROJECT_PORTFOLIO_REACT = make_lesson(
 
         ### Section minimal
 
-        - **Navbar** dengan brand di kiri, link section di kanan. Sticky di top.
-        - **Hero** dengan nama, tagline, dan dua CTA (lihat project, kontak).
-        - **About** dengan paragraf singkat dan list skill (grid 2 atau 4 kolom).
-        - **Projects** dengan minimum 3 card. Data dari array di `data/projects.js`. Tiap card punya gambar (boleh placeholder), judul, deskripsi singkat, link demo, link source.
-        - **Footer** dengan copyright dan social link.
+        - **Navbar** sama brand di kiri, link section di kanan. Sticky di top.
+        - **Hero** sama nama, tagline, sama dua CTA (lihat project, kontak).
+        - **About** sama paragraf singkat sama list skill (grid 2 atau 4 kolom).
+        - **Projects** sama minimum 3 card. Data dari array di `data/projects.js`. Tiap card punya gambar (boleh placeholder), judul, deskripsi singkat, link demo, link source.
+        - **Footer** sama copyright sama social link.
 
         ### Aturan tambahan
 
-        - Project list di-render via `.map()`, **bukan** hardcode tag JSX 3 kali.
-        - Pakai prop yang bersih, bukan `props.props.title`.
-        - Dark mode by default (lebih cepat dari implementasi toggle, dan match dengan vibe modern).
+        - Project list di-render lewat `.map()`, **bukan** hardcode tag JSX 3 kali.
+        - Pake prop yang bersih, bukan `props.props.title`.
+        - Dark mode by default (lebih cepet daripada implementasi toggle, sama match sama vibe modern).
         - Mobile-first. Test di DevTools mode HP.
 
         ### Tips polish
 
-        - Pakai satu accent color saja (misal `#4EBAEC` atau `tailwind sky-400`).
+        - Pake satu accent color aja (misal `#4EBAEC` atau `tailwind sky-400`).
         - Spacing penting. Section harus punya `py-16 sm:py-24`.
         - Foto project boleh dari `https://placehold.co/600x400` atau Unsplash.
-        - Deploy seperti biasa: GitHub → Vercel → URL publik.
+        - Deploy kayak biasa: GitHub → Vercel → URL publik.
 
         ### Submit
 
-        Salin URL deploy. Buka di HP teman. Tanya kesan pertama. Update sesuai feedback paling tajam.
+        Salin URL deploy. Buka di HP temen. Tanya kesan pertama. Update sesuai feedback paling tajam.
         """
     ),
     contoh_code_md=dedent(
         """\
-        Skeleton minimum untuk memulai:
+        Skeleton minimum buat mulai:
 
         ```js
         // src/data/projects.js
@@ -956,13 +956,13 @@ PROJECT_PORTFOLIO_REACT = make_lesson(
           {
             id: "landing-kopi",
             title: "Toko Kopi Lokal",
-            description: "Landing page untuk kedai kopi lokal di Jogja.",
+            description: "Landing page buat kedai kopi lokal di Jogja.",
             image: "https://placehold.co/600x400",
             demo: "https://...",
             source: "https://github.com/...",
             tags: ["HTML", "CSS"],
           },
-          // tambahkan lagi
+          // tambahin lagi
         ];
         ```
 
@@ -978,7 +978,7 @@ PROJECT_PORTFOLIO_REACT = make_lesson(
                 Project saya
               </h2>
               <p className="mt-2 text-gray-400">
-                Hasil belajar dan eksperimen.
+                Hasil belajar sama eksperimen.
               </p>
 
               <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -1019,9 +1019,9 @@ PROJECT_PORTFOLIO_REACT = make_lesson(
         """
     ),
     practice=(
-        "Selesaikan portfolio sesuai spec di atas. Push ke GitHub, deploy ke "
-        "Vercel. Salin URL publik dan repo. Pastikan tidak ada warning di "
-        "Console saat dibuka."
+        "Selesain portfolio sesuai spec di atas. Push ke GitHub, deploy ke "
+        "Vercel. Salin URL publik sama repo. Pastiin gak ada warning di "
+        "Console pas dibuka."
     ),
     fix_error={
         "language": "jsx",
@@ -1038,13 +1038,13 @@ PROJECT_PORTFOLIO_REACT = make_lesson(
             }
             """
         ),
-        "hint": "Console akan munculkan warning. Apa yang React keluhkan saat render list?",
+        "hint": "Console bakal muncul warning. Apa yang React keluhin pas render list?",
         "answer_explanation": dedent(
             """\
             Dua masalah:
 
-            1. `key` tidak diset di tiap `ProjectCard`. React kasih warning dan update list jadi tidak efisien.
-            2. Grid `grid-cols-3` tanpa responsive akan jelek di HP. Tambah `sm:grid-cols-2 lg:grid-cols-3`.
+            1. `key` gak diset di tiap `ProjectCard`. React kasih warning sama update list jadi gak efisien.
+            2. Grid `grid-cols-3` tanpa responsive bakal jelek di HP. Tambah `sm:grid-cols-2 lg:grid-cols-3`.
             """
         ),
         "fixed_code": dedent(
@@ -1067,71 +1067,71 @@ PROJECT_PORTFOLIO_REACT = make_lesson(
     },
     quiz=[
         q(
-            "Mana praktik yang BAIK untuk render list di React?",
+            "Mana cara yang BAGUS buat render list di React?",
             [
                 "Hardcode `<Card />` 3 kali",
-                "Simpan data di array, render via `.map()` dengan prop `key` unik",
-                "Pakai `for` loop di dalam JSX",
-                "Pakai `while` loop",
+                "Simpen data di array, render lewat `.map()` sama prop `key` unik",
+                "Pake `for` loop di dalem JSX",
+                "Pake `while` loop",
             ],
             "B",
-            "Pola standar: data sebagai array, render dengan `.map()`. Prop `key` wajib untuk efisiensi.",
+            "Pola standar: data sebagai array, render pake `.map()`. Prop `key` wajib buat efisiensi.",
         ),
         q(
             "Kenapa data project sebaiknya dipisah ke `data/projects.js`?",
             [
-                "Untuk gaya saja",
-                "Memisahkan data dari UI bikin component reusable dan mudah update",
-                "Wajib oleh React",
+                "Buat gaya aja",
+                "Misahin data dari UI bikin component reusable sama gampang di-update",
+                "Wajib menurut React",
                 "Performance",
             ],
             "B",
-            "Pisah data dan UI adalah pola yang scaleable. Update data tidak perlu sentuh component, dan component bisa dipakai dengan dataset lain.",
+            "Pisah data sama UI itu pola yang scalable. Update data gak perlu sentuh component, sama component bisa dipake sama dataset lain.",
         ),
         q(
-            "Mana langkah yang BENAR setelah portfolio jadi di lokal?",
+            "Mana langkah yang BENER habis portfolio jadi di lokal?",
             [
-                "Tunggu sampai sempurna baru deploy",
-                "Push ke GitHub, deploy ke Vercel, dapat URL publik",
-                "Email file zip ke teman",
-                "Simpan di Google Drive",
+                "Tunggu sampe sempurna baru deploy",
+                "Push ke GitHub, deploy ke Vercel, dapet URL publik",
+                "Email file zip ke temen",
+                "Simpen di Google Drive",
             ],
             "B",
-            "Filosofi 'live first, polish later'. Hosting gratis di Vercel, prosesnya menit-menitan.",
+            "Filosofi 'live duluan, polish belakangan'. Hosting gratis di Vercel, prosesnya menit-menitan.",
         ),
         q(
-            "Apa keuntungan pakai `key={p.id}` daripada `key={index}`?",
+            "Apa keuntungan pake `key={p.id}` daripada `key={index}`?",
             [
-                "Tidak ada bedanya",
-                "ID stabil saat list di-reorder atau di-delete. Index bisa berubah.",
-                "Index lebih cepat",
+                "Gak ada bedanya",
+                "ID stabil pas list di-reorder atau di-delete. Index bisa berubah.",
+                "Index lebih cepet",
                 "ID lebih panjang",
             ],
             "B",
-            "Saat list di-reorder, index tiap item berubah, padahal isinya sama. Pakai ID stabil supaya React tidak salah track.",
+            "Pas list di-reorder, index tiap item berubah, padahal isinya sama. Pake ID stabil biar React gak salah track.",
         ),
         q(
             "Mana yang TIDAK perlu di portfolio pertama?",
             [
                 "Section About",
-                "Section Projects dengan data dari array",
+                "Section Projects sama data dari array",
                 "Backend API custom",
-                "Footer dengan kontak",
+                "Footer sama kontak",
             ],
             "C",
-            "Portfolio statis tidak butuh backend. Fokus dulu di tampilan dan struktur. Backend menyusul saat ada kebutuhan nyata.",
+            "Portfolio statis gak butuh backend. Fokus dulu di tampilan sama struktur. Backend nyusul pas ada kebutuhan nyata.",
         ),
     ],
     common_mistakes=[
-        "Lupa `key` di list. Console keluhkan, update list jadi pelan.",
+        "Lupa `key` di list. Console keluhin, update list jadi pelan.",
         "Hardcode 3 card padahal tinggal map dari array. Susah update.",
         "Grid tanpa responsive prefix. Layout berantakan di HP.",
     ],
     checkpoint=[
-        "Portfolio live di Vercel dengan URL publik.",
+        "Portfolio live di Vercel sama URL publik.",
         "Minimum 5 component yang dipisah file.",
-        "Project list dari array, di-render via `.map()`.",
-        "Tampil rapi di HP dan desktop, dark mode default.",
+        "Project list dari array, di-render lewat `.map()`.",
+        "Tampil rapi di HP sama desktop, dark mode default.",
     ],
     xp_reward=400,
     is_project=True,
@@ -1148,9 +1148,9 @@ LEVEL = make_level(
     title="React & Tailwind",
     subtitle="UI modern berbasis komponen",
     description=(
-        "Bangun UI dengan komponen reusable, props, state, dan hooks. "
-        "Styling cepat dengan Tailwind CSS, lalu deploy portfolio yang "
-        "siap dipakai di CV."
+        "Bangun UI sama komponen reusable, props, state, sama hooks. "
+        "Styling cepet pake Tailwind CSS, terus deploy portfolio yang siap "
+        "dipake di CV."
     ),
     duration="~3 minggu",
     difficulty="Menengah",

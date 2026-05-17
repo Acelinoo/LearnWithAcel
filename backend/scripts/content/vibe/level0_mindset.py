@@ -22,197 +22,199 @@ LESSON_APA_ITU = make_lesson(
     slug="apa-itu-vibe-coding",
     order_index=1,
     read_time="7 menit",
-    summary="Mendefinisikan AI-assisted development dan menyetel ekspektasi.",
-    tools=["Browser modern", "Notes app untuk catatan"],
+    summary="Sebenernya Vibe Coding itu apa, dan kenapa lagi rame.",
+    tools=["Browser apa aja", "Notes / Google Keep buat catat"],
     outcomes=[
-        "Memahami definisi Vibe Coding dengan jelas",
-        "Membedakan No-Code, Low-Code, AI Coding, dan Manual",
-        "Menyetel ekspektasi: apa yang realistis dan apa yang tidak",
+        "Tahu Vibe Coding itu apa, jelas",
+        "Tahu bedanya sama no-code dan coding manual",
+        "Punya gambaran realistis: bisa apa, gak bisa apa",
     ],
     tldr=(
-        "Vibe Coding = membangun app modern dengan AI sebagai asisten coding. "
-        "Bukan no-code, bukan ngandelin AI sepenuhnya. Kamu tetap harus "
-        "ngerti, bukan sekadar copy-paste."
+        "Vibe Coding = ngoding tapi AI ikut bantu. Bukan no-code, bukan juga "
+        "ngandelin AI 100%. Kamu tetep harus ngerti yang kamu bikin, AI cuma "
+        "mempercepat."
     ),
     pembuka=dedent(
         """\
-        Lima tahun lalu, kalau kamu mau bikin website, kamu wajib hafal HTML, CSS, JavaScript, framework, dan deploy.
+        Lima tahun lalu kalau mau bikin website, kamu wajib hafal HTML, CSS, JavaScript, framework, terus belajar deploy. Lama dan capek.
 
-        Sekarang banyak hal itu bisa dibantu AI. Tapi kabar buruknya: orang yang "cuma copy-paste dari ChatGPT" sering kelihatan banget.
+        Sekarang banyak hal kayak gitu bisa dibantu AI. Tapi yang bikin orang sering ketipu: ngira semua bisa diserahin ke ChatGPT, terus dia bisa langsung jadi developer.
 
-        Vibe Coding adalah jalan tengah: kamu pakai AI sebagai partner, tapi kamu tetap ngerti apa yang kamu bangun.
+        Vibe Coding itu jalan tengahnya. Kamu pake AI buat ngebantu, tapi kamu tetep yang nyetir.
         """
     ),
     penjelasan=dedent(
         """\
-        ### Definisi sederhana
+        ### Definisinya simpel
 
-        Vibe Coding adalah AI-assisted development. Kamu pakai AI untuk:
+        Vibe Coding artinya kamu ngoding sambil dibantu AI. AI yang dipake buat:
 
-        - Generate UI dengan cepat.
-        - Bikin function repetitif.
-        - Debug error.
-        - Refactor kode.
+        - Bikin tampilan dengan cepet
+        - Nulisin function yang berulang-ulang
+        - Bantu cari tau kenapa kode error
+        - Refactor kode yang berantakan
 
-        Tapi kamu tetap pegang kontrol arah, struktur, dan keputusan akhir.
+        Tapi yang nentuin mau bikin apa, struktur kayak gimana, fitur mana yang penting — itu kamu. Bukan AI.
 
-        ### Empat pendekatan, satu spektrum
+        ### Empat cara bikin app, beda-beda
 
-        Pikirkan ini sebagai garis horizontal:
+        Sekarang ada empat cara orang bikin app. Dari yang paling gampang sampai yang paling fleksibel:
 
-        - **No-Code** (Bubble, Webflow). Klik-klik tanpa nulis code. Cocok untuk MVP super cepat. Batasannya banyak begitu app makin kompleks.
-        - **Low-Code** (Retool, Airtable). Sebagian visual, sebagian code. Bagus untuk internal tools.
-        - **AI Coding / Vibe Coding**. Kamu nulis app, tapi AI bantu di setiap langkah. Hasilnya kode beneran yang kamu sendiri pegang.
-        - **Manual Coding**. Semua kamu tulis sendiri. Lambat tapi paling fleksibel.
+        - **No-code** — kayak Bubble, Webflow. Klik-klik doang, gak nulis kode. Cepet banget buat MVP, tapi kalau app makin kompleks suka mentok.
+        - **Low-code** — kayak Retool, Airtable. Setengah visual, setengah kode. Cocok buat bikin tools internal kantor.
+        - **AI Coding / Vibe Coding** — kamu nulis app beneran, tapi AI bantu di tiap langkah. Hasilnya kode asli yang bisa kamu modifikasi sendiri.
+        - **Manual coding** — semua kamu tulis sendiri. Lambat, tapi paling fleksibel.
 
-        Vibe Coding sweet spot di antara dua ujung: lebih cepat dari manual, lebih fleksibel dari no-code.
+        Vibe Coding itu di tengah-tengah. Lebih cepet dari manual, lebih fleksibel dari no-code.
 
-        ### Kenapa sekarang masuk akal
+        ### Kenapa lagi rame sekarang
 
-        Tools-nya sudah matang. Cursor bisa baca seluruh project kamu. Claude bisa nulis komponen kompleks. Vercel + Supabase bikin deploy gratis dan instan.
+        Tools-nya udah matang. Cursor bisa baca seluruh project kamu. Claude bisa nulis component yang lumayan rumit. Vercel + Supabase bikin deploy gratis dan tinggal klik.
 
-        Hambatan terbesar bukan teknologi lagi. Hambatan terbesar adalah taste — kemampuan kamu mengenali mana yang bagus dan mana yang jelek.
+        Yang susah sekarang bukan teknologi. Yang susah itu **taste** — kemampuan kamu buat nilai mana yang bagus, mana yang jelek.
 
-        ### Yang realistis
+        ### Yang masuk akal
 
-        - Bikin landing page bagus dalam satu hari.
-        - Bikin SaaS sederhana dengan auth dan database dalam dua minggu.
-        - Bikin tools internal untuk tim kecil dalam beberapa hari.
+        - Bikin landing page bagus dalam sehari
+        - Bikin SaaS sederhana sama auth dan database dalam dua minggu
+        - Bikin tools internal buat tim kecil dalam beberapa hari
 
-        ### Yang TIDAK realistis
+        ### Yang gak masuk akal
 
-        - Bikin Facebook dalam seminggu.
-        - "AI ngerjain semua, saya tinggal duduk".
-        - Bikin app tanpa pernah baca kode hasilnya.
+        - Bikin Facebook dalam seminggu
+        - "AI yang ngerjain semua, gue tinggal duduk"
+        - Bikin app tanpa pernah baca kodenya
 
-        Aturan emas: kamu tetap harus ngerti, bukan sekadar copy-paste.
+        Banyak yang awal-awal ekspektasinya ketinggian. Kalau kamu mikir "saya gak butuh ngerti coding karena ada AI" — itu jebakan. Pasti nyangkut di bug pertama.
+
+        Aturan praktis: kamu tetep harus ngerti, bukan cuma copy-paste.
         """
     ),
     contoh_code_md=dedent(
         """\
-        Contoh prompt awal yang bagus untuk Cursor atau Claude:
+        Ini contoh prompt yang biasa saya pake kalau mau bikin landing page baru:
 
         ```text
-        Aku mau bikin landing page untuk toko kopi lokal.
+        Saya mau bikin landing page buat toko kopi lokal.
         Stack: Next.js 14 App Router + Tailwind + shadcn/ui.
 
-        Section yang dibutuhkan:
-        1. Hero dengan judul, tagline, dan CTA "Pesan sekarang".
-        2. Menu produk (4 kopi, masing-masing punya foto, nama, harga).
-        3. Tentang Kami (cerita singkat 2-3 paragraf).
-        4. Footer dengan alamat, jam buka, dan social media.
+        Section yang dibutuhin:
+        1. Hero — judul, tagline, CTA "Pesan sekarang"
+        2. Menu produk (4 kopi, masing-masing ada foto, nama, harga)
+        3. Tentang Kami (cerita singkat 2-3 paragraf)
+        4. Footer — alamat, jam buka, social media
 
-        Style: minimal, dark mode, accent warna #4EBAEC.
-        Responsive untuk mobile dan desktop.
+        Style: minimal, dark mode, accent biru #4EBAEC.
+        Responsive di HP dan desktop.
 
-        Mulai dari struktur file dulu, jangan langsung kasih semua kode.
+        Bikin struktur file dulu ya, jangan langsung kasih semua kode.
         ```
 
-        Perhatikan: kamu kasih konteks (stack, section, style, behavior). AI yang bagus akan tanya balik kalau ada yang ambigu.
+        Yang saya kasih ke AI: konteks, list section, style, behavior. AI yang bagus bakal nanya balik kalau ada yang kurang jelas. Itu sinyal bagus.
         """
     ),
     practice=(
-        "Tulis di catatan kamu: apa satu app yang ingin kamu bangun dalam 3 "
-        "bulan ke depan? Tuliskan dalam satu paragraf, sebut user-nya siapa, "
-        "masalahnya apa, dan solusinya bagaimana. Ini akan jadi target sambil "
-        "kamu jalan di jalur Vibe Coding."
+        "Tulis di catatan kamu: satu app yang pengen kamu bikin dalam 3 bulan "
+        "ke depan. Satu paragraf aja. Sebutin: target user-nya siapa, masalah "
+        "apa yang dipecahin, gimana solusinya. Ini bakal jadi target sambil "
+        "kamu jalan di Vibe Coding."
     ),
     fix_error={
         "language": "text",
         "broken_code": dedent(
             """\
-            Prompt: "Bikinkan saya app."
+            Prompt: "Bikinin saya app."
             """
         ),
         "hint": (
-            "Prompt yang bagus selalu punya konteks (stack), spesifik (apa "
-            "yang dibangun), dan format keluaran (struktur file dulu, atau "
-            "langsung code)."
+            "Prompt yang singkat banget kayak gini hampir pasti gagal. AI gak "
+            "tau kamu mau apa."
         ),
         "answer_explanation": dedent(
             """\
-            Prompt minimalis di atas akan kasih hasil generic. AI tidak tahu kamu mau apa.
+            Prompt kayak gitu pasti dapet hasil generic. AI gak bisa nebak isi kepala kamu.
 
-            Yang lebih baik: sebut stack, fitur utama, style, dan cara mulai (struktur file dulu, bukan langsung implementasi).
+            Yang lebih baik: sebutin stack-nya, fitur utamanya apa, style-nya kayak gimana, dan minta dia mulai dari struktur file dulu (bukan langsung kode panjang).
             """
         ),
         "fixed_code": dedent(
             """\
-            Prompt:
+            Prompt yang lebih bagus:
+
             "Bikin todo app sederhana.
             Stack: Next.js 14 + Tailwind.
             Fitur: tambah, hapus, tandai selesai. Data di localStorage.
             Style: minimal, dark mode, font Inter.
-            Mulai dari struktur file, lalu kita iterate per komponen."
+            Mulai dari struktur file dulu, terus iterate per komponen."
             """
         ),
     },
     quiz=[
         q(
-            "Mana definisi Vibe Coding yang paling tepat?",
+            "Vibe Coding itu sebenernya apa?",
             [
                 "Bikin app tanpa nulis kode sama sekali",
-                "AI-assisted development di mana kamu pakai AI sebagai partner tapi tetap pegang kontrol",
-                "Bikin app dengan visual editor seperti Webflow",
-                "Hanya pakai ChatGPT untuk bikin website",
+                "Ngoding sambil dibantu AI, tapi kamu tetep yang nyetir keputusan",
+                "Bikin app pake tool visual kayak Webflow",
+                "Cuma pake ChatGPT buat bikin website",
             ],
             "B",
-            "Vibe Coding adalah middle ground antara no-code dan manual coding. AI bantu, tapi kamu yang pegang arah.",
+            "Vibe Coding itu di tengah-tengah no-code dan manual coding. AI bantu, tapi arah kamu yang nentuin.",
         ),
         q(
-            "Apa yang membedakan Vibe Coding dari No-Code (Webflow, Bubble)?",
+            "Bedanya Vibe Coding sama No-Code (Webflow, Bubble) apa?",
             [
                 "Vibe Coding lebih lambat",
-                "Vibe Coding menghasilkan kode beneran yang kamu sendiri pegang dan modifikasi",
-                "Vibe Coding tidak butuh internet",
-                "Tidak ada bedanya",
+                "Vibe Coding ngehasilin kode beneran yang bisa kamu modif sendiri",
+                "Vibe Coding gak butuh internet",
+                "Sama aja",
             ],
             "B",
-            "No-Code menyembunyikan kode. Vibe Coding tetap menghasilkan kode yang kamu sendiri bisa baca, modifikasi, dan deploy.",
+            "No-Code nyembunyiin kode dari kamu. Vibe Coding tetep ngasih kode asli yang bisa kamu baca, edit, dan deploy.",
         ),
         q(
-            "Apa yang TIDAK realistis dari Vibe Coding?",
+            "Yang BUKAN ekspektasi realistis dari Vibe Coding?",
             [
                 "Bikin landing page dalam sehari",
                 "Bikin SaaS sederhana dalam dua minggu",
-                "Bikin Facebook lengkap dalam seminggu tanpa baca kode",
+                "Bikin Facebook lengkap dalam seminggu tanpa baca kode sama sekali",
                 "Bikin tools internal dalam beberapa hari",
             ],
             "C",
-            "Vibe Coding mempercepat, tapi ada batasnya. Project skala besar butuh struktur, testing, infrastruktur — tidak bisa dipotong drastis.",
+            "Vibe Coding ngebantu kamu lebih cepet, tapi tetep ada batasnya. App segede Facebook butuh tim, infrastruktur, testing — gak bisa dipotong drastis.",
         ),
         q(
-            "Mengapa 'taste' penting di era Vibe Coding?",
+            "Kenapa 'taste' (kemampuan nilai bagus/jelek) penting di era Vibe Coding?",
             [
-                "Tidak penting, AI selalu benar",
-                "Karena AI bisa generate banyak hal, kamu yang harus menilai mana yang bagus dan mana yang jelek",
-                "Untuk impress recruiter",
-                "Karena tools-nya butuh sertifikat",
+                "Gak penting, AI selalu bener",
+                "Karena AI bisa ngehasilin banyak opsi, dan kamu yang harus milih mana yang bagus",
+                "Biar keren di depan recruiter",
+                "Karena tool-nya butuh sertifikat",
             ],
             "B",
-            "AI bisa kasih banyak opsi, tapi kamu yang pegang taste — yang tahu mana yang bagus untuk user-mu.",
+            "AI bisa kasih puluhan versi, tapi yang nentuin mana yang oke buat user kamu — itu kamu.",
         ),
         q(
-            "Mana prompt yang lebih baik untuk AI?",
+            "Mana prompt yang lebih bagus buat AI?",
             [
-                "\"Bikin website saya.\"",
-                "\"Bikin landing page Next.js + Tailwind untuk toko kopi, dark mode, ada section hero/menu/tentang, mulai dari struktur file dulu.\"",
-                "\"Tolong bantu.\"",
+                "\"Bikinin website saya.\"",
+                "\"Bikin landing page Next.js + Tailwind buat toko kopi, dark mode, ada section hero/menu/tentang, mulai dari struktur file dulu.\"",
+                "\"Tolong bantuin.\"",
                 "\"Saya butuh kode.\"",
             ],
             "B",
-            "Prompt yang baik = konteks + spesifik + format output. Itu bikin hasil AI lebih akurat dan lebih cepat sampai ke yang kamu mau.",
+            "Prompt yang bagus = konteks + spesifik + format output. Tanpa itu AI cuma bisa nebak.",
         ),
     ],
     common_mistakes=[
-        "Mengira Vibe Coding = ChatGPT semua. Faktanya: kamu tetap ngerti yang kamu bangun.",
-        "Skip dasar coding. Saat ada bug, kamu tidak bisa apa-apa.",
-        "Prompt terlalu pendek. AI tidak bisa baca pikiran. Kasih konteks.",
+        "Ngira Vibe Coding = ChatGPT all the way. Padahal kamu tetep harus ngerti yang dibikin.",
+        "Skip belajar dasar coding karena ngira AI bisa handle. Pas ada bug pertama, mentok total.",
+        "Prompt yang kependekan. AI gak bisa baca pikiran, kasih konteks yang cukup.",
     ],
     checkpoint=[
-        "Bisa menjelaskan Vibe Coding ke orang awam.",
-        "Tahu beda no-code, low-code, AI coding, manual.",
-        "Punya target satu app yang ingin dibangun.",
+        "Bisa jelasin Vibe Coding ke temen yang awam coding",
+        "Tau bedanya no-code, low-code, AI coding, manual",
+        "Udah punya target satu app yang pengen dibikin",
     ],
     xp_reward=50,
 )
@@ -223,191 +225,190 @@ LESSON_APA_ITU = make_lesson(
 # ─────────────────────────────────────────────────────────────────────────────
 
 LESSON_TOOLS = make_lesson(
-    title="Tools Ecosystem Overview",
+    title="Kenalan sama Tools yang Dipakai",
     slug="tools-ecosystem",
     order_index=2,
     read_time="9 menit",
-    summary="Cursor, Claude, ChatGPT, V0, Bolt — kapan pakai yang mana.",
+    summary="Cursor, Claude, ChatGPT, V0, Bolt — kapan pake yang mana.",
     tools=[
-        "Akun ChatGPT atau Claude (gratis dulu)",
+        "Akun ChatGPT atau Claude (yang gratis dulu)",
         "Akun GitHub",
         "Akun Vercel",
     ],
     outcomes=[
-        "Mengenali tools utama Vibe Coding",
-        "Tahu kapan pakai code editor AI vs chat assistant vs UI generator",
-        "Memilih kombinasi yang cocok untuk pemula",
+        "Tau tools utama yang dipake di Vibe Coding",
+        "Tau kapan pake editor AI vs chat assistant vs UI generator",
+        "Punya kombinasi tools yang cocok buat pemula",
     ],
     tldr=(
-        "Cursor untuk nulis kode dengan AI di editor. Claude/ChatGPT untuk "
-        "diskusi panjang dan refactor. V0/Bolt untuk generate UI. GitHub + "
-        "Vercel + Supabase untuk simpan, deploy, dan database."
+        "Cursor buat ngoding sehari-hari. Claude/ChatGPT buat diskusi panjang. "
+        "V0/Bolt buat generate UI cepet. GitHub + Vercel + Supabase buat simpan, "
+        "deploy, dan database. Gak usah pake semua dari awal."
     ),
     pembuka=dedent(
         """\
-        Banyak orang bingung mulai dari mana karena tools-nya banyak.
+        Banyak yang bingung mulai dari mana karena tools-nya ada banyak banget. Tiap minggu ada tool baru di Twitter.
 
-        Kabar baik: kamu tidak perlu pakai semua. Mulai dengan dua atau tiga, lalu tambah seiring kebutuhan.
+        Kabar baiknya: kamu gak perlu pake semua. Mulai dari dua atau tiga, terus tambahin pelan-pelan kalau memang butuh.
 
-        Lesson ini bukan promo tools. Ini peta supaya kamu paham fungsinya.
+        Lesson ini bukan promo tools. Ini peta — biar kamu paham tiap tool itu fungsinya buat apa.
         """
     ),
     penjelasan=dedent(
         """\
-        ### Code Editor dengan AI
+        ### Editor sama AI di dalemnya
 
-        - **Cursor.** Fork dari VS Code yang punya AI built-in. Bisa baca seluruh project. Aksi favorit: ⌘K untuk edit inline, ⌘L untuk chat.
-        - **GitHub Copilot.** Plugin di VS Code. Lebih ringan, tapi tidak sepowerful Cursor untuk diskusi multi-file.
+        - **Cursor** — fork dari VS Code yang udah ada AI built-in. Bisa baca semua file di project kamu. Shortcut yang sering dipake: `⌘K` buat edit kode di tempat, `⌘L` buat ngobrol sama AI.
+        - **GitHub Copilot** — plugin di VS Code biasa. Lebih ringan tapi gak sepowerful Cursor buat diskusi multi-file.
 
-        Pilih satu. Kalau ragu, mulai dari **Cursor** karena sudah jadi default banyak indie builder.
+        Pilih satu aja. Kalau bingung, mulai dari **Cursor**. Hampir semua indie builder di komunitas pake itu sekarang.
 
-        ### Chat Assistant
+        ### Chat assistant
 
-        - **Claude (Anthropic).** Sangat bagus untuk reasoning panjang dan refactor besar. Output kode-nya rapi.
-        - **ChatGPT (OpenAI).** Versatile, ekosistem plugin banyak. GPT-5 cepat dan akurat untuk coding.
+        - **Claude** (dari Anthropic) — bagus banget buat reasoning panjang dan refactor besar. Output kodenya rapi.
+        - **ChatGPT** (dari OpenAI) — versatile, ekosistem plugin banyak. GPT-5 cepet dan akurat buat coding.
 
-        Banyak builder pakai keduanya — Claude untuk perencanaan dan refactor, ChatGPT untuk eksekusi cepat. Tidak wajib. Mulai dari satu.
+        Banyak builder yang pake dua-duanya — Claude buat planning sama refactor, ChatGPT buat eksekusi cepet. Tapi gak wajib. Mulai dari satu dulu.
 
-        ### UI Generator
+        ### Generator UI
 
-        - **V0 (Vercel).** Generate komponen React + Tailwind dari prompt. Hasilnya bisa langsung ditempel ke Cursor.
-        - **Bolt.new (StackBlitz).** Generate full app yang langsung jalan di browser. Cocok untuk prototyping.
-        - **Lovable.** Mirip Bolt, fokus full-stack.
+        - **V0** (dari Vercel) — generate component React + Tailwind dari prompt. Hasilnya tinggal di-paste ke Cursor.
+        - **Bolt.new** (dari StackBlitz) — generate full app yang langsung jalan di browser. Cocok buat bikin prototype.
+        - **Lovable** — mirip Bolt, fokusnya full-stack.
 
-        Pakai ini untuk start awal. Lanjutan biasanya di Cursor.
+        Pake ini buat awalan. Lanjutannya biasanya di Cursor.
 
-        ### Hosting & Storage
+        ### Tempat simpan dan deploy
 
-        - **GitHub.** Tempat simpan kode. Wajib.
-        - **Vercel.** Deploy frontend Next.js dalam 30 detik. Wajib.
-        - **Supabase.** PostgreSQL hosted gratis + auth + storage. Pintu masuk yang ramah ke backend.
+        - **GitHub** — buat simpan kode. Wajib.
+        - **Vercel** — deploy frontend Next.js dalam 30 detik. Wajib juga.
+        - **Supabase** — PostgreSQL hosted gratis + auth + storage. Pintu masuk yang ramah ke backend.
 
-        Ketiganya gratis untuk pemula. Itu sudah cukup untuk launch app pertamamu.
+        Semuanya gratis buat pemula. Itu udah cukup buat launch app pertamamu.
 
-        ### Stack rekomendasi pemula
+        ### Kombinasi pemula
 
-        Cursor + Claude + GitHub + Vercel + Supabase. Lima ini cukup untuk membangun app produksi sederhana. Jangan tambah lagi sampai kamu butuh.
+        Cursor + Claude + GitHub + Vercel + Supabase. Lima ini udah cukup buat bikin app produksi sederhana. Jangan tambah lagi sampai kamu beneran butuh.
         """
     ),
     contoh_code_md=dedent(
         """\
-        Alur kerja umum:
+        Cara kerja yang umum:
 
         ```text
-        1. Buka V0 → kasih prompt → dapat komponen React + Tailwind.
-        2. Salin ke project Next.js di Cursor.
-        3. Pakai ⌘K di Cursor untuk modifikasi sesuai kebutuhan.
-        4. Push ke GitHub.
-        5. Vercel auto-deploy.
-        6. Pasang database via Supabase kalau butuh data persisten.
+        1. Buka V0 → kasih prompt → dapet component React + Tailwind
+        2. Salin ke project Next.js di Cursor
+        3. Pake ⌘K di Cursor buat modifikasi sesuai kebutuhan
+        4. Push ke GitHub
+        5. Vercel auto-deploy
+        6. Pasang Supabase kalau butuh data yang persisten
         ```
 
-        Salah satu kekuatan stack ini: feedback loop yang sangat cepat. Dari ide ke deploy bisa di bawah satu jam.
+        Yang paling enak dari kombinasi ini: feedback loop-nya cepet. Dari ide ke deploy bisa di bawah satu jam.
         """
     ),
     practice=(
-        "Buat akun di tiga tools wajib: GitHub, Vercel, dan Cursor. Login, "
-        "verifikasi email kalau diminta. Tidak perlu install apa-apa dulu — "
-        "tujuannya cuma punya akses siap pakai. Catat email yang dipakai supaya "
-        "tidak lupa."
+        "Bikin akun di tiga tools wajib: GitHub, Vercel, Cursor. Login, "
+        "verifikasi email kalau diminta. Belum perlu install apapun — yang "
+        "penting akun-akun udah siap. Catet email-nya biar gak lupa."
     ),
     fix_error={
         "language": "text",
         "broken_code": dedent(
             """\
             "Saya install semua: Cursor, ChatGPT, Claude, V0, Bolt, Lovable,
-            Replit, Supabase, Firebase, Vercel, Netlify, Railway, dan
-            10 plugin VS Code. Tapi sekarang saya bingung mulai dari mana."
+            Replit, Supabase, Firebase, Vercel, Netlify, Railway, sama 10
+            plugin VS Code. Sekarang malah bingung mulai dari mana."
             """
         ),
-        "hint": "Tools yang banyak bukan masalah skill. Itu masalah fokus.",
+        "hint": "Tools yang banyak bukan bikin kamu lebih jago. Sering malah sebaliknya.",
         "answer_explanation": dedent(
             """\
-            Kesalahan: Pakai semua tools sekaligus tanpa tahu mana yang dipakai untuk apa. Akhirnya energi habis di setup, bukan di membangun.
+            Salahnya: install semua tools sekaligus tanpa tau mana yang dipake buat apa. Akhirnya energi habis di setup, bukan di bikin sesuatu.
 
-            Yang benar: pilih stack minimal (Cursor + Claude + GitHub + Vercel + Supabase), kuasai itu dulu, baru tambah kalau ada kebutuhan nyata.
+            Yang bener: pilih kombinasi minimal (Cursor + Claude + GitHub + Vercel + Supabase), kuasai itu dulu, baru tambahin kalau ada kebutuhan beneran.
             """
         ),
         "fixed_code": dedent(
             """\
             Stack pemula:
-            - Cursor (code editor + AI)
+            - Cursor (editor + AI)
             - Claude atau ChatGPT (chat assistant)
             - GitHub (simpan kode)
             - Vercel (deploy frontend)
             - Supabase (database + auth)
 
-            Itu sudah cukup. Tambah tools cuma kalau kamu sudah merasa
-            stack ini terbatas untuk kebutuhanmu.
+            Itu cukup. Tambah tools cuma kalau kamu udah ngerasa kombinasi
+            ini gak cukup buat kebutuhan kamu.
             """
         ),
     },
     quiz=[
         q(
-            "Apa fungsi Cursor di alur Vibe Coding?",
+            "Cursor itu fungsinya buat apa?",
             [
-                "Browser khusus untuk developer",
-                "Code editor dengan AI built-in yang bisa baca seluruh project",
-                "Database hosting",
+                "Browser khusus developer",
+                "Code editor sama AI built-in yang bisa baca seluruh project",
+                "Hosting database",
                 "Tempat deploy app",
             ],
             "B",
-            "Cursor itu fork dari VS Code dengan integrasi AI. Bisa baca konteks project secara luas, beda dari assistant chat biasa.",
+            "Cursor itu fork dari VS Code yang punya AI bawaan. Beda sama chat assistant biasa karena dia bisa baca konteks project secara luas.",
         ),
         q(
-            "Vercel paling sering dipakai untuk apa?",
+            "Vercel paling sering dipake buat apa?",
             [
                 "Bikin database",
-                "Generate komponen UI",
+                "Generate component UI",
                 "Deploy frontend (terutama Next.js) dalam beberapa detik",
                 "Editing video",
             ],
             "C",
-            "Vercel adalah platform hosting yang dibuat oleh tim Next.js. Push ke GitHub, Vercel auto-deploy.",
+            "Vercel itu hosting yang dibikin sama tim Next.js sendiri. Push ke GitHub, langsung auto-deploy.",
         ),
         q(
-            "Apa fungsi V0?",
+            "V0 fungsinya apa?",
             [
                 "Code editor",
-                "Generate komponen React + Tailwind dari prompt",
+                "Generate component React + Tailwind dari prompt",
                 "Database",
                 "Email hosting",
             ],
             "B",
-            "V0 (Vercel) adalah UI generator. Output-nya kode React + Tailwind yang bisa langsung dipakai di project.",
+            "V0 (dari Vercel) itu UI generator. Output-nya kode React + Tailwind yang siap dipake di project.",
         ),
         q(
-            "Mana stack minimal yang direkomendasikan untuk pemula Vibe Coding?",
+            "Mana kombinasi minimal yang cocok buat pemula Vibe Coding?",
             [
                 "Cursor + Claude/ChatGPT + GitHub + Vercel + Supabase",
-                "10 tools sekaligus supaya komplit",
-                "Cuma ChatGPT, sisanya tidak perlu",
-                "Wajib pakai Replit dan Railway",
+                "10 tools sekaligus biar lengkap",
+                "Cuma ChatGPT, sisanya gak perlu",
+                "Wajib pake Replit sama Railway",
             ],
             "A",
-            "Lima tools ini cukup untuk launch app produksi sederhana. Tambah lagi kalau memang ada kebutuhan nyata.",
+            "Lima tools ini cukup buat launch app produksi sederhana. Tambah tools lain kalau memang ada kebutuhan beneran.",
         ),
         q(
-            "Kenapa pemula sebaiknya TIDAK install semua tools sekaligus?",
+            "Kenapa pemula sebaiknya GAK install semua tools sekaligus?",
             [
                 "Karena ribet bayar semuanya",
-                "Karena energi habis di setup, bukan di membangun. Lebih baik kuasai stack minimal dulu.",
-                "Karena dilarang oleh aturan tertentu",
-                "Tidak ada alasan",
+                "Karena energi bakal habis di setup, bukan di bikin sesuatu. Mending kuasain stack minimal dulu.",
+                "Karena dilarang aturan tertentu",
+                "Gak ada alasan",
             ],
             "B",
-            "Setiap tools butuh waktu adaptasi. Setup overhead bisa membunuh semangat. Mulai minimal, tambah saat butuh.",
+            "Tiap tool butuh waktu adaptasi. Setup overhead bisa bunuh semangat sebelum kamu sempet ngebangun apa-apa.",
         ),
     ],
     common_mistakes=[
-        "Install semua tools sebelum bangun apapun. Hasilnya: setup overhead besar.",
-        "Bingung mana untuk apa, lalu nanya ke beberapa AI dengan prompt yang sama.",
-        "Skip belajar editor. Cursor punya keyboard shortcut yang menggandakan kecepatan.",
+        "Install semua tools sebelum bikin apapun. Hasilnya: setup overhead gede, hasil nol.",
+        "Bingung mana buat apa, akhirnya nanya pertanyaan yang sama ke beberapa AI.",
+        "Skip belajar editor. Cursor punya keyboard shortcut yang ngeboost kecepatan kamu 2x.",
     ],
     checkpoint=[
-        "Punya akun GitHub, Vercel, dan Cursor.",
-        "Tahu fungsi masing-masing tools dalam stack.",
-        "Memilih satu chat assistant utama (Claude atau ChatGPT).",
+        "Punya akun GitHub, Vercel, sama Cursor",
+        "Tau fungsi tiap tools dalam stack",
+        "Udah pilih satu chat assistant utama (Claude atau ChatGPT)",
     ],
     xp_reward=60,
 )
@@ -418,80 +419,79 @@ LESSON_TOOLS = make_lesson(
 # ─────────────────────────────────────────────────────────────────────────────
 
 LESSON_PROMPT = make_lesson(
-    title="Cara Berpikir dalam Prompt",
+    title="Cara Bikin Prompt yang Hasilnya Bagus",
     slug="cara-berpikir-dalam-prompt",
     order_index=3,
     read_time="10 menit",
-    summary="Konteks, spesifik, iteratif — anatomi prompt yang menghasilkan kode bagus.",
+    summary="Konteks, spesifik, iteratif — anatomi prompt yang ngehasilin kode bagus.",
     tools=["Akun ChatGPT atau Claude", "Notes app"],
     outcomes=[
-        "Memahami anatomi prompt yang efektif",
-        "Memberikan konteks yang cukup ke AI",
-        "Iterasi prompt untuk perbaiki output yang kurang",
+        "Tau anatomi prompt yang efektif",
+        "Bisa kasih konteks yang cukup ke AI",
+        "Bisa iterasi prompt buat perbaikin output yang kurang oke",
     ],
     tldr=(
-        "Prompt yang bagus punya konteks (stack, env), spesifik (apa yang "
-        "diminta), dan format output (struktur dulu vs code langsung). "
-        "Kalau hasil jelek, suruh AI revisi outputnya sendiri."
+        "Prompt yang bagus selalu ada tiga hal: konteks (stack, env), spesifik "
+        "(apa yang diminta), dan format output (struktur dulu vs code "
+        "langsung). Kalau hasil jelek, suruh AI revisi sendiri — jangan mulai "
+        "dari nol terus."
     ),
     pembuka=dedent(
         """\
-        AI bukan dukun. Dia tidak bisa baca pikiran kamu.
+        AI itu bukan dukun. Dia gak bisa baca pikiran kamu.
 
-        Kalau kamu kasih prompt yang vague, hasilnya juga vague. Kalau kamu kasih prompt yang spesifik dengan konteks, hasilnya jauh lebih akurat.
+        Kalau kamu kasih prompt yang vague, hasilnya juga vague. Kalau kamu kasih prompt yang spesifik dan ada konteksnya, hasilnya jauh lebih akurat.
 
         Prompt itu skill yang bisa diasah. Lesson ini cuma awalnya.
         """
     ),
     penjelasan=dedent(
         """\
-        ### Anatomi prompt yang baik
+        ### Tiga bahan prompt yang bagus
 
-        Tiga bagian:
+        - **Konteks** — tools, stack, file yang relevan, tujuan akhir.
+        - **Spesifik** — kamu mau apa, bukan "bantu dong".
+        - **Format output** — mau struktur file dulu? Code langsung? Penjelasan step-by-step?
 
-        - **Konteks.** Tools, stack, file yang relevan, tujuan akhir.
-        - **Spesifik.** Apa yang kamu mau, bukan "bantu dong".
-        - **Format output.** Mau dapat struktur file dulu? Code langsung? Penjelasan step-by-step?
+        Kadang ditambahin: contoh input/output yang kamu harapin.
 
-        Tambahan opsional: contoh input/output yang kamu harapkan.
-
-        ### Prompt yang BURUK
+        ### Prompt yang JELEK
 
         - "Bikin website."
         - "Tolong dibetulkan."
-        - "Code-nya error, fix."
+        - "Code-nya error, fix dong."
 
-        Ketiganya minim konteks. AI akan ngarang.
+        Tiga ini gak ada konteksnya. AI bakal ngarang, gak akurat.
 
-        ### Prompt yang BAIK
+        ### Prompt yang BAGUS
 
-        - "Bikin landing page Next.js 14 + Tailwind untuk toko kopi lokal. Ada section hero, menu (4 produk dummy), tentang kami, footer. Dark mode, accent #4EBAEC. Mulai dari struktur file dulu."
-        - "Saya dapat error 'Cannot read property X of undefined' di file Y baris Z saat klik tombol login. Berikut kode lengkap file-nya: [paste]. Tolong analisis kemungkinan penyebab dan kasih saran perbaikan."
+        - "Bikin landing page Next.js 14 + Tailwind buat toko kopi lokal. Section: hero, menu (4 produk dummy), tentang kami, footer. Dark mode, accent #4EBAEC. Mulai dari struktur file dulu."
+        - "Saya dapet error 'Cannot read property X of undefined' di file Y baris Z pas klik tombol login. Kode lengkap file-nya: [paste]. Tolong analisis kemungkinan penyebabnya dan kasih saran perbaikannya."
 
-        ### Iteratif itu wajar
+        ### Iterasi itu wajar
 
-        Prompt pertama jarang langsung perfect. Kalau output AI kurang, **balik diskusi**, jangan mulai dari nol.
+        Prompt pertama jarang langsung perfect. Kalau output AI kurang oke, **balik diskusi**, jangan mulai chat baru dari nol.
 
-        Cara minta revisi yang baik:
+        Cara minta revisi yang bener:
 
-        - "Kode di atas oke, tapi tolong ganti styling jadi minimal (kurangi shadow, tipiskan border). Pertahankan struktur."
+        - "Kode di atas oke, tapi tolong ganti styling-nya jadi minimal (kurangin shadow, tipisin border). Struktur tetep."
         - "Lupa sebut, semua harus responsive di HP. Update kode di atas."
-        - "Hapus penggunaan library X, ganti dengan native Y."
+        - "Hapus library X, ganti pake native Y."
 
-        ### Kapan re-prompt vs re-mulai?
+        ### Kapan re-prompt vs mulai chat baru
 
-        Kalau AI mulai keluar dari topik atau ngotot di solusi yang tidak kamu mau setelah 2-3 putaran — buka chat baru dengan prompt yang sudah dirapikan.
+        Kalau AI mulai keluar topik atau ngotot di solusi yang gak kamu mau setelah 2-3 putaran — buka chat baru dengan prompt yang udah dirapihin.
 
         ### Kasih AI peran kalau perlu
 
-        "Anggap kamu reviewer kode senior. Cek file ini dan kasih kritik yang spesifik tentang readability, performance, dan accessibility."
+        "Anggep kamu reviewer kode senior. Cek file ini dan kasih kritik spesifik tentang readability, performance, dan accessibility."
 
-        Kasih peran membantu AI fokus ke sudut pandang yang kamu mau.
+        Kasih peran itu bantu AI fokus ke sudut pandang yang kamu mau.
         """
     ),
     contoh_code_md=dedent(
         """\
-        Format prompt template yang bisa kamu pakai berkali-kali:
+        Format prompt template yang bisa kamu pake terus-terusan:
 
         ```text
         Konteks:
@@ -499,8 +499,8 @@ LESSON_PROMPT = make_lesson(
         - Stack: [Next.js 14, Tailwind, dll.]
         - File yang relevan: [paste atau ringkasan]
 
-        Yang saya butuhkan:
-        - [tugas spesifik, misal: bikin komponen Card untuk product listing]
+        Yang saya butuh:
+        - [tugas spesifik, contoh: bikin component Card buat product listing]
 
         Format output:
         - [Mulai dari struktur dulu / langsung code / explain dulu lalu code]
@@ -509,70 +509,71 @@ LESSON_PROMPT = make_lesson(
         - [responsive, accessible, dark mode, dll.]
         ```
 
-        Template ini menghemat waktu di setiap sesi. Salin lalu isi.
+        Template ini ngehemat waktu di tiap sesi. Salin terus isi sesuai kebutuhan.
         """
     ),
     practice=(
-        "Tulis prompt untuk bikin component 'NavBar' di Next.js + Tailwind. "
-        "Pakai template di atas: konteks, kebutuhan, format output, catatan. "
-        "Kirim ke ChatGPT/Claude. Lalu minta revisi: 'Tambah dark mode toggle.'"
+        "Tulis prompt buat bikin component 'NavBar' di Next.js + Tailwind. "
+        "Pake template di atas: konteks, kebutuhan, format output, catatan. "
+        "Kirim ke ChatGPT/Claude. Terus minta revisi: 'Tambahin dark mode "
+        "toggle.'"
     ),
     fix_error={
         "language": "text",
         "broken_code": dedent(
             """\
-            User: "Bikin komponen tombol."
+            User: "Bikin component tombol."
             AI: [output generic <button>Click me</button>]
             User: "Bukan kayak gitu."
-            AI: [output generic kedua, juga tidak match]
+            AI: [output generic kedua, juga gak match]
             User: "Salah lagi!"
+            ... loop terus
             """
         ),
         "hint": (
-            "User memberi feedback negatif tanpa kasih arah baru. AI butuh "
-            "informasi konkret tentang APA yang kurang."
+            "Feedback negatif tanpa arah baru bikin AI cuma nebak-nebak doang."
         ),
         "answer_explanation": dedent(
             """\
-            Kesalahan: User memberi feedback "salah" tanpa menjelaskan apa yang salah dan apa yang diharapkan.
+            Salahnya: user kasih feedback "salah" tanpa jelasin apa yang salah dan apa yang diharapin.
 
-            Yang benar: feedback harus konkret. "Tombol terlalu generic. Saya butuh tombol primary dengan icon di kiri, ukuran besar, untuk CTA hero. Stack Next.js + Tailwind."
+            Yang bener: feedback harus konkret. "Tombolnya terlalu generic. Saya butuh tombol primary dengan icon di kiri, ukuran besar, buat CTA hero. Stack Next.js + Tailwind."
             """
         ),
         "fixed_code": dedent(
             """\
-            User: "Bikin komponen tombol primary dengan icon di kiri, padding
-            besar, untuk CTA hero. Stack Next.js + Tailwind. Background
-            #4EBAEC, hover sedikit lebih gelap. Pakai TypeScript."
+            User: "Bikin component tombol primary dengan icon di kiri,
+            padding besar, buat CTA hero. Stack Next.js + Tailwind.
+            Background #4EBAEC, hover sedikit lebih gelap. Pake TypeScript."
 
             AI: [output yang lebih akurat dengan props icon, size, dan style]
 
-            User: "Bagus. Sekarang tambah variant 'secondary' dengan border
+            User: "Bagus. Sekarang tambahin variant 'secondary' dengan border
             putih dan background transparan."
 
             AI: [tambah variant dengan props yang konsisten]
-            ```
-        """),
+            """
+        ),
     },
     quiz=[
         q(
-            "Mana komponen utama dari prompt yang baik?",
+            "Apa tiga bahan utama prompt yang bagus?",
             [
-                "Hanya emoji",
+                "Cuma emoji",
                 "Konteks, spesifik, dan format output",
-                "Sebut nama AI-nya secara berulang",
-                "Pakai bahasa Inggris saja",
+                "Sebut nama AI-nya berulang-ulang",
+                "Pake bahasa Inggris doang",
             ],
             "B",
-            "Konteks (stack/file), spesifik (apa yang diminta), format output (cara penyajian) — itu tiga pilar prompt yang efektif.",
+            "Konteks (stack/file), spesifik (apa yang diminta), format output (gimana cara penyajiannya). Itu tiga pilarnya.",
         ),
         q(
-            "Apa yang lebih baik dilakukan saat output AI kurang sesuai?",
+            "Kalau output AI kurang sesuai, mendingan ngapain?",
             [
                 "Mulai chat baru tanpa konteks",
-                "Tulis 'salah' lalu tunggu AI menebak",
-                "Iterasi: jelaskan SPESIFIK apa yang kurang dan apa yang diharapkan",
-                "Tinggalkan AI dan tulis manual",
+                "Tulis 'salah' aja terus tunggu AI nebak",
+                "Iterasi: jelasin SPESIFIK apa yang kurang dan apa yang diharapin",
+                "Tinggalin AI, tulis manual",
             ],
             "C",
             "AI butuh feedback konkret. \"Tombolnya terlalu generic, saya butuh primary dengan icon\" jauh lebih efektif daripada \"salah\".",
@@ -580,46 +581,46 @@ LESSON_PROMPT = make_lesson(
         q(
             "Kapan sebaiknya mulai chat baru, bukan iterasi?",
             [
-                "Setiap kali",
-                "Saat AI sudah keluar topik atau ngotot di solusi yang tidak kamu mau setelah 2-3 putaran",
-                "Saat capek mengetik",
-                "Setiap pagi",
+                "Tiap kali",
+                "Kalau AI udah keluar topik atau ngotot di solusi yang gak kamu mau setelah 2-3 putaran",
+                "Pas capek ngetik",
+                "Tiap pagi",
             ],
             "B",
-            "Chat lama bisa terkontaminasi dengan asumsi salah. Mulai baru dengan prompt yang sudah dirapikan biasanya lebih efisien.",
+            "Chat lama kadang udah kena kontaminasi asumsi yang salah. Mulai baru dengan prompt yang udah dirapihin biasanya lebih efisien.",
         ),
         q(
             "Mana prompt yang LEBIH BAIK?",
             [
                 "\"Tolong fix bug.\"",
-                "\"Saya error 'Cannot read property X of undefined' di file Y baris Z saat klik login. Kode file: [paste]. Stack: Next.js + Prisma. Tolong analisis penyebab dan kasih saran perbaikan.\"",
+                "\"Saya error 'Cannot read property X of undefined' di file Y baris Z pas klik login. Kode file: [paste]. Stack: Next.js + Prisma. Tolong analisis penyebab dan kasih saran perbaikan.\"",
                 "\"Code error, gimana?\"",
                 "\"Apa salahnya?\"",
             ],
             "B",
-            "Prompt yang baik kasih: error message, lokasi, konteks tindakan user, kode terkait, stack, dan format yang kamu mau.",
+            "Prompt yang bagus kasih: pesan error, lokasinya, konteks aksi user, kode terkait, stack, dan format yang kamu mau.",
         ),
         q(
-            "Apa fungsi 'kasih peran' di prompt (misal: 'Anggap kamu reviewer senior')?",
+            "Kasih peran ke AI di prompt (contoh: 'Anggep kamu reviewer senior') itu fungsinya apa?",
             [
-                "Tidak ada fungsi, sekadar basa-basi",
-                "Membantu AI fokus ke sudut pandang yang kamu mau",
-                "Mengubah AI jadi kode robot",
-                "Dilarang oleh aturan",
+                "Gak ada fungsinya, basa-basi doang",
+                "Bantu AI fokus ke sudut pandang yang kamu mau",
+                "Ngubah AI jadi robot",
+                "Dilarang aturan",
             ],
             "B",
-            "Memberi peran membantu AI menyesuaikan tone dan kedalaman analisis. \"Reviewer senior\" akan lebih kritis dan spesifik daripada AI tanpa peran.",
+            "Kasih peran bantu AI nyesuaiin tone dan kedalaman analisisnya. \"Reviewer senior\" bakal lebih kritis daripada AI tanpa peran.",
         ),
     ],
     common_mistakes=[
-        "Prompt 'tolong fix'. AI tidak tahu apa yang harus diperbaiki tanpa konteks.",
-        "Mulai dari nol setiap kali AI kurang akurat. Lebih efisien iterasi dengan feedback spesifik.",
-        "Tidak menyebut stack. AI memilih library default yang mungkin tidak cocok dengan project-mu.",
+        "Prompt 'tolong fix'. AI gak tau apa yang harus diperbaikin.",
+        "Mulai dari nol tiap kali AI kurang akurat. Mendingan iterasi dengan feedback spesifik.",
+        "Gak nyebutin stack. AI milih library default yang mungkin gak cocok sama project kamu.",
     ],
     checkpoint=[
-        "Punya template prompt sendiri.",
-        "Bisa kasih feedback spesifik untuk minta revisi.",
-        "Tahu kapan iterasi vs kapan mulai chat baru.",
+        "Punya template prompt sendiri",
+        "Bisa kasih feedback spesifik buat minta revisi",
+        "Tau kapan iterasi vs kapan mulai chat baru",
     ],
     xp_reward=80,
 )
@@ -630,53 +631,53 @@ LESSON_PROMPT = make_lesson(
 # ─────────────────────────────────────────────────────────────────────────────
 
 PROJECT_MAPPING = make_lesson(
-    title="Mini Project — Mapping Workflow Pribadi",
+    title="Mini Project — Bikin Workflow Pribadi Kamu",
     slug="mini-project-mapping-workflow",
     order_index=4,
     read_time="60 menit",
-    summary="Susun workflow Vibe Coding pribadi sebelum bangun app pertama.",
+    summary="Susun workflow Vibe Coding pribadi sebelum mulai bangun app pertama.",
     tools=["Notion / Notes app", "Akun GitHub, Vercel, Cursor"],
     outcomes=[
         "Punya peta workflow pribadi yang jelas",
-        "Tahu posisi tiap tools dalam alur kerja",
-        "Siap mental untuk Level 1: bangun app pertama yang live",
+        "Tau posisi tiap tools di alur kerja kamu",
+        "Siap mental buat Level 1: bikin app pertama yang live",
     ],
     tldr=(
-        "Buat dokumen pribadi yang merangkum: stack pilihan, alur kerja dari "
-        "ide ke deploy, contoh prompt yang bagus, dan goal jangka pendek. "
-        "Ini akan jadi rujukan kamu di level berikutnya."
+        "Bikin dokumen pribadi yang ngerangkum: stack pilihan kamu, alur "
+        "kerja dari ide ke deploy, contoh prompt yang bagus, dan goal jangka "
+        "pendek. Ini bakal jadi rujukan kamu di level berikutnya."
     ),
     pembuka=dedent(
         """\
-        Sebelum mulai bangun, mari pastikan peta sudah jelas.
+        Sebelum mulai ngebangun, mending peta-nya udah jelas dulu.
 
-        Project ini bukan coding. Ini dokumen workflow yang akan kamu pakai berulang di level-level berikutnya.
+        Project ini bukan ngoding. Ini bikin dokumen workflow yang bakal kamu pake berulang di level-level berikutnya.
 
-        Tujuannya: kamu tidak buang waktu mikir "tools mana ya?" setiap kali mau mulai sesuatu.
+        Tujuannya: kamu gak buang waktu mikir "tools mana ya?" tiap kali mau mulai sesuatu.
         """
     ),
     penjelasan=dedent(
         """\
-        ### Outline dokumen yang dibuat
+        ### Outline dokumennya
 
-        Buat satu file di Notion atau notes app dengan struktur berikut.
+        Bikin satu file di Notion atau notes app dengan struktur ini:
 
-        - **Stack pilihan saya.** Tulis lima tools utama yang akan kamu pakai. Boleh sama dengan rekomendasi (Cursor + Claude/ChatGPT + GitHub + Vercel + Supabase), boleh disesuaikan.
-        - **Alur kerja saya dari ide ke deploy.** Tulis langkah-langkah dalam list bernomor. Misal: 1) tulis ide, 2) draft prompt awal, 3) generate UI di V0, dst.
-        - **Template prompt favorit saya.** Salin template dari lesson sebelumnya, sesuaikan dengan gaya kamu.
-        - **Goal 30 hari ke depan.** Satu app yang ingin kamu bangun. Tulis judul, user-nya siapa, masalah yang dipecahkan, dan satu fitur paling penting.
-        - **Daftar tools yang TIDAK akan saya install dulu.** Penting supaya kamu punya batas. "Saya akan tahan godaan install Replit, Railway, atau Lovable sampai saya butuh."
+        - **Stack pilihan saya** — tulis lima tools utama yang bakal kamu pake. Boleh sama dengan rekomendasi (Cursor + Claude/ChatGPT + GitHub + Vercel + Supabase), boleh juga disesuaiin.
+        - **Alur kerja saya dari ide ke deploy** — tulis langkah-langkah dalam list bernomor. Contoh: 1) tulis ide, 2) draft prompt awal, 3) generate UI di V0, dst.
+        - **Template prompt favorit saya** — salin template dari lesson sebelumnya, sesuaiin sama gaya kamu.
+        - **Goal 30 hari ke depan** — satu app yang pengen kamu bikin. Tulis judulnya, user-nya siapa, masalah yang dipecahin, dan satu fitur paling penting.
+        - **Daftar tools yang BELUM mau saya install dulu** — penting biar kamu punya batas. "Saya bakal nahan diri install Replit, Railway, atau Lovable sampai memang butuh."
 
         ### Kenapa ini penting
 
-        Tanpa dokumen ini, kamu akan terombang-ambing antar tutorial. Tiap tutorial punya stack berbeda. Kalau kamu ikuti semua, kamu tidak akan menyelesaikan apapun.
+        Tanpa dokumen ini, kamu bakal terombang-ambing antara tutorial. Tiap tutorial pake stack yang beda. Kalau kamu ikutin semuanya, gak ada yang bakal selesai.
 
-        Dokumen ini jadi alat **fokus**. Ketika ragu, kembalikan ke dokumen.
+        Dokumen ini jadi alat **fokus**. Pas ragu, balik aja ke dokumen ini.
         """
     ),
     contoh_code_md=dedent(
         """\
-        Contoh isi dokumen:
+        Contoh isinya kayak gini:
 
         ```markdown
         # Workflow Vibe Coding Pribadi — [Nama Saya]
@@ -688,54 +689,54 @@ PROJECT_MAPPING = make_lesson(
         - Vercel (deploy frontend)
         - Supabase (database + auth)
 
-        ## Alur kerja standar saya
-        1. Tulis ide singkat di Notes (1 paragraf).
-        2. Buat prompt awal pakai template, kirim ke Claude untuk plan.
-        3. Setup project Next.js + Tailwind di Cursor.
-        4. Generate komponen UI di V0 saat butuh, salin ke project.
-        5. Iterasi di Cursor (⌘K) untuk modifikasi.
-        6. Push ke GitHub setiap fitur selesai.
+        ## Alur kerja standar
+        1. Tulis ide singkat di Notes (1 paragraf)
+        2. Bikin prompt awal pake template, kirim ke Claude buat planning
+        3. Setup project Next.js + Tailwind di Cursor
+        4. Generate component UI di V0 saat butuh, salin ke project
+        5. Iterate di Cursor (⌘K) buat modifikasi
+        6. Push ke GitHub tiap fitur selesai
         7. Vercel auto-deploy. Cek di HP.
 
         ## Template prompt favorit
         [salin template dari lesson 3]
 
         ## Goal 30 hari
-        - Project: "Habit Tracker untuk Pelajar".
-        - User: pelajar SMA yang mau bangun rutinitas belajar.
-        - Masalah: gampang lupa rutinitas baru.
-        - Fitur paling penting: list rutinitas + check-in harian + streak.
+        - Project: "Habit Tracker buat Pelajar"
+        - User: pelajar SMA yang mau bangun rutinitas belajar
+        - Masalah: gampang lupa rutinitas baru
+        - Fitur paling penting: list rutinitas + check-in harian + streak
 
-        ## Tools yang TIDAK saya install dulu
-        - Replit, Railway, Lovable, Bolt, Firebase.
+        ## Tools yang BELUM mau saya install
+        - Replit, Railway, Lovable, Bolt, Firebase
         ```
         """
     ),
     practice=(
-        "Buat dokumen di atas hari ini. Tidak harus panjang. Cukup jujur dan "
-        "spesifik. Simpan di tempat yang gampang kamu buka, misal Notion "
-        "halaman bookmarked atau file Markdown di GitHub repo pribadi."
+        "Bikin dokumen di atas hari ini juga. Gak harus panjang. Yang penting "
+        "jujur dan spesifik. Simpen di tempat yang gampang dibuka — Notion "
+        "halaman bookmarked atau file Markdown di repo GitHub pribadi."
     ),
     fix_error={
         "language": "text",
         "broken_code": dedent(
             """\
-            "Stack saya: pakai apa saja yang lagi trending. Goal: bikin app
+            "Stack saya: pake apa aja yang lagi trending. Goal: bikin app
             keren. Workflow: improvisasi."
             """
         ),
-        "hint": "Komitmen yang vague tidak akan menjaga fokus saat tantangan datang.",
+        "hint": "Komitmen yang vague gak bakal jaga fokus pas tantangan dateng.",
         "answer_explanation": dedent(
             """\
-            Kesalahan: Tidak ada keputusan konkret. Saat eksekusi, kamu akan kembali bingung.
+            Salahnya: gak ada keputusan konkret. Pas eksekusi, kamu balik bingung lagi.
 
-            Yang benar: keputusan eksplisit di tiap bagian. Stack disebutkan satu per satu. Goal punya user, masalah, fitur. Workflow punya step bernomor.
+            Yang bener: keputusan eksplisit di tiap bagian. Stack disebutin satu-satu. Goal punya user, masalah, fitur. Workflow ada step bernomor.
             """
         ),
         "fixed_code": dedent(
             """\
             Stack: Cursor, Claude, GitHub, Vercel, Supabase.
-            Goal 30 hari: Habit Tracker untuk pelajar SMA. Fitur paling
+            Goal 30 hari: Habit Tracker buat pelajar SMA. Fitur paling
             penting: list rutinitas + check-in harian + streak.
             Workflow: 1) draft ide, 2) prompt awal, 3) setup project,
             4) generate UI, 5) iterasi, 6) deploy, 7) test di HP.
@@ -744,51 +745,51 @@ PROJECT_MAPPING = make_lesson(
     },
     quiz=[
         q(
-            "Apa tujuan utama Mini Project Level 0 ini?",
+            "Tujuan utama Mini Project Level 0 ini apa?",
             [
                 "Belajar coding dasar",
-                "Membuat dokumen workflow pribadi sebagai alat fokus dan rujukan",
+                "Bikin dokumen workflow pribadi sebagai alat fokus dan rujukan",
                 "Deploy app pertama",
                 "Bikin database",
             ],
             "B",
-            "Project ini meta — bukan coding, tapi menyiapkan peta agar level berikutnya lebih efektif.",
+            "Project ini meta — bukan ngoding, tapi nyiapin peta biar level berikutnya lebih efektif.",
         ),
         q(
-            "Bagian 'tools yang TIDAK akan saya install dulu' itu fungsinya apa?",
+            "Bagian 'tools yang BELUM mau saya install' fungsinya apa?",
             [
-                "Tidak penting, hanya basa-basi",
-                "Menjaga fokus dan mencegah tools-fatigue",
-                "Untuk dipamerkan",
-                "Sebagai daftar belanja",
+                "Gak penting, basa-basi doang",
+                "Jaga fokus dan cegah tools-fatigue",
+                "Buat dipamerin",
+                "Daftar belanja",
             ],
             "B",
-            "Punya batas eksplisit menjaga kamu dari godaan install tools baru tiap kali ada hype.",
+            "Punya batas eksplisit jaga kamu dari godaan install tools baru tiap kali ada hype.",
         ),
         q(
-            "Apa karakteristik 'goal 30 hari' yang baik?",
+            "'Goal 30 hari' yang bagus itu kayak gimana?",
             [
-                "Vague seperti 'bikin app keren'",
+                "Vague kayak 'bikin app keren'",
                 "Spesifik: punya user, masalah, dan satu fitur paling penting",
-                "Sangat besar seperti 'clone Instagram'",
+                "Sangat besar kayak 'clone Instagram'",
                 "Tanpa target waktu",
             ],
             "B",
-            "Goal yang spesifik bisa dieksekusi. Goal vague atau terlalu besar bikin kamu gampang menyerah.",
+            "Goal yang spesifik bisa dieksekusi. Goal vague atau yang kegedean bikin gampang nyerah.",
         ),
         q(
             "Kenapa 'alur kerja dari ide ke deploy' perlu ditulis?",
             [
-                "Supaya kelihatan profesional",
-                "Supaya kamu tidak buang waktu mikir step yang sama berulang setiap mulai project",
-                "Supaya bisa dipajang di GitHub",
-                "Tidak perlu sebenarnya",
+                "Biar kelihatan profesional",
+                "Biar kamu gak buang waktu mikir step yang sama berulang tiap mulai project",
+                "Buat dipajang di GitHub",
+                "Gak perlu sebenernya",
             ],
             "B",
-            "Alur yang sudah disepakati dengan diri sendiri menghemat decision fatigue. Tinggal jalan.",
+            "Alur yang udah disepakati sama diri sendiri ngehemat decision fatigue. Tinggal jalan.",
         ),
         q(
-            "Apa yang BUKAN bagian dari dokumen workflow ini?",
+            "Mana yang BUKAN bagian dari dokumen workflow ini?",
             [
                 "Stack pilihan",
                 "Template prompt favorit",
@@ -800,14 +801,14 @@ PROJECT_MAPPING = make_lesson(
         ),
     ],
     common_mistakes=[
-        "Skip lesson ini karena 'bukan coding'. Padahal foundation untuk level berikutnya.",
-        "Stack ditulis terlalu banyak. Tujuannya minimal, bukan komprehensif.",
-        "Goal terlalu besar. 'Clone Instagram dalam 30 hari' tidak realistis.",
+        "Skip lesson ini karena 'bukan ngoding'. Padahal ini fondasi buat level berikutnya.",
+        "Stack ditulis kebanyakan. Tujuannya minimal, bukan komplit.",
+        "Goal yang kegedean. 'Clone Instagram dalam 30 hari' itu gak realistis.",
     ],
     checkpoint=[
-        "Punya dokumen workflow pribadi yang bisa dibuka dengan cepat.",
-        "Stack jelas, terbatas pada lima tools.",
-        "Punya satu goal 30 hari yang spesifik.",
+        "Punya dokumen workflow pribadi yang gampang dibuka",
+        "Stack jelas, terbatas di lima tools",
+        "Punya satu goal 30 hari yang spesifik",
     ],
     xp_reward=120,
     is_project=True,
@@ -822,16 +823,16 @@ LEVEL = make_level(
     number=0,
     slug="mindset-orientation",
     title="Mindset & Orientation",
-    subtitle="Pahami dunia AI coding sebelum mulai",
+    subtitle="Pahami dulu sebelum nyentuh tools",
     description=(
-        "Sebelum menyentuh tools, pahami dulu apa itu Vibe Coding, bagaimana "
-        "AI coding bekerja, dan apa yang realistis dan tidak. Tutup level ini "
-        "dengan dokumen workflow pribadi sebagai peta untuk level berikutnya."
+        "Sebelum buka Cursor atau Claude, pahami dulu Vibe Coding itu apa, "
+        "AI coding kerjanya gimana, dan apa yang realistis. Tutup level ini "
+        "dengan dokumen workflow pribadi sebagai peta buat level berikutnya."
     ),
     duration="~3 hari",
     difficulty="Pemula",
     accent_color="from-violet-500/30 to-fuchsia-500/10",
-    mini_project="Mapping Workflow Pribadi",
+    mini_project="Bikin Workflow Pribadi Kamu",
     tags=["AI", "Mindset", "Workflow", "Tools"],
     lessons=[LESSON_APA_ITU, LESSON_TOOLS, LESSON_PROMPT, PROJECT_MAPPING],
 )

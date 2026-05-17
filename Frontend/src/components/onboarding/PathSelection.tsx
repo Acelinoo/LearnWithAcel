@@ -32,7 +32,7 @@ type PathOption = {
 const options: PathOption[] = [
   {
     id: "vibe",
-    href: "/roadmap/vibe",
+    href: "/jalur/vibe",
     icon: Bot,
     badge: "AI Assisted",
     badgeClass: "border-sky-400/30 bg-sky-400/10 text-sky-300",
@@ -48,7 +48,7 @@ const options: PathOption[] = [
   },
   {
     id: "manual",
-    href: "/roadmap",
+    href: "/jalur/manual",
     icon: Code2,
     badge: "Fundamental",
     badgeClass: "border-cyan-400/30 bg-cyan-400/10 text-cyan-300",
@@ -141,7 +141,7 @@ export default function PathSelection() {
               </ul>
 
               <div className="relative mt-6 inline-flex items-center gap-2 rounded-full border border-border bg-black/30 px-4 py-2 text-[13px] font-medium transition-colors group-hover:border-accent/40 group-hover:bg-accent/10 group-hover:text-accent-hover">
-                Lihat roadmap
+                Mulai dari fundamentals
                 <ArrowRight
                   size={13}
                   className="transition-transform group-hover:translate-x-0.5"

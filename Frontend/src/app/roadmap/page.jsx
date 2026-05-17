@@ -12,6 +12,7 @@ import Reveal from "@/components/ui/Reveal";
 import LevelViewerBadge from "@/components/ui/LevelViewerBadge";
 import LessonViewerBadge from "@/components/ui/LessonViewerBadge";
 import CategoryTabs from "@/components/ui/CategoryTabs";
+import ViewTracker from "@/components/ui/ViewTracker";
 import { listCategories, getRoadmap } from "@/lib/api/content";
 import {
   aggregateLevels,
@@ -211,6 +212,8 @@ export default async function RoadmapPage() {
 
   return (
     <div className="container-page py-16">
+      <ViewTracker entityType="page" entityId="roadmap" />
+
       <Reveal>
         <span className="section-eyebrow">
           <GraduationCap size={12} />

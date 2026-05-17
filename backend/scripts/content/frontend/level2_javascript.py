@@ -22,72 +22,74 @@ LESSON_JS_BASICS = make_lesson(
     slug="dasar-javascript",
     order_index=1,
     read_time="12 menit",
-    summary="Variable, tipe data, operator, conditional, dan template literal.",
+    summary="Variable, tipe data, operator, dan percabangan.",
     tools=["Browser modern", "VS Code", "DevTools (F12) → Console"],
     outcomes=[
-        "Menulis variable yang aman dengan `const` dan `let`",
-        "Memakai operator dan template literal",
-        "Membuat percabangan dengan `if/else` dan ternary",
+        "Bisa nulis variable yang aman pake `const` dan `let`",
+        "Bisa pake operator dan template literal",
+        "Bisa bikin percabangan dengan `if/else` dan ternary",
     ],
     tldr=(
-        "JavaScript itu sistem listriknya halaman. `const` default, `let` "
-        "kalau berubah. Selalu `===` (triple equals). Pakai backtick untuk "
-        "template literal."
+        "JavaScript itu yang bikin halaman bisa diklik dan bergerak. Default "
+        "pake `const`. Pake `let` cuma kalau memang berubah. Selalu pake "
+        "`===` (triple equals). Gabung string pake backtick `${...}`."
     ),
     pembuka=dedent(
         """\
-        HTML bikin struktur. CSS bikin cantik. Tapi kalau mau halamanmu bisa diklik, hitung, atau bergerak — kamu butuh JavaScript.
+        HTML bikin struktur. CSS bikin cantik. Tapi kalau mau halaman kamu bisa diklik, ngitung sesuatu, atau ngegerakin tombol — kamu butuh JavaScript.
 
-        JavaScript itu seperti sistem listrik rumah. Dia yang bikin saklar nyala, kipas berputar, dan pintu garasi bergerak.
+        Ibaratin gini: HTML itu kerangka rumah, CSS itu catnya, JavaScript itu yang bikin saklar lampu nyala dan kipas berputar.
 
-        Kabar baiknya: JavaScript jalan langsung di browser. Tidak perlu install apapun untuk mulai.
+        Kabar baiknya: JS jalan langsung di browser. Gak perlu install apa-apa buat mulai.
         """
     ),
     penjelasan=dedent(
         """\
-        ### Cara pakai JavaScript
+        ### Cara pake JavaScript
 
-        JS bisa ditulis di file `.js` terpisah lalu disambungkan ke HTML pakai `<script src="app.js"></script>`. Atau langsung di HTML untuk percobaan kecil.
+        JS bisa ditulis di file `.js` terpisah, terus disambungin ke HTML pake `<script src="app.js"></script>`. Atau langsung di HTML buat coba-coba kecil.
 
-        Untuk debug, pakai `console.log()`. Hasilnya muncul di browser console (Tekan F12 → tab Console). Ini teman terbaikmu saat belajar.
+        Buat debug, pake `console.log()`. Hasilnya muncul di browser console (Tekan F12 → tab Console). Ini bakal jadi temen terbaik kamu pas belajar.
 
         ### Variable — wadah data
 
-        Anggap variable itu kotak berlabel untuk menyimpan sesuatu.
+        Anggep variable itu kotak yang ada labelnya, buat nyimpen sesuatu.
 
-        - `const` untuk nilai yang tidak akan berubah. **Default pakai ini.**
-        - `let` untuk nilai yang memang akan berubah.
-        - `var` warisan jaman dulu, hindari.
+        - `const` — buat nilai yang gak bakal berubah. **Default pake ini.**
+        - `let` — buat nilai yang emang bakal berubah.
+        - `var` — peninggalan jaman dulu, hindarin.
 
-        Aturan praktis: default `const`, pakai `let` cuma kalau memang harus berubah.
+        Aturan praktisnya: default `const`, pake `let` cuma kalau memang harus berubah.
 
         ### Tipe data dasar
 
-        - `string` untuk teks, ditulis dengan kutip: `"Halo"` atau `'Halo'`.
-        - `number` untuk angka: `42`, `3.14`.
-        - `boolean` untuk true/false.
-        - `null` artinya "ada, tapi sengaja kosong".
-        - `undefined` artinya "belum diisi".
-        - `array` untuk list: `[1, 2, 3]`.
-        - `object` untuk struktur key-value: `{ nama: "Acel", umur: 22 }`.
+        - `string` — buat teks, ditulis pake kutip: `"Halo"` atau `'Halo'`
+        - `number` — buat angka: `42`, `3.14`
+        - `boolean` — buat true/false
+        - `null` — artinya "ada, tapi sengaja kosong"
+        - `undefined` — artinya "belum diisi"
+        - `array` — buat list: `[1, 2, 3]`
+        - `object` — buat struktur key-value: `{ nama: "Acel", umur: 22 }`
 
-        ### Operator penting
+        ### Operator yang penting
 
-        Operator matematika seperti biasa: `+`, `-`, `*`, `/`. Tambah satu yang sering muncul: `%` (sisa bagi, modulo).
+        Operator matematika kayak biasa: `+`, `-`, `*`, `/`. Tambah satu yang sering muncul: `%` (sisa bagi, modulo).
 
-        Untuk perbandingan, **selalu pakai `===` (triple equals)**, jangan `==` (double). Yang triple ngecek nilai DAN tipe. Yang double sering kasih hasil mengejutkan.
+        Buat ngebandingin, **selalu pake `===` (triple equals)**, jangan `==` (double). Yang triple ngecek nilai DAN tipe. Yang double sering kasih hasil mengejutkan.
 
         Operator logika: `&&` (AND), `||` (OR), `!` (NOT).
 
         ### Template literal
 
-        Daripada gabung string pakai `+`, pakai backtick (`` ` ``). Kamu bisa sisipkan variable dengan `${...}`.
+        Daripada gabung string pake `+`, mendingan pake backtick (`` ` ``). Kamu bisa nyisipin variable pake `${...}`.
 
-        Backtick ada di pojok kiri atas keyboard, di bawah Esc. Lebih enak baca, dan support baris baru.
+        Backtick itu ada di pojok kiri atas keyboard, di bawah Esc. Lebih enak dibaca, dan support baris baru juga.
 
         ### Conditional
 
-        `if/else` untuk percabangan. Kalau cuma butuh dua opsi pendek, pakai ternary: `kondisi ? hasil_true : hasil_false`.
+        `if/else` buat percabangan. Kalau cuma butuh dua opsi pendek, pake ternary: `kondisi ? hasil_true : hasil_false`.
+
+        Banyak pemula awal-awal suka bingung pas liat `===` vs `==`. Aturannya simpel: selalu pake `===`. Itu satu kebiasaan yang bakal nyelametin kamu dari banyak bug aneh.
         """
     ),
     contoh_code_md=dedent(
@@ -128,8 +130,8 @@ LESSON_JS_BASICS = make_lesson(
         """
     ),
     practice=(
-        "Buat file `app.js` yang berisi variable `namaKamu` dan `tahunLahir`. "
-        "Hitung umur dengan asumsi tahun ini 2026. Tampilkan ke console pakai "
+        "Bikin file `app.js` isinya variable `namaKamu` dan `tahunLahir`. "
+        "Itung umur dengan asumsi tahun ini 2026. Tampilin ke console pake "
         "template literal: `Halo, saya {nama} berumur {umur} tahun.`"
     ),
     fix_error={
@@ -146,15 +148,15 @@ LESSON_JS_BASICS = make_lesson(
             """
         ),
         "hint": (
-            "Empat masalah: tutupan kutip string, operator assign vs operator "
-            "compare, gabung string yang kurang `+`, dan akhir baris."
+            "Empat masalah: tutupan kutip string, operator yang salah dipake, "
+            "gabung string yang kurang `+`, sama akhir baris."
         ),
         "answer_explanation": dedent(
             """\
             1. `'Acel;` kurang kutip penutup. Ganti jadi `"Acel"` atau `'Acel'`.
-            2. `const umur == 22` salah operator. Untuk assign pakai `=` (single), bukan `==`.
-            3. `"Nama: " + nama + ", umur: " umur` kurang `+` antara `", umur: "` dan `umur`.
-            4. `console.log("Dewasa")` di blok if sebaiknya diakhiri `;` agar konsisten.
+            2. `const umur == 22` salah operator. Buat assign pake `=` (single), bukan `==`.
+            3. `"Nama: " + nama + ", umur: " umur` kurang `+` antara `", umur: "` sama `umur`.
+            4. `console.log("Dewasa")` di blok if mendingan diakhirin `;` biar konsisten.
             """
         ),
         "fixed_code": dedent(
@@ -171,25 +173,25 @@ LESSON_JS_BASICS = make_lesson(
     },
     quiz=[
         q(
-            "Mana yang paling tepat untuk variable yang nilainya tidak akan berubah?",
+            "Mana yang paling tepat buat variable yang nilainya gak bakal berubah?",
             ["`var`", "`let`", "`const`", "`static`"],
             "C",
-            "`const` mengunci variable supaya tidak bisa di-assign ulang. Default pakai `const`, pakai `let` kalau memang harus berubah.",
+            "`const` ngunci variable biar gak bisa di-assign ulang. Default pake `const`, pake `let` kalau memang harus berubah.",
         ),
         q(
             "Apa hasil dari `5 === \"5\"`?",
             ["`true`", "`false`", "`\"5\"`", "Error"],
             "B",
-            "`===` mengecek nilai DAN tipe. Number 5 dan string \"5\" tipe-nya beda, jadi `false`.",
+            "`===` ngecek nilai DAN tipe. Number 5 sama string \"5\" itu tipenya beda, jadi `false`.",
         ),
         q(
-            "Apa output dari kode `const a = 4; const b = \"2\"; console.log(a + b);`?",
+            "Apa output dari `const a = 4; const b = \"2\"; console.log(a + b);`?",
             ["`6`", "`42`", "`\"42\"`", "Error"],
             "C",
-            "Kalau salah satu sisi `+` adalah string, JavaScript ubah yang lain jadi string lalu menggabungkan. Hasilnya string `\"42\"`.",
+            "Kalau salah satu sisi `+` itu string, JavaScript ngubah yang lain jadi string juga, terus digabung. Hasilnya string `\"42\"`.",
         ),
         q(
-            "Mana cara yang BENAR menulis template literal?",
+            "Mana cara yang BENER nulis template literal?",
             [
                 "`\"Halo $nama\"`",
                 "`'Halo $nama'`",
@@ -197,25 +199,25 @@ LESSON_JS_BASICS = make_lesson(
                 "`\"Halo {nama}\"`",
             ],
             "C",
-            "Template literal memakai backtick (`` ` ``), bukan kutip biasa, dan placeholder ditulis `${...}`.",
+            "Template literal pake **backtick** (`` ` ``), bukan kutip biasa, dan placeholder ditulis `${...}`.",
         ),
         q(
             "Apa yang dicetak ke console dari `const status = 50 >= 60 ? \"Lulus\" : \"Coba lagi\"; console.log(status);`?",
             ["`Lulus`", "`Coba lagi`", "`60`", "`undefined`"],
             "B",
-            "Ternary: `kondisi ? hasil_true : hasil_false`. `50 >= 60` itu false, jadi yang dijalankan adalah `\"Coba lagi\"`.",
+            "Ternary: `kondisi ? hasil_true : hasil_false`. `50 >= 60` itu false, jadi yang dijalanin `\"Coba lagi\"`.",
         ),
     ],
     common_mistakes=[
-        "Pakai `==` instead of `===`. Bisa kasih hasil mengejutkan, contoh `0 == false` itu `true`.",
+        "Pake `==` bukan `===`. Bisa kasih hasil mengejutkan, contohnya `0 == false` itu `true`.",
         "Lupa kutip penutup string. Sisa baris jadi error parsing.",
-        "Tertukar `=` (assign) dan `===` (compare).",
+        "Ketuker `=` (assign) sama `===` (compare).",
     ],
     checkpoint=[
-        "Tahu kapan pakai `const` vs `let`.",
-        "Bisa baca tipe data: string, number, boolean, array, object.",
-        "Selalu pakai `===` untuk perbandingan.",
-        "Bisa pakai template literal untuk gabung string + variable.",
+        "Tau kapan pake `const` vs `let`",
+        "Bisa baca tipe data: string, number, boolean, array, object",
+        "Selalu pake `===` buat ngebandingin",
+        "Bisa pake template literal buat gabung string + variable",
     ],
     xp_reward=80,
 )
@@ -233,29 +235,29 @@ LESSON_JS_FUNCTION = make_lesson(
     summary="Function modern, scope, closure, dan higher-order function.",
     tools=["Browser modern", "VS Code", "Console"],
     outcomes=[
-        "Menulis function dengan tiga gaya berbeda",
-        "Memahami scope dan closure",
-        "Memakai `map`, `filter`, dan `reduce` di array",
+        "Bisa nulis function dalam tiga gaya berbeda",
+        "Paham scope dan closure",
+        "Bisa pake `map`, `filter`, dan `reduce` di array",
     ],
     tldr=(
-        "Function itu mesin kecil yang terima input dan kembalikan hasil. "
-        "Default pakai arrow function. Scope = wilayah hidup variable. "
+        "Function itu mesin kecil yang nerima input dan ngembaliin hasil. "
+        "Default pake arrow function. Scope = wilayah hidup variable. "
         "`map`/`filter`/`reduce` itu trio penting di array."
     ),
     pembuka=dedent(
         """\
-        Function itu mesin kecil yang menerima input, ngerjain sesuatu, lalu mengembalikan hasil.
+        Function itu mesin kecil yang nerima input, ngerjain sesuatu, terus ngembaliin hasil.
 
-        Dengan function, kamu bisa nulis logika sekali lalu pakai berkali-kali.
+        Sama function, kamu bisa nulis logika sekali, terus pake berkali-kali.
 
-        Tanpa function, kode kamu cepat berantakan karena harus copy-paste logika yang sama berulang.
+        Tanpa function, kode kamu cepet berantakan. Kamu bakal copy-paste logika yang sama berulang-ulang.
         """
     ),
     penjelasan=dedent(
         """\
-        ### Tiga gaya menulis function
+        ### Tiga gaya nulis function
 
-        Ketiganya melakukan hal yang sama. Aturan praktis: default pakai arrow function, kecuali butuh akses `this` di method object.
+        Tiganya ngelakuin hal yang sama. Aturan praktisnya: default pake arrow function, kecuali butuh akses `this` di method object.
 
         - **Function declaration:** `function sapa(nama) { return ... }`
         - **Function expression:** `const sapa = function(nama) { return ... }`
@@ -263,29 +265,31 @@ LESSON_JS_FUNCTION = make_lesson(
 
         ### Parameter, return, default
 
-        Parameter adalah input yang masuk. Return adalah output yang keluar. Kalau function tidak punya `return`, dia mengembalikan `undefined`.
+        Parameter itu input yang masuk. Return itu output yang keluar. Kalau function gak punya `return`, dia ngembaliin `undefined`.
 
-        Default parameter membuat function tetap jalan walau argumen tidak diberikan, contoh `(nama = "Teman") => ...`.
+        Default parameter bikin function tetep jalan walau argumen gak dikasih, contohnya `(nama = "Teman") => ...`.
 
         ### Scope — wilayah kekuasaan variable
 
-        Variable yang dibuat di dalam function tidak bisa diakses dari luar. Tapi function yang ada di dalam function lain bisa akses variable di luarnya. Ini namanya **closure**.
+        Variable yang dibikin di dalem function gak bisa diakses dari luar. Tapi function yang ada di dalem function lain bisa akses variable di luarnya. Ini namanya **closure**.
 
         ### Closure dengan analogi
 
-        Bayangkan setiap function adalah orang yang bawa tas. Saat function dibuat, dia masukin variable di sekitarnya ke dalam tas. Walau function tersebut "pindah lokasi", isi tasnya tetap dibawa.
+        Anggep tiap function itu orang yang bawa tas. Pas function dibuat, dia masukin variable di sekitarnya ke dalem tas. Walau function-nya "pindah lokasi", isi tasnya tetep dibawa.
 
-        Contohnya saat kamu bikin counter atau private state — closure yang menjaga datanya.
+        Contohnya pas kamu bikin counter atau private state — closure yang jaga datanya.
+
+        Banyak pemula bingung di bagian ini. Santai aja — kamu bakal sering ketemu pas pake React nanti, dan saat itu konsep ini bakal lebih masuk akal.
 
         ### Higher-order function
 
-        Function yang menerima function lain sebagai argumen. Tiga teman karib di JavaScript modern:
+        Function yang nerima function lain sebagai argumen. Tiga teman karib di JavaScript modern:
 
-        - `map` mengubah setiap elemen array.
-        - `filter` memilih elemen yang sesuai kondisi.
-        - `reduce` menggabungkan semua elemen jadi satu nilai.
+        - `map` — ngubah tiap elemen array
+        - `filter` — milih elemen yang sesuai kondisi
+        - `reduce` — ngegabungin semua elemen jadi satu nilai
 
-        Ketiganya menggantikan banyak loop manual dan bikin kode lebih ringkas.
+        Tiganya ngegantiin banyak loop manual dan bikin kode lebih ringkas.
         """
     ),
     contoh_code_md=dedent(
@@ -330,10 +334,10 @@ LESSON_JS_FUNCTION = make_lesson(
         """
     ),
     practice=(
-        "Buat function `hitungTotal(harga, jumlah, diskon)` yang menghitung "
-        "harga × jumlah lalu kurangi dengan persentase diskon (`0.1` untuk 10%). "
-        "Return total akhir. Panggil dengan `hitungTotal(50000, 3, 0.2)` — "
-        "hasil yang diharapkan: 120000."
+        "Bikin function `hitungTotal(harga, jumlah, diskon)` yang ngitung "
+        "harga × jumlah, terus dikurangin pake persentase diskon (`0.1` buat "
+        "10%). Return total akhir. Panggil pake `hitungTotal(50000, 3, 0.2)` "
+        "— hasil yang diharapin: 120000."
     ),
     fix_error={
         "language": "js",
@@ -353,12 +357,12 @@ LESSON_JS_FUNCTION = make_lesson(
         ),
         "hint": (
             "Function declaration butuh kurung kurawal pembuka. Arrow function "
-            "dengan `{}` butuh kata kunci eksplisit untuk mengembalikan nilai."
+            "dengan `{}` butuh kata kunci eksplisit buat ngembaliin nilai."
         ),
         "answer_explanation": dedent(
             """\
             1. `function sapa(nama)` kurang `{` setelah parameter.
-            2. Arrow function `(a, b) => { a + b }` tidak return apapun. Saat pakai `{}`, kamu wajib tulis `return`. Atau hilangkan `{}` agar return implisit.
+            2. Arrow function `(a, b) => { a + b }` gak return apa-apa. Pas pake `{}`, kamu wajib nulis `return`. Atau ilangin `{}`-nya biar return implisit.
             """
         ),
         "fixed_code": dedent(
@@ -381,21 +385,21 @@ LESSON_JS_FUNCTION = make_lesson(
     },
     quiz=[
         q(
-            "Apa hasil dari `add(2, 3)` jika `const add = (a, b) => a + b;`?",
+            "Apa hasil `add(2, 3)` kalau `const add = (a, b) => a + b;`?",
             ["`undefined`", "`5`", "`\"23\"`", "Error"],
             "B",
             "Arrow function tanpa kurung kurawal otomatis return ekspresi setelah `=>`.",
         ),
         q(
-            "Apa beda `(a) => { a + 1 }` dengan `(a) => a + 1`?",
+            "Apa beda `(a) => { a + 1 }` sama `(a) => a + 1`?",
             [
-                "Tidak ada beda",
-                "Yang pertama tidak return apapun (return undefined). Yang kedua return `a + 1`.",
-                "Yang pertama lebih cepat",
+                "Gak ada bedanya",
+                "Yang pertama gak return apa-apa (return undefined). Yang kedua return `a + 1`",
+                "Yang pertama lebih cepet",
                 "Yang pertama syntax salah",
             ],
             "B",
-            "Saat pakai `{}`, kamu wajib tulis `return` kalau mau mengembalikan nilai. Tanpa `{}`, ekspresi setelah `=>` otomatis di-return.",
+            "Pas pake `{}`, kamu wajib nulis `return` kalau mau ngembaliin nilai. Tanpa `{}`, ekspresi setelah `=>` otomatis di-return.",
         ),
         q(
             "Apa output dari `function tampil() { const pesan = \"Halo\"; } tampil(); console.log(pesan);`?",
@@ -406,31 +410,31 @@ LESSON_JS_FUNCTION = make_lesson(
                 "`null`",
             ],
             "C",
-            "Variable `pesan` cuma hidup di dalam scope function. Di luar function dia tidak ada.",
+            "Variable `pesan` cuma hidup di dalem scope function. Di luar function dia gak ada.",
         ),
         q(
             "Apa hasil `[1,2,3,4].filter(n => n > 2)`?",
             ["`[1, 2, 3, 4]`", "`[3, 4]`", "`[1, 2]`", "`2`"],
             "B",
-            "`filter` mengembalikan array berisi elemen yang lulus kondisi. Cuma 3 dan 4 yang lebih besar dari 2.",
+            "`filter` ngembaliin array yang isinya elemen yang lulus kondisi. Cuma 3 sama 4 yang lebih gede dari 2.",
         ),
         q(
             "Apa hasil `[1,2,3,4].reduce((acc, n) => acc + n, 0)`?",
             ["`0`", "`4`", "`10`", "`[1,2,3,4]`"],
             "C",
-            "`reduce` menggabungkan semua elemen jadi satu nilai. Mulai dari 0, lalu tambahkan: 0+1+2+3+4 = 10.",
+            "`reduce` ngegabungin semua elemen jadi satu nilai. Mulai dari 0, terus ditambahin: 0+1+2+3+4 = 10.",
         ),
     ],
     common_mistakes=[
-        "Pakai arrow function `(a) => { a + 1 }` lalu heran kenapa hasilnya `undefined`. Pakai `return` atau hilangkan `{}`.",
-        "Tertukar parameter dan argumen. Parameter adalah nama di definisi function. Argumen adalah nilai yang dikirim saat memanggil.",
-        "Mencoba akses variable yang dibuat di dalam function dari luar. Itu di luar scope.",
+        "Pake arrow function `(a) => { a + 1 }` terus heran kenapa hasilnya `undefined`. Pake `return` atau ilangin `{}`.",
+        "Ketuker parameter sama argumen. Parameter itu nama di definisi function. Argumen itu nilai yang dikirim pas manggil.",
+        "Coba akses variable yang dibikin di dalem function dari luar. Itu di luar scope.",
     ],
     checkpoint=[
-        "Bisa menulis function dalam tiga gaya.",
-        "Tahu kapan butuh `return` eksplisit di arrow function.",
-        "Bisa pakai `map`, `filter`, `reduce` di kasus sederhana.",
-        "Paham apa itu scope dan kenapa closure berguna.",
+        "Bisa nulis function dalam tiga gaya",
+        "Tau kapan butuh `return` eksplisit di arrow function",
+        "Bisa pake `map`, `filter`, `reduce` di kasus sederhana",
+        "Paham apa itu scope dan kenapa closure berguna",
     ],
     xp_reward=100,
 )
@@ -441,80 +445,82 @@ LESSON_JS_FUNCTION = make_lesson(
 # ─────────────────────────────────────────────────────────────────────────────
 
 LESSON_JS_DOM = make_lesson(
-    title="DOM Manipulation",
+    title="DOM Manipulation — Bikin Halaman Bisa Berubah",
     slug="dom-manipulation",
     order_index=3,
     read_time="14 menit",
-    summary="Memilih elemen, mengubah konten, dan merespons aksi user.",
+    summary="Milih elemen, ngubah konten, dan ngerespon aksi user.",
     tools=["Browser modern", "VS Code", "DevTools (Console + Elements)"],
     outcomes=[
-        "Memilih elemen dengan `querySelector`",
-        "Mengubah teks dan style dari JavaScript",
-        "Merespons klik, input, dan submit dengan event listener",
-        "Membuat dan menghapus elemen secara dinamis",
+        "Bisa milih elemen pake `querySelector`",
+        "Bisa ngubah teks dan style dari JavaScript",
+        "Bisa ngerespon klik, input, dan submit pake event listener",
+        "Bisa bikin dan hapus elemen secara dinamis",
     ],
     tldr=(
-        "DOM = peta halaman yang bisa diubah JavaScript. Pilih dengan "
-        "`querySelector`. Ubah dengan `textContent`/`classList`. Reaksi pakai "
+        "DOM = peta halaman yang bisa diubah JavaScript. Pilih pake "
+        "`querySelector`. Ubah pake `textContent`/`classList`. Reaksi pake "
         "`addEventListener`."
     ),
     pembuka=dedent(
         """\
-        Sampai sini, kode JavaScript kamu cuma jalan di console. Saatnya bikin halaman bereaksi ke aksi user.
+        Sampe sini, kode JavaScript kamu cuma jalan di console. Saatnya bikin halaman bisa bereaksi ke aksi user.
 
         Pekerjaan ini namanya DOM manipulation.
 
-        Setelah lesson ini, kamu bisa bikin tombol yang berfungsi, form yang divalidasi, dan list yang bisa ditambah/hapus.
+        Habis lesson ini, kamu bisa bikin tombol yang berfungsi, form yang divalidasi, dan list yang bisa ditambah/hapus.
         """
     ),
     penjelasan=dedent(
         """\
-        ### Apa itu DOM
+        ### DOM itu apa
 
-        DOM (Document Object Model) adalah representasi halaman HTML sebagai object yang bisa dimanipulasi JavaScript.
+        DOM (Document Object Model) itu cara JavaScript ngeliat halaman HTML — sebagai object yang bisa dimanipulasi.
 
-        Anggap DOM seperti peta rumah versi digital dari HTML. Kamu bisa pakai JavaScript untuk pindah pintu, ganti warna dinding, atau tambah jendela tanpa rewrite seluruh HTML.
+        Anggep DOM itu peta rumah versi digital dari HTML kamu. Kamu bisa pake JavaScript buat mindahin pintu, ngeganti warna dinding, atau nambah jendela tanpa rewrite seluruh HTML.
 
-        ### Memilih elemen
+        ### Milih elemen
 
-        - `document.querySelector(...)` mengambil **elemen pertama** yang cocok dengan selector CSS.
-        - `document.querySelectorAll(...)` mengambil **semua** yang cocok, dalam bentuk NodeList.
+        - `document.querySelector(...)` — ngambil **elemen pertama** yang cocok sama selector CSS
+        - `document.querySelectorAll(...)` — ngambil **semua** yang cocok, dalam bentuk NodeList
 
-        Selector yang dipakai persis sama dengan CSS: `h1`, `.judul`, `#hero`, `nav a`.
+        Selector yang dipake persis sama dengan CSS: `h1`, `.judul`, `#hero`, `nav a`.
 
-        ### Mengubah konten
+        ### Ngubah konten
 
-        - `el.textContent = "..."` ubah teks (aman dari XSS).
-        - `el.innerHTML = "..."` ubah dengan HTML (hati-hati kalau inputnya dari user).
+        - `el.textContent = "..."` — ubah teks (aman dari XSS)
+        - `el.innerHTML = "..."` — ubah pake HTML (hati-hati kalau inputnya dari user)
 
-        Aturan praktis: pakai `textContent` kalau cuma ubah teks. Pakai `innerHTML` cuma kalau memang butuh element baru, dan pastikan inputnya bukan dari user.
+        Aturan praktisnya: pake `textContent` kalau cuma ubah teks. Pake `innerHTML` cuma kalau memang butuh element baru, dan pastiin inputnya bukan dari user.
 
-        ### Mengubah style
+        ### Ngubah style
 
-        Untuk perubahan kecil pakai `el.style.namaProperty`. Tapi untuk perubahan besar lebih baik **toggle class**:
+        Buat perubahan kecil pake `el.style.namaProperty`. Tapi buat perubahan gede mendingan **toggle class**:
 
         - `el.classList.add("active")`
         - `el.classList.remove("hidden")`
         - `el.classList.toggle("dark-mode")`
-        - `el.classList.contains("active")` returns boolean.
+        - `el.classList.contains("active")` returns boolean
 
-        Lalu definisikan style-nya di CSS.
+        Terus definisiin style-nya di CSS.
 
         ### Event listener
 
-        `el.addEventListener("namaEvent", callback)` adalah cara modern merespons aksi user.
+        `el.addEventListener("namaEvent", callback)` itu cara modern buat ngerespon aksi user.
 
-        Event populer: `click`, `input`, `submit`, `keydown`/`keyup`, `mouseenter`/`mouseleave`.
+        Event yang sering dipake: `click`, `input`, `submit`, `keydown`/`keyup`, `mouseenter`/`mouseleave`.
 
-        Untuk form, `e.preventDefault()` mencegah halaman reload. Untuk link, mencegah navigasi default.
+        Buat form, `e.preventDefault()` ngecegah halaman reload. Buat link, ngecegah navigasi default.
 
-        ### Membuat dan menghapus elemen
+        ### Bikin sama hapus elemen
 
-        `document.createElement("li")` bikin elemen baru di memory. `parent.appendChild(el)` masukkan ke parent. `el.remove()` hapus dari halaman.
+        `document.createElement("li")` bikin elemen baru di memory. `parent.appendChild(el)` masukin ke parent. `el.remove()` hapus dari halaman.
 
-        ### Membaca isi input
+        ### Baca isi input
 
-        Untuk input field, jangan pakai `textContent`. Pakai `el.value`. Itu property khusus untuk input.
+        Buat input field, jangan pake `textContent`. Pake `el.value`. Itu property khusus buat input.
+
+        Banyak pemula awalnya kepleset di sini. Mereka pake `textContent` di input dan bingung kenapa hasilnya kosong.
         """
     ),
     contoh_code_md=dedent(
@@ -539,13 +545,13 @@ LESSON_JS_DOM = make_lesson(
           const item = document.createElement("li");
           item.textContent = teks;
 
-          // klik item untuk tandai selesai
+          // klik item buat tandain selesai
           item.addEventListener("click", () => {
             item.classList.toggle("selesai");
           });
 
           list.appendChild(item);
-          input.value = "";           // bersihkan input
+          input.value = "";           // bersihin input
         });
         ```
 
@@ -558,9 +564,9 @@ LESSON_JS_DOM = make_lesson(
         """
     ),
     practice=(
-        "Buat halaman dengan satu tombol bertuliskan 'Klik aku' dan satu "
-        "paragraf di bawahnya. Setiap kali tombol diklik, tambahkan angka di "
-        "paragraf, dimulai dari 0. Tampilan: 'Klik: 1', lalu 'Klik: 2', dst."
+        "Bikin halaman dengan satu tombol bertuliskan 'Klik aku' dan satu "
+        "paragraf di bawahnya. Tiap kali tombol diklik, tambahin angka di "
+        "paragraf, mulai dari 0. Tampilan: 'Klik: 1', terus 'Klik: 2', dst."
     ),
     fix_error={
         "language": "js",
@@ -577,13 +583,13 @@ LESSON_JS_DOM = make_lesson(
         ),
         "hint": (
             "Cek penulisan nama method (case-sensitive), syntax callback "
-            "function, dan property apa yang dipakai untuk ambil nilai input."
+            "function, sama property apa yang dipake buat ngambil nilai input."
         ),
         "answer_explanation": dedent(
             """\
-            1. `queryselector` salah. Yang benar `querySelector` (case-sensitive).
-            2. Callback `() {}` kurang `=>`. Harus `() => { ... }`.
-            3. `input.text` salah. Untuk ambil isi input pakai `input.value`.
+            1. `queryselector` salah. Yang bener `querySelector` (case-sensitive).
+            2. Callback `() {}` kurang `=>`. Harusnya `() => { ... }`.
+            3. `input.text` salah. Buat ngambil isi input pake `input.value`.
             """
         ),
         "fixed_code": dedent(
@@ -600,18 +606,18 @@ LESSON_JS_DOM = make_lesson(
     },
     quiz=[
         q(
-            "Apa yang dikembalikan `document.querySelectorAll(\".card\")`?",
+            "Apa yang dikembaliin `document.querySelectorAll(\".card\")`?",
             [
                 "Satu elemen pertama yang cocok",
-                "Daftar (NodeList) berisi semua elemen yang cocok",
+                "Daftar (NodeList) isinya semua elemen yang cocok",
                 "Array elemen",
-                "`null` jika tidak ditemukan",
+                "`null` kalau gak ditemuin",
             ],
             "B",
             "`querySelector` ambil yang pertama. `querySelectorAll` ambil semua, dalam bentuk NodeList yang mirip array.",
         ),
         q(
-            "Mana cara yang aman untuk update teks elemen tanpa risiko XSS?",
+            "Mana cara yang aman buat update teks elemen tanpa risiko XSS?",
             [
                 "`el.innerHTML = userInput`",
                 "`el.textContent = userInput`",
@@ -619,32 +625,32 @@ LESSON_JS_DOM = make_lesson(
                 "`el.text = userInput`",
             ],
             "B",
-            "`textContent` memperlakukan input sebagai teks biasa. `innerHTML` mengeksekusi sebagai HTML — risiko inject script kalau dari user.",
+            "`textContent` ngeperlakuin input sebagai teks biasa. `innerHTML` ngeksekusi sebagai HTML — risiko inject script kalau dari user.",
         ),
         q(
-            "Apa fungsi `e.preventDefault()` di dalam event listener?",
+            "Apa fungsi `e.preventDefault()` di dalem event listener?",
             [
-                "Menghentikan event listener",
-                "Mencegah perilaku default browser (form submit / link navigasi)",
-                "Menghapus elemen",
-                "Membatalkan semua event",
+                "Ngehentiin event listener",
+                "Ngecegah perilaku default browser (form submit / link navigasi)",
+                "Hapus elemen",
+                "Ngebatalin semua event",
             ],
             "B",
-            "Form normalnya reload. Link normalnya navigasi. `preventDefault()` mencegah perilaku default itu.",
+            "Form normalnya reload. Link normalnya navigasi. `preventDefault()` ngecegah perilaku default itu.",
         ),
         q(
             "Apa output `el.classList.toggle(\"aktif\"); el.classList.toggle(\"aktif\");`?",
             [
-                "Class `aktif` tetap menempel",
-                "Class `aktif` tidak menempel (kembali ke kondisi awal)",
+                "Class `aktif` tetep nempel",
+                "Class `aktif` gak nempel (balik ke kondisi awal)",
                 "Error",
-                "Ditambahkan dua kali",
+                "Ditambahin dua kali",
             ],
             "B",
-            "Toggle seperti saklar lampu. Kalau OFF jadi ON, kalau ON jadi OFF. Dua kali toggle balik ke kondisi awal.",
+            "Toggle kayak saklar lampu. Kalau OFF jadi ON, kalau ON jadi OFF. Dua kali toggle balik ke kondisi awal.",
         ),
         q(
-            "Mana cara yang BENAR membaca isi `<input id=\"email\">`?",
+            "Mana cara yang BENER baca isi `<input id=\"email\">`?",
             [
                 "`document.querySelector(\"#email\").text`",
                 "`document.querySelector(\"#email\").value`",
@@ -652,19 +658,19 @@ LESSON_JS_DOM = make_lesson(
                 "`document.querySelector(\"#email\").textContent`",
             ],
             "B",
-            "Input form menyimpan nilainya di property `value`. `textContent`/`innerHTML` untuk konten teks elemen biasa.",
+            "Input form nyimpen nilainya di property `value`. `textContent`/`innerHTML` buat konten teks elemen biasa.",
         ),
     ],
     common_mistakes=[
-        "Pakai `el.text` bukan `el.value` untuk input. Hasilnya `undefined`.",
+        "Pake `el.text` bukan `el.value` buat input. Hasilnya `undefined`.",
         "Lupa `e.preventDefault()` di handler form. Halaman reload tiap submit.",
-        "Pakai `innerHTML` dengan input dari user. Berpotensi XSS.",
+        "Pake `innerHTML` dengan input dari user. Berpotensi XSS.",
     ],
     checkpoint=[
-        "Bisa pilih elemen pakai `querySelector`.",
-        "Bisa ubah teks dan toggle class.",
-        "Bisa pasang event listener untuk klik dan input.",
-        "Bisa bikin elemen baru dan masukkan ke halaman.",
+        "Bisa pilih elemen pake `querySelector`",
+        "Bisa ubah teks dan toggle class",
+        "Bisa pasang event listener buat klik dan input",
+        "Bisa bikin elemen baru dan masukin ke halaman",
     ],
     xp_reward=120,
 )
@@ -682,53 +688,53 @@ PROJECT_TODO = make_lesson(
     summary="App pertama dengan state, render, dan localStorage.",
     tools=["VS Code", "Browser modern", "GitHub", "Vercel"],
     outcomes=[
-        "Membangun app dengan siklus input → simpan → render",
-        "Memakai `localStorage` untuk menyimpan data lokal",
-        "Memisahkan logika state dari logika DOM",
+        "Bisa bangun app dengan siklus input → simpan → render",
+        "Bisa pake `localStorage` buat nyimpen data lokal",
+        "Bisa misahin logika state dari logika DOM",
     ],
     tldr=(
-        "Bangun todo app yang bisa tambah/tandai/hapus, datanya tersimpan di "
-        "`localStorage`. Pakai pola: array of state + function `render()` "
-        "yang menggambar ulang dari state."
+        "Bangun todo app yang bisa tambah/tandain/hapus, datanya tersimpan "
+        "di `localStorage`. Pake pola: array of state + function `render()` "
+        "yang nge-gambar ulang dari state."
     ),
     pembuka=dedent(
         """\
-        Saatnya bikin app pertama yang menyimpan data dan punya state.
+        Saatnya bikin app pertama yang nyimpen data dan punya state.
 
-        Setelah project ini, kamu paham siklus dasar app interaktif: input → simpan → tampilkan → ubah → hapus.
+        Habis project ini, kamu paham siklus dasar app interaktif: input → simpan → tampilin → ubah → hapus.
 
-        Inilah pola yang dipakai di hampir semua app modern, dari catatan kecil sampai dashboard kompleks.
+        Ini pola yang dipake di hampir semua app modern, dari catatan kecil sampe dashboard kompleks.
         """
     ),
     penjelasan=dedent(
         """\
-        ### Apa yang kamu bangun
+        ### Yang kamu bangun
 
-        Todo list yang bisa tambah task, tandai selesai, hapus, dan datanya tetap ada walau halaman di-refresh.
+        Todo list yang bisa tambah task, tandain selesai, hapus, dan datanya tetep ada walau halaman di-refresh.
 
         ### Konsep baru: localStorage
 
-        `localStorage` adalah penyimpanan di browser yang bertahan walau halaman ditutup.
+        `localStorage` itu tempat nyimpen di browser yang bertahan walau halaman ditutup.
 
-        - `localStorage.setItem("key", "string")` simpan.
-        - `localStorage.getItem("key")` ambil (string atau null).
-        - `localStorage.removeItem("key")` hapus.
+        - `localStorage.setItem("key", "string")` — simpan
+        - `localStorage.getItem("key")` — ambil (string atau null)
+        - `localStorage.removeItem("key")` — hapus
 
-        Karena localStorage cuma simpan string, kalau mau simpan array/object pakai `JSON.stringify()` saat simpan dan `JSON.parse()` saat ambil.
+        Karena localStorage cuma nyimpen string, kalau mau nyimpen array/object pake `JSON.stringify()` pas nyimpen dan `JSON.parse()` pas ngambil.
 
         ### Pola "state + render"
 
-        Pisahkan logika state (array of tasks) dari logika DOM (gambar ulang list).
+        Pisahin logika state (array of tasks) dari logika DOM (gambar ulang list).
 
-        - `tugas` = array yang menyimpan semua task.
-        - `render()` = function yang gambar ulang list dari `tugas`.
-        - `save()` = function yang simpan `tugas` ke localStorage.
+        - `tugas` = array yang nyimpen semua task
+        - `render()` = function yang gambar ulang list dari `tugas`
+        - `save()` = function yang simpan `tugas` ke localStorage
 
-        Setiap kali ada perubahan (tambah/edit/hapus), update `tugas`, panggil `save()`, lalu `render()`.
+        Tiap kali ada perubahan (tambah/edit/hapus), update `tugas`, panggil `save()`, terus `render()`.
 
         ### Kenapa pola ini penting
 
-        Pola ini akan kamu pakai sepanjang karier. Library besar seperti React menggunakan ide yang sama, cuma lebih otomatis.
+        Pola ini bakal kamu pake sepanjang karier. Library gede kayak React pake ide yang sama, cuma lebih otomatis.
         """
     ),
     contoh_code_md=dedent(
@@ -790,9 +796,9 @@ PROJECT_TODO = make_lesson(
         """
     ),
     practice=(
-        "Selesaikan todo app di atas, lalu tambahkan tombol hapus per item "
-        "(misal klik kanan untuk hapus, atau tombol 'x' kecil di sebelah kanan). "
-        "Beri styling yang rapi dan deploy ke Vercel."
+        "Selesain todo app di atas, terus tambahin tombol hapus per item "
+        "(misal klik kanan buat hapus, atau tombol 'x' kecil di sebelah "
+        "kanan). Kasih styling yang rapi dan deploy ke Vercel."
     ),
     fix_error={
         "language": "js",
@@ -814,14 +820,14 @@ PROJECT_TODO = make_lesson(
             """
         ),
         "hint": (
-            "localStorage cuma simpan string. Cek bagaimana kamu baca dan tulis "
-            "data. Render juga belum bersihkan list lama sebelum menggambar."
+            "localStorage cuma nyimpen string. Cek gimana kamu baca dan tulis "
+            "data. Render juga belum bersihin list lama sebelum gambar."
         ),
         "answer_explanation": dedent(
             """\
-            1. `getItem` mengembalikan string atau null. Harus di-`JSON.parse`. Default-nya `"[]"`, lalu di-parse.
+            1. `getItem` ngembaliin string atau null. Harus di-`JSON.parse`. Default-nya `"[]"`, terus di-parse.
             2. `setItem` butuh string. Harus `JSON.stringify(tugas)`.
-            3. `render()` lupa `list.innerHTML = ""` di awal. Hasilnya tiap render ditumpuk dengan list lama.
+            3. `render()` lupa `list.innerHTML = ""` di awal. Hasilnya tiap render numpuk sama list lama.
             """
         ),
         "fixed_code": dedent(
@@ -845,66 +851,66 @@ PROJECT_TODO = make_lesson(
     },
     quiz=[
         q(
-            "Apa yang dikembalikan `localStorage.getItem(\"key\")` saat key belum ada?",
+            "Apa yang dikembaliin `localStorage.getItem(\"key\")` pas key belum ada?",
             ["`undefined`", "`null`", "`\"\"`", "Error"],
             "B",
-            "Saat key belum ada, `getItem` mengembalikan `null`. Itu kenapa kita pakai `|| \"[]\"` untuk default.",
+            "Pas key belum ada, `getItem` ngembaliin `null`. Itu kenapa kita pake `|| \"[]\"` buat default.",
         ),
         q(
-            "Kenapa kita pakai `JSON.stringify` saat menyimpan array ke localStorage?",
+            "Kenapa kita pake `JSON.stringify` pas nyimpen array ke localStorage?",
             [
-                "Supaya lebih cepat",
-                "localStorage cuma menyimpan string, jadi array harus diubah jadi string dulu",
-                "Untuk enkripsi data",
-                "Tidak perlu, sebenarnya",
+                "Biar lebih cepet",
+                "localStorage cuma nyimpen string, jadi array harus diubah jadi string dulu",
+                "Buat enkripsi data",
+                "Gak perlu sebenernya",
             ],
             "B",
-            "localStorage menyimpan string saja. Array/object harus di-stringify saat simpan dan di-parse saat ambil.",
+            "localStorage nyimpen string aja. Array/object harus di-stringify pas nyimpen dan di-parse pas ngambil.",
         ),
         q(
-            "Mengapa `render()` membersihkan `list.innerHTML = \"\"` di awal?",
+            "Kenapa `render()` ngebersihin `list.innerHTML = \"\"` di awal?",
             [
-                "Untuk menghemat memori",
-                "Supaya isi lama tidak menumpuk dengan isi baru saat digambar ulang",
-                "Untuk membersihkan localStorage",
-                "Tidak perlu sebenarnya",
+                "Buat ngehemat memory",
+                "Biar isi lama gak numpuk sama isi baru pas digambar ulang",
+                "Buat ngebersihin localStorage",
+                "Gak perlu sebenernya",
             ],
             "B",
-            "Tanpa membersihkan, setiap render akan menumpuk item ke list yang sudah ada. Bersihkan dulu, lalu gambar dari state terbaru.",
+            "Tanpa ngebersihin, tiap render bakal numpuk item ke list yang udah ada. Bersihin dulu, terus gambar dari state terbaru.",
         ),
         q(
-            "Apa praktik yang paling baik dalam pola state + render?",
+            "Mana praktik yang paling baik dalam pola state + render?",
             [
                 "Mutasi DOM langsung dari banyak tempat",
-                "Update state, simpan, lalu panggil render() yang gambar ulang dari state",
-                "Pakai variabel global untuk segalanya",
-                "Tidak perlu render(), cukup append saja",
+                "Update state, simpan, terus panggil render() yang gambar ulang dari state",
+                "Pake variable global buat semuanya",
+                "Gak perlu render(), cukup append doang",
             ],
             "B",
-            "Pola ini bikin satu sumber kebenaran (state) dan render-nya konsisten. Library besar seperti React menggunakan ide yang sama.",
+            "Pola ini bikin satu sumber kebenaran (state) dan render-nya konsisten. Library gede kayak React pake ide yang sama.",
         ),
         q(
-            "Saat membuat task baru, kenapa kita pakai `Date.now()` sebagai id?",
+            "Pas bikin task baru, kenapa kita pake `Date.now()` sebagai id?",
             [
-                "Karena angka yang besar terlihat profesional",
-                "Untuk menghasilkan id unik berdasarkan waktu pembuatan",
-                "Karena UUID tidak ada di JavaScript",
-                "Tidak ada alasan, bisa juga pakai nama task sebagai id",
+                "Karena angka yang gede keliatan profesional",
+                "Buat ngehasilin id unik berdasarkan waktu pembuatan",
+                "Karena UUID gak ada di JavaScript",
+                "Gak ada alasan, bisa juga pake nama task sebagai id",
             ],
             "B",
-            "`Date.now()` mengembalikan timestamp dalam ms. Cukup unik untuk app sederhana. Kalau butuh yang lebih kuat, pakai `crypto.randomUUID()`.",
+            "`Date.now()` ngembaliin timestamp dalam ms. Cukup unik buat app sederhana. Kalau butuh yang lebih kuat, pake `crypto.randomUUID()`.",
         ),
     ],
     common_mistakes=[
-        "Lupa `JSON.parse` saat baca dari localStorage. Hasilnya `tugas` jadi string, bukan array.",
-        "Manipulasi DOM dari banyak tempat tanpa pola render terpusat. Sulit di-debug.",
-        "Tidak handle empty state. List kosong bikin halaman terlihat broken.",
+        "Lupa `JSON.parse` pas baca dari localStorage. Hasilnya `tugas` jadi string, bukan array.",
+        "Manipulasi DOM dari banyak tempat tanpa pola render terpusat. Susah di-debug.",
+        "Gak handle empty state. List kosong bikin halaman keliatan broken.",
     ],
     checkpoint=[
-        "App live di Vercel dengan URL publik.",
-        "Bisa tambah, tandai selesai, dan hapus task.",
-        "Data tetap ada setelah refresh.",
-        "Kode dipisah jelas: state, save, render.",
+        "App live di Vercel dengan URL publik",
+        "Bisa tambah, tandain selesai, dan hapus task",
+        "Data tetep ada habis refresh",
+        "Kode dipisah jelas: state, save, render",
     ],
     xp_reward=300,
     is_project=True,
@@ -919,11 +925,11 @@ LEVEL = make_level(
     number=2,
     slug="javascript-dasar",
     title="JavaScript Dasar",
-    subtitle="Menghidupkan halaman web",
+    subtitle="Bikin halaman bisa diklik dan bergerak",
     description=(
-        "Variable, function, scope, dan DOM manipulation. "
-        "Setelah level ini kamu bisa bikin halaman yang interaktif dan punya "
-        "todo app live di internet."
+        "Variable, function, scope, dan DOM manipulation. Habis level ini "
+        "kamu bisa bikin halaman yang interaktif dan punya todo app live "
+        "di internet."
     ),
     duration="~2 minggu",
     difficulty="Pemula → Menengah",

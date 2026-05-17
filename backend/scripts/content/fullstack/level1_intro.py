@@ -18,39 +18,39 @@ from .._template import make_lesson, make_level, q
 # ─────────────────────────────────────────────────────────────────────────────
 
 LESSON_CONNECTION = make_lesson(
-    title="Frontend + Backend Connection",
+    title="Nyambungin Frontend sama Backend",
     slug="frontend-backend-connection",
     order_index=1,
     read_time="14 menit",
-    summary="CORS, fetch dari Next.js, environment variable, dan error handling.",
+    summary="CORS, fetch dari Next.js, environment variable, sama error handling.",
     tools=["Next.js project", "Backend API dari Backend Level 1", "Browser DevTools"],
     outcomes=[
-        "Memahami CORS dan cara membukanya di backend",
-        "Memanggil API dari Next.js dengan environment variable",
-        "Menampilkan loading state dan error state",
+        "Paham CORS sama cara ngebukanya di backend",
+        "Bisa manggil API dari Next.js pake environment variable",
+        "Bisa nampilin loading state sama error state",
     ],
     tldr=(
-        "Frontend dan backend lari di port berbeda → browser blokir (CORS). "
-        "Buka dengan middleware `cors()` di backend. Simpan URL API di "
+        "Frontend sama backend jalan di port beda → browser blokir (CORS). "
+        "Buka pake middleware `cors()` di backend. Simpen URL API di "
         "`.env.local` lewat `NEXT_PUBLIC_API_URL`. Selalu handle loading & "
         "error state."
     ),
     pembuka=dedent(
         """\
-        Sekarang kamu sudah punya frontend (Next.js) dan backend (Express + Prisma). Saatnya menyambungkan keduanya.
+        Sekarang kamu udah punya frontend (Next.js) sama backend (Express + Prisma). Saatnya nyambungin keduanya.
 
-        Pekerjaan ini terlihat sederhana: panggil API dari frontend. Tapi ada beberapa jebakan yang sering bikin pemula menyerah di langkah ini.
+        Kerjaan ini keliatan simpel: manggil API dari frontend. Tapi ada beberapa jebakan yang sering bikin pemula nyerah di langkah ini.
 
-        Kita bedah satu per satu: CORS, environment variable, dan UX state yang sopan.
+        Kita ngebedah satu-satu: CORS, environment variable, sama UX state yang ramah.
         """
     ),
     penjelasan=dedent(
         """\
         ### Kenapa ada masalah CORS
 
-        Browser punya aturan keamanan: **same-origin policy**. Default-nya, JavaScript di domain A tidak boleh panggil API di domain B.
+        Browser punya aturan keamanan: **same-origin policy**. Default-nya, JavaScript di domain A gak boleh manggil API di domain B.
 
-        Saat kamu develop:
+        Pas kamu develop:
 
         - Frontend Next.js: `http://localhost:3000`.
         - Backend Express: `http://localhost:3001`.
@@ -85,7 +85,7 @@ LESSON_CONNECTION = make_lesson(
         )
         ```
 
-        Wildcard `*` mudah, tapi tidak aman untuk production. Selalu sebut origin yang spesifik.
+        Wildcard `*` gampang, tapi gak aman buat production. Selalu sebut origin yang spesifik.
 
         ### Environment variable di Next.js
 
@@ -98,10 +98,10 @@ LESSON_CONNECTION = make_lesson(
 
         Aturan penting di Next.js:
 
-        - Variabel yang aman dipakai di browser HARUS punya prefix `NEXT_PUBLIC_`.
-        - Variabel TANPA prefix cuma boleh diakses dari server component / API route. Jangan untuk SECRET KEY.
+        - Variabel yang aman dipake di browser HARUS punya prefix `NEXT_PUBLIC_`.
+        - Variabel TANPA prefix cuma boleh diakses dari server component / API route. Jangan buat SECRET KEY.
 
-        ### Pola fetch yang sopan
+        ### Pola fetch yang ramah
 
         Tampilan harus paham tiga keadaan: loading, sukses, error.
 
@@ -141,20 +141,20 @@ LESSON_CONNECTION = make_lesson(
         }
         ```
 
-        Pola ini muncul berulang. Banyak orang memilih library seperti TanStack Query atau SWR untuk menghindari boilerplate ini di project besar.
+        Pola ini muncul berulang-ulang. Banyak orang milih library kayak TanStack Query atau SWR biar gak ngulang boilerplate ini di project gede.
 
         ### Server vs Client component (Next.js App Router)
 
-        Default component di App Router adalah **Server Component**. Tidak bisa pakai `useState`/`useEffect`.
+        Default component di App Router itu **Server Component**. Gak bisa pake `useState`/`useEffect`.
 
-        Untuk component yang butuh state atau event handler, kasih `"use client"` di baris pertama file.
+        Buat component yang butuh state atau event handler, kasih `"use client"` di baris pertama file.
 
-        Praktik umum:
+        Pola umum:
 
-        - Page (server) fetch data → render Client component dengan data sebagai prop.
+        - Page (server) fetch data → render Client component sama data sebagai prop.
         - Client component handle interaksi (form, button, animasi).
 
-        Kelebihannya: data fetch bisa di server (lebih cepat, tidak perlu loading state di browser), interaksi tetap di client.
+        Untungnya: data fetch bisa di server (lebih cepet, gak perlu loading state di browser), interaksi tetep di client.
         """
     ),
     contoh_code_md=dedent(
@@ -207,9 +207,9 @@ LESSON_CONNECTION = make_lesson(
         """
     ),
     practice=(
-        "Hubungkan Next.js project kamu ke API books dari Backend Level 1. "
-        "Buat halaman `/books` yang menampilkan daftar buku dari API. "
-        "Tampilkan loading state saat fetch dan error message kalau API mati."
+        "Sambungin Next.js project kamu ke API books dari Backend Level 1. "
+        "Bikin halaman `/books` yang nampilin daftar buku dari API. Tampilin "
+        "loading state pas fetch sama error message kalau API mati."
     ),
     fix_error={
         "language": "js",
@@ -224,15 +224,15 @@ LESSON_CONNECTION = make_lesson(
             console.log(books);
             """
         ),
-        "hint": "Variable env tidak terbaca di browser. Cek konvensi Next.js untuk env yang dipakai di client.",
+        "hint": "Variable env gak kebaca di browser. Cek aturan Next.js buat env yang dipake di client.",
         "answer_explanation": dedent(
             """\
-            Kesalahan: `process.env.API_URL` di Next.js client tidak akan terbaca. Aturan Next.js:
+            Salahnya: `process.env.API_URL` di Next.js client gak bakal kebaca. Aturan Next.js:
 
             - Env tanpa prefix `NEXT_PUBLIC_` cuma tersedia di server component / API route.
-            - Untuk dipakai di browser/client component, prefix WAJIB `NEXT_PUBLIC_`.
+            - Buat dipake di browser/client component, prefix WAJIB `NEXT_PUBLIC_`.
 
-            Setelah rename, restart `npm run dev` supaya env di-reload.
+            Habis rename, restart `npm run dev` biar env-nya di-reload.
             """
         ),
         "fixed_code": dedent(
@@ -249,10 +249,10 @@ LESSON_CONNECTION = make_lesson(
     },
     quiz=[
         q(
-            "Apa penyebab error CORS saat develop frontend dan backend lokal?",
+            "Apa penyebab error CORS pas develop frontend sama backend lokal?",
             [
                 "Internet mati",
-                "Frontend dan backend di port berbeda → beda origin → browser blokir",
+                "Frontend sama backend di port beda → beda origin → browser blokir",
                 "Code typo",
                 "Database error",
             ],
@@ -260,60 +260,60 @@ LESSON_CONNECTION = make_lesson(
             "Browser blokir cross-origin request demi keamanan. Backend harus kasih izin eksplisit lewat CORS.",
         ),
         q(
-            "Mana praktik yang BAIK untuk URL API di Next.js?",
+            "Mana cara yang BAGUS buat URL API di Next.js?",
             [
                 "Hardcode `http://localhost:3001` di komponen",
-                "Simpan di `.env.local` dengan prefix `NEXT_PUBLIC_API_URL`",
-                "Simpan di `localStorage`",
-                "Simpan di global window object",
+                "Simpen di `.env.local` sama prefix `NEXT_PUBLIC_API_URL`",
+                "Simpen di `localStorage`",
+                "Simpen di global window object",
             ],
             "B",
-            "Env variable membuat URL bisa diganti antar dev/staging/prod tanpa edit kode. Prefix `NEXT_PUBLIC_` agar bisa diakses di browser.",
+            "Env variable bikin URL bisa diganti antar dev/staging/prod tanpa edit kode. Prefix `NEXT_PUBLIC_` biar bisa diakses di browser.",
         ),
         q(
             "Kapan kamu butuh `\"use client\"` di Next.js App Router?",
             [
-                "Selalu di setiap component",
-                "Saat component butuh `useState`, `useEffect`, atau event handler",
-                "Saat component berisi gambar",
-                "Saat component pakai Tailwind",
+                "Selalu di tiap component",
+                "Pas component butuh `useState`, `useEffect`, atau event handler",
+                "Pas component isinya gambar",
+                "Pas component pake Tailwind",
             ],
             "B",
-            "Server Component default tidak bisa pakai hooks atau event handler. Tambah `\"use client\"` saat component perlu interaktivitas.",
+            "Server Component default gak bisa pake hooks atau event handler. Tambah `\"use client\"` pas component perlu interaktivitas.",
         ),
         q(
-            "Mana yang HARUS di-handle saat fetch data?",
+            "Mana yang HARUS di-handle pas fetch data?",
             [
                 "Cuma success state",
-                "Loading, success, dan error state",
+                "Loading, success, sama error state",
                 "Cuma error state",
-                "Tidak perlu state",
+                "Gak perlu state",
             ],
             "B",
-            "User experience yang baik: kasih tahu data sedang dimuat, atau kalau ada error. Tampilan kosong tanpa context bikin user bingung.",
+            "User experience yang bagus: kasih tau data lagi dimuat, atau kalau ada error. Tampilan kosong tanpa konteks bikin user bingung.",
         ),
         q(
-            "Apa beda `cache: \"no-store\"` di fetch Next.js?",
+            "Beda `cache: \"no-store\"` di fetch Next.js?",
             [
-                "Performance lebih buruk selalu",
-                "Memastikan data selalu fresh, tidak di-cache. Cocok untuk data yang sering berubah.",
-                "Mengaktifkan offline mode",
-                "Tidak ada bedanya",
+                "Performance lebih jelek selalu",
+                "Mastiin data selalu fresh, gak di-cache. Cocok buat data yang sering berubah.",
+                "Aktifin offline mode",
+                "Gak ada bedanya",
             ],
             "B",
-            "Default Next.js men-cache hasil fetch di server. `no-store` matikan cache — data selalu fresh tiap request.",
+            "Default Next.js nge-cache hasil fetch di server. `no-store` matiin cache — data selalu fresh tiap request.",
         ),
     ],
     common_mistakes=[
-        "Lupa prefix `NEXT_PUBLIC_` untuk env yang dipakai di browser. `process.env.X` jadi `undefined`.",
-        "Wildcard CORS `*` di production. Berbahaya — sebut origin spesifik.",
-        "Tidak restart `npm run dev` setelah edit `.env.local`. Env tidak ter-reload.",
+        "Lupa prefix `NEXT_PUBLIC_` buat env yang dipake di browser. `process.env.X` jadi `undefined`.",
+        "Wildcard CORS `*` di production. Bahaya — sebut origin spesifik.",
+        "Gak restart `npm run dev` habis edit `.env.local`. Env-nya gak ke-reload.",
     ],
     checkpoint=[
-        "Bisa jelaskan kenapa CORS error muncul.",
-        "Bisa setup env variable di Next.js dengan prefix yang benar.",
-        "Bisa fetch data dari API di server component dan client component.",
-        "Selalu handle loading dan error state.",
+        "Bisa jelasin kenapa CORS error muncul.",
+        "Bisa setup env variable di Next.js sama prefix yang bener.",
+        "Bisa fetch data dari API di server component sama client component.",
+        "Selalu handle loading sama error state.",
     ],
     xp_reward=140,
 )
@@ -324,60 +324,60 @@ LESSON_CONNECTION = make_lesson(
 # ─────────────────────────────────────────────────────────────────────────────
 
 LESSON_AUTH = make_lesson(
-    title="Auth Dasar dengan JWT",
+    title="Auth Dasar Pake JWT",
     slug="auth-dengan-jwt",
     order_index=2,
     read_time="16 menit",
-    summary="Authentication, authorization, JWT, dan protected routes.",
+    summary="Authentication, authorization, JWT, sama protected routes.",
     tools=["Backend Express + Prisma", "Library jsonwebtoken + bcryptjs", "Next.js"],
     outcomes=[
-        "Membedakan authentication vs authorization",
-        "Memahami cara kerja JWT dengan analogi nyata",
-        "Membangun endpoint register/login dan protected route",
+        "Bisa bedain authentication vs authorization",
+        "Paham cara kerja JWT lewat analogi nyata",
+        "Bisa bangun endpoint register/login sama protected route",
     ],
     tldr=(
         "Authentication = ngecek siapa kamu. Authorization = ngecek apa yang "
-        "boleh kamu lakukan. JWT = kartu akses yang server keluarkan setelah "
-        "login. Selalu hash password sebelum simpan."
+        "boleh kamu lakuin. JWT = kartu akses yang server keluarin habis "
+        "login. Selalu hash password sebelum simpen."
     ),
     pembuka=dedent(
         """\
-        App tanpa auth = pintu rumah tanpa kunci. Siapa saja bisa masuk dan ngacak-acak.
+        App tanpa auth itu kayak pintu rumah tanpa kunci. Siapa aja bisa masuk sama ngacak-ngacak.
 
-        Auth itu fitur yang hampir setiap app butuhkan. Untungnya, polanya sangat seragam.
+        Auth itu fitur yang hampir tiap app butuhin. Untungnya, polanya seragam banget.
 
-        Lesson ini bahas dengan analogi konkrit, lalu langsung implementasi.
+        Lesson ini ngebahas pake analogi konkrit, terus langsung implementasi.
         """
     ),
     penjelasan=dedent(
         """\
         ### Authentication vs Authorization
 
-        Sering dianggap sama, padahal beda:
+        Sering dianggep sama, padahal beda:
 
-        - **Authentication (AuthN)** — "Siapa kamu?". Verifikasi identitas via email + password.
-        - **Authorization (AuthZ)** — "Apa yang boleh kamu lakukan?". Cek role/permission.
+        - **Authentication (AuthN)** — "Siapa kamu?". Verifikasi identitas lewat email + password.
+        - **Authorization (AuthZ)** — "Apa yang boleh kamu lakuin?". Cek role/permission.
 
         Login = AuthN. Cek `is_admin` sebelum hapus user = AuthZ.
 
         ### JWT — kartu akses gedung
 
-        Bayangkan kamu masuk gedung kantor:
+        Bayangin kamu masuk gedung kantor:
 
-        - **Hari pertama:** kasih KTP ke resepsionis. Resepsionis bikin **kartu akses** dengan foto kamu, nomor lantai yang boleh dibuka, dan tanggal kadaluarsa. Kasih ke kamu.
-        - **Hari berikutnya:** tap kartu, sensor cek apakah kartu ini valid (tanda tangan resepsionis ada). Kalau ya, pintu buka. Tidak perlu nunjukin KTP lagi.
+        - **Hari pertama:** kasih KTP ke resepsionis. Resepsionis bikin **kartu akses** sama foto kamu, nomor lantai yang boleh dibuka, sama tanggal kadaluarsa. Kasih ke kamu.
+        - **Hari berikutnya:** tap kartu, sensor cek apakah kartu ini valid (tanda tangan resepsionis ada). Kalau iya, pintu buka. Gak perlu nunjukin KTP lagi.
 
-        JWT (JSON Web Token) bekerja seperti kartu akses itu:
+        JWT (JSON Web Token) jalannya kayak kartu akses itu:
 
-        1. User login dengan email + password.
+        1. User login pake email + password.
         2. Server verifikasi.
-        3. Server bikin token yang berisi user id + tanda tangan rahasia.
-        4. Frontend simpan token, kirim di header tiap request berikutnya.
+        3. Server bikin token yang isinya user id + tanda tangan rahasia.
+        4. Frontend simpen token, kirim di header tiap request berikutnya.
         5. Server cek tanda tangan token. Kalau valid, request lanjut.
 
         ### Anatomi JWT
 
-        Token JWT terlihat seperti string tiga bagian dipisah titik:
+        Token JWT keliatan kayak string tiga bagian dipisah titik:
 
         ```text
         eyJhbGciOiJIUzI1NiIsI...   . eyJzdWIiOiJ1MTIiLCJpYXQiOj...   . dBjftJeZ4CVPmB92K27uhbUJU1...
@@ -385,29 +385,29 @@ LESSON_AUTH = make_lesson(
         ```
 
         - **Header.** Algoritma + tipe token.
-        - **Payload.** Data user (id, role, expire). Bisa di-decode oleh siapa pun, **jangan simpan password atau secret di sini.**
-        - **Signature.** Hasil tanda tangan dengan secret server. Ini yang verifikasi keaslian.
+        - **Payload.** Data user (id, role, expire). Bisa di-decode siapa pun, **jangan simpen password atau secret di sini.**
+        - **Signature.** Hasil tanda tangan pake secret server. Ini yang verifikasi keasliannya.
 
-        Kalau payload diubah orang, signature jadi tidak match. Server tolak.
+        Kalau payload diubah orang, signature jadi gak match. Server tolak.
 
         ### Hash password — wajib
 
-        **Jangan PERNAH simpan password plain text di database.** Pakai `bcryptjs`:
+        **Jangan PERNAH simpen password plain text di database.** Pake `bcryptjs`:
 
         ```js
         import bcrypt from "bcryptjs";
 
-        // Saat register
+        // Pas register
         const hash = await bcrypt.hash(password, 10);
         await prisma.user.create({ data: { email, hashed_password: hash } });
 
-        // Saat login
+        // Pas login
         const user = await prisma.user.findUnique({ where: { email } });
         const ok = await bcrypt.compare(password, user.hashed_password);
         if (!ok) return res.status(401).json({ detail: "Email atau password salah" });
         ```
 
-        Bcrypt itu satu arah: kamu bisa hash password jadi string acak, tapi tidak bisa balik dari string acak ke password asli. Saat login, kamu bandingkan hash baru vs hash di database.
+        Bcrypt itu satu arah: kamu bisa hash password jadi string acak, tapi gak bisa balik dari string acak ke password asli. Pas login, kamu bandingin hash baru vs hash di database.
 
         ### Endpoint auth standar
 
@@ -424,15 +424,15 @@ LESSON_AUTH = make_lesson(
         ```js
         function authRequired(req, res, next) {
           const auth = req.headers.authorization;          // "Bearer <token>"
-          if (!auth) return res.status(401).json({ detail: "Token tidak ada" });
+          if (!auth) return res.status(401).json({ detail: "Token gak ada" });
 
           const token = auth.split(" ")[1];
           try {
             const payload = jwt.verify(token, process.env.JWT_SECRET);
-            req.userId = payload.sub;                       // simpan untuk handler
+            req.userId = payload.sub;                       // simpen buat handler
             next();
           } catch {
-            return res.status(401).json({ detail: "Token tidak valid" });
+            return res.status(401).json({ detail: "Token gak valid" });
           }
         }
 
@@ -442,19 +442,19 @@ LESSON_AUTH = make_lesson(
         });
         ```
 
-        ### Frontend — simpan token di mana?
+        ### Frontend — simpen token di mana?
 
         Dua pilihan utama:
 
-        - **httpOnly cookie.** Aman dari XSS, browser otomatis kirim. Butuh setup CORS dengan `credentials: true`.
-        - **localStorage.** Mudah, tapi bisa dibaca script jahat (XSS). Hanya untuk app personal/belajar.
+        - **httpOnly cookie.** Aman dari XSS, browser otomatis kirim. Butuh setup CORS sama `credentials: true`.
+        - **localStorage.** Gampang, tapi bisa dibaca script jahat (XSS). Cuma buat app personal/belajar.
 
-        Untuk production, **selalu pilih httpOnly cookie**.
+        Buat production, **selalu pilih httpOnly cookie**.
         """
     ),
     contoh_code_md=dedent(
         """\
-        Endpoint register dan login lengkap:
+        Endpoint register sama login lengkap:
 
         ```js
         // src/routes/auth.js
@@ -469,12 +469,12 @@ LESSON_AUTH = make_lesson(
         router.post("/register", async (req, res) => {
           const { email, password, full_name } = req.body;
           if (!email || !password) {
-            return res.status(400).json({ detail: "Email dan password wajib" });
+            return res.status(400).json({ detail: "Email sama password wajib" });
           }
 
           const exists = await prisma.user.findUnique({ where: { email } });
           if (exists) {
-            return res.status(409).json({ detail: "Email sudah terdaftar" });
+            return res.status(409).json({ detail: "Email udah terdaftar" });
           }
 
           const hashed = await bcrypt.hash(password, 10);
@@ -482,7 +482,7 @@ LESSON_AUTH = make_lesson(
             data: { email, hashed_password: hashed, full_name },
           });
 
-          // Kembalikan profil tanpa password
+          // Kembaliin profil tanpa password
           const { hashed_password, ...safe } = user;
           res.status(201).json(safe);
         });
@@ -514,10 +514,10 @@ LESSON_AUTH = make_lesson(
         """
     ),
     practice=(
-        "Tambahkan `User` model di Prisma schema (id, email, hashed_password, "
-        "full_name). Push schema. Bikin endpoint `/auth/register` dan "
-        "`/auth/login`. Test dengan Postman: register user baru, lalu login "
-        "dengan password yang benar dan salah."
+        "Tambahin model `User` di Prisma schema (id, email, hashed_password, "
+        "full_name). Push schema. Bikin endpoint `/auth/register` sama "
+        "`/auth/login`. Test pake Postman: register user baru, terus login "
+        "pake password yang bener sama yang salah."
     ),
     fix_error={
         "language": "js",
@@ -536,12 +536,12 @@ LESSON_AUTH = make_lesson(
             });
             """
         ),
-        "hint": "Tiga masalah keamanan serius. Cek penyimpanan password, isi token, dan secret yang dipakai.",
+    "hint": "Tiga masalah keamanan serius. Cek penyimpanan password, isi token, sama secret yang dipake.",
         "answer_explanation": dedent(
             """\
-            1. Password disimpan plain text. WAJIB di-hash dulu pakai bcrypt sebelum masuk database.
-            2. JWT payload berisi password. Payload bisa di-decode siapa pun — never put secrets in JWT.
-            3. Secret `"rahasia"` hardcoded dan lemah. Pakai env variable yang panjang dan random (`JWT_SECRET`).
+            1. Password disimpen plain text. WAJIB di-hash dulu pake bcrypt sebelum masuk database.
+            2. JWT payload isinya password. Payload bisa di-decode siapa pun — jangan pernah taruh secret di JWT.
+            3. Secret `"rahasia"` hardcoded sama lemah. Pake env variable yang panjang sama random (`JWT_SECRET`).
             """
         ),
         "fixed_code": dedent(
@@ -549,7 +549,7 @@ LESSON_AUTH = make_lesson(
             router.post("/register", async (req, res) => {
               const { email, password, full_name } = req.body;
               if (!email || !password) {
-                return res.status(400).json({ detail: "Email dan password wajib" });
+                return res.status(400).json({ detail: "Email sama password wajib" });
               }
 
               const hashed = await bcrypt.hash(password, 10);
@@ -557,7 +557,7 @@ LESSON_AUTH = make_lesson(
                 data: { email, hashed_password: hashed, full_name },
               });
 
-              // Token cuma berisi user id, bukan password
+              // Token cuma isinya user id, bukan password
               const token = jwt.sign(
                 { sub: user.id },
                 process.env.JWT_SECRET,
@@ -571,29 +571,29 @@ LESSON_AUTH = make_lesson(
     },
     quiz=[
         q(
-            "Apa beda authentication dengan authorization?",
+            "Beda authentication sama authorization?",
             [
-                "Sama saja",
-                "Authentication = siapa kamu, Authorization = apa yang boleh kamu lakukan",
-                "Authentication lebih cepat",
-                "Authorization untuk admin saja",
+                "Sama aja",
+                "Authentication = siapa kamu, Authorization = apa yang boleh kamu lakuin",
+                "Authentication lebih cepet",
+                "Authorization buat admin aja",
             ],
             "B",
-            "Login = AuthN. Cek role / permission = AuthZ. Dua hal berbeda yang sering dianggap sama.",
+            "Login = AuthN. Cek role / permission = AuthZ. Dua hal beda yang sering dianggep sama.",
         ),
         q(
-            "Apa yang HARUS dilakukan sebelum simpan password ke database?",
+            "Apa yang HARUS dilakuin sebelum simpen password ke database?",
             [
-                "Encode dengan base64",
-                "Hash dengan bcrypt (atau argon2/scrypt)",
-                "Encrypt dengan AES",
-                "Tidak perlu, simpan langsung",
+                "Encode pake base64",
+                "Hash pake bcrypt (atau argon2/scrypt)",
+                "Encrypt pake AES",
+                "Gak perlu, simpen langsung",
             ],
             "B",
-            "Bcrypt one-way hash. Database tidak akan pernah tahu password aslinya — bahkan kalau bocor pun.",
+            "Bcrypt one-way hash. Database gak bakal pernah tau password aslinya — bahkan kalau bocor pun.",
         ),
         q(
-            "Apa yang AMAN disimpan di payload JWT?",
+            "Apa yang AMAN disimpen di payload JWT?",
             [
                 "Password user",
                 "User id, role, expiration",
@@ -601,21 +601,21 @@ LESSON_AUTH = make_lesson(
                 "Database password",
             ],
             "B",
-            "Payload JWT bisa di-decode siapa pun. Cuma simpan info yang tidak rahasia. Password atau secret jangan pernah masuk JWT.",
+            "Payload JWT bisa di-decode siapa pun. Cuma simpen info yang gak rahasia. Password atau secret jangan pernah masuk JWT.",
         ),
         q(
-            "Apa fungsi signature di JWT?",
+            "Fungsi signature di JWT?",
             [
-                "Untuk encryption payload",
-                "Memastikan payload tidak diubah — kalau diubah, signature tidak match dan token ditolak",
-                "Untuk performance",
-                "Tidak ada fungsi",
+                "Buat encryption payload",
+                "Mastiin payload gak diubah — kalau diubah, signature gak match sama token ditolak",
+                "Buat performance",
+                "Gak ada fungsi",
             ],
             "B",
-            "Signature dihasilkan dengan secret server. Server pegang secret, jadi cuma server yang bisa bikin token valid.",
+            "Signature dihasilin pake secret server. Server pegang secret, jadi cuma server yang bisa bikin token valid.",
         ),
         q(
-            "Mana cara penyimpanan token yang LEBIH AMAN di production?",
+            "Mana cara nyimpen token yang LEBIH AMAN di production?",
             [
                 "localStorage",
                 "Variable JavaScript biasa",
@@ -623,19 +623,19 @@ LESSON_AUTH = make_lesson(
                 "URL parameter",
             ],
             "C",
-            "httpOnly cookie tidak bisa diakses JavaScript, jadi aman dari XSS. localStorage rentan kalau ada script jahat.",
+            "httpOnly cookie gak bisa diakses JavaScript, jadi aman dari XSS. localStorage rentan kalau ada script jahat.",
         ),
     ],
     common_mistakes=[
-        "Simpan password plain text. Bocor sekali, semua user kena.",
-        "Hardcode JWT_SECRET di kode. Gampang bocor saat repo public.",
-        "Pesan error spesifik 'email tidak terdaftar'. Lebih aman 'email atau password salah' supaya attacker tidak bisa enumerate user.",
+        "Simpen password plain text. Bocor sekali, semua user kena.",
+        "Hardcode JWT_SECRET di kode. Gampang bocor pas repo public.",
+        "Pesan error spesifik 'email gak terdaftar'. Lebih aman 'email atau password salah' biar attacker gak bisa nebak user mana yang ada.",
     ],
     checkpoint=[
-        "Bisa jelaskan beda AuthN vs AuthZ.",
-        "Bisa hash password dengan bcrypt.",
-        "Bisa generate dan verifikasi JWT.",
-        "Bisa bikin protected route dengan middleware.",
+        "Bisa jelasin beda AuthN vs AuthZ.",
+        "Bisa hash password pake bcrypt.",
+        "Bisa generate sama verifikasi JWT.",
+        "Bisa bikin protected route pake middleware.",
     ],
     xp_reward=200,
 )
@@ -653,60 +653,60 @@ LESSON_DEPLOY = make_lesson(
     summary="Database di Supabase, backend di Railway, frontend di Vercel.",
     tools=["Supabase", "Railway atau Render", "Vercel", "GitHub"],
     outcomes=[
-        "Setup PostgreSQL di Supabase",
-        "Deploy backend Express ke Railway",
-        "Deploy frontend Next.js ke Vercel",
-        "Hubungkan ketiganya dengan environment variable",
+        "Bisa setup PostgreSQL di Supabase",
+        "Bisa deploy backend Express ke Railway",
+        "Bisa deploy frontend Next.js ke Vercel",
+        "Bisa nyambungin ketiganya pake environment variable",
     ],
     tldr=(
         "Database di Supabase (gratis). Backend di Railway/Render (gratis "
-        "dengan limit). Frontend di Vercel (gratis untuk hobi). Hubungkan "
+        "sama limit). Frontend di Vercel (gratis buat hobi). Sambungin "
         "lewat env variable. Total waktu setup: ~1 jam."
     ),
     pembuka=dedent(
         """\
-        Bikin app di lokal itu gampang. Bikin app yang bisa diakses orang lain dari HP mereka, itu beda cerita.
+        Bikin app di lokal itu gampang. Bikin app yang bisa diakses orang lain dari HP mereka, itu cerita lain.
 
-        Untungnya 2026 punya banyak free tier. Ekosistem Vercel + Railway + Supabase membuat deploy fullstack hampir tanpa hambatan.
+        Untungnya 2026 punya banyak free tier. Kumpulan tools Vercel + Railway + Supabase bikin deploy fullstack hampir tanpa hambatan.
 
-        Lesson ini langkah-langkah konkrit: dari nol sampai URL publik yang bisa dibagikan.
+        Lesson ini langkah konkrit: dari nol sampe URL publik yang bisa kamu bagiin.
         """
     ),
     penjelasan=dedent(
         """\
         ### Arsitektur deploy
 
-        Tiga layanan yang akan kita pakai:
+        Tiga layanan yang bakal kita pake:
 
-        - **Supabase** — PostgreSQL hosted. Free tier cukup besar untuk hobi.
-        - **Railway** atau **Render** — hosting untuk backend Node.js. Free tier 500 jam/bulan.
-        - **Vercel** — hosting untuk frontend Next.js. Free tier sangat generous.
+        - **Supabase** — PostgreSQL hosted. Free tier-nya gede banget buat hobi.
+        - **Railway** atau **Render** — hosting buat backend Node.js. Free tier 500 jam/bulan.
+        - **Vercel** — hosting buat frontend Next.js. Free tier-nya enak banget.
 
         Alurnya: frontend (Vercel) → API request → backend (Railway) → query → database (Supabase).
 
         ### Step 1 — Database di Supabase
 
-        - Buka [supabase.com](https://supabase.com), Sign up dengan GitHub.
-        - **New Project** → kasih nama, password kuat untuk database, pilih region terdekat.
-        - Tunggu sekitar 2 menit untuk provisioning.
+        - Buka [supabase.com](https://supabase.com), Sign up pake GitHub.
+        - **New Project** → kasih nama, password kuat buat database, pilih region terdekat.
+        - Tunggu sekitar 2 menit buat provisioning.
         - Buka **Project Settings → Database → Connection string**. Salin URL connection.
 
         Ada dua format URL:
-        - **Direct** (port 5432) — untuk migrations dan dev.
-        - **Pooler** (port 6543) — untuk production runtime.
+        - **Direct** (port 5432) — buat migrations sama dev.
+        - **Pooler** (port 6543) — buat production runtime.
 
-        Untuk Prisma + Railway, pakai **Pooler** (lebih scalable).
+        Buat Prisma + Railway, pake **Pooler** (lebih scalable).
 
         ### Step 2 — Backend ke Railway
 
         - Push backend ke GitHub repo terpisah.
-        - Buka [railway.app](https://railway.app) → Sign up dengan GitHub.
+        - Buka [railway.app](https://railway.app) → Sign up pake GitHub.
         - **New Project → Deploy from GitHub repo** → pilih repo backend.
-        - Buka tab **Variables**, tambahkan:
+        - Buka tab **Variables**, tambahin:
           - `DATABASE_URL` = URL Supabase Pooler.
           - `JWT_SECRET` = string random panjang (`openssl rand -hex 32`).
           - `PORT` = `3001` (Railway override otomatis, tapi aman).
-        - Tab **Settings → Networking → Generate Domain**. Kamu dapat URL `xxx.up.railway.app`.
+        - Tab **Settings → Networking → Generate Domain**. Kamu dapet URL `xxx.up.railway.app`.
 
         Build command: `npm install && npx prisma generate && npx prisma db push`.
         Start command: `node src/index.js` atau `npm start`.
@@ -715,7 +715,7 @@ LESSON_DEPLOY = make_lesson(
 
         - Push frontend ke GitHub repo terpisah.
         - Buka [vercel.com/new](https://vercel.com/new) → import repo.
-        - Tambahkan env variable:
+        - Tambahin env variable:
           - `NEXT_PUBLIC_API_URL` = URL Railway dari step 2 (misal `https://xxx.up.railway.app/api`).
         - Klik **Deploy**.
 
@@ -743,14 +743,14 @@ LESSON_DEPLOY = make_lesson(
 
         ### Tips
 
-        - **Monorepo vs multi-repo.** Untuk pemula, lebih mudah multi-repo (frontend dan backend repo terpisah). Lebih jelas mana yang deploy ke mana.
-        - **Logs.** Railway dan Vercel keduanya punya tab Logs. Selalu cek di sini saat deploy gagal.
-        - **Free tier limit.** Railway free tier akan tidur kalau idle terlalu lama. Untuk demo OK, untuk produksi mungkin perlu paid plan.
+        - **Monorepo vs multi-repo.** Buat pemula, lebih gampang multi-repo (frontend sama backend repo terpisah). Lebih jelas mana yang deploy ke mana.
+        - **Logs.** Railway sama Vercel dua-duanya punya tab Logs. Selalu cek di sini pas deploy gagal.
+        - **Free tier limit.** Railway free tier bakal tidur kalau idle terlalu lama. Buat demo OK, buat produksi mungkin perlu paid plan.
         """
     ),
     contoh_code_md=dedent(
         """\
-        Setup script di `package.json` backend untuk Railway:
+        Setup script di `package.json` backend buat Railway:
 
         ```json
         {
@@ -762,7 +762,7 @@ LESSON_DEPLOY = make_lesson(
         }
         ```
 
-        Listen pada port yang Railway sediakan (env `PORT`):
+        Listen ke port yang Railway sediain (env `PORT`):
 
         ```js
         // src/index.js
@@ -773,7 +773,7 @@ LESSON_DEPLOY = make_lesson(
         });
         ```
 
-        Frontend `.env.production` untuk override URL API saat di Vercel:
+        Frontend `.env.production` buat override URL API pas di Vercel:
 
         ```bash
         NEXT_PUBLIC_API_URL=https://your-backend.up.railway.app/api
@@ -783,8 +783,8 @@ LESSON_DEPLOY = make_lesson(
     practice=(
         "Deploy stack lengkap: backend dari Backend Level 1 ke Railway, "
         "frontend Next.js minimal ke Vercel, database di Supabase. Test "
-        "fetch dari Vercel URL — pastikan CORS oke dan data muncul. Catat "
-        "tiga URL ini di catatan kamu."
+        "fetch dari URL Vercel — pastiin CORS oke sama datanya muncul. "
+        "Catet tiga URL ini di catetan kamu."
     ),
     fix_error={
         "language": "js",
@@ -799,11 +799,11 @@ LESSON_DEPLOY = make_lesson(
             app.use(cors({ origin: "http://localhost:3000" }));
             """
         ),
-        "hint": "Dua masalah saat dideploy ke Railway: port hardcoded dan CORS terlalu sempit.",
+        "hint": "Dua masalah pas dideploy ke Railway: port hardcoded sama CORS terlalu sempit.",
         "answer_explanation": dedent(
             """\
-            1. Railway override port via env `PORT`. Hardcode 3001 bikin Railway tidak bisa expose service-mu. Pakai `process.env.PORT || 3001`.
-            2. CORS cuma izinkan `localhost:3000`. Saat frontend di Vercel, request akan diblokir. Tambah domain Vercel (atau pakai array origin).
+            1. Railway override port lewat env `PORT`. Hardcode 3001 bikin Railway gak bisa expose service kamu. Pake `process.env.PORT || 3001`.
+            2. CORS cuma ngebolehin `localhost:3000`. Pas frontend di Vercel, request bakal diblokir. Tambah domain Vercel (atau pake array origin).
             """
         ),
         "fixed_code": dedent(
@@ -827,71 +827,71 @@ LESSON_DEPLOY = make_lesson(
     },
     quiz=[
         q(
-            "Mana kombinasi free tier yang umum untuk fullstack pemula?",
+            "Mana kombinasi free tier yang umum buat fullstack pemula?",
             [
                 "AWS + DigitalOcean + Heroku",
                 "Vercel + Railway + Supabase",
                 "Netlify + Replit + MongoDB Atlas Enterprise",
-                "Tidak ada yang gratis",
+                "Gak ada yang gratis",
             ],
             "B",
-            "Tiga ini punya free tier yang generous, ekosistem matang, dan deploy-nya gampang.",
+            "Tiga ini punya free tier yang generous, kumpulan tools-nya matang, sama deploy-nya gampang.",
         ),
         q(
-            "Apa fungsi `process.env.PORT` saat deploy ke Railway?",
+            "Fungsi `process.env.PORT` pas deploy ke Railway?",
             [
-                "Tidak ada",
+                "Gak ada",
                 "Railway dynamically assign port lewat env. Harus di-respect, bukan hardcode.",
-                "Cuma untuk dev",
+                "Cuma buat dev",
                 "Wajib 8080",
             ],
             "B",
-            "Platform PaaS biasanya assign port dinamis. Kalau hardcode 3001, app kamu tidak bisa di-expose.",
+            "Platform PaaS biasanya assign port dinamis. Kalau hardcode 3001, app kamu gak bisa di-expose.",
         ),
         q(
-            "Apa yang HARUS di-update di backend setelah deploy frontend ke Vercel?",
+            "Apa yang HARUS di-update di backend habis deploy frontend ke Vercel?",
             [
                 "Database schema",
-                "CORS — tambahkan domain Vercel ke allowed origins",
+                "CORS — tambahin domain Vercel ke allowed origins",
                 "Hash password",
-                "Tidak perlu update",
+                "Gak perlu update",
             ],
             "B",
-            "Frontend di Vercel adalah origin baru. Backend harus eksplisit izinkan, atau request akan diblokir browser.",
+            "Frontend di Vercel itu origin baru. Backend harus eksplisit ngebolehin, atau request bakal diblokir browser.",
         ),
         q(
-            "Mana praktik untuk JWT_SECRET di production?",
+            "Mana cara JWT_SECRET di production?",
             [
-                "Hardcode di kode supaya konsisten",
-                "Generate string random panjang (`openssl rand -hex 32`) dan simpan sebagai env variable di platform deploy",
-                "Pakai 'rahasia'",
-                "Tidak perlu",
+                "Hardcode di kode biar konsisten",
+                "Generate string random panjang (`openssl rand -hex 32`) sama simpen sebagai env variable di platform deploy",
+                "Pake 'rahasia'",
+                "Gak perlu",
             ],
             "B",
-            "Secret panjang dan unik melindungi token dari brute-force. Simpan di env, jangan commit ke repo.",
+            "Secret panjang sama unik ngelindungin token dari brute-force. Simpen di env, jangan commit ke repo.",
         ),
         q(
-            "Apa yang biasanya menyebabkan deploy gagal?",
+            "Apa yang biasanya bikin deploy gagal?",
             [
                 "Salah font",
-                "Env variable kurang atau salah, build script salah, CORS belum update",
-                "Logo terlalu besar",
+                "Env variable kurang atau salah, build script salah, CORS belum di-update",
+                "Logo terlalu gede",
                 "Browser lambat",
             ],
             "B",
-            "Tiga masalah klasik. Selalu cek logs di platform deploy untuk pesan error spesifik.",
+            "Tiga masalah klasik. Selalu cek logs di platform deploy buat pesan error spesifik.",
         ),
     ],
     common_mistakes=[
-        "Hardcode `localhost:3001` di frontend production. Tidak ada di production.",
+        "Hardcode `localhost:3001` di frontend production. Gak ada di production.",
         "Lupa tambah domain Vercel ke CORS origin. Browser blokir.",
-        "Generate Supabase URL versi 'Direct' untuk app jangka panjang. Kadang lebih boros connection — pakai Pooler.",
+        "Generate Supabase URL versi 'Direct' buat app jangka panjang. Kadang lebih boros connection — pake Pooler.",
     ],
     checkpoint=[
-        "Database Supabase live dan bisa diakses dari Prisma.",
-        "Backend deployed di Railway dengan env variable lengkap.",
-        "Frontend deployed di Vercel dengan `NEXT_PUBLIC_API_URL` benar.",
-        "End-to-end: bisa login dari URL Vercel, data tersimpan di Supabase.",
+        "Database Supabase live sama bisa diakses dari Prisma.",
+        "Backend deployed di Railway sama env variable lengkap.",
+        "Frontend deployed di Vercel sama `NEXT_PUBLIC_API_URL` bener.",
+        "End-to-end: bisa login dari URL Vercel, data tersimpen di Supabase.",
     ],
     xp_reward=180,
 )
@@ -902,30 +902,30 @@ LESSON_DEPLOY = make_lesson(
 # ─────────────────────────────────────────────────────────────────────────────
 
 PROJECT_NOTES = make_lesson(
-    title="Mini Project — Note-Taking App dengan Auth",
+    title="Mini Project — Note-Taking App Pake Auth",
     slug="mini-project-note-taking-app",
     order_index=4,
     read_time="180 menit",
     summary="Fullstack app: register/login + CRUD note + deploy ke production.",
     tools=["Next.js", "Express + Prisma", "Supabase", "Railway", "Vercel"],
     outcomes=[
-        "Membangun fullstack app end-to-end",
-        "Memakai JWT untuk session management",
-        "Menerapkan owner-based authorization (note hanya bisa dilihat owner-nya)",
-        "Deploy ke production dengan stack modern",
+        "Bisa bangun fullstack app dari ujung ke ujung",
+        "Bisa pake JWT buat session management",
+        "Bisa nerapin owner-based authorization (note cuma bisa dilihat owner-nya)",
+        "Bisa deploy ke production sama stack modern",
     ],
     tldr=(
-        "Bangun note-taking app: auth + CRUD note per user + deploy. "
-        "Setiap note milik user. User cuma bisa CRUD note miliknya sendiri. "
-        "Deploy stack lengkap: Vercel + Railway + Supabase."
+        "Bangun note-taking app: auth + CRUD note per user + deploy. Tiap "
+        "note milik user. User cuma bisa CRUD note miliknya sendiri. Deploy "
+        "stack lengkap: Vercel + Railway + Supabase."
     ),
     pembuka=dedent(
         """\
-        Saatnya gabungkan semua yang dipelajari di level ini.
+        Saatnya gabungin semua yang dipelajarin di level ini.
 
-        Note-taking app sederhana, tapi mengandung pola produksi: auth, owner-based access, deploy ke tiga layanan.
+        Note-taking app sederhana, tapi isinya pola produksi: auth, owner-based access, deploy ke tiga layanan.
 
-        Selesai project ini, kamu sudah bisa bilang: "Saya bisa bikin fullstack app dari nol sampai live."
+        Selesai project ini, kamu udah bisa bilang: "Saya bisa bikin fullstack app dari nol sampe live."
         """
     ),
     penjelasan=dedent(
@@ -945,7 +945,7 @@ PROJECT_NOTES = make_lesson(
         **Frontend (Next.js):**
 
         - `/register` — form register.
-        - `/login` — form login. Saat sukses, simpan token, redirect ke `/notes`.
+        - `/login` — form login. Pas sukses, simpen token, redirect ke `/notes`.
         - `/notes` — list note + form bikin baru. Protected (redirect ke login kalau belum auth).
         - `/notes/[id]` — detail + edit + delete note.
 
@@ -972,14 +972,14 @@ PROJECT_NOTES = make_lesson(
 
         ### Owner-based authorization
 
-        Aturan: user A tidak boleh CRUD note milik user B. Tapi karena URL pakai ID, kalau cuma cek "user login = OK", user A bisa hapus note B dengan tahu ID-nya.
+        Aturannya: user A gak boleh CRUD note milik user B. Tapi karena URL pake ID, kalau cuma cek "user login = OK", user A bisa hapus note B sama tau ID-nya.
 
-        Solusi: di tiap endpoint note, cek `note.user_id === req.userId`. Kalau tidak match, balas 403 Forbidden.
+        Solusi: di tiap endpoint note, cek `note.user_id === req.userId`. Kalau gak match, balas 403 Forbidden.
 
         ```js
         router.delete("/:id", authRequired, async (req, res) => {
           const note = await prisma.note.findUnique({ where: { id: req.params.id } });
-          if (!note) return res.status(404).json({ detail: "Note tidak ditemukan" });
+          if (!note) return res.status(404).json({ detail: "Note gak ditemukan" });
           if (note.user_id !== req.userId) {
             return res.status(403).json({ detail: "Bukan note kamu" });
           }
@@ -988,13 +988,13 @@ PROJECT_NOTES = make_lesson(
         });
         ```
 
-        Atau lebih ringkas — query langsung dengan filter user_id:
+        Atau lebih ringkes — query langsung sama filter user_id:
 
         ```js
         const note = await prisma.note.findFirst({
           where: { id: req.params.id, user_id: req.userId },
         });
-        if (!note) return res.status(404).json({ detail: "Note tidak ditemukan" });
+        if (!note) return res.status(404).json({ detail: "Note gak ditemukan" });
         ```
 
         ### Frontend protected page
@@ -1044,16 +1044,16 @@ PROJECT_NOTES = make_lesson(
         }
         ```
 
-        Catatan: localStorage dipakai di sini untuk kesederhanaan. Untuk production sungguhan, ganti ke httpOnly cookie.
+        Catetan: localStorage dipake di sini biar simpel. Buat production beneran, ganti ke httpOnly cookie.
 
         ### Submit
 
-        Live di Vercel (frontend) + Railway (backend) + Supabase (DB). Bagikan URL. Ajak teman bikin akun. Pastikan note-nya tidak saling terlihat.
+        Live di Vercel (frontend) + Railway (backend) + Supabase (DB). Bagiin URL. Ajak temen bikin akun. Pastiin note-nya gak saling keliatan.
         """
     ),
     contoh_code_md=dedent(
         """\
-        Endpoint create note dengan auth dan ownership:
+        Endpoint create note sama auth dan ownership:
 
         ```js
         // src/routes/notes.js
@@ -1091,7 +1091,7 @@ PROJECT_NOTES = make_lesson(
           const note = await prisma.note.findFirst({
             where: { id: req.params.id, user_id: req.userId },
           });
-          if (!note) return res.status(404).json({ detail: "Note tidak ditemukan" });
+          if (!note) return res.status(404).json({ detail: "Note gak ditemukan" });
 
           const updated = await prisma.note.update({
             where: { id: note.id },
@@ -1105,7 +1105,7 @@ PROJECT_NOTES = make_lesson(
           const note = await prisma.note.findFirst({
             where: { id: req.params.id, user_id: req.userId },
           });
-          if (!note) return res.status(404).json({ detail: "Note tidak ditemukan" });
+          if (!note) return res.status(404).json({ detail: "Note gak ditemukan" });
 
           await prisma.note.delete({ where: { id: note.id } });
           res.status(204).send();
@@ -1117,9 +1117,9 @@ PROJECT_NOTES = make_lesson(
     ),
     practice=(
         "Bangun stack lengkap sesuai spec. Test owner authorization: bikin "
-        "dua akun, login akun A, coba akses note milik akun B dengan ID-nya "
-        "secara langsung — harus dapat 404. Selesai itu, deploy semua dan "
-        "bagikan URL ke teman."
+        "dua akun, login akun A, coba akses note milik akun B sama ID-nya "
+        "secara langsung — harus dapet 404. Selesai itu, deploy semua sama "
+        "bagiin URL ke temen."
     ),
     fix_error={
         "language": "js",
@@ -1133,14 +1133,14 @@ PROJECT_NOTES = make_lesson(
             });
             """
         ),
-        "hint": "Endpoint ini punya celah keamanan besar. User bisa hapus note milik orang lain.",
+        "hint": "Endpoint ini punya celah keamanan gede. User bisa hapus note milik orang lain.",
         "answer_explanation": dedent(
             """\
-            Kesalahan: cuma cek user login, tapi tidak cek ownership note.
+            Salahnya: cuma cek user login, tapi gak cek ownership note.
 
-            User A login → tahu ID note milik user B → DELETE → terhapus. Itu vulnerability.
+            User A login → tau ID note milik user B → DELETE → kehapus. Itu vulnerability.
 
-            Solusi: filter berdasarkan owner. Pakai `findFirst` dengan `user_id: req.userId` untuk verifikasi ownership sebelum delete.
+            Solusi: filter berdasarkan owner. Pake `findFirst` sama `user_id: req.userId` buat verifikasi ownership sebelum delete.
             """
         ),
         "fixed_code": dedent(
@@ -1150,7 +1150,7 @@ PROJECT_NOTES = make_lesson(
                 where: { id: req.params.id, user_id: req.userId },
               });
               if (!note) {
-                return res.status(404).json({ detail: "Note tidak ditemukan" });
+                return res.status(404).json({ detail: "Note gak ditemukan" });
               }
               await prisma.note.delete({ where: { id: note.id } });
               res.status(204).send();
@@ -1160,18 +1160,18 @@ PROJECT_NOTES = make_lesson(
     },
     quiz=[
         q(
-            "Mengapa endpoint delete note WAJIB cek ownership, bukan cuma auth?",
+            "Kenapa endpoint delete note WAJIB cek ownership, bukan cuma auth?",
             [
-                "Untuk performance",
-                "Auth cuma cek user login. Tanpa cek owner, user bisa delete note milik orang lain dengan tahu ID-nya.",
-                "Tidak perlu",
-                "Untuk gaya",
+                "Buat performance",
+                "Auth cuma cek user login. Tanpa cek owner, user bisa delete note milik orang lain sama tau ID-nya.",
+                "Gak perlu",
+                "Buat gaya",
             ],
             "B",
             "Authorization (cek hak akses ke resource spesifik) wajib selain authentication. Ini vulnerability nyata yang sering luput pemula.",
         ),
         q(
-            "Status code yang TEPAT saat user A coba akses note milik user B?",
+            "Status code yang TEPAT pas user A coba akses note milik user B?",
             [
                 "200 OK",
                 "401 Unauthorized",
@@ -1179,52 +1179,52 @@ PROJECT_NOTES = make_lesson(
                 "500 Internal Server Error",
             ],
             "C",
-            "Banyak yang pakai 404 supaya tidak bocorkan apakah ID itu valid atau tidak. 403 juga benar kalau ingin eksplisit.",
+            "Banyak yang pake 404 biar gak bocorin apakah ID itu valid atau enggak. 403 juga bener kalau mau eksplisit.",
         ),
         q(
-            "Apa fungsi `onDelete: Cascade` di Prisma schema?",
+            "Fungsi `onDelete: Cascade` di Prisma schema?",
             [
                 "Backup otomatis",
-                "Saat parent (User) dihapus, semua child (Note) ikut terhapus",
+                "Pas parent (User) dihapus, semua child (Note) ikut kehapus",
                 "Performance",
-                "Tidak ada fungsi",
+                "Gak ada fungsi",
             ],
             "B",
-            "Cascade penting untuk konsistensi. Note tanpa owner = orphan data.",
+            "Cascade penting buat konsistensi. Note tanpa owner = data nyasar.",
         ),
         q(
-            "Mana cara filter note milik user yang sedang login di Prisma?",
+            "Mana cara filter note milik user yang lagi login di Prisma?",
             [
-                "`findMany()` lalu filter di JavaScript",
+                "`findMany()` terus filter di JavaScript",
                 "`findMany({ where: { user_id: req.userId } })`",
                 "`findUnique({ id: req.userId })`",
-                "Tidak bisa filter",
+                "Gak bisa filter",
             ],
             "B",
-            "Filter di database lebih efisien daripada filter di kode. Bikin query selalu mengecualikan data milik user lain.",
+            "Filter di database lebih efisien daripada filter di kode. Bikin query selalu ngecualiin data milik user lain.",
         ),
         q(
-            "Apa yang HARUS di-handle saat token expired di frontend?",
+            "Apa yang HARUS di-handle pas token expired di frontend?",
             [
                 "Crash app",
                 "Hapus token, redirect ke /login",
                 "Loop request terus-menerus",
-                "Tidak perlu di-handle",
+                "Gak perlu di-handle",
             ],
             "B",
-            "401 dari API berarti token tidak valid lagi. UX yang baik: bersihkan token lokal dan kirim user ke login.",
+            "401 dari API berarti token udah gak valid lagi. UX yang bagus: bersihin token lokal sama kirim user ke login.",
         ),
     ],
     common_mistakes=[
         "Cek auth tapi lupa cek ownership. Vulnerability.",
-        "Tidak handle 401 di frontend. User stuck di halaman yang gagal load.",
-        "Pesan error berbeda untuk 'note tidak ada' vs 'bukan milik kamu'. Bisa dipakai untuk ID enumeration. Pakai 404 sama untuk keduanya.",
+        "Gak handle 401 di frontend. User stuck di halaman yang gagal load.",
+        "Pesan error beda buat 'note gak ada' vs 'bukan milik kamu'. Bisa dipake buat ngintipin ID. Pake 404 sama buat keduanya.",
     ],
     checkpoint=[
         "Stack lengkap deployed ke Vercel + Railway + Supabase.",
         "Auth flow lengkap: register, login, logout, protected page.",
-        "Owner-based authorization: user A tidak bisa lihat note user B.",
-        "URL publik bisa diakses dan dipakai dua akun berbeda secara terpisah.",
+        "Owner-based authorization: user A gak bisa lihat note user B.",
+        "URL publik bisa diakses sama dipake dua akun beda secara terpisah.",
     ],
     xp_reward=600,
     is_project=True,
@@ -1241,8 +1241,8 @@ LEVEL = make_level(
     title="Fullstack Beginner",
     subtitle="Dua sisi, satu aplikasi",
     description=(
-        "Belajar menjahit frontend dan backend jadi satu aplikasi utuh. "
-        "Auth, owner-based authorization, environment variable, dan deploy "
+        "Belajar nyambungin frontend sama backend jadi satu aplikasi utuh. "
+        "Auth, owner-based authorization, environment variable, sama deploy "
         "production stack: Vercel + Railway + Supabase."
     ),
     duration="~4 minggu",

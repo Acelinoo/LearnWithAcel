@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import LevelViewerBadge from "@/components/ui/LevelViewerBadge";
+import ViewTracker from "@/components/ui/ViewTracker";
 import { getRoadmap } from "@/lib/api/content";
 import { aggregateLevels, levelTags } from "@/lib/roadmap-utils";
 import { formatCompact } from "@/lib/utils";
@@ -43,6 +44,9 @@ export default async function VibeRoadmapPage() {
 
   return (
     <div className="container-page py-16">
+      <ViewTracker entityType="page" entityId="roadmap-vibe" />
+      <ViewTracker entityType="category" entityId={roadmap.category.id} />
+
       <Reveal>
         <div className="flex items-center gap-2">
           <span className="section-eyebrow">

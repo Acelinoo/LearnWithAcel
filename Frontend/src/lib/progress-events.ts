@@ -29,7 +29,11 @@ export type ProgressUpdate = {
 };
 
 export type ViewUpdate = {
-  lessonId: string;
+  /** Type of entity being tracked. Mirrors backend `EntityType`. */
+  entityType: "lesson" | "level" | "category" | "page" | "project";
+  /** Database id (or string slug for `page` entities). */
+  entityId: string;
+  /** Authoritative new view count after the bump. */
   views: number;
 };
 

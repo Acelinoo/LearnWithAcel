@@ -18,95 +18,95 @@ from .._template import make_lesson, make_level, q
 # ─────────────────────────────────────────────────────────────────────────────
 
 LESSON_WEB = make_lesson(
-    title="Cara Kerja Web (Plain English)",
+    title="Cara Kerja Web (Bahasa Manusia)",
     slug="cara-kerja-web-plain-english",
     order_index=1,
     read_time="9 menit",
-    summary="Client, server, request/response — tanpa istilah ribet.",
-    tools=["Browser modern", "DevTools (Network tab)"],
+    summary="Browser, server, sama bolak-balik request — tanpa istilah ribet.",
+    tools=["Browser modern", "DevTools (tab Network)"],
     outcomes=[
-        "Memahami client-server dengan analogi sehari-hari",
-        "Membaca alur klik tombol → tampilan baru",
-        "Mengenali kapan kamu perlu frontend, backend, atau keduanya",
+        "Bisa jelasin browser-server pake bahasa sehari-hari",
+        "Tau alur dari klik tombol sampai tampilan baru muncul",
+        "Bisa nebak: ini masalah di sisi mana ya",
     ],
     tldr=(
-        "Browser (client) tanya, server jawab. Itu inti web. Frontend = "
-        "tampilan, backend = logika dan data. Pakai AI untuk implementasi, "
-        "tapi paham model mentalnya supaya tidak terjebak saat ada error."
+        "Browser kamu nanya, server jawab. Itu inti web. Frontend = yang "
+        "keliatan di layar. Backend = yang nyimpen data sama ngolah logika. "
+        "Ngerti ini bikin kamu gak panik tiap kali ada error."
     ),
     pembuka=dedent(
         """\
-        Banyak vibe coder bisa generate kode bagus, tapi panik begitu ada error. Penyebabnya satu: mereka tidak paham apa yang sebenarnya terjadi di balik tampilan.
+        Banyak orang bisa generate kode bagus pake AI tapi langsung panik begitu ada error. Penyebabnya satu: gak tau apa yang sebenernya jalan di balik tampilan.
 
-        Lesson ini bukan tutorial coding. Ini peta mental.
+        Lesson ini bukan ngajarin coding. Tujuannya bikin peta di kepala kamu.
 
-        Setelah lesson ini, kamu bisa baca kode AI dan langsung paham: "Oh, yang ini bagian client. Yang ini panggil server."
+        Habis ini kamu bisa baca kode AI dan langsung paham: "Oh yang ini di sisi browser. Yang ini manggil server."
         """
     ),
     penjelasan=dedent(
         """\
-        ### Dua karakter utama: client dan server
+        ### Dua pemain utama: browser sama server
 
-        Client = browser HP/laptop kamu. Tempat user lihat dan klik.
+        Browser = aplikasi yang kamu pake buat buka web. Chrome, Safari, Firefox. Itu yang user lihat dan klik.
 
-        Server = komputer di internet yang jalan 24/7. Tempat data tersimpan dan logika berat dijalankan.
+        Server = komputer di internet yang nyala 24 jam. Tempat data tersimpan dan logika berat dijalanin.
 
-        Mereka bicara via HTTP — protokol percakapan standar di internet.
+        Kedua-duanya ngobrol pake aturan namanya HTTP. Anggap aja kayak bahasa standar buat ngobrol di internet.
 
-        ### Analogi: pesan makanan online
+        ### Contoh gampang: pesen makanan online
 
-        Bayangkan kamu pesan makanan via app:
+        Kamu pesen makanan via app. Yang sebenernya kejadian:
 
-        1. Kamu buka app, pilih menu, klik "Pesan". Itu **client side**.
-        2. App kirim pesanan ke server restoran. Itu **request**.
-        3. Server cek stok, kalkulasi harga, simpan ke database. Itu **backend logic**.
-        4. Server balas: "OK, pesanan diterima". Itu **response**.
-        5. App update tampilan: "Pesanan sedang diproses". Itu **client render ulang**.
+        1. Kamu buka app, pilih menu, klik "Pesan". Itu **di HP kamu**.
+        2. App ngirim pesenan ke server restoran. Itu **request**.
+        3. Server cek stok, hitung harga, simpen ke database. Itu **logika di backend**.
+        4. Server jawab: "Oke, pesenan diterima". Itu **response**.
+        5. App update tampilan: "Lagi diproses". Itu **HP kamu nge-render ulang**.
 
-        Setiap kali kamu klik sesuatu di internet, alur ini terjadi.
+        Tiap kali kamu klik sesuatu di internet, alur kayak gini terjadi.
 
-        ### Apa yang terjadi saat kamu buka google.com
+        ### Apa yang kejadian pas kamu buka google.com
 
         Step by step di balik layar:
 
-        1. Browser terjemahkan `google.com` ke alamat IP via DNS (ibarat buku telepon).
-        2. Browser kirim **HTTP GET request** ke server Google.
-        3. Server Google balas HTML, CSS, JavaScript.
-        4. Browser render HTML jadi tampilan, terapkan CSS, jalankan JavaScript.
-        5. Saat kamu ketik sesuatu di kotak search, JavaScript di browser handle aksi itu.
-        6. Saat kamu tekan Enter, JavaScript kirim request lagi ke server untuk dapat hasil pencarian.
+        1. Browser nerjemahin `google.com` ke alamat IP lewat DNS. DNS itu mirip buku telepon internet.
+        2. Browser ngirim request ke server Google.
+        3. Server Google jawab dengan kirim HTML, CSS, sama JavaScript.
+        4. Browser baca HTML, terapin CSS, jalanin JavaScript-nya.
+        5. Pas kamu ngetik di kotak search, JavaScript di browser yang nge-handle.
+        6. Pas kamu pencet Enter, JavaScript ngirim request lagi ke server buat dapet hasil pencarian.
 
-        Jadi sebenarnya kamu mengunjungi server Google, bukan "membuka" Google.
+        Jadi kamu sebenernya lagi ngobrol sama server Google, bukan "buka" Google.
 
         ### Frontend vs Backend
 
-        - **Frontend** — semua yang user lihat dan interact. Tombol, animasi, form, layout. Jalan di browser.
-        - **Backend** — logika di balik layar. Cek password, simpan ke database, kirim email. Jalan di server.
+        - **Frontend** — semua yang user lihat dan bisa di-klik. Tombol, animasi, form, layout. Jalan di browser.
+        - **Backend** — yang gak keliatan. Cek password, simpen ke database, kirim email. Jalan di server.
 
-        Sebagian app cuma butuh frontend (landing page statis). Sebagian butuh backend (login, post, e-commerce).
+        Sebagian web cuma butuh frontend (kayak landing page biasa). Sebagian butuh backend juga (login, posting, e-commerce).
 
-        ### Kenapa kamu perlu paham ini
+        ### Kenapa kamu wajib paham ini
 
-        Saat kamu prompt AI dan dapat error, kamu butuh **isolasi masalah**:
+        Tau bagian-bagian ini ngebantu kamu pas ada error.
 
-        - Apakah error di frontend? Cek browser console (F12).
-        - Apakah error di backend? Cek logs di Railway/Vercel function.
-        - Apakah error di database? Cek di dashboard Supabase.
+        - Error di tampilan? Buka browser console (F12).
+        - Error di logika server? Cek logs di Railway atau Vercel function.
+        - Error di database? Cek dashboard Supabase.
 
-        Tanpa peta mental ini, kamu copy-paste seluruh error ke AI dan harap dapat solusi. Sering tidak akurat.
+        Tanpa peta kayak gini, kamu bakal copy seluruh error ke AI dan harap dapet jawaban. Sering gak tepat.
 
         ### Bahasa di tiap sisi
 
-        - **Frontend modern:** HTML, CSS, JavaScript/TypeScript, React/Next.js, Tailwind.
-        - **Backend modern:** Node.js, Python, atau Go. Express/FastAPI/Hono untuk framework.
-        - **Database:** PostgreSQL, MongoDB, SQLite.
+        - **Buat frontend modern:** HTML, CSS, JavaScript/TypeScript, React/Next.js, Tailwind.
+        - **Buat backend modern:** Node.js, Python, atau Go. Express/FastAPI/Hono buat framework.
+        - **Buat database:** PostgreSQL, MongoDB, SQLite.
 
-        Kamu tidak harus jago semua. Tahu apa yang tinggal di mana saja sudah cukup besar.
+        Kamu gak harus jago semua. Tau apa tinggal di mana udah modal gede.
         """
     ),
     contoh_code_md=dedent(
         """\
-        Contoh percakapan client-server saat user submit form login:
+        Contoh percakapan browser-server pas user submit form login:
 
         ```text
         User klik tombol "Login"
@@ -117,53 +117,54 @@ LESSON_WEB = make_lesson(
             body: JSON.stringify({ email, password })
           })
             ↓
-        HTTP request lewat internet
+        Request lewat internet
             ↓
         Backend (Express):
           - Cek email di database (Postgres)
-          - Bandingkan hash password
-          - Generate JWT token
+          - Bandingin hash password
+          - Bikin JWT token
             ↓
-        HTTP response balik:
+        Response balik:
           { "access_token": "eyJ..." }
             ↓
         Frontend:
-          - Simpan token di cookie
-          - Redirect ke /dashboard
-          - Tampilkan profil user
+          - Simpen token di cookie
+          - Pindah ke /dashboard
+          - Tampilin profil user
         ```
 
-        Lima langkah saja. Yang kelihatan di mata user cuma "klik → tampilan dashboard". Padahal di belakang ada empat layanan yang berkomunikasi.
+        Cuma lima langkah. Yang user lihat cuma "klik → masuk dashboard". Padahal di belakang ada empat layanan yang ngobrol.
         """
     ),
     practice=(
-        "Buka app/website favorit kamu (Twitter/Tokopedia/Instagram). Tekan "
-        "F12 → Network → klik tombol apa saja. Catat: berapa request yang "
-        "muncul untuk satu klik? Method-nya apa? Status code-nya apa?"
+        "Buka app/web favorit kamu (Twitter/Tokopedia/Instagram). Pencet F12, "
+        "buka tab Network, terus klik tombol apa aja. Catat: berapa request "
+        "yang muncul buat satu klik? Method-nya apa? Status code-nya apa?"
     ),
     fix_error={
         "language": "text",
         "broken_code": dedent(
             """\
-            User: "Saya bikin tombol login. Saat di-klik, langsung redirect ke
+            User: "Saya bikin tombol login. Pas di-klik, langsung redirect ke
             dashboard tanpa cek password. Bug atau fitur?"
             """
         ),
-        "hint": "Pikirkan: aksi 'cek password' itu kerjaan client atau server?",
+        "hint": "Mikir dulu: cek password itu kerjaan browser atau server?",
         "answer_explanation": dedent(
             """\
-            Itu BUG keamanan, bukan fitur. Client side cuma untuk tampilan dan navigasi. Verifikasi password WAJIB di backend.
+            Itu BUG bahaya banget, bukan fitur. Sisi browser tuh cuma buat tampilan sama navigasi. Verifikasi password WAJIB di server.
 
-            Kalau tombol login langsung redirect tanpa request ke server, siapa pun bisa akses dashboard tanpa login.
+            Kalau tombol login langsung redirect tanpa nanya server, siapa pun bisa masuk dashboard tanpa login.
 
-            Pola yang benar:
-            1. Frontend kumpulkan email + password.
+            Pola yang bener:
+
+            1. Frontend kumpulin email + password.
             2. Kirim ke backend lewat HTTP.
-            3. Backend verifikasi.
-            4. Kalau OK, backend balas token.
-            5. Frontend simpan token, redirect.
+            3. Backend cek beneran apa enggak.
+            4. Kalau bener, backend kirim balik token.
+            5. Frontend simpen token, baru redirect.
 
-            Aturan emas: jangan pernah percaya client untuk hal sensitif.
+            Aturan emas: jangan pernah percaya browser buat hal sensitif.
             """
         ),
         "fixed_code": dedent(
@@ -192,70 +193,70 @@ LESSON_WEB = make_lesson(
     },
     quiz=[
         q(
-            "Apa fungsi server dalam analogi pesan makanan online?",
+            "Server itu kayak apa di analogi pesen makanan?",
             [
                 "Tampilan menu di app",
-                "Restoran yang menerima pesanan, masak, dan kirim balasan",
+                "Restoran yang nerima pesenan, masak, sama kirim balasan",
                 "HP user",
                 "Internet",
             ],
             "B",
-            "Server = restoran. Tempat 'masak' (logika) dan stok (database) tersimpan. Client tinggal pesan dan terima.",
+            "Server = restoran. Tempat 'masak' (logika) dan stok (database) tersimpan. Browser tinggal pesen dan terima.",
         ),
         q(
-            "Apa yang dimaksud 'request' dalam HTTP?",
+            "'Request' di HTTP itu apa?",
             [
                 "Tampilan halaman",
-                "Pesan dari client (browser) yang minta sesuatu ke server",
+                "Pesen dari browser yang minta sesuatu ke server",
                 "Animasi loading",
                 "Logo perusahaan",
             ],
             "B",
-            "Request adalah pertanyaan/perintah dari client ke server. Setelahnya, server kirim balik 'response'.",
+            "Request = pertanyaan atau perintah dari browser ke server. Habis itu server kirim balik 'response'.",
         ),
         q(
-            "Mana tugas yang TIDAK seharusnya di frontend?",
+            "Mana tugas yang TIDAK boleh di frontend?",
             [
                 "Render tombol",
                 "Animasi hover",
                 "Verifikasi password",
-                "Validasi format email (sebagai UX)",
+                "Cek format email biar UX bagus",
             ],
             "C",
-            "Verifikasi password WAJIB di backend. Frontend bisa di-bypass siapa saja yang buka DevTools.",
+            "Verifikasi password WAJIB di backend. Frontend bisa di-bypass siapa aja yang buka DevTools.",
         ),
         q(
-            "Apa fungsi DNS dalam alur 'buka google.com'?",
+            "DNS itu fungsinya apa?",
             [
-                "Mempercepat halaman",
-                "Menerjemahkan nama domain (google.com) ke alamat IP server",
-                "Menghapus cache",
+                "Bikin halaman lebih cepet",
+                "Nerjemahin nama domain (google.com) ke alamat IP server",
+                "Hapus cache",
                 "Login otomatis",
             ],
             "B",
-            "DNS itu seperti buku telepon internet. Browser tidak tahu di mana google.com tinggal sampai DNS kasih alamat IP-nya.",
+            "DNS itu kayak buku telepon internet. Browser gak tau di mana google.com tinggal sampe DNS kasih alamat IP-nya.",
         ),
         q(
-            "Kenapa pemahaman client-server penting untuk vibe coder?",
+            "Kenapa vibe coder wajib paham browser-server?",
             [
-                "Untuk pamer pengetahuan",
-                "Supaya bisa isolasi masalah saat error: apakah di frontend, backend, atau database",
-                "Tidak penting",
-                "Wajib oleh AI",
+                "Buat pamer pengetahuan",
+                "Biar bisa pisahin: errornya di tampilan, logika server, atau database",
+                "Gak penting",
+                "Wajib menurut AI",
             ],
             "B",
-            "Tanpa peta mental, vibe coder copy-paste error mentah ke AI dan sering dapat solusi tidak akurat. Paham siapa salah dimana = debugging lebih cepat.",
+            "Tanpa peta mental, kamu bakal copy error mentah-mentah ke AI dan sering dapet jawaban yang gak tepat. Tau siapa salah dimana = debugging lebih cepet.",
         ),
     ],
     common_mistakes=[
-        "Pikir frontend bisa cek password. Itu bisa di-bypass siapa saja.",
-        "Pikir database tinggal di browser. Database tinggal di server, di-akses backend.",
-        "Tidak buka DevTools saat error. Network tab dan Console adalah teman terbaik.",
+        "Mikir frontend bisa cek password. Itu bisa di-bypass siapa aja.",
+        "Mikir database tinggal di browser. Database tinggal di server, dipanggil sama backend.",
+        "Gak buka DevTools pas error. Tab Network sama Console itu temen terbaik.",
     ],
     checkpoint=[
-        "Bisa jelaskan beda client dan server dengan analogi.",
-        "Tahu apa yang terjadi setelah klik tombol di app modern.",
-        "Bisa isolasi error: apakah di frontend, backend, atau database.",
+        "Bisa jelasin beda browser sama server pake bahasa sendiri.",
+        "Tau apa yang kejadian habis klik tombol di app modern.",
+        "Bisa nebak: errornya di tampilan, server, atau database.",
     ],
     xp_reward=80,
 )
@@ -266,38 +267,38 @@ LESSON_WEB = make_lesson(
 # ─────────────────────────────────────────────────────────────────────────────
 
 LESSON_REACT_MENTAL = make_lesson(
-    title="React Mental Model",
+    title="Cara Mikir Pas Pake React",
     slug="react-mental-model",
     order_index=2,
     read_time="11 menit",
-    summary="Component, props, dan state — tanpa nulis React dari nol.",
+    summary="Component, props, sama state — tanpa harus nulis React dari nol.",
     tools=["Cursor", "Browser modern"],
     outcomes=[
-        "Memahami component sebagai unit UI yang reusable",
-        "Mengenali props dan state di kode React",
-        "Membaca struktur file Next.js modern",
+        "Bisa lihat component sebagai potongan UI yang reusable",
+        "Bisa kenalin props sama state di kode React",
+        "Bisa baca struktur file Next.js modern",
     ],
     tldr=(
-        "Component = lego, satuan UI yang bisa dipakai ulang. Props = "
-        "parameter yang dikirim ke component. State = kondisi sekarang yang "
-        "bisa berubah. Pahami tiga ini, kamu bisa baca kode React dari AI."
+        "Component = lego, satuan UI yang bisa dipake berkali-kali. Props = "
+        "data yang dikirim ke component. State = kondisi sekarang yang bisa "
+        "berubah. Paham tiga ini doang, kamu udah bisa baca kode React dari AI."
     ),
     pembuka=dedent(
         """\
-        Banyak vibe coder generate React app dengan AI tapi takut sentuh kodenya. "Kalau saya ubah, takut rusak."
+        Banyak vibe coder generate React app pake AI tapi takut nyentuh kodenya. "Kalau saya ubah, takut rusak."
 
-        Itu wajar di awal. Tapi kalau kamu paham tiga konsep di lesson ini, kamu jadi berani edit dan tahu apa yang aman.
+        Wajar di awal. Tapi kalau kamu paham tiga hal di lesson ini, kamu jadi berani edit dan tau mana yang aman.
 
-        Tidak perlu jadi React developer. Cukup paham model mentalnya.
+        Gak perlu jadi React developer. Cukup paham cara mikirnya.
         """
     ),
     penjelasan=dedent(
         """\
         ### Component = lego UI
 
-        Component adalah **potongan UI** yang punya tampilan dan logika sendiri.
+        Component itu **potongan UI** yang punya tampilan sama logika sendiri.
 
-        Bayangkan lego: tiap kotak punya bentuk dan warnanya sendiri, tapi kamu kombinasi bisa jadi rumah, mobil, robot.
+        Mirip lego: tiap kotak punya bentuk dan warna sendiri, tapi kalau dikombinasi bisa jadi rumah, mobil, robot.
 
         Contoh component:
 
@@ -314,17 +315,17 @@ LESSON_REACT_MENTAL = make_lesson(
         }
         ```
 
-        Pakai di tempat lain:
+        Pake di tempat lain:
 
         ```jsx
         <Button onClick={() => alert("Hi!")}>Klik aku</Button>
         ```
 
-        Sekali tulis, pakai berkali-kali. Kalau mau ubah warna semua tombol, edit satu file → semua tombol berubah.
+        Sekali nulis, pake berkali-kali. Mau ubah warna semua tombol? Edit satu file → semua tombol berubah.
 
         ### Props = data yang masuk
 
-        Props (singkatan dari "properties") adalah cara mengirim data ke component dari luar.
+        Props itu cara ngirim data ke component dari luar. Singkatan dari "properties".
 
         ```jsx
         function Card({ judul, deskripsi }) {
@@ -339,11 +340,11 @@ LESSON_REACT_MENTAL = make_lesson(
         <Card judul="Halo" deskripsi="Saya component" />
         ```
 
-        Anggap props sebagai parameter function. Component itu sendiri mirip function.
+        Anggap props itu kayak parameter function. Component sendiri juga mirip function.
 
         ### State = kondisi sekarang
 
-        State adalah data yang **dimiliki component** dan bisa berubah.
+        State itu data yang **dimiliki component** dan bisa berubah.
 
         ```jsx
         import { useState } from "react";
@@ -360,13 +361,15 @@ LESSON_REACT_MENTAL = make_lesson(
         }
         ```
 
-        Saat `setCount` dipanggil, React otomatis re-render component. Kamu tidak manipulasi DOM manual.
+        Pas `setCount` dipanggil, React otomatis nge-render ulang component-nya. Kamu gak perlu otak-atik DOM manual.
 
-        ### Aturan emas vibe coder
+        ### Aturan yang gak bisa ditawar
 
-        - **Props mengalir ke bawah.** Parent kasih data ke child via props. Child tidak bisa ubah props.
-        - **State milik satu component.** Tiap component punya state sendiri. Mau share antar component? Naikkan ke parent (lifting state up).
-        - **Update state pakai setter.** Selalu pakai `setCount(...)`, jangan `count = count + 1`. React tidak akan re-render kalau di-assign langsung.
+        - **Props ngalir ke bawah.** Parent kasih data ke child lewat props. Child gak boleh ubah props.
+        - **State milik satu component.** Tiap component punya state sendiri. Mau share antar component? Naikin ke parent.
+        - **Update state pake setter.** Selalu pake `setCount(...)`, jangan `count = count + 1`. React gak bakal re-render kalau di-assign langsung.
+
+        Banyak pemula bingung di poin ketiga ini. Santai aja. Inget aja: pake setter selalu.
 
         ### Struktur file Next.js App Router
 
@@ -387,16 +390,16 @@ LESSON_REACT_MENTAL = make_lesson(
 
         Aturan: **folder = URL path**. File `page.jsx` di tiap folder = halaman utama folder itu. Kurung kotak `[slug]` = parameter dinamis.
 
-        ### Cara prompt AI yang efektif
+        ### Cara prompt AI biar akurat
 
-        Setelah paham mental model di atas, prompt kamu jadi lebih akurat.
+        Habis paham hal-hal di atas, prompt kamu jadi lebih tepat.
 
-        Bedakan:
+        Bedain:
 
-        - "Bikin component" — generic, AI ngarang.
-        - "Bikin component Card di `components/Card.jsx` yang terima props `judul` dan `deskripsi`. Pakai Tailwind. Default style minimal." — spesifik, AI hasilnya akurat.
+        - "Bikin component" — terlalu umum, AI ngarang.
+        - "Bikin component Card di `components/Card.jsx` yang terima props `judul` sama `deskripsi`. Pake Tailwind. Default style minimal." — spesifik, hasilnya akurat.
 
-        Saat AI keluar dari pola ini (misal pakai class component lama), kamu langsung tahu dan bisa minta revisi.
+        Pas AI keluar dari pola ini (misal pake class component lama), kamu langsung tau dan bisa minta revisi.
         """
     ),
     contoh_code_md=dedent(
@@ -424,7 +427,7 @@ LESSON_REACT_MENTAL = make_lesson(
 
           return (
             <div className="space-y-3">
-              <h3>Komentar untuk {author}</h3>
+              <h3>Komentar buat {author}</h3>
 
               <textarea
                 value={text}
@@ -452,15 +455,15 @@ LESSON_REACT_MENTAL = make_lesson(
         ```
 
         - `author` itu props (dari luar).
-        - `text` dan `comments` itu state (dimiliki component).
-        - `submit` adalah event handler yang update state.
+        - `text` sama `comments` itu state (dimiliki component).
+        - `submit` itu event handler yang update state.
         """
     ),
     practice=(
-        "Buka kode React mana saja dari project yang kamu punya (atau "
-        "generate baru pakai AI). Identifikasi 3 hal: 1) berapa component yang "
-        "ada, 2) props apa yang diterima setiap component, 3) state apa yang "
-        "dimiliki component. Tulis di catatan."
+        "Buka kode React dari project apa aja yang kamu punya (atau generate "
+        "baru pake AI). Identifikasi tiga hal: 1) berapa component yang ada, "
+        "2) props apa yang diterima tiap component, 3) state apa yang dimiliki "
+        "component. Tulis di catetan."
     ),
     fix_error={
         "language": "jsx",
@@ -486,14 +489,14 @@ LESSON_REACT_MENTAL = make_lesson(
             """
         ),
         "hint": (
-            "Console memang menampilkan angka naik, tapi tampilan tombol "
-            "tidak berubah. Kenapa?"
+            "Console emang nampilin angkanya naik, tapi tampilan tombol gak "
+            "berubah. Kenapa ya?"
         ),
         "answer_explanation": dedent(
             """\
-            Kesalahan: `count` ditulis sebagai `let` biasa. React tidak tahu data ini berubah, jadi component tidak re-render.
+            Salahnya: `count` ditulis pake `let` biasa. React gak tau data ini berubah, jadinya component-nya gak re-render.
 
-            React cuma re-render kalau STATE berubah. State dibuat dengan `useState`. Update wajib pakai setter (`setCount`).
+            React cuma re-render kalau STATE berubah. State dibikin pake `useState`. Update wajib pake setter (`setCount`).
             """
         ),
         "fixed_code": dedent(
@@ -515,70 +518,70 @@ LESSON_REACT_MENTAL = make_lesson(
     },
     quiz=[
         q(
-            "Apa analogi yang paling tepat untuk component di React?",
+            "Component di React paling pas dianggap kayak apa?",
             [
-                "Sebuah halaman lengkap",
-                "Lego — potongan kecil yang bisa dikombinasikan jadi tampilan utuh",
+                "Halaman lengkap",
+                "Lego — potongan kecil yang bisa digabung jadi tampilan utuh",
                 "Tabel database",
                 "File CSS",
             ],
             "B",
-            "Component = lego. Sekali tulis, pakai berkali-kali, dan bisa dikombinasikan untuk bikin tampilan kompleks.",
+            "Component = lego. Sekali nulis, pake berkali-kali, dan bisa digabung buat bikin tampilan kompleks.",
         ),
         q(
-            "Apa fungsi props di React?",
+            "Fungsi props di React itu apa?",
             [
-                "Menyimpan data permanen",
-                "Mengirim data dari parent ke child component",
-                "Melakukan login",
-                "Menggambar UI",
+                "Nyimpen data permanen",
+                "Ngirim data dari parent ke child component",
+                "Buat login",
+                "Nge-render UI",
             ],
             "B",
-            "Props mirip parameter function. Mengalir top-down dari parent ke child.",
+            "Props mirip parameter function. Ngalir dari atas (parent) ke bawah (child).",
         ),
         q(
-            "Apa beda state dan props?",
+            "Beda state sama props itu apa?",
             [
-                "Sama saja",
+                "Sama aja",
                 "Props dari luar (read-only di child). State dimiliki component dan bisa berubah.",
-                "State lebih cepat",
-                "Props cuma untuk styling",
+                "State lebih cepet",
+                "Props cuma buat styling",
             ],
             "B",
-            "Aturan: child tidak boleh ubah props. State milik sendiri yang bisa di-update lewat setter.",
+            "Aturannya: child gak boleh ubah props. State punya sendiri yang bisa di-update lewat setter.",
         ),
         q(
-            "Apa yang terjadi saat `setCount(...)` dipanggil?",
+            "Kalau `setCount(...)` dipanggil, apa yang terjadi?",
             [
-                "Tidak ada",
-                "React menjadwalkan re-render component dengan nilai baru",
+                "Gak ada apa-apa",
+                "React jadwalin re-render component dengan nilai baru",
                 "Halaman reload",
-                "Database update",
+                "Database ke-update",
             ],
             "B",
-            "Setiap update state trigger re-render component itu (dan child-nya). React update DOM secara efisien.",
+            "Tiap update state trigger re-render component itu (sama child-nya). React update DOM secara efisien.",
         ),
         q(
-            "Di Next.js App Router, file `app/blog/[slug]/page.jsx` melayani URL apa?",
+            "Di Next.js App Router, file `app/blog/[slug]/page.jsx` ngurusin URL apa?",
             [
                 "/blog",
                 "/blog/[slug]",
                 "/blog/anything (parameter dinamis)",
-                "Tidak ada",
+                "Gak ada",
             ],
             "C",
-            "Kurung kotak `[slug]` membuat segment URL jadi dinamis. `/blog/halo` dan `/blog/world` sama-sama hit page ini.",
+            "Kurung kotak `[slug]` bikin segment URL jadi dinamis. `/blog/halo` sama `/blog/world` sama-sama hit page ini.",
         ),
     ],
     common_mistakes=[
-        "Update state pakai `=`. React tidak re-render.",
-        "Bingung kapan pakai `\"use client\"`. Aturan: kalau butuh hooks atau event, kasih `\"use client\"` di baris pertama.",
-        "Pikir component class adalah cara modern React. Modern: function component dengan hooks.",
+        "Update state pake `=`. React gak re-render — biasanya pemula lupa di sini.",
+        "Bingung kapan pake `\"use client\"`. Aturan: kalau butuh hooks atau event, kasih `\"use client\"` di baris pertama.",
+        "Mikir class component itu cara modern React. Sekarang yang dipake function component sama hooks.",
     ],
     checkpoint=[
-        "Bisa jelaskan beda component, props, dan state.",
-        "Bisa baca kode React dan identifikasi tiga hal di atas.",
-        "Tahu struktur folder dasar Next.js App Router.",
+        "Bisa jelasin beda component, props, sama state.",
+        "Bisa baca kode React dan nemuin tiga hal di atas.",
+        "Tau struktur folder dasar Next.js App Router.",
     ],
     xp_reward=100,
 )
@@ -589,51 +592,51 @@ LESSON_REACT_MENTAL = make_lesson(
 # ─────────────────────────────────────────────────────────────────────────────
 
 LESSON_TW_VIBE = make_lesson(
-    title="Tailwind untuk Vibe Coder",
+    title="Tailwind buat Vibe Coder",
     slug="tailwind-untuk-vibe-coder",
     order_index=3,
     read_time="10 menit",
-    summary="Pakai Tailwind tanpa hafal semua class, bantu AI prompt yang akurat.",
+    summary="Pake Tailwind tanpa hafal semua class, plus prompt AI yang lebih akurat.",
     tools=["Cursor", "AI assistant", "Tailwind docs (referensi)"],
     outcomes=[
-        "Mengenali pola class Tailwind tanpa hafal semua",
-        "Prompt AI dengan istilah Tailwind yang tepat",
-        "Debug tampilan yang berantakan dengan DevTools",
+        "Bisa baca pola class Tailwind tanpa hafal semuanya",
+        "Bisa prompt AI pake istilah Tailwind yang tepat",
+        "Bisa debug tampilan berantakan pake DevTools",
     ],
     tldr=(
-        "Tailwind = utility-first CSS. Vibe coder tidak perlu hafal semua "
-        "class — paham polanya saja cukup. Pakai AI untuk generate, kamu "
-        "yang kasih instruksi visual yang spesifik."
+        "Tailwind itu CSS yang udah disiapin pecahan kecil-kecil. Kamu gak "
+        "perlu hafal semua class — paham polanya aja udah cukup. AI yang "
+        "isi detailnya, kamu yang kasih instruksi visual."
     ),
     pembuka=dedent(
         """\
-        Tailwind itu seperti seperangkat alat yang sudah jadi. Kamu tidak perlu bikin alat dulu sebelum mulai kerja.
+        Tailwind itu mirip seperangkat alat siap pakai. Kamu gak perlu bikin alat dulu sebelum mulai kerja.
 
-        Kabar baiknya untuk vibe coder: kamu tidak perlu hafal semua class. Paham polanya saja cukup. AI yang isi detailnya.
+        Kabar baik buat vibe coder: gak perlu hafal semua class. Tau polanya aja cukup. AI yang bakal isi detailnya.
 
-        Yang penting: kamu bisa bilang ke AI dengan tepat apa yang kamu mau secara visual.
+        Yang penting kamu bisa kasih tau AI tepat apa yang kamu mau secara visual.
         """
     ),
     penjelasan=dedent(
         """\
         ### Pola class Tailwind
 
-        Tailwind class itu sangat konsisten. Setelah kamu paham polanya, kamu bisa tebak class baru tanpa lihat docs.
+        Class Tailwind itu konsisten banget. Habis paham polanya, kamu bisa nebak class baru tanpa lihat docs.
 
-        Pola umum: `[property]-[value]`.
+        Pola umumnya: `[apa]-[nilai]`.
 
         - **Spacing:** `p-4` (padding), `m-4` (margin), `gap-4`. Angka 4 = `1rem`.
-        - **Color:** `bg-blue-500`, `text-red-600`. Format: `[utility]-[color]-[shade]`. Shade 50 paling terang, 950 paling gelap.
+        - **Warna:** `bg-blue-500`, `text-red-600`. Format: `[apa]-[warna]-[shade]`. Shade 50 paling terang, 950 paling gelap.
         - **Typography:** `text-lg`, `font-semibold`, `tracking-tight`.
         - **Layout:** `flex`, `grid`, `justify-center`, `items-center`.
-        - **Sizing:** `w-full`, `h-screen`, `max-w-md`.
+        - **Ukuran:** `w-full`, `h-screen`, `max-w-md`.
         - **Border:** `border`, `rounded-lg`, `rounded-full`.
 
-        Tidak hafal? Cek di docs: [tailwindcss.com/docs](https://tailwindcss.com/docs). Ada search yang super cepat.
+        Lupa? Buka [tailwindcss.com/docs](https://tailwindcss.com/docs). Search-nya cepet banget.
 
-        ### Responsive — prefix breakpoint
+        ### Responsive — pake prefix breakpoint
 
-        Mobile-first. Class tanpa prefix berlaku di semua ukuran. Prefix `sm:`, `md:`, `lg:`, `xl:` aktif dari ukuran itu ke atas.
+        Tailwind itu mobile-first. Class tanpa prefix berlaku di semua ukuran. Prefix `sm:`, `md:`, `lg:`, `xl:` aktif dari ukuran itu ke atas.
 
         ```html
         <h1 class="text-2xl md:text-4xl lg:text-6xl">Judul</h1>
@@ -643,7 +646,7 @@ LESSON_TW_VIBE = make_lesson(
 
         ### Dark mode
 
-        Prefix `dark:` aktif kalau parent punya class `dark` (atau OS user dark mode).
+        Prefix `dark:` aktif kalau parent punya class `dark` (atau OS user lagi dark mode).
 
         ```html
         <div class="bg-white dark:bg-gray-900 text-black dark:text-white">
@@ -653,7 +656,7 @@ LESSON_TW_VIBE = make_lesson(
 
         ### State variant
 
-        Prefix untuk hover, focus, active, disabled:
+        Prefix buat hover, focus, active, disabled:
 
         ```html
         <button class="bg-blue-500 hover:bg-blue-600 active:scale-95 disabled:opacity-50">
@@ -661,35 +664,35 @@ LESSON_TW_VIBE = make_lesson(
         </button>
         ```
 
-        ### Cara prompt AI dengan Tailwind
+        ### Cara prompt AI pake Tailwind
 
-        Buruk: "Bikin tombol bagus."
+        Jelek: "Bikin tombol bagus."
 
-        Baik: "Bikin button primary dengan padding `px-4 py-2`, background `bg-blue-500`, hover `bg-blue-600`, rounded `rounded-lg`, dan transition smooth."
+        Bagus: "Bikin button primary, padding `px-4 py-2`, background `bg-blue-500`, hover `bg-blue-600`, rounded `rounded-lg`, sama transition smooth."
 
-        Atau bahkan lebih baik (tanpa hafal class spesifik): "Bikin button primary, padding sedang, background biru, hover sedikit lebih gelap, sudut membulat lembut, transition smooth saat hover."
+        Atau lebih bagus lagi (tanpa hafal class spesifik): "Bikin button primary, padding sedang, background biru, hover sedikit lebih gelap, sudut membulat halus, sama transition smooth pas hover."
 
-        AI yang fluent Tailwind akan terjemahkan deskripsi visual jadi class yang tepat.
+        AI yang ngerti Tailwind bakal nerjemahin deskripsi visual kamu jadi class yang tepat.
 
         ### Cara debug tampilan berantakan
 
-        Saat hasil AI jelek atau tidak sesuai keinginan:
+        Pas hasil AI jelek atau gak sesuai keinginan:
 
-        1. Buka DevTools → Elements tab. Klik elemen yang aneh.
-        2. Lihat class apa yang aktif. Coba toggle satu per satu di panel Styles → cek mana yang bermasalah.
-        3. Atau tweak nilai langsung di DevTools (klik nilai padding misalnya, ganti angkanya). Lihat efeknya real-time.
-        4. Setelah tahu yang salah, balik ke kode dan perbaiki.
+        1. Buka DevTools → tab Elements. Klik elemen yang aneh.
+        2. Lihat class apa yang aktif. Toggle satu-satu di panel Styles → cari mana yang masalah.
+        3. Atau ubah nilai langsung di DevTools (klik nilai padding misalnya, ganti angkanya). Lihat efeknya real-time.
+        4. Habis tau yang salah, balik ke kode dan benerin.
 
-        Kemampuan ini akan menghemat berjam-jam ketimbang prompt AI bolak-balik.
+        Skill ini bakal hemat banget waktu kamu daripada bolak-balik prompt AI.
 
         ### Bonus: Prettier plugin Tailwind
 
-        Plugin `prettier-plugin-tailwindcss` otomatis sortir class Tailwind sesuai konvensi resmi. Install di Cursor → kode kamu jadi lebih konsisten.
+        Plugin `prettier-plugin-tailwindcss` otomatis sortir class Tailwind sesuai urutan resmi. Install di Cursor → kode kamu jadi lebih konsisten.
         """
     ),
     contoh_code_md=dedent(
         """\
-        Card responsive dengan dark mode dan hover state:
+        Card responsive plus dark mode plus hover state:
 
         ```jsx
         <article className="
@@ -720,14 +723,14 @@ LESSON_TW_VIBE = make_lesson(
         </article>
         ```
 
-        Class banyak tapi konsisten. Setelah kamu sering lihat pola ini, baca jadi cepat.
+        Class banyak tapi konsisten. Kalau udah sering lihat pola kayak gini, baca jadi cepet.
         """
     ),
     practice=(
         "Buka [v0.dev](https://v0.dev) atau Claude. Prompt: 'Bikin card "
-        "product e-commerce dengan gambar di atas, judul, harga, dan tombol "
+        "produk e-commerce dengan gambar di atas, judul, harga, sama tombol "
         "Beli. Style minimal, dark mode, accent biru.' Salin hasilnya ke "
-        "Cursor. Edit satu hal kecil (misal ubah accent color) tanpa minta "
+        "Cursor. Edit satu hal kecil (misal ganti accent color) tanpa minta "
         "AI lagi."
     ),
     fix_error={
@@ -741,14 +744,14 @@ LESSON_TW_VIBE = make_lesson(
             </div>
             """
         ),
-        "hint": "Tiga class tidak valid. Cek pola Tailwind yang sebenarnya.",
+        "hint": "Tiga class gak valid. Cek pola Tailwind yang sebenarnya.",
         "answer_explanation": dedent(
             """\
-            Tiga kesalahan:
+            Tiga salahnya:
 
-            1. `text-large` tidak valid. Yang benar: `text-lg` atau `text-xl`.
-            2. `hover-bg-blue-600` salah pemisah. Pakai `hover:bg-blue-600` (titik dua, bukan tanda strip).
-            3. `margin-top-4` tidak ada. Yang benar: `mt-4` (m = margin, t = top).
+            1. `text-large` gak ada. Yang bener: `text-lg` atau `text-xl`.
+            2. `hover-bg-blue-600` salah pemisah. Pake `hover:bg-blue-600` (titik dua, bukan strip).
+            3. `margin-top-4` gak ada. Yang bener: `mt-4` (m = margin, t = top).
             """
         ),
         "fixed_code": dedent(
@@ -763,27 +766,27 @@ LESSON_TW_VIBE = make_lesson(
     },
     quiz=[
         q(
-            "Apa filosofi utama Tailwind?",
+            "Apa cara kerja utama Tailwind?",
             [
                 "Wajib bikin class CSS sendiri",
-                "Utility-first: pasang class kecil di markup, jarang nulis CSS sendiri",
+                "Pasang class kecil langsung di markup, jarang nulis CSS sendiri",
                 "Auto-generate component",
-                "Hanya untuk Tailwind expert",
+                "Cuma buat Tailwind expert",
             ],
             "B",
-            "Tailwind menyediakan banyak utility class kecil yang dikombinasikan langsung di markup. Tidak perlu pindah-pindah file CSS.",
+            "Tailwind nyediain banyak utility class kecil yang dikombinasi langsung di markup. Gak perlu pindah-pindah file CSS.",
         ),
         q(
-            "Mana penulisan padding yang BENAR di Tailwind?",
+            "Mana penulisan padding yang BENER di Tailwind?",
             ["`padding-4`", "`p-4`", "`pad-1`", "`p4`"],
             "B",
-            "Format: `[utility]-[value]`. Padding pakai `p-`, lalu skala (1 = 0.25rem, 4 = 1rem).",
+            "Format: `[apa]-[nilai]`. Padding pake `p-`, lalu skala (1 = 0.25rem, 4 = 1rem).",
         ),
         q(
-            "Apa arti class `md:text-4xl`?",
+            "Class `md:text-4xl` artinya apa?",
             [
                 "Selalu text 4xl",
-                "Text jadi 4xl mulai breakpoint medium ke atas",
+                "Text jadi 4xl mulai dari breakpoint medium ke atas",
                 "Cuma di mobile",
                 "Error",
             ],
@@ -791,13 +794,13 @@ LESSON_TW_VIBE = make_lesson(
             "Mobile-first: tanpa prefix berlaku semua ukuran, prefix `md:` aktif dari medium ke atas.",
         ),
         q(
-            "Pemisah yang BENAR untuk state variant Tailwind?",
-            ["Tanda strip `-`", "Titik dua `:`", "Underscore `_`", "Tidak ada pemisah"],
+            "Pemisah yang BENER buat state variant Tailwind?",
+            ["Strip `-`", "Titik dua `:`", "Underscore `_`", "Gak ada pemisah"],
             "B",
             "Format: `state:utility`. Contoh `hover:bg-blue-600`, `dark:text-white`, `focus:ring-2`.",
         ),
         q(
-            "Cara cepat debug tampilan yang berantakan?",
+            "Cara cepet debug tampilan berantakan?",
             [
                 "Hapus semua kode dan mulai ulang",
                 "Buka DevTools, klik elemen yang aneh, toggle class atau ubah nilai langsung di Styles panel",
@@ -805,19 +808,19 @@ LESSON_TW_VIBE = make_lesson(
                 "Tanya AI tanpa konteks",
             ],
             "B",
-            "DevTools menunjukkan class aktif dan efek styling. Tweaking real-time di sana lebih cepat daripada prompt AI bolak-balik.",
+            "DevTools nampilin class yang aktif sama efek styling. Tweaking real-time di sana lebih cepet daripada bolak-balik prompt AI.",
         ),
     ],
     common_mistakes=[
-        "Hafal class yang tidak ada (`text-large`, `margin-top-4`). Tailwind punya pola spesifik.",
-        "Pakai tanda strip untuk state variant (`hover-bg`). Yang benar titik dua (`hover:bg`).",
-        "Class urut acak. Pakai prettier-plugin-tailwindcss untuk konsistensi.",
+        "Hafal class yang gak ada (`text-large`, `margin-top-4`). Tailwind punya pola spesifik.",
+        "Pake strip buat state variant (`hover-bg`). Yang bener titik dua (`hover:bg`).",
+        "Class urutannya acak. Pake prettier-plugin-tailwindcss biar konsisten.",
     ],
     checkpoint=[
-        "Bisa baca pola class Tailwind tanpa hafal semua.",
-        "Bisa prompt AI dengan deskripsi visual yang spesifik.",
-        "Bisa pakai DevTools untuk debug styling.",
-        "Tahu format responsive dengan prefix breakpoint.",
+        "Bisa baca pola class Tailwind tanpa hafal semuanya.",
+        "Bisa prompt AI pake deskripsi visual yang spesifik.",
+        "Bisa pake DevTools buat debug styling.",
+        "Tau format responsive pake prefix breakpoint.",
     ],
     xp_reward=120,
 )
@@ -828,29 +831,29 @@ LESSON_TW_VIBE = make_lesson(
 # ─────────────────────────────────────────────────────────────────────────────
 
 PROJECT_PORTFOLIO_CURSOR = make_lesson(
-    title="Mini Project — Portfolio Pakai Cursor + Claude",
+    title="Mini Project — Portfolio Pake Cursor + Claude",
     slug="mini-project-portfolio-cursor",
     order_index=4,
     read_time="120 menit",
-    summary="Build portfolio yang tidak terlihat AI-generated.",
+    summary="Bikin portfolio yang gak keliatan AI-generated.",
     tools=["Cursor", "Claude atau ChatGPT", "GitHub", "Vercel"],
     outcomes=[
-        "Membangun portfolio dengan workflow Cursor + AI",
-        "Polish output AI sampai terlihat 'tangan manusia'",
-        "Punya URL portfolio yang lebih baik dari Level 1",
+        "Bisa bangun portfolio pake workflow Cursor + AI",
+        "Bisa polish output AI sampe keliatan dipikirin",
+        "Punya URL portfolio yang lebih bagus dari Level 1",
     ],
     tldr=(
-        "Pakai Cursor + Claude untuk bikin portfolio Next.js + Tailwind. "
-        "Fokus polish: spacing, typography, hierarchy. Hasil yang terlihat "
-        "intentional, bukan asal generate."
+        "Pake Cursor + Claude buat bikin portfolio Next.js + Tailwind. Fokus "
+        "polish: spacing, typography, hierarchy. Hasilnya keliatan dipikirin, "
+        "bukan asal generate."
     ),
     pembuka=dedent(
         """\
-        Banyak portfolio buatan AI terlihat sama: card padding sedang, accent biru, hero terlalu pucat.
+        Banyak portfolio buatan AI keliatan sama: card padding sedang, accent biru, hero pucat banget.
 
-        Tujuan project ini: hasilkan portfolio yang **kelihatan dipikirkan**, bukan asal generate.
+        Tujuan project ini: hasilin portfolio yang **keliatan dipikirin**, bukan asal generate.
 
-        Caranya bukan dengan code lebih banyak — tapi prompt lebih spesifik dan polish lebih telaten.
+        Caranya bukan dengan code lebih banyak — tapi prompt yang lebih spesifik dan polish yang lebih telaten.
         """
     ),
     penjelasan=dedent(
@@ -863,50 +866,50 @@ PROJECT_PORTFOLIO_CURSOR = make_lesson(
 
         - **Hero** — nama, tagline kuat satu kalimat, dua CTA (lihat project, kontak).
         - **About** — paragraf pendek + skill list dalam grid.
-        - **Projects** — minimum 3 card. Data dari array, bukan hardcode.
-        - **Contact** — form sederhana atau link langsung email + social.
+        - **Projects** — minimum 3 card. Data dari array, bukan hardcode di tiap card.
+        - **Contact** — form sederhana atau link langsung ke email + social.
 
         ### Workflow Cursor + Claude
 
-        - **Step 1:** Di Claude (atau ChatGPT), kasih konteks lengkap. Stack, tone, dark/light mode, accent color, font, target user. Minta plan struktur file dulu, jangan langsung kode.
-        - **Step 2:** Setelah plan disepakati, minta implementasi component per component. Salin tiap output ke Cursor di file yang sesuai.
-        - **Step 3:** Test lokal. Buka di Cursor, lihat di browser.
-        - **Step 4:** Polish dengan ⌘K di Cursor: "Bikin spacing lebih lega di hero", "Tambah subtle animation saat card di-hover".
+        - **Step 1:** Di Claude (atau ChatGPT), kasih konteks lengkap. Stack, gaya, dark/light mode, accent color, font, target user. Minta plan struktur file dulu, jangan langsung kode.
+        - **Step 2:** Habis plan disepakatin, minta implementasi component per component. Salin tiap output ke Cursor di file yang sesuai.
+        - **Step 3:** Test di lokal. Buka di Cursor, lihat di browser.
+        - **Step 4:** Polish pake ⌘K di Cursor: "Bikin spacing lebih lega di hero", "Tambah animation halus pas card di-hover".
 
         ### Polish checklist
 
-        Hal-hal kecil yang bedakan portfolio amatir vs polished:
+        Hal-hal kecil yang bedain portfolio amatir vs polished:
 
-        - **Spacing.** Section harus punya `py-24 sm:py-32`. Jangan pelit padding.
-        - **Typography hierarchy.** H1 jelas lebih besar dari H2. Body text contrast tinggi dengan background.
-        - **Whitespace.** Jangan tumpukan info di satu area. Beri ruang.
-        - **Color discipline.** 1 accent + 2-3 grayscale. Tidak lebih.
-        - **Konsistensi border-radius.** Pilih satu nilai (misal `rounded-xl`) dan pakai konsisten.
-        - **Subtle animation.** `transition-all hover:scale-[1.02]` di card. Tidak berlebihan.
-        - **Loading font dari Google Fonts.** Default font Tailwind oke, tapi font dari Google (Inter, Plus Jakarta Sans) lebih premium.
-        - **OG image.** Untuk preview saat dibagikan di sosmed. Bisa dibikin di [og-image-builder](https://og-playground.vercel.app/) atau Figma.
+        - **Spacing.** Section harus `py-24 sm:py-32`. Jangan pelit padding.
+        - **Typography hierarchy.** H1 jelas lebih gede dari H2. Body text kontras tinggi sama background.
+        - **Whitespace.** Jangan tumpuk info di satu area. Kasih ruang.
+        - **Disiplin warna.** 1 accent + 2-3 grayscale. Gak lebih.
+        - **Border-radius konsisten.** Pilih satu nilai (misal `rounded-xl`) terus pake terus.
+        - **Animation halus.** `transition-all hover:scale-[1.02]` di card. Jangan berlebihan.
+        - **Pake font dari Google Fonts.** Default font Tailwind oke, tapi font dari Google (Inter, Plus Jakarta Sans) lebih kerasa premium.
+        - **OG image.** Buat preview pas dibagiin di sosmed. Bisa dibikin di [og-image-builder](https://og-playground.vercel.app/) atau Figma.
 
-        ### Tone yang pas
+        ### Bahasa yang pas
 
-        Portfolio bahasa Indonesia tanpa terlihat sok English. Pakai gaya santai-profesional:
+        Portfolio bahasa Indonesia tanpa keliatan sok English. Pake gaya santai-profesional:
 
-        - Buruk: "I create stunning user experiences."
-        - Baik: "Saya bikin aplikasi web yang dipakai user, bukan cuma demo."
+        - Jelek: "I create stunning user experiences."
+        - Bagus: "Saya bikin aplikasi web yang dipake user, bukan cuma demo."
 
-        Spesifik > umum. Honest > exaggerated.
+        Spesifik > umum. Jujur > lebay.
 
         ### Mini project ke real project
 
-        Portfolio ini akan jadi business card kamu untuk satu tahun ke depan. Update saat ada project baru. Treat it seperti dokumen yang hidup.
+        Portfolio ini bakal jadi kartu nama kamu buat satu tahun ke depan. Update kalau ada project baru. Anggap kayak dokumen yang hidup.
 
-        Setelah live, bagikan ke beberapa orang yang berbeda profesi: developer, designer, non-tech. Tanya satu per satu: "Apa yang kamu paham tentang saya dari halaman ini?".
+        Habis live, share ke beberapa orang dengan profesi beda: developer, designer, non-tech. Tanya satu-satu: "Apa yang kamu paham tentang saya dari halaman ini?".
 
-        Feedback dari tiga sudut pandang ini sangat berharga.
+        Feedback dari tiga sudut pandang ini berharga banget.
         """
     ),
     contoh_code_md=dedent(
         """\
-        Contoh prompt komprehensif untuk Claude:
+        Contoh prompt komprehensif buat Claude:
 
         ```text
         Saya mau bikin portfolio personal sebagai web developer pemula.
@@ -917,32 +920,32 @@ PROJECT_PORTFOLIO_CURSOR = make_lesson(
         - TypeScript
         - Tanpa backend (data project hardcode di file data/projects.ts)
 
-        Style direction:
+        Style:
         - Dark mode default
         - Accent: #4EBAEC (biru terang)
         - Background: #0a0a0a
         - Font: Inter dari Google Fonts
-        - Tone visual: minimal, banyak whitespace, subtle hover animations
+        - Vibe visual: minimal, banyak whitespace, hover animation halus
 
         Struktur halaman:
-        - Hero: nama besar, tagline 1 kalimat, 2 CTA (lihat project, kontak)
+        - Hero: nama gede, tagline 1 kalimat, 2 CTA (lihat project, kontak)
         - About: paragraf pendek + 6 skill dalam grid 3 kolom
         - Projects: 3 card minimum, data dari array
-        - Contact: link email + social, tidak perlu form
+        - Contact: link email + social, gak perlu form
 
-        Tone copy: bahasa Indonesia santai-profesional. Hindari jargon Inggris berlebihan.
+        Bahasa copy: Indonesia santai-profesional. Hindari jargon Inggris berlebihan.
 
         Mulai dari struktur file dulu, jangan langsung kode.
         ```
 
-        Setelah Claude kasih plan, kamu approve atau revisi. Baru implementation.
+        Habis Claude kasih plan, kamu approve atau revisi. Baru lanjut implementasi.
         """
     ),
     practice=(
-        "Selesaikan portfolio sesuai workflow di atas. Deploy ke Vercel. "
-        "Catat tiga hal: 1) berapa total prompt yang dibutuhkan? 2) Bagian "
-        "mana yang paling memakan waktu? 3) Apa hal yang AI tidak bisa "
-        "selesaikan sampai harus di-edit manual?"
+        "Selesain portfolio sesuai workflow di atas. Deploy ke Vercel. Catet "
+        "tiga hal: 1) total prompt yang dibutuhin berapa? 2) Bagian mana yang "
+        "paling makan waktu? 3) Apa hal yang AI gak bisa selesain dan harus "
+        "kamu edit manual?"
     ),
     fix_error={
         "language": "text",
@@ -955,97 +958,97 @@ PROJECT_PORTFOLIO_CURSOR = make_lesson(
             User: "Bagus."
             """
         ),
-        "hint": "Output AI tanpa direction = output generic. Kamu yang harus pegang taste-nya.",
+        "hint": "Output AI tanpa arahan = output generic. Kamu yang harus pegang taste-nya.",
         "answer_explanation": dedent(
             """\
-            Kesalahan: prompt vague + tidak ada feedback iteratif.
+            Salahnya: prompt vague + gak ada feedback berulang.
 
-            Hasilnya generic karena AI tidak punya konteks tentang siapa kamu, gaya yang kamu mau, dan target user.
+            Hasilnya generic karena AI gak punya konteks tentang siapa kamu, gaya yang kamu mau, sama target user-nya.
 
-            Yang benar: prompt yang spesifik (lihat contoh di atas), lalu iterasi feedback dengan istilah desain yang tepat. "Spacing-nya kurang lega di hero" lebih efektif dari "kurang oke".
+            Yang bener: prompt yang spesifik (lihat contoh di atas), terus iterasi feedback dengan istilah desain yang tepat. "Spacing-nya kurang lega di hero" lebih efektif daripada "kurang oke".
             """
         ),
         "fixed_code": dedent(
             """\
-            User: [Prompt komprehensif seperti contoh di atas]
+            User: [Prompt komprehensif kayak contoh di atas]
             AI: [Plan struktur file]
             User: "Plan oke. Lanjut implementasi Hero dulu."
             AI: [Hero component]
-            User: "Spacing di hero masih sempit. Naikkan py-32 sm:py-48.
-                  Tagline masih English. Ubah ke 'Saya bikin aplikasi web
+            User: "Spacing di hero masih sempit. Naikin py-32 sm:py-48.
+                  Tagline masih English. Ganti ke 'Saya bikin aplikasi web
                   yang berguna, bukan cuma demo.'"
             AI: [Hero versi revisi]
-            ... [iterasi sampai puas]
+            ... [lanjut sampe puas]
             """
         ),
     },
     quiz=[
         q(
-            "Apa yang membedakan portfolio polished dari portfolio AI generic?",
+            "Apa yang ngebedain portfolio polished sama portfolio AI generic?",
             [
                 "Banyak animasi mencolok",
-                "Spacing yang lega, typography hierarchy jelas, color discipline, konsistensi",
-                "Pakai banyak warna",
+                "Spacing yang lega, hierarchy jelas, disiplin warna, sama konsistensi",
+                "Pake banyak warna",
                 "Code yang panjang",
             ],
             "B",
-            "Detail kecil ini cumulative effect-nya besar. Portfolio yang terlihat dipikirkan vs asal generate.",
+            "Detail kecil ini efeknya kumulatif. Portfolio yang keliatan dipikirin vs asal generate.",
         ),
         q(
-            "Mana praktik prompt yang BAIK untuk AI?",
+            "Mana cara prompt yang BAGUS buat AI?",
             [
                 "Singkat: 'Bikin portfolio'",
-                "Konteks lengkap: stack, style, tone, struktur, dan minta plan dulu",
+                "Konteks lengkap: stack, gaya, bahasa, struktur, sama minta plan dulu",
                 "Acak-acakan",
                 "Cuma sebut warna",
             ],
             "B",
-            "Konteks komprehensif = output akurat. Tanpa konteks, AI ngarang dengan bias generic.",
+            "Konteks komprehensif = output akurat. Tanpa konteks, AI ngarang dengan pola generic.",
         ),
         q(
-            "Apa fungsi 'iterasi feedback' setelah AI kasih draft?",
+            "Apa fungsi 'iterasi feedback' habis AI kasih draft?",
             [
-                "Tidak penting",
-                "Untuk arahkan AI ke arah yang lebih spesifik dengan vocabulary desain yang tepat",
-                "Untuk basa-basi",
-                "Cuma untuk professional",
+                "Gak penting",
+                "Buat ngarahin AI ke arah yang lebih spesifik pake kosakata desain yang tepat",
+                "Buat basa-basi",
+                "Cuma buat profesional",
             ],
             "B",
-            "Iterasi adalah inti vibe coding. AI jarang langsung tepat di percobaan pertama. Kamu yang pegang taste.",
+            "Iterasi itu inti vibe coding. AI jarang langsung tepat di percobaan pertama. Kamu yang pegang taste.",
         ),
         q(
-            "Color discipline yang BAIK untuk portfolio pemula?",
+            "Disiplin warna yang BAGUS buat portfolio pemula?",
             [
-                "Banyak warna supaya menarik",
+                "Banyak warna biar menarik",
                 "1 accent + 2-3 grayscale",
                 "Pelangi",
-                "Hitam putih saja",
+                "Hitam putih aja",
             ],
             "B",
-            "Color theory: terlalu banyak warna = chaos. Sedikit warna dengan kontras yang tepat = polished.",
+            "Aturan warna: kebanyakan warna = chaos. Sedikit warna dengan kontras yang tepat = polished.",
         ),
         q(
-            "Apa hal yang sebaiknya dilakukan setelah portfolio live?",
+            "Apa yang sebaiknya dilakuin habis portfolio live?",
             [
-                "Tinggal lupakan",
-                "Bagikan ke 3 orang dari profesi berbeda dan tanya kesan mereka",
+                "Lupain aja",
+                "Share ke 3 orang dari profesi beda dan tanya kesan mereka",
                 "Update tiap menit",
                 "Hapus dan ulang",
             ],
             "B",
-            "Feedback dari mata yang berbeda mengungkap blind spot. Tidak semua orang punya konteks teknis kamu.",
+            "Feedback dari mata yang beda ngungkap blind spot. Gak semua orang punya konteks teknis kayak kamu.",
         ),
     ],
     common_mistakes=[
         "Prompt vague. Hasilnya generic.",
-        "Tidak iterasi. AI jarang langsung kasih hasil paling tepat.",
-        "Copy text English yang sok-sokan. Buat copy bahasa Indonesia yang jujur.",
+        "Gak iterasi. AI jarang langsung kasih hasil paling tepat.",
+        "Copy text English yang sok-sokan. Bikin copy bahasa Indonesia yang jujur.",
     ],
     checkpoint=[
         "Portfolio live di Vercel.",
-        "Kelihatan dipikirkan: spacing, typography, color discipline.",
-        "Sudah dapat feedback dari minimal 3 orang dengan profesi berbeda.",
-        "Workflow Cursor + AI sudah enak — tahu kapan AI cukup, kapan perlu polish manual.",
+        "Keliatan dipikirin: spacing, typography, disiplin warna.",
+        "Udah dapet feedback dari minimal 3 orang dengan profesi beda.",
+        "Workflow Cursor + AI udah enak — tau kapan AI cukup, kapan perlu polish manual.",
     ],
     xp_reward=400,
     is_project=True,
@@ -1062,9 +1065,9 @@ LEVEL = make_level(
     title="Basic App Building",
     subtitle="Dari prompt ke struktur app yang masuk akal",
     description=(
-        "Mental model client-server, React, dan styling cepat dengan "
-        "Tailwind. Tutup level dengan portfolio yang dibangun lewat "
-        "workflow Cursor + AI yang efektif."
+        "Ngobrolin browser-server, React, sama styling cepet pake Tailwind. "
+        "Tutup level dengan portfolio yang dibangun lewat workflow Cursor + "
+        "AI yang efektif."
     ),
     duration="~2 minggu",
     difficulty="Pemula → Menengah",

@@ -12,6 +12,7 @@ import {
   Zap,
 } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
+import ViewTracker from "@/components/ui/ViewTracker";
 import { getRoadmap } from "@/lib/api/content";
 
 export const dynamic = "force-dynamic";
@@ -57,6 +58,7 @@ export default async function PersiapanVibePage() {
 
   return (
     <div>
+      <ViewTracker entityType="page" entityId="persiapan-vibe" />
       <section className="container-page pt-12">
         <Reveal>
           <Link href="/pilih-jalur" className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-foreground">

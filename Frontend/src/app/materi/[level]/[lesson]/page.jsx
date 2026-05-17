@@ -7,6 +7,7 @@ import LessonShell from "@/components/lesson/LessonShell";
 import LessonSidebar from "@/components/lesson/LessonSidebar";
 import LessonNextCard from "@/components/lesson/LessonNextCard";
 import LessonViewTracker from "@/components/lesson/LessonViewTracker";
+import ViewTracker from "@/components/ui/ViewTracker";
 import CompleteLessonButton from "@/components/lesson/CompleteLessonButton";
 import { Markdown, extractHeadings } from "@/lib/markdown";
 import { getLesson, getRoadmap } from "@/lib/api/content";
@@ -96,6 +97,9 @@ export default async function LessonPage({ params }) {
     <>
       <ReadingProgress />
       <LessonViewTracker lessonId={lesson.id} />
+      {level && (
+        <ViewTracker entityType="level" entityId={level.id} />
+      )}
 
       <LessonShell
         sidebar={

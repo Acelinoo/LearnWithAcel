@@ -22,57 +22,57 @@ LESSON_APA_BACKEND = make_lesson(
     slug="apa-itu-backend",
     order_index=1,
     read_time="10 menit",
-    summary="Server, database, dan apa yang terjadi setelah klik tombol.",
-    tools=["Browser DevTools (Network tab)", "Notes app"],
+    summary="Server, database, sama apa yang terjadi habis kamu klik tombol.",
+    tools=["Browser DevTools (tab Network)", "Notes app"],
     outcomes=[
-        "Membedakan frontend dan backend dengan analogi nyata",
-        "Mengenali HTTP method dan status code dasar",
-        "Membaca request/response di Network tab DevTools",
+        "Bisa bedain frontend sama backend pake analogi nyata",
+        "Bisa kenalin HTTP method sama status code dasar",
+        "Bisa baca request/response di tab Network DevTools",
     ],
     tldr=(
         "Frontend = meja restoran (yang user lihat). Backend = dapur (yang "
-        "kerja di belakang). Keduanya bicara via HTTP request/response. "
+        "kerja di belakang). Keduanya ngobrol lewat HTTP request/response. "
         "Method utama: GET, POST, PUT, DELETE."
     ),
     pembuka=dedent(
         """\
-        Saat kamu klik 'Login' di Twitter, ada banyak yang terjadi dalam sepersekian detik.
+        Pas kamu klik 'Login' di Twitter, ada banyak hal yang kejadian dalam sepersekian detik.
 
-        Tampilan yang kamu lihat itu frontend. Tapi yang verifikasi password, ambil data tweet, dan kirim balik — itu backend.
+        Tampilan yang kamu lihat itu frontend. Tapi yang verifikasi password, ambil data tweet, sama kirim balik — itu backend.
 
-        Lesson ini bedah anatomi sederhana: apa yang terjadi di balik layar.
+        Lesson ini ngebedah anatomi sederhananya: apa yang sebenernya kejadian di balik layar.
         """
     ),
     penjelasan=dedent(
         """\
         ### Analogi restoran
 
-        Bayangkan website itu restoran:
+        Mikir website itu kayak restoran:
 
         - **Meja, menu, pelayan** = frontend. Itu yang kamu sentuh.
-        - **Dapur** = backend. Tempat masak data terjadi. Kamu tidak masuk ke dapur.
-        - **Pelayan yang antar pesanan** = API. Jembatan antara meja dan dapur.
-        - **Lemari bahan dan stok** = database. Tempat data tersimpan rapi.
+        - **Dapur** = backend. Tempat data dimasak. Kamu gak masuk ke dapur.
+        - **Pelayan yang nganterin pesenan** = API. Jembatan antara meja sama dapur.
+        - **Lemari bahan sama stok** = database. Tempat data tersimpan rapi.
 
-        Saat kamu klik 'Login', frontend kirim "permintaan" ke backend. Backend cek di database, lalu kirim balik hasilnya: berhasil atau gagal.
+        Pas kamu klik 'Login', frontend ngirim "permintaan" ke backend. Backend cek di database, terus kirim balik hasilnya: berhasil atau gagal.
 
         ### HTTP — bahasa percakapan
 
-        Frontend dan backend bicara pakai HTTP. Setiap percakapan punya format yang sama:
+        Frontend sama backend ngobrol pake HTTP. Tiap percakapan punya format yang sama:
 
         - **Request** dari frontend → backend.
         - **Response** dari backend → frontend.
 
-        Request punya:
+        Request isinya:
 
-        - **Method.** Tipe aksi: `GET` (ambil), `POST` (buat baru), `PUT` (update), `DELETE` (hapus).
+        - **Method.** Jenis aksi: `GET` (ambil), `POST` (bikin baru), `PUT` (update), `DELETE` (hapus).
         - **URL.** Alamat tujuan, misal `/api/users/42`.
         - **Headers.** Info tambahan (token auth, content-type).
-        - **Body.** Data yang dikirim (cuma untuk POST/PUT).
+        - **Body.** Data yang dikirim (cuma buat POST/PUT).
 
-        Response punya:
+        Response isinya:
 
-        - **Status code.** Angka yang menjelaskan hasil.
+        - **Status code.** Angka yang njelasin hasilnya gimana.
         - **Body.** Data yang dikirim balik.
 
         ### Status code yang sering muncul
@@ -81,15 +81,15 @@ LESSON_APA_BACKEND = make_lesson(
         - `201 Created` — sukses bikin data baru.
         - `400 Bad Request` — request kamu salah format.
         - `401 Unauthorized` — kamu belum login.
-        - `403 Forbidden` — sudah login tapi tidak punya akses.
-        - `404 Not Found` — data tidak ada.
+        - `403 Forbidden` — udah login tapi gak punya akses.
+        - `404 Not Found` — datanya gak ada.
         - `500 Internal Server Error` — backend yang error.
 
-        Dua kelompok besar: 2xx = sukses, 4xx = salah dari sisi user, 5xx = salah dari sisi server.
+        Dua kelompok gede: 2xx = sukses, 4xx = salah dari sisi user, 5xx = salah dari sisi server.
 
-        ### REST — gaya bicara yang umum
+        ### REST — gaya ngomong yang umum
 
-        REST adalah konvensi cara nyusun URL dan method.
+        REST itu kebiasaan cara nyusun URL sama method.
 
         - `GET /users` — daftar semua user.
         - `GET /users/42` — detail user dengan id 42.
@@ -97,18 +97,18 @@ LESSON_APA_BACKEND = make_lesson(
         - `PUT /users/42` — update user 42.
         - `DELETE /users/42` — hapus user 42.
 
-        Pola ini konsisten dan mudah ditebak. Hampir semua API publik mengikutinya.
+        Pola ini konsisten sama gampang ditebak. Hampir semua API publik ngikutin pola ini.
 
         ### Coba lihat sendiri
 
-        Buka satu situs apa saja, tekan F12 → tab Network. Refresh halaman. Kamu akan lihat puluhan request. Klik salah satu untuk lihat detail: method, status, headers, body.
+        Buka satu situs apa aja, pencet F12 → tab Network. Refresh halaman. Kamu bakal lihat puluhan request. Klik salah satu buat lihat detail: method, status, headers, body.
 
-        Itu yang sebenarnya terjadi setiap detik di internet.
+        Itu yang sebenernya kejadian tiap detik di internet.
         """
     ),
     contoh_code_md=dedent(
         """\
-        Contoh request HTTP saat user login (versi sederhana):
+        Contoh request HTTP pas user login (versi sederhana):
 
         ```http
         POST /api/auth/login HTTP/1.1
@@ -150,10 +150,10 @@ LESSON_APA_BACKEND = make_lesson(
         """
     ),
     practice=(
-        "Buka [github.com](https://github.com) di browser. Tekan F12 → Network. "
-        "Refresh halaman. Klik request paling atas (biasanya yang URL-nya "
-        "github.com itu sendiri). Catat: method, status code, dan satu header "
-        "menarik yang muncul."
+        "Buka [github.com](https://github.com) di browser. Pencet F12 → "
+        "Network. Refresh halaman. Klik request paling atas (biasanya yang "
+        "URL-nya github.com itu sendiri). Catet: method, status code, sama "
+        "satu header menarik yang muncul."
     ),
     fix_error={
         "language": "text",
@@ -167,12 +167,12 @@ LESSON_APA_BACKEND = make_lesson(
             Backend balas: 400 Bad Request "Method not allowed".
             """
         ),
-        "hint": "Method dan tujuan tidak match. REST punya konvensi yang spesifik.",
+        "hint": "Method sama tujuannya gak match. REST punya kebiasaan yang spesifik.",
         "answer_explanation": dedent(
             """\
-            Kesalahan: untuk **mengambil** data, gunakan `GET`, bukan `POST`. POST itu untuk membuat data baru.
+            Salahnya: buat **ambil** data, pake `GET`, bukan `POST`. POST itu buat bikin data baru.
 
-            REST convention untuk satu resource:
+            Pola REST buat satu resource:
 
             - GET /users/42 → ambil
             - PUT /users/42 → update
@@ -193,46 +193,46 @@ LESSON_APA_BACKEND = make_lesson(
     },
     quiz=[
         q(
-            "Apa yang dilakukan backend dalam analogi restoran?",
+            "Apa yang dilakuin backend dalam analogi restoran?",
             [
-                "Mengantar pesanan ke meja",
-                "Menjadi tempat data diproses dan disimpan, seperti dapur",
-                "Menjadi menu yang dilihat user",
-                "Meja kasir saja",
+                "Nganter pesenan ke meja",
+                "Jadi tempat data diproses sama disimpen, kayak dapur",
+                "Jadi menu yang dilihat user",
+                "Cuma meja kasir",
             ],
             "B",
-            "Backend = dapur. Tempat data dimasak, query database, dan logika bisnis dijalankan.",
+            "Backend = dapur. Tempat data dimasak, query database, sama logika bisnis dijalanin.",
         ),
         q(
-            "Mana method HTTP yang BENAR untuk mengambil daftar user?",
+            "Mana method HTTP yang BENER buat ngambil daftar user?",
             ["POST", "PUT", "GET", "DELETE"],
             "C",
-            "GET dipakai untuk membaca data. POST untuk membuat baru, PUT untuk update, DELETE untuk hapus.",
+            "GET dipake buat baca data. POST buat bikin baru, PUT buat update, DELETE buat hapus.",
         ),
         q(
-            "Apa arti status code 401 Unauthorized?",
+            "Status code 401 Unauthorized artinya apa?",
             [
                 "Server error",
-                "User belum login atau token tidak valid",
-                "Halaman tidak ditemukan",
+                "User belum login atau token-nya gak valid",
+                "Halaman gak ditemukan",
                 "Sukses",
             ],
             "B",
-            "401 artinya 'kamu belum membuktikan siapa kamu'. Beda dengan 403 yang artinya 'sudah login tapi tidak punya akses'.",
+            "401 artinya 'kamu belum buktiin siapa kamu'. Beda sama 403 yang artinya 'udah login tapi gak punya akses'.",
         ),
         q(
-            "Apa fungsi tab Network di DevTools?",
+            "Fungsi tab Network di DevTools?",
             [
-                "Mengubah CSS",
-                "Melihat semua HTTP request/response yang terjadi di halaman",
+                "Ngubah CSS",
+                "Liat semua HTTP request/response yang kejadian di halaman",
                 "Edit file lokal",
                 "Compile kode",
             ],
             "B",
-            "Network tab adalah jendela ke percakapan HTTP. Penting saat debug masalah API.",
+            "Tab Network itu jendela ke percakapan HTTP. Penting banget pas debug masalah API.",
         ),
         q(
-            "Mana URL REST yang KONSISTEN untuk update user dengan id 42?",
+            "Mana URL REST yang KONSISTEN buat update user dengan id 42?",
             [
                 "POST /update-user-42",
                 "PUT /users/42",
@@ -240,19 +240,19 @@ LESSON_APA_BACKEND = make_lesson(
                 "DELETE /users/42",
             ],
             "B",
-            "REST: PUT atau PATCH ke `/users/42` untuk update. Method dan struktur URL bersifat konvensional.",
+            "REST: PUT atau PATCH ke `/users/42` buat update. Method sama struktur URL itu kebiasaan.",
         ),
     ],
     common_mistakes=[
-        "Pakai POST untuk semua aksi. Padahal GET/PUT/DELETE punya makna sendiri.",
-        "Pikir 401 dan 403 sama. Bedanya: 401 = belum login, 403 = login tapi tidak boleh.",
-        "Lupa `Content-Type: application/json` di request POST. Server bingung parse body.",
+        "Pake POST buat semua aksi. Padahal GET/PUT/DELETE punya makna sendiri.",
+        "Ngira 401 sama 403 itu sama. Bedanya: 401 = belum login, 403 = login tapi gak boleh.",
+        "Lupa `Content-Type: application/json` di request POST. Server bingung parse body-nya.",
     ],
     checkpoint=[
-        "Bisa jelaskan beda frontend dan backend tanpa istilah teknis.",
-        "Hafal 4 method utama HTTP dan kapan dipakai.",
-        "Tahu beda status code 2xx/4xx/5xx.",
-        "Bisa baca Network tab DevTools secara umum.",
+        "Bisa jelasin beda frontend sama backend tanpa istilah teknis.",
+        "Hafal 4 method utama HTTP sama kapan dipake.",
+        "Tau beda status code 2xx/4xx/5xx.",
+        "Bisa baca tab Network DevTools secara umum.",
     ],
     xp_reward=80,
 )
@@ -267,41 +267,41 @@ LESSON_API = make_lesson(
     slug="apa-itu-api",
     order_index=2,
     read_time="11 menit",
-    summary="REST API, JSON, dan cara konsumsi API publik dari browser.",
+    summary="REST API, JSON, sama cara manggil API publik dari browser.",
     tools=["Browser modern", "DevTools (Console + Network)"],
     outcomes=[
-        "Memahami API sebagai kontrak antar aplikasi",
-        "Membaca dan menulis JSON",
-        "Memanggil API publik lewat fetch dari Console",
+        "Paham API itu kontrak antar aplikasi",
+        "Bisa baca sama nulis JSON",
+        "Bisa manggil API publik lewat fetch dari Console",
     ],
     tldr=(
         "API = kontrak. Frontend kirim request sesuai kontrak, backend balas "
-        "data dalam format JSON. fetch() adalah cara JavaScript memanggil API."
+        "data dalam format JSON. fetch() itu cara JavaScript manggil API."
     ),
     pembuka=dedent(
         """\
-        Pernah download cuaca harian di app HP? App-nya tidak nyetak datanya sendiri.
+        Pernah download cuaca harian di app HP? App-nya gak nyetak datanya sendiri.
 
-        Dia minta ke API cuaca. API balas dengan data: suhu, kelembaban, prediksi tiga hari ke depan. App-mu cuma menampilkan.
+        Dia minta ke API cuaca. API balas sama data: suhu, kelembaban, prediksi tiga hari ke depan. App kamu cuma nampilin.
 
-        API itu jembatan antar aplikasi. Lesson ini membongkar cara kerjanya.
+        API itu jembatan antar aplikasi. Lesson ini ngebongkar cara kerjanya.
         """
     ),
     penjelasan=dedent(
         """\
         ### Definisi sederhana
 
-        API (Application Programming Interface) adalah **kontrak komunikasi** antar aplikasi.
+        API (Application Programming Interface) itu **kontrak komunikasi** antar aplikasi.
 
-        Backend bilang: "Kalau kamu mau data X, kirim request ke `/path` dengan method Y. Aku akan balas dengan format Z."
+        Backend bilang: "Kalau kamu mau data X, kirim request ke `/path` pake method Y. Aku bakal balas pake format Z."
 
-        Selama kontrak dipatuhi, frontend dan backend bisa develop terpisah. Tim backend bisa rewrite Python ke Go, frontend tidak perlu tahu — selama kontrak API tetap sama.
+        Selama kontrak dipatuhi, frontend sama backend bisa develop terpisah. Tim backend bisa rewrite Python ke Go, frontend gak perlu tau — selama kontrak API-nya tetep sama.
 
         ### REST API — gaya yang dominan
 
-        REST API mengelola **resource**. Resource = "benda" yang punya identitas (user, post, produk).
+        REST API ngelola **resource**. Resource = "benda" yang punya identitas (user, post, produk).
 
-        Untuk tiap resource, ada 5 endpoint umum:
+        Buat tiap resource, ada 5 endpoint umum:
 
         - `GET /products` — daftar produk.
         - `GET /products/42` — detail produk.
@@ -309,11 +309,11 @@ LESSON_API = make_lesson(
         - `PUT /products/42` — update produk.
         - `DELETE /products/42` — hapus.
 
-        Jenis lain: GraphQL, gRPC, tRPC. Tapi untuk pemula, REST yang paling lazim ditemui.
+        Jenis lain: GraphQL, gRPC, tRPC. Tapi buat pemula, REST yang paling sering ditemui.
 
         ### JSON — format data standar
 
-        JSON (JavaScript Object Notation) adalah cara nulis data yang mudah dibaca manusia dan mesin.
+        JSON (JavaScript Object Notation) itu cara nulis data yang gampang dibaca manusia sama mesin.
 
         ```json
         {
@@ -331,12 +331,12 @@ LESSON_API = make_lesson(
 
         Aturan JSON:
 
-        - Object: `{ key: value }`. Key wajib pakai kutip ganda.
+        - Object: `{ key: value }`. Key wajib pake kutip ganda.
         - Array: `[ item, item ]`.
-        - Type: string, number, boolean, null, object, array. **Tidak ada `undefined` di JSON.**
-        - Tidak boleh ada koma di akhir item terakhir (trailing comma).
+        - Type: string, number, boolean, null, object, array. **Gak ada `undefined` di JSON.**
+        - Gak boleh ada koma di akhir item terakhir (trailing comma).
 
-        ### fetch — cara JavaScript panggil API
+        ### fetch — cara JavaScript manggil API
 
         ```js
         // GET request
@@ -353,7 +353,7 @@ LESSON_API = make_lesson(
         const created = await res2.json();
         ```
 
-        `fetch` mengembalikan Promise. Kita pakai `await` untuk menunggu, lalu `res.json()` untuk parse body jadi JavaScript object.
+        `fetch` ngembaliin Promise. Kita pake `await` buat nunggu, terus `res.json()` buat parse body jadi JavaScript object.
 
         ### Coba sendiri di Console
 
@@ -365,12 +365,12 @@ LESSON_API = make_lesson(
         console.log(data);
         ```
 
-        Kamu akan dapat object berisi data user dummy. JSONPlaceholder adalah API publik gratis untuk latihan.
+        Kamu bakal dapet object isinya data user dummy. JSONPlaceholder itu API publik gratis buat latihan.
         """
     ),
     contoh_code_md=dedent(
         """\
-        Memanggil API publik dan menampilkan datanya:
+        Manggil API publik sama nampilin datanya:
 
         ```js
         async function ambilCuaca(kota) {
@@ -397,14 +397,14 @@ LESSON_API = make_lesson(
         ambilCuaca("Jakarta");
         ```
 
-        Pola umum: try/catch + cek `res.ok`. Karena `fetch` cuma reject saat network error — bukan saat status 404 atau 500.
+        Pola umum: try/catch + cek `res.ok`. Karena `fetch` cuma reject pas network error — bukan pas status 404 atau 500.
         """
     ),
     practice=(
-        "Buka Console di browser. Panggil API JSONPlaceholder ini:\n\n"
+        "Buka Console di browser. Manggil API JSONPlaceholder ini:\n\n"
         "`fetch('https://jsonplaceholder.typicode.com/posts/1').then(r => r.json()).then(console.log)`\n\n"
-        "Lalu ubah angka 1 ke 5 — lihat data berbeda. Lalu coba `/posts` (tanpa "
-        "id) untuk dapat daftar semua post."
+        "Terus ubah angka 1 ke 5 — lihat datanya beda. Terus coba `/posts` "
+        "(tanpa id) buat dapet daftar semua post."
     ),
     fix_error={
         "language": "js",
@@ -415,12 +415,12 @@ LESSON_API = make_lesson(
             console.log(data.name);
             """
         ),
-        "hint": "fetch dan json() keduanya asynchronous. Cek apa yang sebenarnya kamu dapat tanpa await.",
+        "hint": "fetch sama json() dua-duanya asynchronous. Cek apa yang sebenernya kamu dapet tanpa await.",
         "answer_explanation": dedent(
             """\
-            Kesalahan: `fetch` mengembalikan **Promise**, bukan response langsung. Tanpa `await`, `res` adalah Promise — dan `Promise.json()` tidak ada.
+            Salahnya: `fetch` ngembaliin **Promise**, bukan response langsung. Tanpa `await`, `res` itu Promise — dan `Promise.json()` gak ada.
 
-            Solusi: tambah `await` di kedua langkah, atau pakai `.then()`. Function pembungkusnya juga harus `async`.
+            Solusinya: tambah `await` di kedua langkah, atau pake `.then()`. Function pembungkusnya juga harus `async`.
             """
         ),
         "fixed_code": dedent(
@@ -433,7 +433,7 @@ LESSON_API = make_lesson(
 
             ambilUsers();
 
-            // atau dengan .then():
+            // atau pake .then():
             // fetch("https://api.example.com/users")
             //   .then((r) => r.json())
             //   .then((data) => console.log(data[0].name));
@@ -442,7 +442,7 @@ LESSON_API = make_lesson(
     },
     quiz=[
         q(
-            "Apa itu API dalam satu kalimat?",
+            "API dalam satu kalimat?",
             [
                 "Bahasa pemrograman",
                 "Kontrak komunikasi antar aplikasi",
@@ -450,35 +450,35 @@ LESSON_API = make_lesson(
                 "Library JavaScript",
             ],
             "B",
-            "API adalah kontrak. Selama kontrak dipatuhi, dua aplikasi bisa berkomunikasi tanpa peduli implementasi internalnya.",
+            "API itu kontrak. Selama kontrak dipatuhi, dua aplikasi bisa ngobrol tanpa peduli implementasi internalnya.",
         ),
         q(
             "Format data yang paling umum di REST API modern?",
             ["XML", "CSV", "JSON", "YAML"],
             "C",
-            "JSON dominan karena ringan, mudah dibaca, dan native dengan JavaScript. XML dipakai dulu, sekarang jarang.",
+            "JSON dominan karena ringan, gampang dibaca, sama nyatu sama JavaScript. XML dipake dulu, sekarang jarang.",
         ),
         q(
-            "Apa yang dikembalikan `fetch(url)` di JavaScript?",
+            "Apa yang dikembaliin `fetch(url)` di JavaScript?",
             [
                 "Response data langsung",
-                "Promise yang resolve menjadi Response object",
+                "Promise yang resolve jadi Response object",
                 "String JSON",
                 "Boolean",
             ],
             "B",
-            "fetch mengembalikan Promise. Kita perlu `await` atau `.then()` untuk dapat Response, lalu `res.json()` untuk parse body.",
+            "fetch ngembaliin Promise. Kita perlu `await` atau `.then()` buat dapet Response, terus `res.json()` buat parse body-nya.",
         ),
         q(
-            "Apa beda `res.ok` dan tidak adanya error fetch?",
+            "Beda `res.ok` sama gak adanya error fetch?",
             [
-                "Tidak ada beda",
-                "fetch tidak reject saat status 4xx/5xx — `res.ok` (true kalau 2xx) yang harus dicek manual",
-                "`res.ok` cuma untuk POST",
-                "fetch otomatis throw saat 404",
+                "Gak ada beda",
+                "fetch gak reject pas status 4xx/5xx — `res.ok` (true kalau 2xx) yang harus dicek manual",
+                "`res.ok` cuma buat POST",
+                "fetch otomatis throw pas 404",
             ],
             "B",
-            "fetch cuma reject saat network error (offline, DNS, dll). Status 404 atau 500 tetap dianggap berhasil sampai ke kita. Jadi cek `res.ok` di kode.",
+            "fetch cuma reject pas network error (offline, DNS, dll). Status 404 atau 500 tetep dianggep berhasil sampe ke kita. Jadi cek `res.ok` di kode.",
         ),
         q(
             "Mana JSON yang VALID?",
@@ -489,19 +489,19 @@ LESSON_API = make_lesson(
                 "{ name = 'Acel' }",
             ],
             "C",
-            "JSON wajib: kutip ganda di key, tidak ada trailing comma, value sesuai tipe yang valid.",
+            "JSON wajib: kutip ganda di key, gak ada trailing comma, value sesuai tipe yang valid.",
         ),
     ],
     common_mistakes=[
-        "Lupa `await` saat panggil `fetch`. Hasilnya bukan response, tapi Promise.",
-        "Pakai kutip tunggal di key JSON. Bukan JSON valid.",
-        "Tidak cek `res.ok`. Kode lanjut walau backend balas error.",
+        "Lupa `await` pas manggil `fetch`. Hasilnya bukan response, tapi Promise.",
+        "Pake kutip tunggal di key JSON. Bukan JSON valid.",
+        "Gak cek `res.ok`. Kode lanjut walau backend balas error.",
     ],
     checkpoint=[
-        "Bisa jelaskan apa itu API dengan analogi pelayan restoran.",
-        "Bisa baca dan tulis JSON sederhana.",
-        "Bisa panggil API publik dengan `fetch` di Console.",
-        "Tahu pentingnya cek `res.ok` dan handle error.",
+        "Bisa jelasin apa itu API pake analogi pelayan restoran.",
+        "Bisa baca sama nulis JSON sederhana.",
+        "Bisa manggil API publik pake `fetch` di Console.",
+        "Tau pentingnya cek `res.ok` sama handle error.",
     ],
     xp_reward=120,
 )
@@ -512,43 +512,43 @@ LESSON_API = make_lesson(
 # ─────────────────────────────────────────────────────────────────────────────
 
 LESSON_DB = make_lesson(
-    title="Intro Database & Prisma",
+    title="Kenalan sama Database & Prisma",
     slug="intro-database",
     order_index=3,
     read_time="13 menit",
-    summary="SQL vs NoSQL, tabel, query dasar, dan Prisma sebagai ORM.",
+    summary="SQL vs NoSQL, tabel, query dasar, sama Prisma sebagai ORM.",
     tools=["PostgreSQL (lokal atau Supabase)", "Node.js + Prisma", "VS Code"],
     outcomes=[
-        "Memahami konsep tabel, kolom, baris dengan analogi spreadsheet",
-        "Membaca query SQL dasar (SELECT, INSERT, UPDATE, DELETE)",
-        "Memakai Prisma untuk operasi database dari JavaScript",
+        "Paham konsep tabel, kolom, baris pake analogi spreadsheet",
+        "Bisa baca query SQL dasar (SELECT, INSERT, UPDATE, DELETE)",
+        "Bisa pake Prisma buat operasi database dari JavaScript",
     ],
     tldr=(
         "Database = lemari arsip. PostgreSQL = pilihan default yang aman. "
-        "SQL = bahasa untuk tanya-jawab dengan database. Prisma = penerjemah "
-        "antara JavaScript dan database — kamu nulis JS, dia generate SQL."
+        "SQL = bahasa buat tanya-jawab sama database. Prisma = penerjemah "
+        "antara JavaScript sama database — kamu nulis JS, dia generate SQL."
     ),
     pembuka=dedent(
         """\
-        Variable di JavaScript hilang saat halaman ditutup. localStorage hilang saat user ganti browser.
+        Variable di JavaScript ilang pas halaman ditutup. localStorage ilang pas user ganti browser.
 
-        Untuk data yang harus tetap ada untuk semua user — daftar produk, comment, profil — kamu butuh database.
+        Buat data yang harus tetep ada buat semua user — daftar produk, comment, profil — kamu butuh database.
 
-        Bayangkan database itu lemari arsip raksasa yang terorganisir. Backend yang ngambilin file dari lemari ini.
+        Mikir database itu kayak lemari arsip raksasa yang terorganisir. Backend yang ngambilin file dari lemari ini.
         """
     ),
     penjelasan=dedent(
         """\
-        ### Dua kelompok besar
+        ### Dua kelompok gede
 
-        - **SQL (Relational).** Data tersusun dalam tabel dengan baris dan kolom yang jelas. Contoh: PostgreSQL, MySQL, SQLite. **Pilihan default untuk pemula.**
-        - **NoSQL (Document/Key-Value).** Data lebih fleksibel, mirip JSON. Contoh: MongoDB, Redis. Cocok untuk kasus tertentu, tapi belajar SQL dulu.
+        - **SQL (Relational).** Data tersusun dalam tabel sama baris dan kolom yang jelas. Contoh: PostgreSQL, MySQL, SQLite. **Pilihan default buat pemula.**
+        - **NoSQL (Document/Key-Value).** Data lebih fleksibel, mirip JSON. Contoh: MongoDB, Redis. Cocok buat kasus tertentu, tapi belajar SQL dulu.
 
-        Untuk jalur ini, kita pakai **PostgreSQL**. Solid, gratis, dipakai industri besar.
+        Buat jalur ini, kita pake **PostgreSQL**. Solid, gratis, dipake industri gede.
 
         ### Anatomi tabel
 
-        Bayangkan tabel seperti spreadsheet:
+        Bayangin tabel kayak spreadsheet:
 
         ```text
         Tabel: users
@@ -564,7 +564,7 @@ LESSON_DB = make_lesson(
         - **Tabel** — kelompok data (users, products).
         - **Kolom** — atribut (id, email, full_name).
         - **Baris** — satu record (satu user).
-        - **Primary key** — kolom unik yang menandai tiap baris (biasanya `id`).
+        - **Primary key** — kolom unik yang nandain tiap baris (biasanya `id`).
 
         ### Query dasar SQL
 
@@ -585,20 +585,20 @@ LESSON_DB = make_lesson(
         DELETE FROM users WHERE id = 3;
         ```
 
-        Cukup dengan empat verb ini, kamu bisa kerjain 80% pekerjaan database.
+        Cukup pake empat kata kerja ini, kamu udah bisa kerjain 80% pekerjaan database.
 
         ### Prisma — penerjemah JS ↔ Database
 
-        Nulis SQL terus-terusan capek dan rawan typo. **ORM (Object-Relational Mapping)** menerjemahkan operasi database jadi method bahasa pemrograman.
+        Nulis SQL terus-terusan capek sama rawan typo. **ORM (Object-Relational Mapping)** nerjemahin operasi database jadi method bahasa pemrograman.
 
-        Prisma adalah ORM populer untuk Node.js. Alur kerjanya:
+        Prisma itu ORM populer buat Node.js. Alur kerjanya:
 
         1. Tulis schema di `schema.prisma`.
-        2. Jalankan `prisma db push` — Prisma bikin tabel di DB.
-        3. Jalankan `prisma generate` — Prisma bikin client TypeScript yang punya tipe lengkap.
-        4. Pakai client di kode kamu.
+        2. Jalanin `prisma db push` — Prisma bikin tabel di DB.
+        3. Jalanin `prisma generate` — Prisma bikin client TypeScript yang punya tipe lengkap.
+        4. Pake client di kode kamu.
 
-        Schema example:
+        Contoh schema:
 
         ```prisma
         model User {
@@ -609,7 +609,7 @@ LESSON_DB = make_lesson(
         }
         ```
 
-        Pakai dari kode:
+        Pake dari kode:
 
         ```js
         import { PrismaClient } from "@prisma/client";
@@ -633,7 +633,7 @@ LESSON_DB = make_lesson(
         await prisma.user.delete({ where: { id: acel.id } });
         ```
 
-        Tidak nulis SQL satu pun. Prisma generate query yang efisien.
+        Gak nulis SQL satu pun. Prisma generate query yang efisien.
 
         ### Relationship — antar tabel saling terhubung
 
@@ -727,8 +727,8 @@ LESSON_DB = make_lesson(
     practice=(
         "Bikin akun gratis di [supabase.com](https://supabase.com), bikin "
         "project baru. Salin DATABASE_URL ke `.env` project Node kamu. Setup "
-        "Prisma seperti contoh di atas dengan model `Book`. Push schema, lalu "
-        "buka Supabase Studio — kamu harus lihat tabel `Book` muncul."
+        "Prisma kayak contoh di atas pake model `Book`. Push schema, terus "
+        "buka Supabase Studio — kamu harus liat tabel `Book` muncul."
     ),
     fix_error={
         "language": "prisma",
@@ -747,11 +747,11 @@ LESSON_DB = make_lesson(
             }
             """
         ),
-        "hint": "Tiga masalah: penamaan model, primary key, dan deklarasi relasi.",
+        "hint": "Tiga masalah: penamaan model, primary key, sama deklarasi relasi.",
         "answer_explanation": dedent(
             """\
             1. Nama model di Prisma **wajib PascalCase**. `book` jadi `Book`.
-            2. Primary key butuh `@id`. `String @default(uuid())` saja tidak cukup.
+            2. Primary key butuh `@id`. Cuma `String @default(uuid())` aja gak cukup.
             3. Relasi butuh foreign key field + `@relation` mapping.
             """
         ),
@@ -775,24 +775,24 @@ LESSON_DB = make_lesson(
     },
     quiz=[
         q(
-            "Apa pilihan database default yang paling aman untuk pemula?",
+            "Apa pilihan database default yang paling aman buat pemula?",
             ["MongoDB", "Redis", "PostgreSQL", "Excel"],
             "C",
-            "PostgreSQL solid, gratis, dipakai industri besar, dan sangat well-supported di ekosistem Node.js + Prisma.",
+            "PostgreSQL solid, gratis, dipake industri gede, sama support-nya bagus banget di kumpulan tools Node.js + Prisma.",
         ),
         q(
-            "Apa fungsi Prisma?",
+            "Fungsi Prisma?",
             [
                 "Bahasa programming baru",
-                "ORM yang menerjemahkan operasi database jadi method JavaScript",
+                "ORM yang nerjemahin operasi database jadi method JavaScript",
                 "Cloud hosting",
                 "Frontend framework",
             ],
             "B",
-            "Prisma menulis SQL untukmu. Kamu nulis `prisma.user.findMany()`, dia generate query SQL yang efisien.",
+            "Prisma nulis SQL buat kamu. Kamu nulis `prisma.user.findMany()`, dia generate query SQL yang efisien.",
         ),
         q(
-            "Mana SQL yang BENAR untuk ambil user dengan id 1?",
+            "Mana SQL yang BENER buat ambil user dengan id 1?",
             [
                 "`GET users WHERE id = 1`",
                 "`SELECT * FROM users WHERE id = 1`",
@@ -800,41 +800,41 @@ LESSON_DB = make_lesson(
                 "`READ users id 1`",
             ],
             "B",
-            "SQL pakai `SELECT ... FROM ... WHERE`. Berbeda dengan HTTP method (GET) yang sering disamakan oleh pemula.",
+            "SQL pake `SELECT ... FROM ... WHERE`. Beda sama HTTP method (GET) yang sering disamain pemula.",
         ),
         q(
-            "Apa fungsi `@id` di Prisma schema?",
+            "Fungsi `@id` di Prisma schema?",
             [
                 "Penanda kolom enkripsi",
-                "Penanda primary key — kolom unik yang menandai tiap baris",
-                "Untuk auto-increment",
-                "Untuk format tanggal",
+                "Penanda primary key — kolom unik yang nandain tiap baris",
+                "Buat auto-increment",
+                "Buat format tanggal",
             ],
             "B",
-            "Setiap model di Prisma wajib punya satu field dengan `@id`. Itu primary key-nya.",
+            "Tiap model di Prisma wajib punya satu field sama `@id`. Itu primary key-nya.",
         ),
         q(
             "Apa keuntungan ORM dibanding nulis SQL manual?",
             [
                 "Lebih lambat",
-                "Type safety (terutama dengan TypeScript), auto-completion, dan mengurangi typo SQL",
-                "Tidak ada keuntungan",
-                "Wajib oleh hukum",
+                "Type safety (apalagi sama TypeScript), auto-completion, sama ngurangin typo SQL",
+                "Gak ada keuntungan",
+                "Wajib menurut hukum",
             ],
             "B",
-            "Prisma generate client dengan tipe TypeScript otomatis. Salah ketik field langsung error sebelum runtime.",
+            "Prisma generate client sama tipe TypeScript otomatis. Salah ketik field langsung error sebelum runtime.",
         ),
     ],
     common_mistakes=[
-        "Nama model lowercase di Prisma. Generator complain: harus PascalCase.",
-        "Lupa `prisma generate` setelah edit schema. Client tidak ter-update.",
-        "Push ke production tanpa backup. Migration salah bisa hilangkan data.",
+        "Nama model lowercase di Prisma. Generator-nya complain: harus PascalCase.",
+        "Lupa `prisma generate` habis edit schema. Client gak ke-update.",
+        "Push ke production tanpa backup. Migration salah bisa ngilangin data.",
     ],
     checkpoint=[
-        "Bisa jelaskan beda SQL vs NoSQL.",
+        "Bisa jelasin beda SQL vs NoSQL.",
         "Bisa baca SQL dasar (SELECT, INSERT, UPDATE, DELETE).",
         "Bisa setup Prisma dari nol di project Node.",
-        "Tahu apa itu primary key dan relasi antar model.",
+        "Tau apa itu primary key sama relasi antar model.",
     ],
     xp_reward=160,
 )
@@ -845,29 +845,29 @@ LESSON_DB = make_lesson(
 # ─────────────────────────────────────────────────────────────────────────────
 
 PROJECT_REST_API = make_lesson(
-    title="Mini Project — REST API CRUD untuk Buku",
+    title="Mini Project — REST API CRUD buat Buku",
     slug="mini-project-rest-api-buku",
     order_index=4,
     read_time="120 menit",
-    summary="Bangun API CRUD lengkap dengan Express, Prisma, dan PostgreSQL.",
+    summary="Bangun API CRUD lengkap pake Express, Prisma, sama PostgreSQL.",
     tools=["Node.js LTS", "Express", "Prisma", "PostgreSQL atau Supabase", "Postman atau Thunder Client"],
     outcomes=[
-        "Membangun REST API end-to-end dari nol",
-        "Menerapkan 5 endpoint CRUD",
-        "Menggunakan Prisma untuk database operations",
-        "Test API dengan Postman atau Thunder Client",
+        "Bisa bangun REST API dari ujung ke ujung dari nol",
+        "Bisa nerapin 5 endpoint CRUD",
+        "Bisa pake Prisma buat operasi database",
+        "Bisa test API pake Postman atau Thunder Client",
     ],
     tldr=(
-        "Bangun API dengan 5 endpoint: list, detail, create, update, delete. "
-        "Stack: Express + Prisma + PostgreSQL. Test dengan Postman."
+        "Bangun API sama 5 endpoint: list, detail, create, update, delete. "
+        "Stack: Express + Prisma + PostgreSQL. Test pake Postman."
     ),
     pembuka=dedent(
         """\
-        Saatnya gabungkan semua: HTTP, REST, JSON, database, ORM.
+        Saatnya gabungin semua: HTTP, REST, JSON, database, ORM.
 
-        Kamu akan bangun API yang bisa di-call dari frontend mana saja.
+        Kamu bakal bangun API yang bisa di-call dari frontend mana aja.
 
-        Setelah selesai, kamu sudah punya backend pertama yang real — bukan tutorial dummy.
+        Habis selesai, kamu udah punya backend pertama yang real — bukan tutorial dummy.
         """
     ),
     penjelasan=dedent(
@@ -897,7 +897,7 @@ PROJECT_REST_API = make_lesson(
         npx prisma init
         ```
 
-        Edit `prisma/schema.prisma` untuk model `Book`. Set `DATABASE_URL` di `.env`.
+        Edit `prisma/schema.prisma` buat model `Book`. Set `DATABASE_URL` di `.env`.
 
         ```bash
         npx prisma db push
@@ -919,25 +919,25 @@ PROJECT_REST_API = make_lesson(
 
         ### Validasi minimal
 
-        - `POST /books` tanpa `title`: balas 400 dengan error message yang jelas.
-        - `GET /books/:id` dengan ID yang tidak ada: balas 404.
+        - `POST /books` tanpa `title`: balas 400 sama error message yang jelas.
+        - `GET /books/:id` sama ID yang gak ada: balas 404.
         - Field `year` harus number, bukan string.
 
-        ### Test dengan Postman atau Thunder Client
+        ### Test pake Postman atau Thunder Client
 
-        Postman gratis. Thunder Client adalah extension VS Code yang lebih ringan.
+        Postman gratis. Thunder Client itu extension VS Code yang lebih ringan.
 
         Test scenario minimal:
 
         - POST satu buku → status 201 + data buku yang baru.
-        - GET list → status 200 + array berisi buku tadi.
+        - GET list → status 200 + array isinya buku tadi.
         - PUT buku → status 200 + data ter-update.
         - DELETE buku → status 204 (no content).
-        - GET buku yang sudah dihapus → status 404.
+        - GET buku yang udah dihapus → status 404.
 
         ### Submit
 
-        Push ke GitHub dengan README minimal yang isinya: cara setup (`.env`, install, db push), cara run, dan daftar endpoint dengan contoh request.
+        Push ke GitHub sama README minimal yang isinya: cara setup (`.env`, install, db push), cara run, sama daftar endpoint sama contoh request.
         """
     ),
     contoh_code_md=dedent(
@@ -982,7 +982,7 @@ PROJECT_REST_API = make_lesson(
           const book = await prisma.book.findUnique({
             where: { id: req.params.id },
           });
-          if (!book) return res.status(404).json({ detail: "Buku tidak ditemukan" });
+          if (!book) return res.status(404).json({ detail: "Buku gak ditemukan" });
           res.json(book);
         });
 
@@ -990,7 +990,7 @@ PROJECT_REST_API = make_lesson(
         router.post("/", async (req, res) => {
           const { title, author, year } = req.body;
           if (!title || !author) {
-            return res.status(400).json({ detail: "Title dan author wajib diisi" });
+            return res.status(400).json({ detail: "Title sama author wajib diisi" });
           }
           const book = await prisma.book.create({
             data: { title, author, year: Number(year) || null },
@@ -1007,7 +1007,7 @@ PROJECT_REST_API = make_lesson(
             });
             res.json(updated);
           } catch {
-            res.status(404).json({ detail: "Buku tidak ditemukan" });
+            res.status(404).json({ detail: "Buku gak ditemukan" });
           }
         });
 
@@ -1017,14 +1017,14 @@ PROJECT_REST_API = make_lesson(
             await prisma.book.delete({ where: { id: req.params.id } });
             res.status(204).send();
           } catch {
-            res.status(404).json({ detail: "Buku tidak ditemukan" });
+            res.status(404).json({ detail: "Buku gak ditemukan" });
           }
         });
 
         export default router;
         ```
 
-        Tambahkan script di `package.json`:
+        Tambahin script di `package.json`:
 
         ```json
         "scripts": {
@@ -1035,10 +1035,9 @@ PROJECT_REST_API = make_lesson(
         """
     ),
     practice=(
-        "Selesaikan API sesuai spec. Test semua endpoint dengan Postman/Thunder "
-        "Client. Pastikan response code-nya benar (201 untuk create, 204 untuk "
-        "delete, 404 saat tidak ditemukan). Push ke GitHub dengan README "
-        "lengkap."
+        "Selesain API sesuai spec. Test semua endpoint pake Postman/Thunder "
+        "Client. Pastiin response code-nya bener (201 buat create, 204 buat "
+        "delete, 404 pas gak ditemukan). Push ke GitHub sama README lengkap."
     ),
     fix_error={
         "language": "js",
@@ -1052,12 +1051,12 @@ PROJECT_REST_API = make_lesson(
             });
             """
         ),
-        "hint": "Tiga masalah: status code, validasi input, dan tipe data field.",
+        "hint": "Tiga masalah: status code, validasi input, sama tipe data field.",
         "answer_explanation": dedent(
             """\
-            1. Untuk endpoint create, status sukses adalah `201 Created`, bukan default `200 OK`.
-            2. Tidak ada validasi — kalau body kosong atau tidak punya `title`, Prisma akan throw error tanpa pesan jelas.
-            3. `req.body.year` bisa berupa string. Wajib di-cast ke number sebelum disimpan supaya schema Prisma tidak reject.
+            1. Buat endpoint create, status sukses-nya `201 Created`, bukan default `200 OK`.
+            2. Gak ada validasi — kalau body kosong atau gak punya `title`, Prisma bakal throw error tanpa pesan jelas.
+            3. `req.body.year` bisa berupa string. Wajib di-cast ke number sebelum disimpen biar schema Prisma gak reject.
             """
         ),
         "fixed_code": dedent(
@@ -1067,7 +1066,7 @@ PROJECT_REST_API = make_lesson(
 
               if (!title || !author) {
                 return res.status(400).json({
-                  detail: "Title dan author wajib diisi",
+                  detail: "Title sama author wajib diisi",
                 });
               }
 
@@ -1086,61 +1085,61 @@ PROJECT_REST_API = make_lesson(
     },
     quiz=[
         q(
-            "Status code yang BENAR untuk POST /books yang sukses bikin buku baru?",
+            "Status code yang BENER buat POST /books yang sukses bikin buku baru?",
             ["200 OK", "201 Created", "204 No Content", "302 Redirect"],
             "B",
-            "201 Created khusus untuk resource baru. 200 OK biasa dipakai untuk GET. Pisah supaya client paham hasilnya.",
+            "201 Created khusus buat resource baru. 200 OK biasa dipake buat GET. Pisah biar client paham hasilnya.",
         ),
         q(
-            "Status code yang TEPAT untuk DELETE /books/:id yang sukses?",
+            "Status code yang TEPAT buat DELETE /books/:id yang sukses?",
             ["200 OK", "201 Created", "204 No Content", "400 Bad Request"],
             "C",
-            "204 dipakai saat sukses tapi tidak ada body yang dikembalikan — pas untuk DELETE.",
+            "204 dipake pas sukses tapi gak ada body yang dikembaliin — pas banget buat DELETE.",
         ),
         q(
-            "Apa fungsi `app.use(express.json())`?",
+            "Fungsi `app.use(express.json())`?",
             [
-                "Untuk styling",
+                "Buat styling",
                 "Middleware yang parse body request JSON jadi `req.body` object",
                 "Otomatis bikin tabel",
-                "Untuk login",
+                "Buat login",
             ],
             "B",
-            "Tanpa middleware ini, `req.body` undefined. Express harus diberitahu cara baca body JSON.",
+            "Tanpa middleware ini, `req.body` undefined. Express harus dikasih tau cara baca body JSON.",
         ),
         q(
-            "Apa yang harus dilakukan saat `GET /books/:id` dan ID-nya tidak ada?",
+            "Apa yang harus dilakuin pas `GET /books/:id` dan ID-nya gak ada?",
             [
-                "Balas 200 OK dengan body kosong",
-                "Balas 404 Not Found dengan pesan yang jelas",
+                "Balas 200 OK sama body kosong",
+                "Balas 404 Not Found sama pesan yang jelas",
                 "Crash server",
                 "Balas 500 Internal Server Error",
             ],
             "B",
-            "Resource tidak ada = 404. Itu standar REST yang harus di-handle eksplisit.",
+            "Resource gak ada = 404. Itu standar REST yang harus di-handle eksplisit.",
         ),
         q(
-            "Kenapa `cors()` middleware penting saat API mau dipanggil dari frontend?",
+            "Kenapa `cors()` middleware penting pas API mau dipanggil dari frontend?",
             [
-                "Untuk performance",
-                "Mengizinkan browser frontend memanggil API yang origin-nya berbeda. Tanpa ini, browser blokir request.",
-                "Untuk styling",
-                "Tidak penting",
+                "Buat performance",
+                "Ngebolehin browser frontend manggil API yang origin-nya beda. Tanpa ini, browser blokir request.",
+                "Buat styling",
+                "Gak penting",
             ],
             "B",
-            "Default browser blokir cross-origin request demi keamanan. CORS middleware kasih izin eksplisit.",
+            "Default browser blokir cross-origin request demi keamanan. Middleware CORS kasih izin eksplisit.",
         ),
     ],
     common_mistakes=[
-        "Pakai 200 OK untuk semua sukses. Hilang nuance antara create (201) dan no-content (204).",
-        "Tidak validasi input. Body kosong langsung lewat ke Prisma, error message-nya tidak ramah.",
-        "Lupa CORS. Frontend tidak bisa panggil API meski API-nya benar.",
+        "Pake 200 OK buat semua sukses. Hilang nuance antara create (201) sama no-content (204).",
+        "Gak validasi input. Body kosong langsung lewat ke Prisma, error message-nya gak ramah.",
+        "Lupa CORS. Frontend gak bisa manggil API meski API-nya bener.",
     ],
     checkpoint=[
-        "API jalan di lokal dan bisa di-test dengan Postman.",
-        "Lima endpoint CRUD bekerja dengan status code yang benar.",
-        "Validasi minimal sudah ada (400 untuk input salah, 404 untuk tidak ditemukan).",
-        "Repo GitHub punya README dengan cara setup dan contoh request.",
+        "API jalan di lokal sama bisa di-test pake Postman.",
+        "Lima endpoint CRUD jalan sama status code yang bener.",
+        "Validasi minimal udah ada (400 buat input salah, 404 buat gak ditemukan).",
+        "Repo GitHub punya README sama cara setup dan contoh request.",
     ],
     xp_reward=400,
     is_project=True,
@@ -1155,11 +1154,11 @@ LEVEL = make_level(
     number=1,
     slug="backend-beginner",
     title="Backend Beginner",
-    subtitle="Dari klik tombol sampai data tersimpan",
+    subtitle="Dari klik tombol sampe data tersimpan",
     description=(
-        "Pengantar dunia server-side. Kamu akan paham cara kerja HTTP, REST "
-        "API, database, dan tutup level dengan REST API CRUD pertamamu pakai "
-        "Express + Prisma + PostgreSQL."
+        "Pengantar dunia server-side. Kamu bakal paham cara kerja HTTP, "
+        "REST API, database, sama nutup level sama REST API CRUD pertamamu "
+        "pake Express + Prisma + PostgreSQL."
     ),
     duration="~3 minggu",
     difficulty="Pemula",

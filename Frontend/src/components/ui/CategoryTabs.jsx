@@ -1,10 +1,66 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { Lock, Briefcase, Wrench, Code2 } from "lucide-react";
 
+/**
+ * Tabs for switching between learning paths.
+ *
+ * The active tab can be preselected via the URL `?path=<id>` query
+ * param. That hook is wrapped in its own Suspense boundary so callers
+ * don't need to know about the dynamic rendering quirk Next.js 14
+ * imposes on `useSearchParams`.
+ */
 export default function CategoryTabs({ categories, panels }) {
-  const [active, setActive] = useState(categories[0].id);
+  const fallbackId = categories[0]?.id;
+  return (
+    <Suspense
+      fallback={
+        <CategoryTabsBody
+          categories={categories}
+          panels={panels}
+          requested={null}
+          fallbackId={fallbackId}
+        />
+      }
+    >
+      <CategoryTabsWithSearch
+        categories={categories}
+        panels={panels}
+        fallbackId={fallbackId}
+      />
+    </Suspense>
+  );
+}
+
+function CategoryTabsWithSearch({ categories, panels, fallbackId }) {
+  const searchParams = useSearchParams();
+  const requested = searchParams?.get("path") ?? null;
+  return (
+    <CategoryTabsBody
+      categories={categories}
+      panels={panels}
+      requested={requested}
+      fallbackId={fallbackId}
+    />
+  );
+}
+
+function CategoryTabsBody({ categories, panels, requested, fallbackId }) {
+  const initial =
+    requested && categories.some((c) => c.id === requested)
+      ? requested
+      : fallbackId;
+
+  const [active, setActive] = useState(initial);
+
+  useEffect(() => {
+    if (requested && categories.some((c) => c.id === requested)) {
+      setActive(requested);
+    }
+  }, [requested, categories]);
+
   const activeCategory = categories.find((c) => c.id === active);
 
   return (

@@ -14,11 +14,12 @@ import {
   Sparkles,
   Zap,
 } from "lucide-react";
+import ViewTracker from "@/components/ui/ViewTracker";
 
 const paths = [
   {
     id: "vibe",
-    href: "/persiapan/vibe",
+    href: "/jalur/vibe",
     icon: Bot,
     badge: "AI Assisted",
     badgeColor: "border-sky-400/30 bg-sky-400/10 text-sky-300",
@@ -41,7 +42,7 @@ const paths = [
   },
   {
     id: "manual",
-    href: "/persiapan",
+    href: "/jalur/manual",
     icon: Code2,
     badge: "Fundamental Path",
     badgeColor: "border-cyan-400/30 bg-cyan-400/10 text-cyan-300",
@@ -76,6 +77,7 @@ const comparison = [
 export default function PilihJalurPage() {
   return (
     <div className="container-page py-16">
+      <ViewTracker entityType="page" entityId="pilih-jalur" />
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}

@@ -18,94 +18,96 @@ from .._template import make_lesson, make_level, q
 # ─────────────────────────────────────────────────────────────────────────────
 
 LESSON_SETUP = make_lesson(
-    title="Setup Environment",
+    title="Install Tools yang Diperlukan",
     slug="setup-environment",
     order_index=1,
     read_time="10 menit",
-    summary="Install Node.js, Cursor, dan persiapan akun GitHub + Vercel.",
+    summary="Install Node.js, Cursor, dan siapin akun GitHub + Vercel.",
     tools=["Browser", "Node.js LTS", "Cursor", "Akun GitHub", "Akun Vercel"],
     outcomes=[
-        "Memasang Node.js dan memverifikasi dari terminal",
-        "Memasang Cursor dengan akun login",
-        "Menyiapkan akun GitHub dan Vercel yang sudah terhubung",
+        "Bisa install Node.js dan ngecek dari terminal",
+        "Bisa install Cursor sama login akun-nya",
+        "Punya akun GitHub dan Vercel yang udah saling konek",
     ],
     tldr=(
-        "Install Node.js LTS, Cursor, lalu login ke GitHub dan Vercel. "
-        "Verifikasi semuanya jalan dengan satu perintah `node -v` di terminal."
+        "Install Node.js LTS, install Cursor, terus login ke GitHub sama "
+        "Vercel. Cek semua jalan dengan ngetik `node -v` di terminal."
     ),
     pembuka=dedent(
         """\
-        Banyak orang gagal di langkah ini bukan karena susah, tapi karena bingung mulai dari mana.
+        Banyak orang gagal di langkah ini bukan karena susah, tapi karena bingung mulai dari mana. Ada banyak link, banyak akun, banyak instruksi.
 
-        Lesson ini super straightforward. Cuma install tiga hal dan buat dua akun.
+        Lesson ini jelas banget. Cuma install tiga hal sama bikin dua akun.
 
-        Setelah selesai, kamu siap deploy website pertamamu di lesson 3.
+        Setelah ini selesai, kamu siap deploy website pertamamu di lesson 3.
         """
     ),
     penjelasan=dedent(
         """\
         ### Step 1 — Install Node.js
 
-        Node.js adalah runtime JavaScript yang dipakai untuk menjalankan tools modern.
+        Node.js itu mesin yang bikin tools modern bisa jalan di komputer kamu.
 
-        Buka [nodejs.org](https://nodejs.org), download versi **LTS** (Long Term Support, yang stabil). Ikuti installer-nya, klik next next sampai selesai.
+        Buka [nodejs.org](https://nodejs.org), download yang versi **LTS** (Long Term Support, yang stabil). Jalanin installer-nya, klik next-next sampai selesai.
 
-        Setelah selesai, buka terminal (Command Prompt di Windows, Terminal di macOS/Linux). Ketik `node -v`. Kalau muncul versi seperti `v20.x.x`, instalasi berhasil.
+        Habis itu, buka terminal (Command Prompt di Windows, Terminal di macOS/Linux). Ketik `node -v`. Kalau muncul versi kayak `v20.x.x`, berarti udah berhasil.
 
         ### Step 2 — Install Cursor
 
-        Cursor adalah code editor dengan AI built-in. Buka [cursor.com](https://cursor.com), klik Download, install seperti aplikasi biasa.
+        Cursor itu code editor yang udah ada AI di dalemnya. Buka [cursor.com](https://cursor.com), klik Download, install kayak aplikasi biasa.
 
-        Saat pertama buka, login dengan email atau Google. Pilih theme dark (lebih nyaman untuk sesi panjang).
+        Pas pertama kali buka, login pake email atau Google. Pilih theme dark (lebih nyaman buat sesi panjang).
 
-        ### Step 3 — Akun GitHub
+        ### Step 3 — Bikin akun GitHub
 
-        Buka [github.com](https://github.com), Sign Up. Pilih username yang profesional (akan jadi bagian URL portfolio kamu).
+        Buka [github.com](https://github.com), Sign Up. Pilih username yang profesional — itu bakal jadi bagian URL portfolio kamu nanti.
 
         Verifikasi email. Selesai.
 
-        ### Step 4 — Akun Vercel
+        ### Step 4 — Bikin akun Vercel
 
-        Buka [vercel.com](https://vercel.com), klik Sign Up, pilih **Continue with GitHub**. Vercel langsung connect ke akun GitHub kamu.
+        Buka [vercel.com](https://vercel.com), klik Sign Up, pilih **Continue with GitHub**. Vercel langsung konek ke akun GitHub kamu.
 
-        Itu trick-nya: dengan login pakai GitHub, deploy nantinya tinggal pilih repo.
+        Trick-nya: dengan login pake GitHub, deploy nanti tinggal pilih repo doang.
 
-        ### Verifikasi semua siap
+        ### Cek semua udah siap
 
-        Buka terminal, ketik `node -v` dan `npm -v`. Keduanya harus mengembalikan versi.
+        Buka terminal, ketik `node -v` sama `npm -v`. Dua-duanya harus nge-return versi.
 
-        Buka Cursor, klik Settings → Account. Harus ada email kamu di sana.
+        Buka Cursor, klik Settings → Account. Email kamu harus muncul di sana.
 
         Buka [vercel.com/dashboard](https://vercel.com/dashboard). Harus muncul akun kamu, bukan halaman login.
 
         ### Kalau ada masalah
 
-        - `node` tidak dikenal di Windows? Restart terminal atau restart komputer setelah install.
-        - Cursor terasa lambat? Tutup Discord/Spotify yang berat agar RAM lega.
-        - Vercel tidak muncul GitHub repos? Reauthorize GitHub di Settings → Git.
+        Yang sering terjadi:
+
+        - `node` gak dikenal di Windows? Tutup terminal lama, buka baru. Kalau masih, restart komputer.
+        - Cursor lambat? Tutup Discord/Spotify yang berat biar RAM lega.
+        - Vercel gak munculin GitHub repos? Reauthorize GitHub di Settings → Git.
         """
     ),
     contoh_code_md=dedent(
         """\
-        Verifikasi instalasi via terminal:
+        Cek instalasi via terminal:
 
         ```bash
         # Cek versi Node.js
         node -v
-        # output: v20.18.0 (atau angka serupa)
+        # output: v20.18.0 (atau yang mirip)
 
-        # Cek versi npm (Node Package Manager — datang bareng Node)
+        # Cek versi npm (Node Package Manager — bawaan Node)
         npm -v
         # output: 10.x.x
         ```
 
-        Kalau dua perintah di atas mengembalikan versi, kamu siap lanjut ke lesson berikutnya.
+        Kalau dua command di atas nge-return versi, berarti kamu siap lanjut ke lesson berikutnya.
         """
     ),
     practice=(
-        "Selesaikan empat step di atas: install Node.js, install Cursor, "
-        "buat akun GitHub, dan buat akun Vercel (login dengan GitHub). "
-        "Verifikasi `node -v` di terminal mengembalikan versi."
+        "Selesain empat step di atas: install Node.js, install Cursor, bikin "
+        "akun GitHub, bikin akun Vercel (login pake GitHub). Cek `node -v` di "
+        "terminal nge-return versi."
     ),
     fix_error={
         "language": "bash",
@@ -117,16 +119,16 @@ LESSON_SETUP = make_lesson(
             """
         ),
         "hint": (
-            "Error ini muncul karena terminal belum tahu Node.js sudah "
-            "terpasang. Solusinya berkaitan dengan environment, bukan kode."
+            "Error ini biasa muncul di Windows habis install Node.js. Bukan "
+            "masalah kode — masalah environment."
         ),
         "answer_explanation": dedent(
             """\
-            Penyebab: PATH environment variable belum ter-update. Solusi:
+            Penyebabnya: PATH environment variable belum ke-update. Solusinya:
 
             1. Tutup terminal yang lama, buka terminal baru.
             2. Kalau masih error, restart komputer.
-            3. Kalau masih, ulangi install Node.js dan saat installer pastikan opsi "Add to PATH" tercentang.
+            3. Kalau masih juga, install ulang Node.js dan pastiin opsi "Add to PATH" tercentang pas installer jalan.
             """
         ),
         "fixed_code": dedent(
@@ -141,71 +143,71 @@ LESSON_SETUP = make_lesson(
     },
     quiz=[
         q(
-            "Apa yang dimaksud dengan versi LTS pada Node.js?",
+            "LTS di Node.js itu apa?",
             [
-                "Versi terbaru yang baru dirilis hari ini",
-                "Long Term Support — versi stabil yang dapat update keamanan dalam jangka panjang",
+                "Versi paling baru yang barusan dirilis hari ini",
+                "Long Term Support — versi stabil yang dapet update keamanan jangka panjang",
                 "Light Typescript Support",
                 "Versi yang gratis",
             ],
             "B",
-            "LTS adalah Long Term Support. Versi ini lebih stabil dan aman untuk produksi. Selalu pilih ini untuk pemula.",
+            "LTS itu Long Term Support. Versi ini lebih stabil dan aman buat produksi. Selalu pilih ini buat pemula.",
         ),
         q(
-            "Bagaimana cara verifikasi Node.js sudah terpasang dengan benar?",
+            "Gimana cara cek Node.js udah ke-install?",
             [
                 "Buka GitHub",
                 "Ketik `node -v` di terminal, harus muncul versi",
                 "Cek di Cursor",
-                "Tidak ada cara verifikasi",
+                "Gak ada caranya",
             ],
             "B",
-            "`node -v` adalah cara standar verifikasi instalasi.",
+            "`node -v` itu cara standar buat cek instalasi.",
         ),
         q(
-            "Kenapa login Vercel pakai GitHub direkomendasikan?",
+            "Kenapa login Vercel pake GitHub direkomendasiin?",
             [
                 "Karena gratis (GitHub berbayar)",
                 "Karena Vercel bisa langsung baca dan deploy repo GitHub kamu",
-                "Tidak ada alasan",
-                "Diwajibkan oleh hukum",
+                "Gak ada alasan",
+                "Diwajibin hukum",
             ],
             "B",
-            "Vercel auto-deploy dari GitHub. Login pakai GitHub bikin proses ini langsung tersambung.",
+            "Vercel auto-deploy dari GitHub. Login pake GitHub bikin proses ini langsung nyambung.",
         ),
         q(
-            "Apa yang harus dilakukan kalau `node -v` mengembalikan 'not recognized'?",
+            "Apa yang harus dilakuin kalau `node -v` nge-return 'not recognized'?",
             [
-                "Pakai komputer baru",
+                "Beli laptop baru",
                 "Tutup terminal lama, buka baru. Kalau masih, restart komputer atau install ulang dengan opsi 'Add to PATH'",
                 "Ganti Cursor",
-                "Tidak bisa diperbaiki",
+                "Gak bisa diperbaiki",
             ],
             "B",
-            "Error ini soal PATH environment yang belum ter-load. Restart terminal atau komputer biasanya cukup.",
+            "Error ini soal PATH environment yang belum ke-load. Restart terminal atau komputer biasanya udah cukup.",
         ),
         q(
             "Mana urutan setup yang paling efisien?",
             [
-                "Install semua bareng, lalu setup akun",
-                "Node.js → Cursor → akun GitHub → akun Vercel (login pakai GitHub) → verifikasi",
-                "Akun dulu semuanya, baru install",
-                "Tidak penting urutannya",
+                "Install semua bareng, terus baru bikin akun",
+                "Node.js → Cursor → akun GitHub → akun Vercel (login pake GitHub) → cek semuanya",
+                "Akun dulu semua, baru install",
+                "Gak penting urutannya",
             ],
             "B",
-            "Urutan ini menghindari error dependency. Akun Vercel via GitHub paling akhir karena butuh akun GitHub dulu.",
+            "Urutan ini ngehindarin error dependency. Vercel login pake GitHub paling akhir karena butuh akun GitHub udah ada dulu.",
         ),
     ],
     common_mistakes=[
-        "Skip restart terminal setelah install Node.js. Akhirnya bingung kenapa `node -v` tidak jalan.",
-        "Pakai username GitHub yang aneh. Itu akan muncul di URL portfolio.",
-        "Lupa login Vercel pakai GitHub. Akhirnya proses deploy nanti lebih ribet.",
+        "Skip restart terminal habis install Node.js. Akhirnya bingung kenapa `node -v` gak jalan.",
+        "Pake username GitHub yang aneh. Itu bakal nongol di URL portfolio kamu nanti.",
+        "Lupa login Vercel pake GitHub. Akhirnya proses deploy nanti lebih ribet.",
     ],
     checkpoint=[
-        "`node -v` dan `npm -v` mengembalikan versi.",
-        "Cursor terbuka dengan akun login.",
-        "Akun GitHub aktif dengan username profesional.",
-        "Akun Vercel terhubung ke GitHub.",
+        "`node -v` sama `npm -v` nge-return versi",
+        "Cursor terbuka dengan akun login",
+        "Akun GitHub aktif dengan username profesional",
+        "Akun Vercel udah konek ke GitHub",
     ],
     xp_reward=60,
 )
@@ -216,51 +218,52 @@ LESSON_SETUP = make_lesson(
 # ─────────────────────────────────────────────────────────────────────────────
 
 LESSON_GIT = make_lesson(
-    title="GitHub Basics",
+    title="GitHub Dasar — Repo, Commit, Push",
     slug="github-basics",
     order_index=2,
     read_time="12 menit",
-    summary="Repo, commit, push — tiga aksi yang akan kamu lakukan setiap hari.",
+    summary="Tiga aksi yang bakal kamu lakuin tiap hari sebagai developer.",
     tools=["Cursor", "Akun GitHub", "Terminal"],
     outcomes=[
-        "Membuat repository baru di GitHub",
-        "Memahami konsep commit dan push dengan analogi sederhana",
-        "Menjalankan tiga perintah dasar Git dari terminal Cursor",
+        "Bisa bikin repository baru di GitHub",
+        "Tau commit dan push itu apa, beda di mana",
+        "Bisa jalanin tiga command Git dasar dari terminal",
     ],
     tldr=(
-        "GitHub itu Google Drive untuk kode. Commit = simpan checkpoint. "
-        "Push = upload ke GitHub. Tiga perintah cukup untuk hari pertama: "
-        "git init, git commit, git push."
+        "GitHub itu kayak Google Drive khusus kode, tapi bisa jadi mesin "
+        "waktu juga. Commit = simpan checkpoint. Push = upload ke GitHub. "
+        "Tiga command cukup buat hari pertama: `git init`, `git commit`, "
+        "`git push`."
     ),
     pembuka=dedent(
         """\
-        GitHub bukan cuma "tempat simpan kode". Dia menyimpan SEJARAH kode kamu — kapan kamu ubah apa, kenapa, oleh siapa.
+        GitHub itu bukan cuma "tempat simpan kode". Dia juga nyimpen SEJARAH kode kamu — kapan kamu ngubah apa, kenapa, sama siapa.
 
-        Anggap GitHub itu Google Drive khusus untuk kode, plus mesin waktu. Kamu bisa kembali ke versi minggu lalu kalau hari ini ada yang rusak.
+        Bayangin kayak Google Drive khusus kode, plus mesin waktu. Kamu bisa balik ke versi minggu lalu kalau hari ini ada yang rusak.
 
-        Tools-nya namanya Git (lokal di komputer). GitHub adalah layanan online yang menerima Git push kamu.
+        Tools-nya namanya Git (yang lokal di komputer). GitHub itu layanan online yang nerima Git push kamu.
         """
     ),
     penjelasan=dedent(
         """\
         ### Tiga konsep dasar
 
-        - **Repository (repo).** Folder project kamu yang dilacak Git.
-        - **Commit.** Snapshot perubahan dengan pesan. Ibarat checkpoint di game.
-        - **Push.** Kirim commit lokal ke GitHub.
+        - **Repository (repo)** — folder project kamu yang dilacak Git.
+        - **Commit** — snapshot perubahan plus pesan. Ibarat checkpoint di game.
+        - **Push** — kirim commit lokal ke GitHub.
 
         ### Alur kerja standar
 
-        1. Buat folder project baru di komputer.
-        2. Inisialisasi Git: `git init`.
-        3. Buat file, tulis kode.
-        4. `git add .` (tandai semua file untuk dimasukkan ke commit berikut).
-        5. `git commit -m "pesan"` (bikin checkpoint).
-        6. Buat repo di GitHub.
-        7. Hubungkan lokal ke GitHub: `git remote add origin <url>`.
-        8. `git push -u origin main` (upload ke GitHub).
+        1. Bikin folder project baru di komputer
+        2. Init Git: `git init`
+        3. Bikin file, tulis kode
+        4. `git add .` (tandain semua file buat masuk ke commit berikut)
+        5. `git commit -m "pesan"` (bikin checkpoint)
+        6. Bikin repo di GitHub
+        7. Konekin lokal ke GitHub: `git remote add origin <url>`
+        8. `git push -u origin main` (upload ke GitHub)
 
-        Step 1-7 cuma sekali. Sehari-hari, siklus kerja kamu cuma:
+        Step 1-7 cuma sekali. Sehari-hari, kerja kamu tinggal:
 
         ```bash
         git add .
@@ -268,52 +271,52 @@ LESSON_GIT = make_lesson(
         git push
         ```
 
-        ### Pesan commit yang baik
+        ### Pesan commit yang bagus
 
-        Tulis pesan yang menjelaskan **kenapa**, bukan **apa**.
+        Tulis pesan yang jelasin **kenapa**, bukan **apa**.
 
-        - Buruk: "update file"
-        - Baik: "fix bug login saat email kosong"
+        - Jelek: "update file"
+        - Bagus: "fix bug login pas email kosong"
 
-        Kebiasaan baik: prefix dengan kata kerja imperative. `add`, `fix`, `refactor`, `remove`, `docs`.
+        Kebiasaan yang oke: prefix pake kata kerja imperatif. `add`, `fix`, `refactor`, `remove`, `docs`.
 
-        ### Membuat repo di GitHub
+        ### Bikin repo di GitHub
 
         Buka [github.com/new](https://github.com/new). Isi:
 
-        - **Repository name.** Nama project (contoh `landing-toko-kopi`).
-        - **Public** atau **Private.** Public boleh untuk portfolio.
-        - **Add README** centang (biar repo tidak kosong).
+        - **Repository name** — nama project (contoh `landing-toko-kopi`)
+        - **Public** atau **Private** — Public boleh buat portfolio
+        - **Add README** centang aja (biar repo gak kosong)
 
         Klik Create. Selesai.
 
         ### Cursor punya UI Git built-in
 
-        Tidak harus selalu pakai terminal. Cursor punya tab Source Control (icon cabang di sidebar kiri) yang bisa stage, commit, dan push dengan klik.
+        Gak harus selalu pake terminal. Cursor punya tab Source Control (icon cabang di sidebar kiri) yang bisa stage, commit, sama push tinggal klik.
 
-        Tapi pelajari dulu perintah terminalnya — kamu akan butuh kalau lagi remote work atau masuk ke server.
+        Tapi pelajari dulu command terminal-nya — kamu bakal butuh kalau lagi remote work atau masuk ke server.
         """
     ),
     contoh_code_md=dedent(
         """\
-        Buat repo lokal pertama dan push ke GitHub:
+        Bikin repo lokal pertama dan push ke GitHub:
 
         ```bash
         # Di folder project
         mkdir landing-toko-kopi
         cd landing-toko-kopi
 
-        # Inisialisasi Git
+        # Init Git
         git init
 
-        # Buat file dummy
+        # Bikin file dummy
         echo "# Landing Toko Kopi" > README.md
 
-        # Tandai dan commit
+        # Tandain dan commit
         git add .
         git commit -m "init: setup project"
 
-        # Hubungkan ke GitHub (URL dari halaman repo baru kamu)
+        # Konekin ke GitHub (URL dari halaman repo baru kamu)
         git remote add origin https://github.com/USERNAME/landing-toko-kopi.git
 
         # Push ke GitHub
@@ -321,13 +324,13 @@ LESSON_GIT = make_lesson(
         git push -u origin main
         ```
 
-        Setelah ini, refresh halaman repo di GitHub. README.md akan muncul.
+        Habis itu refresh halaman repo di GitHub. README.md bakal nongol.
         """
     ),
     practice=(
-        "Buat satu repo baru di GitHub dengan nama `vibe-test`. Clone ke "
-        "komputer pakai `git clone <url>`. Buat file `hello.txt` berisi nama "
-        "kamu, lalu add → commit → push. Refresh halaman GitHub, file "
+        "Bikin satu repo baru di GitHub dengan nama `vibe-test`. Clone ke "
+        "komputer pake `git clone <url>`. Bikin file `hello.txt` isinya nama "
+        "kamu, terus add → commit → push. Refresh halaman GitHub, file "
         "`hello.txt` harus muncul."
     ),
     fix_error={
@@ -338,16 +341,16 @@ LESSON_GIT = make_lesson(
             fatal: not a git repository (or any of the parent directories): .git
             """
         ),
-        "hint": "Error ini muncul saat kamu berada di folder yang belum diinisialisasi Git.",
+        "hint": "Error ini muncul kalau kamu di folder yang belum diinit Git.",
         "answer_explanation": dedent(
             """\
-            Penyebab: Folder saat ini belum di-`git init`, atau kamu pindah ke folder lain yang bukan repo.
+            Penyebabnya: folder yang sekarang belum di-`git init`, atau kamu salah pindah ke folder lain yang bukan repo.
 
-            Solusi:
+            Solusinya:
 
-            1. Cek lokasi folder dengan `pwd` (macOS/Linux) atau `cd` (Windows).
-            2. Pastikan kamu di dalam folder project yang sudah di-init.
-            3. Kalau belum, jalankan `git init` dulu.
+            1. Cek lokasi folder pake `pwd` (macOS/Linux) atau `cd` (Windows).
+            2. Pastiin kamu di dalem folder project yang udah di-init.
+            3. Kalau belum, jalanin `git init` dulu.
             """
         ),
         "fixed_code": dedent(
@@ -365,68 +368,68 @@ LESSON_GIT = make_lesson(
         q(
             "Apa fungsi `git commit`?",
             [
-                "Mengirim kode ke GitHub",
-                "Membuat checkpoint perubahan dengan pesan",
-                "Menghapus file",
-                "Membuat repo baru",
+                "Ngirim kode ke GitHub",
+                "Bikin checkpoint perubahan dengan pesan",
+                "Hapus file",
+                "Bikin repo baru",
             ],
             "B",
-            "Commit menyimpan snapshot perubahan beserta pesan deskriptif. Push baru yang mengirim commit ini ke GitHub.",
+            "Commit nyimpen snapshot perubahan plus pesan deskriptif. Push baru yang ngirim commit ke GitHub.",
         ),
         q(
-            "Apa yang dilakukan `git push`?",
+            "Apa yang dilakuin `git push`?",
             [
-                "Membuat snapshot lokal",
-                "Mengirim commit lokal ke remote (GitHub)",
-                "Mendownload kode dari GitHub",
-                "Menghapus repo",
+                "Bikin snapshot lokal",
+                "Ngirim commit lokal ke remote (GitHub)",
+                "Download kode dari GitHub",
+                "Hapus repo",
             ],
             "B",
-            "`git push` mengupload commit dari lokal ke GitHub.",
+            "`git push` upload commit dari lokal ke GitHub.",
         ),
         q(
-            "Mana pesan commit yang BAIK?",
+            "Mana pesan commit yang BAGUS?",
             [
                 "\"update\"",
-                "\"fix bug login saat email kosong\"",
+                "\"fix bug login pas email kosong\"",
                 "\"asdfg\"",
                 "\"WIP\"",
             ],
             "B",
-            "Pesan yang baik menjelaskan KENAPA dan APA yang berubah secara spesifik. Itu membantu kamu (dan orang lain) di masa depan.",
+            "Pesan yang bagus jelasin KENAPA dan APA yang berubah secara spesifik. Itu bantu kamu (dan orang lain) di masa depan.",
         ),
         q(
-            "Kenapa kamu butuh `git init` di awal?",
+            "Kenapa harus `git init` di awal?",
             [
-                "Tidak butuh, opsional",
-                "Untuk memberi tahu Git bahwa folder ini akan dilacak sebagai repo",
-                "Untuk membuat akun GitHub",
-                "Untuk install Node.js",
+                "Gak perlu, opsional",
+                "Buat ngasih tau Git kalau folder ini bakal dilacak sebagai repo",
+                "Buat bikin akun GitHub",
+                "Buat install Node.js",
             ],
             "B",
-            "`git init` membuat folder `.git` yang menyimpan history. Tanpa ini, Git tidak tahu folder kamu adalah repo.",
+            "`git init` bikin folder `.git` yang nyimpen history. Tanpa ini, Git gak tau folder kamu adalah repo.",
         ),
         q(
-            "Apa siklus harian kerja Git setelah setup awal?",
+            "Apa siklus harian Git habis setup awal?",
             [
                 "init → init → init",
                 "add → commit → push",
                 "delete → reinstall",
-                "tidak ada siklus",
+                "Gak ada siklus",
             ],
             "B",
-            "Tiga perintah ini siklus utama: tandai perubahan, commit dengan pesan, push ke GitHub.",
+            "Tiga command ini siklus utama: tandain perubahan, commit dengan pesan, push ke GitHub.",
         ),
     ],
     common_mistakes=[
         "Lupa `git init` di awal. Akhirnya `git status` error 'not a git repository'.",
-        "Pesan commit asal seperti 'update', 'fix', 'asdf'. Sulit dibaca di history.",
-        "Push setiap baris kode. Sebaiknya commit per fitur atau perubahan logis.",
+        "Pesan commit asal kayak 'update', 'fix', 'asdf'. History repo jadi gak bisa dibaca.",
+        "Push tiap baris kode. Mendingan commit per fitur atau perubahan logis.",
     ],
     checkpoint=[
-        "Bisa membuat repo dari nol dan push ke GitHub.",
-        "Tahu beda commit dan push.",
-        "Bisa menulis pesan commit yang deskriptif.",
+        "Bisa bikin repo dari nol dan push ke GitHub",
+        "Tau bedanya commit dan push",
+        "Bisa nulis pesan commit yang deskriptif",
     ],
     xp_reward=80,
 )
@@ -437,45 +440,45 @@ LESSON_GIT = make_lesson(
 # ─────────────────────────────────────────────────────────────────────────────
 
 LESSON_DEPLOY = make_lesson(
-    title="Deploy Website Pertama",
+    title="Deploy Website Pertama Kamu",
     slug="deploy-website-pertama",
     order_index=3,
     read_time="10 menit",
-    summary="Generate landing page dengan AI, push ke GitHub, deploy ke Vercel.",
-    tools=["Cursor", "V0 atau Bolt (boleh dilewati)", "GitHub", "Vercel"],
+    summary="Generate landing page pake AI, push ke GitHub, deploy ke Vercel.",
+    tools=["Cursor", "V0 atau Bolt (boleh skip)", "GitHub", "Vercel"],
     outcomes=[
-        "Generate landing page sederhana lewat AI",
+        "Bisa generate landing page sederhana pake AI",
         "Push project ke GitHub",
-        "Deploy ke Vercel dan dapat URL publik",
+        "Deploy ke Vercel dan dapet URL publik",
     ],
     tldr=(
-        "Generate landing page dengan AI atau template. Buka di Cursor, "
-        "push ke GitHub, import di Vercel. Selesai. URL publik dalam < 30 menit."
+        "Generate landing page pake AI atau template. Buka di Cursor, push "
+        "ke GitHub, import ke Vercel. Selesai. URL publik dalam <30 menit."
     ),
     pembuka=dedent(
         """\
-        Lesson ini momen krusial. Setelah selesai, kamu punya website live di internet.
+        Lesson ini momen krusial. Selesai ini, kamu punya website yang live di internet.
 
-        Itu bukan sekadar checklist. Itu sinyal mental bahwa "saya bisa".
+        Itu bukan sekadar checklist. Itu sinyal mental: "saya bisa".
 
-        Ada banyak orang yang belajar coding bertahun-tahun tapi tidak pernah punya satu URL pun yang bisa dibuka publik. Kamu akan lompati itu hari ini.
+        Banyak orang udah belajar coding bertahun-tahun tapi belum pernah punya satu URL pun yang bisa dibuka publik. Hari ini kamu lompatin itu.
         """
     ),
     penjelasan=dedent(
         """\
         ### Step 1 — Generate landing page
 
-        Pilih salah satu pendekatan:
+        Pilih salah satu cara:
 
-        **Pendekatan A — pakai V0**
+        **Cara A — pake V0**
 
         Buka [v0.dev](https://v0.dev), kasih prompt:
 
-        > Bikin landing page Next.js + Tailwind untuk toko kopi lokal. Dark mode. Section: hero, menu (4 produk dummy), tentang, footer. Style minimal, accent #4EBAEC.
+        > Bikin landing page Next.js + Tailwind buat toko kopi lokal. Dark mode. Section: hero, menu (4 produk dummy), tentang, footer. Style minimal, accent #4EBAEC.
 
-        V0 akan generate kode. Klik tombol "Code" untuk ambil source.
+        V0 bakal generate kode. Klik tombol "Code" buat ngambil source-nya.
 
-        **Pendekatan B — pakai template**
+        **Cara B — pake template**
 
         Buka terminal di folder kosong:
 
@@ -487,13 +490,13 @@ LESSON_DEPLOY = make_lesson(
 
         ### Step 2 — Buka di Cursor
 
-        Buka folder project di Cursor (File → Open Folder). Edit `app/page.tsx` sesuai kebutuhan. Pakai Cursor AI (⌘K) untuk modifikasi cepat.
+        Buka folder project di Cursor (File → Open Folder). Edit `app/page.tsx` sesuai kebutuhan. Pake AI Cursor (⌘K) buat modifikasi cepet.
 
-        Coba di lokal: `npm run dev` lalu buka [localhost:3000](http://localhost:3000).
+        Cek di lokal: `npm run dev`, terus buka [localhost:3000](http://localhost:3000).
 
         ### Step 3 — Push ke GitHub
 
-        Buat repo baru di GitHub (lihat lesson 2 untuk perintahnya). Lalu di terminal Cursor:
+        Bikin repo baru di GitHub (cara-nya udah di lesson 2). Terus di terminal Cursor:
 
         ```bash
         git init
@@ -506,156 +509,208 @@ LESSON_DEPLOY = make_lesson(
 
         ### Step 4 — Deploy ke Vercel
 
-        Buka [vercel.com/new](https://vercel.com/new). Pilih repo kamu dari list. Vercel deteksi Next.js otomatis. Klik **Deploy**.
+        Buka [vercel.com/new](https://vercel.com/new). Pilih repo kamu dari list. Vercel auto-detect: "Oh ini Next.js project". Settings default udah bener.
 
-        Tunggu 30-60 detik. Vercel kasih URL `landing-kopi.vercel.app`. Buka di browser, harus tampil halamanmu.
+        Klik **Deploy**.
 
-        ### Step 5 — Iterasi
+        Tungguin 30-60 detik. Vercel lagi:
 
-        Mau ubah sesuatu? Edit di Cursor, push ke GitHub, Vercel auto-redeploy. Loop ini cepat sekali — biasanya 1-2 menit dari edit ke live.
+        1. Download kode dari GitHub
+        2. Run `npm install`
+        3. Run `npm run build`
+        4. Upload hasil build ke server mereka
 
-        ### Catatan kalau ada error
+        Selesai. Kamu dapet URL `landing-kopi.vercel.app`. Klik buat buka.
 
-        - **Build failed di Vercel.** Buka logs di Vercel, biasanya error import atau env yang kurang. Copy error ke Claude/ChatGPT untuk diagnosis.
-        - **Halaman 404.** Pastikan struktur file di App Router benar (`app/page.tsx`).
-        - **Style tidak muncul.** Pastikan `app/globals.css` di-import di `app/layout.tsx`.
+        ### Step 5 — Cek live URL
+
+        Buka URL di browser. Halaman kamu live.
+
+        Lebih keren lagi: kasih URL ke temen lewat WhatsApp. Mereka bisa buka dari HP mereka, dari mana aja di Indonesia atau dunia. Itu yang dimaksud "live di internet".
+
+        ### Step 6 — Update project habis deploy
+
+        Mau ubah text di homepage? Edit di laptop, terus push:
+
+        ```bash
+        git add .
+        git commit -m "fix: ganti tagline hero"
+        git push
+        ```
+
+        Vercel deteksi push baru. Auto re-build dan re-deploy. Sekitar 30-60 detik kemudian, URL kamu udah update.
+
+        Kamu gak perlu klik apapun di Vercel. Cara kerja kayak gini disebut **continuous deployment**.
+
+        ### Custom domain (opsional)
+
+        URL `landing-kopi.vercel.app` panjang. Kalau punya domain sendiri (misal `acel.dev`):
+
+        - Beli domain di [Niagahoster](https://www.niagahoster.co.id) atau [Namecheap](https://www.namecheap.com).
+        - Di Vercel: Project → Settings → Domains → Add. Masukin domain kamu.
+        - Vercel kasih instruksi DNS. Salin ke panel domain provider.
+        - Tunggu 5-30 menit, domain aktif. SSL otomatis.
+
+        Total cost: domain ~Rp 150rb/tahun. Hosting tetep gratis.
+
+        ### Kalau build error
+
+        Sering kejadian: deploy gagal padahal di laptop jalan.
+
+        Penyebab paling umum:
+
+        - **Environment variable belum ada di Vercel** — edit di Project Settings → Environment Variables.
+        - **TypeScript error yang di dev kamu di-ignore** — Vercel build strict, harus diperbaiki.
+        - **File belum di-commit ke Git** — cek `git status`, push file yang ketinggalan.
+
+        Cek logs di Vercel (klik deploy yang gagal → Logs). Pesan error spesifik biasanya jelas.
         """
     ),
     contoh_code_md=dedent(
         """\
-        Setup Next.js paling cepat:
+        Setup awal Git buat project baru:
 
         ```bash
-        # Buat project baru
-        npx create-next-app@latest landing-kopi --ts --tailwind --app
-
-        # Masuk ke folder
-        cd landing-kopi
-
-        # Test lokal
-        npm run dev
-        # buka http://localhost:3000
-
-        # Bikin commit pertama
+        # Di root project
         git init
+        echo "node_modules" > .gitignore
+        echo ".env.local" >> .gitignore
+        echo ".next" >> .gitignore
+
         git add .
-        git commit -m "init: nextjs + tailwind"
+        git commit -m "init: setup project Next.js"
         ```
 
-        Deploy ke Vercel sekali klik dari [vercel.com/new](https://vercel.com/new) setelah push ke GitHub.
+        Push ke GitHub repo baru:
+
+        ```bash
+        git remote add origin https://github.com/USERNAME/REPO.git
+        git branch -M main
+        git push -u origin main
+        ```
+
+        Workflow harian habis deploy:
+
+        ```bash
+        # Setelah edit kode di laptop
+        git add .
+        git commit -m "feat: tambah halaman about"
+        git push
+
+        # Vercel auto-deploy. Cek di vercel.com/dashboard.
+        ```
         """
     ),
     practice=(
-        "Selesaikan lima step di atas sampai kamu punya URL Vercel yang bisa "
-        "dibuka publik. Tidak harus cantik. Yang penting LIVE. Catat URL-nya."
+        "Push project Next.js dari lesson sebelumnya ke GitHub. Terus import "
+        "ke Vercel dan deploy. Salin URL Vercel. Kirim URL itu ke minimal "
+        "satu temen lewat chat — pastiin mereka bisa buka di HP. Habis itu, "
+        "edit satu kata di homepage, commit, push, dan tunggu auto-redeploy."
     ),
     fix_error={
-        "language": "text",
+        "language": "bash",
         "broken_code": dedent(
             """\
-            Build di Vercel gagal:
-
-            Error: Module not found: Can't resolve '@/components/Hero'
-            in '/vercel/path0/app/page.tsx'
+            # User report:
+            "Saya udah deploy ke Vercel, tapi halamannya blank putih.
+            Logs Vercel bilang: 'Error: NEXT_PUBLIC_API_URL is not defined'."
             """
         ),
-        "hint": (
-            "Error ini biasanya karena alias `@/` belum dikonfigurasi atau "
-            "file yang di-import tidak ada di repo."
-        ),
+        "hint": "Project di laptop pake file `.env.local`. File itu gak ke-push ke GitHub karena di-gitignore. Terus di Vercel?",
         "answer_explanation": dedent(
             """\
-            Dua kemungkinan penyebab:
+            Penyebabnya: env variable di `.env.local` cuma jalan di laptop kamu. File itu sengaja di-gitignore biar rahasia (misal API key) gak bocor ke GitHub.
 
-            1. File `components/Hero.tsx` ada di lokal tapi tidak ter-push ke GitHub. Cek dengan `git status` lalu push file yang ketinggalan.
-            2. Alias `@/` belum dikonfigurasi di `tsconfig.json`. Default `create-next-app` sudah set ini, tapi kalau project manual mungkin belum.
+            Pas deploy ke Vercel, kamu harus tambahin env variable secara terpisah di Vercel.
+
+            Solusinya:
+
+            1. Buka Vercel dashboard → project kamu
+            2. Settings → Environment Variables
+            3. Tambahin satu-satu yang ada di `.env.local`
+            4. Klik Save. Re-deploy (klik tombol di tab Deployments)
+
+            Habis itu halaman bakal jalan normal.
             """
         ),
         "fixed_code": dedent(
             """\
-            // tsconfig.json
-            {
-              "compilerOptions": {
-                "baseUrl": ".",
-                "paths": {
-                  "@/*": ["./*"]
-                }
-              }
-            }
+            # Di Vercel: Settings → Environment Variables
 
-            # Lalu pastikan file ke-push:
-            git add components/Hero.tsx
-            git commit -m "add: Hero component"
-            git push
+            Name:  NEXT_PUBLIC_API_URL
+            Value: https://api.example.com
+            Environments: Production, Preview, Development (centang semua)
+
+            # Klik Save, terus di tab Deployments → Redeploy.
             """
         ),
     },
     quiz=[
         q(
-            "Apa gunanya `npm run dev`?",
+            "'Deploy' project itu apa?",
             [
-                "Deploy ke Vercel",
-                "Menjalankan project di lokal untuk testing (biasanya di localhost:3000)",
-                "Build project",
-                "Hapus node_modules",
+                "Nyimpen project di Google Drive",
+                "Upload project ke server yang nyala 24 jam biar bisa diakses siapa aja lewat URL publik",
+                "Jalanin `npm run dev`",
+                "Bikin backup",
             ],
             "B",
-            "`npm run dev` mengaktifkan development server di komputermu sendiri sehingga kamu bisa preview sebelum deploy.",
+            "Deploy = pindahin project dari laptop kamu ke server di internet. Itu yang ngebedain 'localhost' sama 'live'.",
         ),
         q(
-            "Apa yang terjadi setelah kamu push ke GitHub kalau Vercel sudah connect?",
+            "Kenapa temen gak bisa buka URL `localhost:3000` yang kamu kirim?",
             [
-                "Tidak terjadi apa-apa",
-                "Vercel otomatis redeploy",
-                "GitHub menghapus repo",
-                "Cursor restart",
+                "URL salah ketik",
+                "`localhost` artinya 'komputer ini sendiri' — cuma device yang ngejalanin project yang bisa akses",
+                "Internet putus",
+                "Wajib pake HTTPS",
             ],
             "B",
-            "Vercel-GitHub connection bikin auto-redeploy tiap ada push baru ke main branch. Loop cepat untuk iterasi.",
+            "`localhost` itu loopback ke device sendiri. Gak ada cara temen akses dari laptop atau HP mereka tanpa deploy.",
         ),
         q(
-            "Kalau build gagal di Vercel, langkah PERTAMA yang sebaiknya dilakukan?",
+            "Habis project kamu di-push ke GitHub dan di-deploy ke Vercel, apa yang terjadi pas kamu push lagi?",
             [
-                "Hapus semua file dan ulangi",
-                "Buka logs di Vercel, baca error message-nya, lalu diagnosis",
-                "Ganti ke Netlify",
-                "Kirim email ke Vercel",
+                "Gak ada",
+                "Vercel deteksi push baru dan auto-redeploy ke URL yang sama",
+                "Vercel hapus project lama",
+                "Kamu harus deploy manual lagi",
             ],
             "B",
-            "Logs di Vercel kasih pesan error spesifik. Dari situ baru kamu bisa diagnosis (atau copy ke AI untuk dibantu).",
+            "Continuous deployment: GitHub-Vercel connection bikin push baru = redeploy otomatis. Workflow super cepet.",
         ),
         q(
-            "Apa keuntungan login Vercel pakai akun GitHub?",
+            "Apa yang HARUS di-update di Vercel kalau project kamu pake `.env.local`?",
             [
-                "Tidak ada",
-                "Vercel langsung lihat repo GitHub kamu, tinggal pilih repo lalu deploy",
-                "Akun jadi lebih mahal",
-                "GitHub bayar Vercel",
+                "Gak ada",
+                "Tambahin env variable yang sama di Vercel Settings → Environment Variables",
+                "Push `.env.local` ke GitHub",
+                "Hapus `.env.local`",
             ],
             "B",
-            "Tanpa login GitHub, kamu harus setup webhook manual atau upload manual. Pakai login GitHub jauh lebih cepat.",
+            "`.env.local` di-gitignore (sengaja) biar gak bocor. Vercel butuh value-nya dimasukin terpisah lewat dashboard.",
         ),
         q(
-            "Mana praktik yang BAIK saat pertama kali deploy?",
+            "Apa keuntungan utama deploy ke Vercel buat Next.js?",
             [
-                "Commit semua kode dalam satu file besar",
-                "Bikin halaman sederhana dulu yang penting LIVE, baru iterasi tambah fitur",
-                "Tunggu sampai sempurna sebelum push",
-                "Tidak deploy, simpan di lokal saja",
+                "Vercel dibikin sama tim Next.js sendiri, free tier gede, auto-deploy dari GitHub, SSL gratis",
+                "Lebih lambat dari hosting lain",
+                "Wajib bayar dari hari pertama",
+                "Gak ada keuntungan",
             ],
-            "B",
-            "Filosofi 'live first, polish later' bikin kamu dapat momentum. Halaman sederhana yang live lebih berharga daripada halaman komplit yang masih di lokal.",
+            "A",
+            "Vercel dirancang khusus buat Next.js. Setup deploy yang biasanya ribet jadi tinggal klik-klik di dashboard mereka.",
         ),
     ],
     common_mistakes=[
-        "Tunggu sampai 'sempurna' baru deploy. Akhirnya tidak pernah deploy.",
-        "Lupa push file penting yang masih di lokal. Build di Vercel error 'module not found'.",
-        "Tidak baca logs Vercel saat build gagal. Langsung tanya AI tanpa konteks.",
+        "Push `.env.local` ke GitHub. API key bocor — siapa aja yang lihat repo bisa pake.",
+        "Lupa tambahin env variable di Vercel. Halaman live blank atau crash.",
+        "Cuma test di laptop sendiri. Gak buka URL Vercel di HP temen buat konfirm akses publik.",
     ],
     checkpoint=[
-        "Punya URL Vercel publik yang bisa dibuka.",
-        "Tahu cara push perubahan dari Cursor sampai live di Vercel.",
-        "Bisa baca logs Vercel saat build gagal.",
+        "Punya URL Vercel publik yang bisa dibuka",
+        "Bisa push perubahan dari Cursor sampe live di Vercel",
+        "Bisa baca logs Vercel kalau build gagal",
     ],
     xp_reward=120,
 )
@@ -670,60 +725,60 @@ PROJECT_LANDING_LIVE = make_lesson(
     slug="mini-project-landing-page-live",
     order_index=4,
     read_time="60 menit",
-    summary="Aplikasikan semuanya: dari prompt ke URL publik dalam satu sesi.",
-    tools=["Cursor", "GitHub", "Vercel", "AI assistant pilihanmu"],
+    summary="Aplikasiin semuanya: dari prompt ke URL publik dalam satu sesi.",
+    tools=["Cursor", "GitHub", "Vercel", "AI assistant pilihan kamu"],
     outcomes=[
-        "Bangun landing page tema bebas, tampil rapi di HP dan desktop",
+        "Bisa bangun landing page tema bebas, rapi di HP dan desktop",
         "Punya repo GitHub publik yang rapi",
-        "Punya URL Vercel publik yang bisa dibagikan",
+        "Punya URL Vercel publik yang bisa dibagiin",
     ],
     tldr=(
-        "Pilih satu topik (boleh fiksi). Bangun landing page satu halaman "
-        "dengan AI. Push ke GitHub. Deploy ke Vercel. Bagikan URL ke teman."
+        "Pilih satu topik (boleh fiksi). Bikin landing page satu halaman pake "
+        "AI. Push ke GitHub. Deploy ke Vercel. Bagiin URL ke temen."
     ),
     pembuka=dedent(
         """\
-        Saatnya gabungkan semua yang sudah dipelajari.
+        Saatnya gabungin semua yang udah dipelajari.
 
-        Tidak harus tema bisnis serius. Pilih sesuatu yang kamu suka — band favorit, game lokal, kucing kamu, side hustle, organisasi kampus. Apa saja.
+        Gak harus tema bisnis serius. Pilih sesuatu yang kamu suka — band favorit, game lokal, kucing kamu, side hustle, organisasi kampus. Apa aja.
 
-        Yang penting: hari ini selesai dan URL-nya bisa dibagikan ke teman.
+        Yang penting: hari ini selesai dan URL-nya bisa dibagiin ke temen.
         """
     ),
     penjelasan=dedent(
         """\
         ### Spec project
 
-        Tech stack: Next.js 14 + Tailwind + shadcn/ui (opsional). Tanpa custom backend dulu — fokus tampilan.
+        Stack: Next.js 14 + Tailwind + shadcn/ui (opsional). Belum perlu backend custom — fokus tampilan dulu.
 
         Section minimal:
 
-        - **Hero.** Judul besar, tagline satu kalimat, CTA satu tombol.
-        - **Tentang / Fitur.** Tiga atau empat poin pendek dalam grid.
-        - **Galeri / Showcase / Menu.** Visual berbentuk grid, minimal empat item.
-        - **Footer.** Kontak atau social link.
+        - **Hero** — judul gede, tagline kuat satu kalimat, CTA satu tombol
+        - **Tentang / Fitur** — tiga atau empat poin pendek dalam grid
+        - **Galeri / Showcase / Menu** — visual berbentuk grid, minimal empat item
+        - **Footer** — kontak atau social link
 
-        ### Alur kerja yang disarankan
+        ### Alur kerja yang disaranin
 
-        1. **Tulis prompt awal** pakai template Level 0 Lesson 3. Kasih ke Claude/ChatGPT untuk plan struktur file.
-        2. **Setup project Next.js** lewat `create-next-app` atau salin dari V0.
-        3. **Buka di Cursor**, edit `app/page.tsx`. Pakai ⌘K untuk minta AI bikin section per section.
-        4. **Test lokal** dengan `npm run dev`. Buka di mode HP via DevTools (F12 → Toggle device toolbar).
-        5. **Push ke GitHub** dengan pesan commit yang rapi.
-        6. **Deploy ke Vercel** dengan satu klik.
-        7. **Test URL publik** di HP asli, bukan cuma di simulator.
+        1. **Tulis prompt awal** pake template Level 0 Lesson 3. Kasih ke Claude/ChatGPT buat plan struktur file
+        2. **Setup project Next.js** lewat `create-next-app` atau salin dari V0
+        3. **Buka di Cursor**, edit `app/page.tsx`. Pake ⌘K buat minta AI bikin section per section
+        4. **Test di lokal** dengan `npm run dev`. Buka di mode HP via DevTools (F12 → Toggle device toolbar)
+        5. **Push ke GitHub** dengan pesan commit yang rapi
+        6. **Deploy ke Vercel** tinggal klik
+        7. **Test URL publik** di HP asli, bukan cuma di simulator
 
         ### Tips polish
 
-        - Pilih **satu** font Google Fonts (Inter, Poppins, atau Plus Jakarta Sans aman).
-        - Pilih **satu** warna aksen. Sisanya pakai abu-abu/putih untuk kontras.
-        - Spacing penting. Kasih banyak padding di antar section.
-        - Foto bisa pakai [unsplash.com](https://unsplash.com) (gratis, kredit di footer kalau dipakai).
-        - Hindari emoji berlebihan. Itu bikin kelihatan amatir.
+        - Pilih **satu** font Google Fonts (Inter, Poppins, atau Plus Jakarta Sans aman)
+        - Pilih **satu** warna aksen. Sisanya pake abu-abu/putih buat kontras
+        - Spacing penting. Kasih banyak padding di antar section
+        - Foto bisa pake [unsplash.com](https://unsplash.com) (gratis, kredit di footer kalau dipake)
+        - Hindari emoji kebanyakan. Itu bikin keliatan amatir
 
         ### Submit
 
-        Setelah live, salin URL ke catatan kamu. Bagikan ke minimal satu teman dan tanya: "Apa kesan pertama kamu?". Feedback dari user asli berharga.
+        Habis live, salin URL ke catatan kamu. Bagiin ke minimal satu temen, terus tanya: "Apa kesan pertama kamu?". Feedback dari user beneran berharga banget.
         """
     ),
     contoh_code_md=dedent(
@@ -741,43 +796,43 @@ PROJECT_LANDING_LIVE = make_lesson(
           ├── Showcase.tsx
           └── Footer.tsx
         public/
-          └── og-image.png       (untuk preview saat dibagikan di sosmed)
+          └── og-image.png       (buat preview pas dibagiin di sosmed)
         ```
 
-        Kamu boleh taruh semua section langsung di `app/page.tsx` untuk kesederhanaan. Pisahkan jadi component kalau sudah lebih besar.
+        Boleh taro semua section langsung di `app/page.tsx` buat awalnya. Pisahin jadi component kalau udah lebih gede.
         """
     ),
     practice=(
-        "Selesaikan project. Target: URL Vercel yang bisa dibuka, tampil bagus "
-        "di desktop DAN HP, repo GitHub-nya rapi (ada README minimal). Catat URL "
-        "untuk update di portfolio nanti."
+        "Selesain project. Target: URL Vercel yang bisa dibuka, tampil bagus "
+        "di desktop DAN HP, repo GitHub-nya rapi (ada README minimal). Catet "
+        "URL-nya buat update di portfolio nanti."
     ),
     fix_error={
         "language": "text",
         "broken_code": dedent(
             """\
-            Hasil build di Vercel sukses, tapi saat dibuka di HP semua
-            text mepet ke pinggir layar dan ada horizontal scroll.
+            Hasil build di Vercel sukses, tapi pas dibuka di HP semua text
+            mepet ke pinggir layar dan ada horizontal scroll.
             """
         ),
         "hint": (
-            "Dua hal yang sering jadi penyebab: meta viewport tidak ada, dan "
-            "elemen lebih lebar dari layar."
+            "Dua hal yang sering jadi penyebab: meta viewport gak ada, sama "
+            "elemen yang lebih lebar dari layar."
         ),
         "answer_explanation": dedent(
             """\
             Penyebab umum:
 
-            1. Tag `<meta viewport>` tidak ada di `<head>`. Untungnya `create-next-app` sudah pasang, jadi cek `app/layout.tsx`.
-            2. Ada elemen dengan width fixed (misal `width: 1200px`) yang lebih besar dari layar HP.
-            3. Tidak pakai padding horizontal di section.
+            1. Tag `<meta viewport>` gak ada di `<head>`. Untungnya `create-next-app` udah pasang, jadi cek `app/layout.tsx`.
+            2. Ada elemen dengan width fixed (misal `width: 1200px`) yang lebih gede dari layar HP.
+            3. Gak pake padding horizontal di section.
 
-            Solusi: pakai class Tailwind `mx-auto max-w-screen-xl px-4` di pembungkus konten.
+            Solusinya: pake class Tailwind `mx-auto max-w-screen-xl px-4` di pembungkus konten.
             """
         ),
         "fixed_code": dedent(
             """\
-            // app/layout.tsx — pastikan ada
+            // app/layout.tsx — pastiin ada
             export const viewport = {
               width: "device-width",
               initialScale: 1,
@@ -792,18 +847,18 @@ PROJECT_LANDING_LIVE = make_lesson(
     },
     quiz=[
         q(
-            "Mana praktik yang paling baik untuk halaman responsive?",
+            "Mana praktik paling baik buat halaman responsive?",
             [
-                "Bikin layout fixed 1200px supaya selalu sama",
-                "Pakai class responsive Tailwind dan max-width agar adaptif di mobile dan desktop",
-                "Bikin halaman terpisah untuk mobile",
-                "Tidak perlu, browser otomatis menyesuaikan",
+                "Bikin layout fixed 1200px biar selalu sama",
+                "Pake class responsive Tailwind dan max-width biar adaptif di mobile dan desktop",
+                "Bikin halaman terpisah buat mobile",
+                "Gak perlu, browser auto nyesuaiin",
             ],
             "B",
-            "Pakai responsive utilities (sm:, md:, lg:) dan max-width supaya satu halaman jalan di semua device.",
+            "Pake responsive utilities (sm:, md:, lg:) sama max-width biar satu halaman jalan di semua device.",
         ),
         q(
-            "Apa pesan commit yang BAIK untuk project ini?",
+            "Apa pesan commit yang BAGUS buat project ini?",
             [
                 "\"update\"",
                 "\"feat: hero section dengan CTA dan tagline\"",
@@ -811,32 +866,32 @@ PROJECT_LANDING_LIVE = make_lesson(
                 "\"WIP\"",
             ],
             "B",
-            "Pesan commit deskriptif dengan prefix (feat, fix, refactor) bikin history mudah dibaca.",
+            "Pesan commit deskriptif dengan prefix (feat, fix, refactor) bikin history gampang dibaca.",
         ),
         q(
-            "Kapan kamu sebaiknya minta feedback ke teman?",
+            "Kapan sebaiknya minta feedback ke temen?",
             [
-                "Setelah halaman 100% sempurna",
-                "Saat halaman sudah live, walau belum 'sempurna' — feedback dari user asli berharga",
-                "Tidak perlu feedback",
-                "Setelah dapat klien pertama",
+                "Habis halaman 100% sempurna",
+                "Pas halaman udah live, walau belum 'sempurna' — feedback dari user beneran berharga",
+                "Gak perlu feedback",
+                "Habis dapet klien pertama",
             ],
             "B",
-            "Feedback dari mata orang lain mengungkap blind spot. Lebih cepat minta feedback, lebih cepat halaman jadi lebih baik.",
+            "Feedback dari mata orang lain ngungkap blind spot. Lebih cepet minta feedback, lebih cepet halaman jadi lebih bagus.",
         ),
         q(
             "Apa fungsi `<meta viewport>`?",
             [
-                "Tidak penting",
-                "Memberi tahu browser HP untuk render halaman dengan skala device, bukan desktop",
+                "Gak penting",
+                "Ngasih tau browser HP buat render halaman dengan skala device, bukan desktop",
                 "Mempercepat halaman",
-                "Untuk SEO saja",
+                "Buat SEO doang",
             ],
             "B",
-            "Tanpa meta viewport, browser HP merender halaman seperti desktop kecil. Hasilnya semua mepet dan ada zoom default.",
+            "Tanpa meta viewport, browser HP render halaman kayak desktop kecil. Hasilnya semua mepet dan ada zoom default.",
         ),
         q(
-            "Mana yang paling penting untuk landing page pertama?",
+            "Mana yang paling penting buat landing page pertama?",
             [
                 "Animasi yang banyak",
                 "Halaman LIVE dengan URL publik, tampil rapi di HP",
@@ -844,19 +899,19 @@ PROJECT_LANDING_LIVE = make_lesson(
                 "Backend dengan database",
             ],
             "B",
-            "Yang penting halaman bisa diakses publik dan tampil OK di HP. Polish lain menyusul.",
+            "Yang penting halaman bisa diakses publik dan tampil OK di HP. Polish lain nyusul.",
         ),
     ],
     common_mistakes=[
-        "Project terlalu ambisius di hari pertama. Hasilnya tidak selesai.",
-        "Lupa test di HP sungguhan. Hanya test di simulator.",
-        "Pesan commit asal-asalan. History repo jadi tidak bisa dibaca.",
+        "Project kebesaran di hari pertama. Hasilnya gak selesai.",
+        "Lupa test di HP sungguhan. Cuma test di simulator.",
+        "Pesan commit asal-asalan. History repo jadi gak bisa dibaca.",
     ],
     checkpoint=[
-        "URL Vercel publik bisa dibuka.",
-        "Tampilan rapi di HP dan desktop.",
-        "Repo GitHub punya README minimal.",
-        "Sudah dibagikan ke minimal satu teman.",
+        "URL Vercel publik bisa dibuka",
+        "Tampilan rapi di HP dan desktop",
+        "Repo GitHub punya README minimal",
+        "Udah dibagiin ke minimal satu temen",
     ],
     xp_reward=200,
     is_project=True,
@@ -871,11 +926,11 @@ LEVEL = make_level(
     number=1,
     slug="first-app-experience",
     title="First App Experience",
-    subtitle="Rasakan: 'Saya bisa bikin app'",
+    subtitle="Rasain pertama kali: 'Saya bisa bikin app'",
     description=(
-        "Install tools, kuasai dasar Git, lalu deploy landing page pertamamu "
+        "Install tools, kuasain dasar Git, terus deploy landing page pertamamu "
         "ke internet. Tujuan utama level ini: kasih kamu pengalaman pertama "
-        "punya URL publik yang bisa dibagikan."
+        "punya URL publik yang bisa dibagiin."
     ),
     duration="~1 minggu",
     difficulty="Pemula",

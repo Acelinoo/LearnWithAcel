@@ -61,11 +61,10 @@ async def _bump_user_engagement(user_id: str, xp_earned: int) -> tuple[int, int]
 async def open_lesson(user_id: str, lesson_id: str) -> dict:
     """Track that the user opened a lesson.
 
-    - Increments lesson.views (debounced caller-side; this just bumps once).
-    - Updates user.last_opened_lesson_id + last_opened_at so the dashboard's
-      "Continue learning" can resume exactly where they left off.
-
-    Returns a small payload the frontend can render optimistically.
+    Updates user.last_opened_lesson_id + last_opened_at so the dashboard's
+    "Continue learning" can resume exactly where they left off, then
+    forwards to the universal view-tracking service to bump the view
+    counter and append an event row.
     """
     lesson = await prisma.lesson.find_unique(where={"id": lesson_id})
     if lesson is None:
@@ -73,10 +72,15 @@ async def open_lesson(user_id: str, lesson_id: str) -> dict:
 
     now = datetime.now(timezone.utc)
 
-    # Increment view counter atomically.
-    updated_lesson = await prisma.lesson.update(
-        where={"id": lesson_id},
-        data={"views": {"increment": 1}},
+    # Defer the actual count bump and event log to the universal
+    # service so analytics stay in one place.
+    from app.services import views_service  # local import to avoid cycle
+
+    track = await views_service.track_view(
+        entity_type="lesson",
+        entity_id=lesson_id,
+        user_id=user_id,
+        pathname=None,
     )
 
     await prisma.user.update(
@@ -89,7 +93,7 @@ async def open_lesson(user_id: str, lesson_id: str) -> dict:
 
     return {
         "lesson_id": lesson_id,
-        "views": updated_lesson.views,
+        "views": track.views,
         "last_opened_at": _to_iso(now),
     }
 
