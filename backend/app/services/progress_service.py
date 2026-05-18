@@ -59,29 +59,18 @@ async def _bump_user_engagement(user_id: str, xp_earned: int) -> tuple[int, int]
 
 
 async def open_lesson(user_id: str, lesson_id: str) -> dict:
-    """Track that the user opened a lesson.
+    """Remember that the user opened a lesson.
 
     Updates user.last_opened_lesson_id + last_opened_at so the dashboard's
-    "Continue learning" can resume exactly where they left off, then
-    forwards to the universal view-tracking service to bump the view
-    counter and append an event row.
+    "Continue learning" can resume exactly where they left off. View
+    counters are intentionally not tracked anymore — see git history for
+    the previous EntityView-based implementation.
     """
     lesson = await prisma.lesson.find_unique(where={"id": lesson_id})
     if lesson is None:
         raise NotFoundException(f"Lesson '{lesson_id}' not found")
 
     now = datetime.now(timezone.utc)
-
-    # Defer the actual count bump and event log to the universal
-    # service so analytics stay in one place.
-    from app.services import views_service  # local import to avoid cycle
-
-    track = await views_service.track_view(
-        entity_type="lesson",
-        entity_id=lesson_id,
-        user_id=user_id,
-        pathname=None,
-    )
 
     await prisma.user.update(
         where={"id": user_id},
@@ -93,7 +82,6 @@ async def open_lesson(user_id: str, lesson_id: str) -> dict:
 
     return {
         "lesson_id": lesson_id,
-        "views": track.views,
         "last_opened_at": _to_iso(now),
     }
 

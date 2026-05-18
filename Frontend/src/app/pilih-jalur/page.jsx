@@ -14,7 +14,6 @@ import {
   Sparkles,
   Zap,
 } from "lucide-react";
-import ViewTracker from "@/components/ui/ViewTracker";
 
 const paths = [
   {
@@ -77,7 +76,6 @@ const comparison = [
 export default function PilihJalurPage() {
   return (
     <div className="container-page py-16">
-      <ViewTracker entityType="page" entityId="pilih-jalur" />
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}

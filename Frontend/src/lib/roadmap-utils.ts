@@ -8,7 +8,6 @@ import {
   normalizeTags,
   normalizeTechs,
   type ApiCategory,
-  type ApiLessonSummary,
   type ApiLevelSummary,
 } from "@/lib/api/content";
 
@@ -37,45 +36,13 @@ export function categoryToTab(c: ApiCategory): CategoryTab {
   };
 }
 
-/** Total lessons/viewers across a list of levels. */
+/** Total lessons across a list of levels. */
 export function aggregateLevels(levels: ApiLevelSummary[]) {
   let totalLessons = 0;
-  let totalViewers = 0;
   for (const lvl of levels) {
     totalLessons += lvl.lessons.length;
-    totalViewers += lvl.base_viewers || 0;
   }
-  return { totalLessons, totalViewers };
-}
-
-/** Top N most-viewed lessons across all levels. */
-export type PopularLesson = ApiLessonSummary & {
-  levelSlug: string;
-  levelTitle: string;
-  levelNumber: number;
-};
-
-export function getPopularLessons(
-  levels: ApiLevelSummary[],
-  limit = 5
-): PopularLesson[] {
-  const flat: PopularLesson[] = levels.flatMap((lvl) =>
-    lvl.lessons.map((l) => ({
-      ...l,
-      levelSlug: lvl.slug,
-      levelTitle: lvl.title,
-      levelNumber: lvl.number,
-    }))
-  );
-  return flat
-    .sort((a, b) => b.base_viewers - a.base_viewers)
-    .slice(0, limit);
-}
-
-/** The single most-viewed level (by base_viewers). */
-export function getTopLevel(levels: ApiLevelSummary[]): ApiLevelSummary | null {
-  if (!levels.length) return null;
-  return [...levels].sort((a, b) => b.base_viewers - a.base_viewers)[0];
+  return { totalLessons };
 }
 
 /** Get parsed tags for a level. Defensive against backends sending strings. */

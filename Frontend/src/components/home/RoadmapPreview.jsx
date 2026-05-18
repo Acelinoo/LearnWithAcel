@@ -2,12 +2,11 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
-import LevelViewerBadge from "@/components/ui/LevelViewerBadge";
 import CategoryTabs from "@/components/ui/CategoryTabs";
 import { listCategories, getRoadmap } from "@/lib/api/content";
 import { categoryToTab, levelTags } from "@/lib/roadmap-utils";
 
-function LevelCard({ level, accentClass = "" }) {
+function LevelCard({ level }) {
   const isComingSoon = level.coming_soon;
   const tags = levelTags(level);
 
@@ -27,12 +26,10 @@ function LevelCard({ level, accentClass = "" }) {
           <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-accent-hover">
             Level 0{level.number}
           </span>
-          {isComingSoon ? (
+          {isComingSoon && (
             <span className="rounded-full border border-border bg-black/30 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider text-muted">
               Coming Soon
             </span>
-          ) : (
-            <LevelViewerBadge count={level.base_viewers} size="xs" />
           )}
         </div>
 

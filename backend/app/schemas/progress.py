@@ -67,9 +67,14 @@ class StatsResponse(BaseModel):
     continue_lesson: ContinueLesson | None = None
 
 
-class LessonViewResponse(BaseModel):
-    """Returned by POST /progress/view/{lesson_id}."""
+class LessonOpenResponse(BaseModel):
+    """Returned by POST /progress/view/{lesson_id}.
+
+    The endpoint just remembers which lesson the user opened so the
+    dashboard's "Continue learning" stays accurate. There is no view
+    counter anymore — the field is kept out of the response shape so
+    callers can't accidentally rely on it.
+    """
 
     lesson_id: str
-    views: int
     last_opened_at: str

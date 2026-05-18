@@ -11,7 +11,6 @@ import {
   Sparkles,
 } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
-import ViewTracker from "@/components/ui/ViewTracker";
 import { JALUR_META } from "@/lib/jalur-data";
 
 export const dynamic = "force-dynamic";
@@ -150,10 +149,6 @@ export default function VibeRolePage({ params }) {
 
   return (
     <div className="container-page py-16">
-      <ViewTracker
-        entityType="page"
-        entityId={`vibe-role-${params.role}`}
-      />
 
       <Reveal>
         <Link

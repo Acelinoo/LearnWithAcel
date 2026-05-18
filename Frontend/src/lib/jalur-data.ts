@@ -59,70 +59,112 @@ const MANUAL_LESSONS: JalurLesson[] = [
   {
     slug: "cara-kerja-website",
     title: "Cara Kerja Website",
-    duration: "9 menit",
+    duration: "8 menit",
     summary:
-      "Apa yang sebenarnya terjadi saat kamu mengetik URL dan menekan Enter.",
+      "Apa yang sebenernya kejadian saat kamu ngetik URL terus pencet Enter.",
     content: `# Cara Kerja Website
 
-Banyak orang pakai website tiap hari tanpa pernah tahu apa yang terjadi di baliknya. Saat kamu mau jadi developer, kamu butuh peta mental yang sederhana.
+Coba kamu pikirin sebentar. Kamu buka WhatsApp Web. Klik chat. Tiba-tiba muncul pesan. Kok bisa?
 
-Anggap aja website itu kayak restoran. Kamu duduk di meja, baca menu, pesan ke pelayan. Pelayan bawa pesanan ke dapur. Dapur masak, lalu pelayan bawa balik makanan ke meja kamu.
+Banyak orang pake website tiap hari tanpa pernah tau apa yang terjadi di balik layar. Buat developer, kamu butuh peta sederhana di kepala.
 
-Web kerja persis kayak gitu. Cuma istilahnya beda.
+## Analogi: pesen kopi di kafe
 
-## Browser, server, dan internet
+Bayangin kamu lagi di kafe.
 
-- **Browser** itu meja kamu. Tempat kamu lihat, klik, dan ngetik. Chrome, Safari, Firefox itu semua browser.
-- **Server** itu dapur. Komputer yang nyala 24 jam, nyimpan halaman dan data. Kamu nggak pernah lihat langsung.
-- **Internet** itu jalan antara meja dan dapur. Kabel, WiFi, jaringan operator semuanya nyatu jadi internet.
+1. Kamu **datang ke meja** dan baca menu.
+2. Kamu **pesan ke pelayan**.
+3. Pelayan **bawa pesanan ke dapur**.
+4. Dapur **bikin kopinya**.
+5. Pelayan **bawa kopi balik ke meja**.
 
-Saat kamu ketik \`google.com\` lalu pencet Enter, browser kamu kirim "permintaan" ke server Google. Server jawab dengan kode HTML, CSS, dan JavaScript. Browser baca semua itu, lalu nampilin halaman yang kamu lihat.
+Website kerjanya persis kayak gitu. Cuma istilahnya beda.
 
-## Tiga bahasa yang bikin halaman web
+## Tiga pemain utama
 
-- **HTML** — kerangka. Ini judulnya, ini paragraf, ini gambar. Kayak struktur rumah.
-- **CSS** — gaya. Warna, spasi, font, layout. Kayak cat dan furnitur.
-- **JavaScript** — interaksi. Tombol diklik ngapain, animasi, validasi form. Kayak listrik di rumah.
+| Di kafe | Di web | Tugasnya |
+| --- | --- | --- |
+| Meja kamu | **Browser** | Tempat kamu lihat dan klik |
+| Pelayan | **Internet** | Bolak-balik bawa pesan |
+| Dapur | **Server** | Tempat data tersimpan, pesanan diproses |
 
-Tiga ini selalu jalan barengan. Tanpa salah satu, halaman terasa kurang.
+Browser itu Chrome, Safari, Firefox, atau Edge. Server itu komputer di internet yang nyala 24 jam.
 
-## Kenapa kamu perlu paham ini
+## Yang kejadian saat kamu buka google.com
 
-Sebagai developer kamu sering banget ketemu error. Tau bagiannya yang mana bikin debugging jauh lebih cepet.
+Tiap kali kamu pencet Enter, alurnya kayak gini:
 
-- Tampilan rusak? Kemungkinan di HTML atau CSS.
-- Tombol nggak respon? Kemungkinan di JavaScript.
-- Halaman nggak kebuka sama sekali? Kemungkinan server-nya yang lagi bermasalah.
+\`\`\`text
+Kamu ketik "google.com" + Enter
+        ↓
+Browser ngomong: "Halo server Google, kasih halamanmu dong"
+        ↓
+Server Google jawab dengan kirim HTML, CSS, JavaScript
+        ↓
+Browser baca semua itu, terus susun jadi halaman yang kamu lihat
+\`\`\`
 
-Mulai sekarang, tiap kali buka website, coba pikirin: "Yang ini browser tampilin apa? Yang dari server apa?". Lama-lama jadi otomatis.
+Selesai. Itu doang. Tapi prosesnya cuma butuh sepersekian detik.
+
+## Tiga bahasa yang bikin halaman
+
+Halaman web dibangun dari tiga bahasa. Masing-masing punya tugas sendiri.
+
+| Bahasa | Tugasnya | Analogi |
+| --- | --- | --- |
+| **HTML** | Struktur halaman: judul, paragraf, gambar | Kerangka rumah |
+| **CSS** | Tampilan: warna, ukuran, spasi | Cat & furnitur |
+| **JavaScript** | Interaksi: klik, animasi, validasi | Listrik & saklar |
+
+Tiga ini selalu jalan bareng. Tanpa salah satu, halaman kerasa kurang.
+
+## Kenapa kamu perlu tau ini
+
+Sebagai developer kamu sering banget ketemu error. Tau bagiannya yang mana bikin debug jauh lebih cepet.
+
+- Tampilan miring sebelah? Cek HTML & CSS.
+- Tombol gak respon? Cek JavaScript.
+- Halaman gak kebuka sama sekali? Cek server-nya.
+
+Banyak pemula mikir error itu serem. Santai aja. Error itu cuma petunjuk yang ngasih tau "ada yang salah di sini".
+
+## Coba sendiri
+
+Buka browser. Pencet **F12**. Itu jendela ke balik layar website. Kamu bakal ketemu lagi tab itu nanti, sering banget.
+
+Lesson selanjutnya kita masuk ke tiga bahasa wajibnya satu-satu.
 `,
   },
   {
     slug: "html-css-js-itu-apa",
-    title: "HTML, CSS, JS — Tiga Bahasa Wajib",
-    duration: "10 menit",
-    summary: "Kenalan singkat dengan tiga bahasa dasar yang membentuk web.",
-    content: `# HTML, CSS, JS — Tiga Bahasa Wajib
+    title: "Tiga Bahasa Wajib: HTML, CSS, JS",
+    duration: "9 menit",
+    summary: "Kenalan singkat sama HTML, CSS, dan JavaScript.",
+    content: `# Tiga Bahasa Wajib: HTML, CSS, JS
 
-Tiga bahasa ini jadi pondasi semua website. Mau pake framework apa pun nanti, kamu tetep ketemu mereka.
+Lesson ini bukan buat hafalan. Tujuannya cuma satu: kasih kamu **gambaran** apa fungsi masing-masing bahasa.
 
-Kabar baiknya: kamu nggak perlu hafal semuanya. Cukup paham fungsi masing-masing dan kapan dipakai.
+Detailnya nanti kamu pelajarin pelan-pelan di roadmap. Sekarang yang penting kamu tau "yang mana ngapain".
 
-## HTML — kerangka halaman
+## HTML — kerangka
 
-HTML singkatan dari Hypertext Markup Language. Tugasnya cuma satu: nentuin **struktur** halaman.
+HTML itu kayak nulis daftar belanja. Kamu nandain "ini judul", "ini paragraf", "ini link".
 
 \`\`\`html
-<h1>Selamat Datang</h1>
-<p>Ini paragraf pertama saya.</p>
+<h1>Halo, saya Acel</h1>
+<p>Belajar coding dari nol.</p>
 <a href="/about">Tentang saya</a>
 \`\`\`
 
-Tag \`<h1>\` artinya heading utama. \`<p>\` artinya paragraf. \`<a>\` artinya link. Browser baca tag ini terus nampilin sesuai aturannya.
+Tag \`<h1>\` artinya heading utama. \`<p>\` paragraf. \`<a>\` link. Browser baca tag-nya, terus tampilin sesuai aturan.
 
-## CSS — gaya halaman
+Itu doang HTML. Strukturnya, bukan tampilannya.
 
-CSS singkatan dari Cascading Style Sheets. Tugasnya bikin halaman **tampak menarik**.
+## CSS — gaya
+
+Halaman tanpa CSS keliatan polos banget. Hitam putih, kayak Notepad.
+
+CSS yang bikin halaman jadi **enak diliat**.
 
 \`\`\`css
 h1 {
@@ -135,11 +177,15 @@ p {
 }
 \`\`\`
 
-CSS milih elemen (heading, paragraf, dll), lalu ngasih aturan visual. Warna, ukuran, jarak, semua di sini.
+Aturannya simpel: pilih elemen (\`h1\`, \`p\`), terus kasih tau browser mau dibikin gimana (warna apa, ukurannya berapa).
 
-## JavaScript — perilaku halaman
+Kamu bisa ubah warna, font, jarak, layout, animasi — semua di CSS.
 
-JavaScript bikin halaman jadi **bisa berinteraksi** sama user.
+## JavaScript — interaksi
+
+HTML bikin struktur. CSS bikin cantik. Tapi keduanya **diem aja**.
+
+JavaScript yang bikin halaman bisa nanggepin user.
 
 \`\`\`js
 const tombol = document.querySelector("button");
@@ -149,104 +195,159 @@ tombol.addEventListener("click", () => {
 });
 \`\`\`
 
-Tanpa JS, halaman cuma teks dan gambar diam. Dengan JS, halaman bisa nanggepin klik, ngirim data ke server, dan update tampilan tanpa reload.
+Kode di atas artinya: "kalau tombol diklik, munculin pesan 'Tombolnya kamu klik!'".
+
+Tanpa JS, tombol cuma kotak yang gak ngapa-ngapain. Sama JS, tombol jadi hidup.
+
+## Beda mereka, ringkesan
+
+| Bahasa | Pertanyaan yang dijawab |
+| --- | --- |
+| HTML | "Ada apa aja di halaman ini?" |
+| CSS | "Tampilannya gimana?" |
+| JavaScript | "Kalau diklik, ngapain?" |
+
+Tiga ini selalu jalan bareng. Mau pake framework apa pun nanti (React, Vue, Next.js), kamu tetep ketemu mereka.
 
 ## Urutan belajarnya
 
-Saran realistis: HTML dulu beberapa hari, lanjut CSS, baru JavaScript. Jangan campur aduk di awal — fokus satu bahasa biar otaknya nggak overload.
+Saran realistis dari banyak developer:
 
-Setelah ketiga ini lancar, framework kayak React, Vue, atau Next.js bakal jauh lebih masuk akal. Mereka semua dibangun di atas tiga bahasa ini.
+1. **HTML** — beberapa hari, sampe bisa bikin halaman sederhana.
+2. **CSS** — seminggu-dua, sampe paham layout.
+3. **JavaScript** — paling lama, karena dia yang paling kompleks.
+
+Jangan nyampur tiga sekaligus di awal. Nanti otaknya overload, dan biasanya pemula nyerah di sini.
+
+Banyak yang ngerasa kebelet pengen langsung React. Tahan dulu. Tiga bahasa ini pondasinya. Tanpa ini, React kerasa magic — dan magic itu susah di-debug.
 `,
   },
   {
     slug: "tools-developer",
     title: "Tools yang Dipakai Developer",
-    duration: "8 menit",
+    duration: "7 menit",
     summary:
-      "Editor, browser, dan terminal — tiga aplikasi yang akan jadi rumah keduamu.",
+      "Tiga aplikasi yang bakal kamu buka tiap hari sebagai developer.",
     content: `# Tools yang Dipakai Developer
 
-Sebelum nulis kode, kamu butuh beberapa alat. Tenang, semuanya gratis dan ringan.
+Sebelum nulis kode, kamu butuh beberapa alat. Kabar baiknya semuanya gratis dan ringan.
 
-## VS Code — tempat nulis kode
+Lesson ini cuma kenalan. Setup detailnya nanti kamu kerjain pas masuk roadmap.
 
-VS Code itu code editor paling populer sekarang. Ringan, gratis, dan dukung hampir semua bahasa.
+## Tiga tools utama
 
-Kenapa bukan Notepad? Karena VS Code:
+| Tools | Fungsinya | Analogi |
+| --- | --- | --- |
+| **VS Code** | Tempat nulis kode | Microsoft Word buat kode |
+| **Chrome / Firefox / Edge** | Tempat lihat hasil | Layar TV |
+| **Terminal** | Tempat ngetik perintah | Tombol remote |
 
-- Ngewarnain kode biar gampang dibaca.
-- Ngecek error sambil kamu ngetik.
-- Punya ribuan ekstensi buat ngebantu kerja.
+Tiga ini bakal kamu buka **setiap hari**. Beneran tiap hari.
 
-Download di [code.visualstudio.com](https://code.visualstudio.com). Install kayak aplikasi biasa.
+## VS Code
 
-## Browser modern — tempat lihat hasil
+VS Code itu code editor paling populer sekarang. Bikinan Microsoft, gratis, ringan, dan dukung hampir semua bahasa.
 
-Pake Chrome, Firefox, atau Edge. Ketiganya punya **DevTools** — fitur buat developer yang dibuka pake tombol F12.
+Bedanya sama Notepad atau Word:
 
-DevTools bakal nemenin kamu setiap hari. Di situ kamu bisa:
+- **Ngewarnain kode** biar gampang dibaca.
+- **Ngecek error** sambil kamu ngetik.
+- **Ribuan ekstensi** buat bantu kerja.
 
-- Lihat HTML & CSS halaman secara langsung.
-- Ngecek error di Console.
-- Lihat request yang dikirim ke server.
+Download di [code.visualstudio.com](https://code.visualstudio.com), install kayak aplikasi biasa.
 
-Kalo belum pernah, coba pencet F12 di halaman manapun. Itu jendela ke "balik layar" website.
+> Banyak pemula mikir editor canggih bikin kerjaan lebih cepet. Sebenernya yang penting itu kamu nyaman pake satu editor sampe hafal jalannya. VS Code aman buat ini.
 
-## Terminal — tempat ngetik perintah
+## Browser modern + DevTools
 
-Terminal itu aplikasi yang nerima perintah lewat tulisan. Di Windows namanya Command Prompt atau PowerShell. Di Mac/Linux namanya Terminal.
+Pake Chrome, Firefox, atau Edge. Ketiganya punya **DevTools** yang dibuka pake **F12**.
 
-Awalnya kelihatan serem, tapi kamu cuma butuh sedikit perintah:
+DevTools itu jendela ke balik layar website. Di situ kamu bisa:
 
-- \`cd folder-nama\` — pindah ke folder.
-- \`ls\` (Mac/Linux) atau \`dir\` (Windows) — lihat isi folder.
-- \`mkdir folder-baru\` — bikin folder baru.
+- Lihat struktur HTML halaman secara live.
+- Edit CSS langsung dan lihat efeknya.
+- Cek error JavaScript di tab Console.
+- Lihat data yang dikirim ke server di tab Network.
 
-Nanti pas install Node.js, kamu juga akan pake terminal buat install paket dan jalanin project.
+Coba sekarang: buka halaman ini, pencet **F12**. Lihat yang muncul. Itu temen kamu seterusnya.
 
-## Ekstensi VS Code yang membantu
+## Terminal
 
-Setelah install VS Code, install dua ini di tab Extensions:
+Terminal aplikasi yang nerima perintah lewat tulisan. Awal-awal keliatan serem, tapi sebenernya cuma butuh sedikit perintah.
+
+| Perintah | Fungsi | Contoh |
+| --- | --- | --- |
+| \`cd\` | Pindah folder | \`cd belajar-web\` |
+| \`ls\` (Mac/Linux) atau \`dir\` (Windows) | Lihat isi folder | \`ls\` |
+| \`mkdir\` | Bikin folder baru | \`mkdir project-1\` |
+
+Itu doang dulu. Sisanya nyusul pas kebutuhan muncul.
+
+## Ekstensi VS Code yang ngebantu banget
+
+Setelah install VS Code, install dua ini di tab Extensions (icon kotak di sidebar kiri):
 
 - **Live Server** — auto-refresh halaman saat kamu save file. Wajib buat hari pertama belajar HTML.
-- **Prettier** — auto-format kode biar rapih. Hemat waktu banget.
+- **Prettier** — auto-format kode biar rapi. Hemat banget.
 
-Sisanya boleh nyusul pas kebutuhan muncul. Jangan kebanyakan install di awal — cukup yang dipake aja.
+Sisanya jangan dulu. Tools terlalu banyak di awal malah bikin bingung.
+
+## Inget aja
+
+Kamu gak perlu setup sekarang. Detailnya ada di halaman **Persiapan**. Lesson ini cuma kasih gambaran besar.
+
+Yang penting: kamu udah tau apa yang bakal jadi temen harian kamu nanti.
 `,
   },
   {
     slug: "git-dan-github",
-    title: "Git & GitHub — Simpan Kerjaan dengan Aman",
-    duration: "11 menit",
+    title: "Git & GitHub: Mesin Waktu buat Kode",
+    duration: "10 menit",
     summary:
-      "Git itu mesin waktu untuk kode. GitHub itu tempat menyimpan dan berbagi.",
-    content: `# Git & GitHub — Simpan Kerjaan dengan Aman
+      "Kenapa developer gak nyimpen kode pake nama 'final-banget-fix-2'.",
+    content: `# Git & GitHub: Mesin Waktu buat Kode
 
-Pernah ngerjain dokumen lalu nge-save \`tugas-final.docx\`, terus \`tugas-final-banget.docx\`, terus \`tugas-final-ASLI.docx\`? Kekacauan.
+Pernah ngerjain dokumen Word terus nyimpen jadi \`tugas-final.docx\`, terus \`tugas-final-banget.docx\`, terus \`tugas-final-ASLI.docx\`?
 
-Git muncul buat ngatasin masalah ini di dunia kode.
+Itu kacau. Dan dunia kode dulu juga gitu, sampe Git muncul.
 
 ## Apa itu Git
 
-Git adalah tools yang nyatat semua perubahan di kode kamu. Setiap kali kamu mau "nyimpan progress", kamu bikin **commit**. Tiap commit kayak checkpoint di game.
+Git itu **tools yang nyatat semua perubahan** di kode kamu. Tiap kali kamu mau "nyimpen progress", kamu bikin satu **commit**.
 
-Kamu bisa lihat siapa ngubah apa, kapan, dan kenapa. Kalo sesuatu rusak, kamu bisa balik ke versi sebelumnya yang masih jalan.
+Tiap commit itu kayak checkpoint di game. Kalau sesuatu rusak, kamu bisa balik ke checkpoint sebelumnya.
 
-Git jalan di komputer kamu. Nggak butuh internet sama sekali.
+\`\`\`text
+commit-1: bikin halaman home
+   ↓
+commit-2: tambah navbar
+   ↓
+commit-3: tambah footer
+   ↓
+commit-4: oops, footer-nya rusak
+   ↓
+[balik ke commit-3, semua aman lagi]
+\`\`\`
+
+Git jalan di komputer kamu. Gak butuh internet sama sekali.
 
 ## Apa itu GitHub
 
-GitHub adalah layanan online buat **nyimpen dan berbagi** kode yang udah dipantau Git. Kayak Google Drive, tapi khusus kode.
+Git nyimpen riwayat di laptop kamu. Tapi gimana kalau laptop rusak?
 
-Manfaatnya:
+GitHub itu layanan online buat **nyimpen Git project di internet**. Anggep kayak Google Drive, tapi khusus kode.
 
-- Kalo laptop kamu rusak, kode tetap aman.
-- Kamu bisa kerja dari device lain, tinggal pull ke laptop baru.
-- Recruiter bisa lihat portfolio kamu lewat profil GitHub.
+| Kalau laptop hilang | Tanpa GitHub | Pake GitHub |
+| --- | --- | --- |
+| Kode kamu | Hilang | Aman, tinggal download dari GitHub |
+| Riwayat commit | Hilang | Aman juga |
+| Portfolio | Susah ditunjukin | Bisa dilihat langsung dari profil |
 
-GitHub gratis. Semua project ini bisa kamu push ke akun pribadi.
+GitHub gratis. Recruiter sering ngecek profil GitHub kamu sebelum interview.
 
-## Tiga perintah yang dipake tiap hari
+## Tiga perintah harian
+
+Kamu cuma butuh tiga ini buat 80% kerjaan:
 
 \`\`\`bash
 git add .
@@ -254,143 +355,208 @@ git commit -m "tambah halaman about"
 git push
 \`\`\`
 
-- \`git add .\` — tandain semua perubahan buat masuk commit.
-- \`git commit -m "..."\` — bikin checkpoint dengan pesan singkat.
-- \`git push\` — kirim semua commit ke GitHub.
+| Perintah | Artinya |
+| --- | --- |
+| \`git add .\` | Tandain semua file yang berubah |
+| \`git commit -m "..."\` | Bikin checkpoint sama pesan |
+| \`git push\` | Kirim semua checkpoint ke GitHub |
 
-Tiga ini doang udah cukup buat 80% kerjaan harian. Sisanya nyusul.
+Sisanya nyusul pelan-pelan.
 
-## Tips pesan commit yang bagus
+## Pesan commit yang bagus
 
-Pesan commit jelekin kerjaan diri sendiri di masa depan kalo asal. Tulis yang spesifik:
+Pesan commit itu pesan dari kamu sekarang ke kamu di masa depan.
 
-- Jelek: "update", "fix", "wip"
-- Bagus: "perbaiki tombol login yang nggak bisa diklik di mobile"
+\`\`\`text
+Jelek:
+- "update"
+- "fix"
+- "wip"
+
+Bagus:
+- "perbaiki tombol login yang gak bisa diklik di mobile"
+- "tambah validasi email di form register"
+\`\`\`
 
 Bayangin kamu balik ke project ini 3 bulan lagi. Pesannya harus bisa kamu pahami sendiri tanpa baca kode.
 
-## Nggak perlu dihafal sekarang
+## Inget tiga hal ini aja
 
-Lesson ini cuma pengantar. Kamu nggak perlu langsung jago Git. Yang penting:
+Git itu mesin waktu lokal. GitHub itu cloud-nya. Tiga perintah \`add\` → \`commit\` → \`push\` udah cukup buat hari pertama.
 
-- Tau Git itu mesin waktu, GitHub itu cloud-nya.
-- Tau ada \`add\`, \`commit\`, \`push\` sebagai siklus harian.
-- Mulai biasakan commit sering — tiap kali nyelesain satu fitur kecil.
+Detailnya nanti kamu pelajarin di roadmap. Yang penting sekarang kamu tau **kenapa** developer pake Git, bukan cuma cara pakenya.
 `,
   },
   {
     slug: "deploy-dasar",
-    title: "Deploy Dasar — Bedanya Localhost & Live",
-    duration: "9 menit",
+    title: "Deploy: Bedanya Localhost vs Live",
+    duration: "8 menit",
     summary:
-      "Kenapa kode yang jalan di laptop tidak otomatis bisa dibuka orang lain.",
-    content: `# Deploy Dasar — Bedanya Localhost & Live
+      "Kenapa kode yang jalan di laptop kamu gak otomatis bisa dibuka temen.",
+    content: `# Deploy: Bedanya Localhost vs Live
 
-Banyak pemula bingung kenapa websitenya jalan di laptop sendiri tapi nggak bisa dibuka temen pas dikirim link-nya. Jawabannya satu: link-nya \`localhost\`.
+Kasus klasik: kamu bikin website, jalan mulus di laptop sendiri. Kamu kirim link ke temen. Temen buka, tampilannya error.
+
+Kamu cek lagi di laptop. Jalan. Kirim lagi. Tetep error di temen.
+
+Penyebabnya hampir selalu satu hal: link-nya \`localhost\`.
 
 ## Apa itu localhost
 
-\`localhost\` artinya "komputer ini sendiri". Saat kamu pake \`npm run dev\` atau Live Server, halaman kamu jalan di laptop kamu doang.
+\`localhost\` artinya **"komputer ini sendiri"**.
 
-Kalo kamu kirim link \`http://localhost:3000\` ke temen, di laptop temen link itu nunjuk ke laptop temen, bukan kamu. Wajar nggak nyambung.
+Saat kamu jalanin \`npm run dev\` atau pake Live Server, halaman kamu jalan di laptop kamu doang. URL \`http://localhost:3000\` itu cuma bisa dibuka di laptop yang lagi jalanin server-nya.
+
+\`\`\`text
+Laptop kamu                    Laptop temen
+http://localhost:3000   ≠   http://localhost:3000
+(nunjuk ke laptop kamu)     (nunjuk ke laptop dia, kosong)
+\`\`\`
+
+Wajar gak nyambung. Mereka beda komputer.
 
 ## Apa itu deploy
 
-Deploy itu prosesnya **mindahin website kamu ke komputer di internet** yang nyala 24 jam. Komputer itu disebut server.
+Deploy itu prosesnya **mindahin website kamu ke komputer di internet** yang nyala 24 jam (server).
 
 Setelah ke-deploy, kamu dapet URL baru, contohnya:
 
-\`\`\`
+\`\`\`text
 https://nama-project.vercel.app
 \`\`\`
 
-URL ini bisa dibuka siapa aja, dari device manapun, di seluruh dunia. Itu yang dimaksud "live di internet".
+URL ini bisa dibuka **siapa aja, dari device mana aja, di seluruh dunia**. Itu yang dimaksud "live di internet".
 
-## Platform yang sering dipake
+## Bedanya kayak gini
 
-Untuk awal-awal, pakai yang gampang. Tiga ini gratis dan cocok buat pemula:
+| Aspek | Localhost | Live (di-deploy) |
+| --- | --- | --- |
+| URL | \`http://localhost:3000\` | \`https://nama.vercel.app\` |
+| Yang bisa akses | Cuma laptop kamu | Siapa aja, dari mana aja |
+| Server-nya nyala kalau | Kamu nyalain manual | Selalu, 24 jam |
+| Cocok buat | Ngoding, testing | Show ke user beneran |
 
-- **Vercel** — paling pas buat project Next.js dan landing page modern. Tinggal connect GitHub, push, beres.
-- **Netlify** — mirip Vercel, alternatif yang juga populer.
+## Platform deploy yang ramah pemula
+
+Ada banyak platform, tapi tiga ini gratis dan paling gampang:
+
+- **Vercel** — paling pas buat Next.js dan landing page modern. Tinggal connect GitHub, klik Deploy, beres.
+- **Netlify** — alternatif Vercel, mirip cara kerjanya.
 - **GitHub Pages** — gratis dari GitHub, cocok buat HTML/CSS statis.
 
-Saran: mulai dari Vercel kalau projectnya pake Next.js atau React. Mulai dari GitHub Pages kalau cuma HTML/CSS.
+Saran: kalau project pake Next.js atau React, pake **Vercel**. Kalau cuma HTML/CSS, pake **GitHub Pages** dulu.
 
 ## Alur deploy paling sederhana
 
-1. Push project ke GitHub (lihat lesson Git & GitHub).
-2. Buka Vercel atau Netlify, login pakai akun GitHub.
-3. Pilih repo project kamu.
-4. Klik "Deploy".
-5. Tunggu sekitar 1-2 menit.
-6. Dapet URL publik, share ke siapa aja.
+\`\`\`text
+Kode di laptop kamu
+        ↓
+git push ke GitHub
+        ↓
+Vercel deteksi push, build & deploy
+        ↓
+Dapet URL publik
+        ↓
+Share ke temen, mereka bisa buka
+\`\`\`
 
-Pertama kali deploy biasanya bikin senang banget. Kamu lihat URL kamu sendiri, hidup di internet, bisa dibuka dari HP. Itu momen yang nempel.
+Tunggu sekitar 1-2 menit, selesai.
 
-## Setelah ke-deploy
+## Auto-deploy: enaknya disini
 
-Setiap kali kamu push perubahan baru ke GitHub, Vercel/Netlify otomatis update versinya. Nggak perlu deploy ulang manual.
+Setelah pertama kali setup, kamu gak perlu deploy ulang manual. Tiap push baru ke GitHub, Vercel otomatis update.
 
-Cara kerja kayak gini disebut **continuous deployment**. Kamu fokus nulis kode, mereka urus sisanya.
+\`\`\`text
+Kamu edit kode di laptop
+        ↓
+git push
+        ↓
+30 detik kemudian: URL Vercel udah update
+\`\`\`
+
+Cara kerja kayak gini disebut **continuous deployment**. Kamu fokus ngoding, mereka urus sisanya.
+
+## Pertama kali deploy bakal nempel
+
+Banyak developer inget jelas momen pertama kali websitenya live. Lihat URL kamu sendiri, bisa dibuka dari HP siapapun — itu rasa yang nempel.
+
+Kamu bakal ngerasain itu juga di roadmap nanti.
 `,
   },
   {
     slug: "cara-belajar-efektif",
-    title: "Cara Belajar Coding yang Efektif",
+    title: "Cara Belajar yang Beneran Nempel",
     duration: "8 menit",
     summary:
-      "Kebiasaan kecil yang bikin progress kamu konsisten dan nggak gampang nyerah.",
-    content: `# Cara Belajar Coding yang Efektif
+      "Kebiasaan kecil yang bikin kamu konsisten dan gak gampang nyerah.",
+    content: `# Cara Belajar yang Beneran Nempel
 
-Belajar coding itu maraton, bukan sprint. Kuncinya bukan IQ tinggi atau jam belajar gila-gilaan. Kuncinya konsisten dan tau cara belajar yang bener.
+Belajar coding itu kayak lari maraton, bukan sprint 100 meter.
 
-## Aturan #1 — ngetik ulang, jangan copy-paste
+Yang penting bukan IQ tinggi atau jam belajar gila-gilaan. Yang penting **konsisten** dan tau cara belajar yang bener.
 
-Saat ikut tutorial, godaan terbesar itu copy-paste kode. Lebih cepet, kelihatan jalan.
+Lima aturan di bawah ini lebih ngebantu dari tutorial mana pun.
 
-Tapi otak kamu nggak nyimpan apa-apa. Besoknya kamu nggak inget nulis apa.
+## Aturan #1 — ketik ulang, jangan copy-paste
 
-Ngetik ulang manual itu lambat di awal, tapi otak nyatat tiap karakter. Setelah seminggu, kamu bakal kerasa: "Kok saya udah hafal pola ini?"
+Saat ikut tutorial, godaan terbesar itu copy-paste kode. Lebih cepet, kelihatan jalan, beres.
+
+Tapi otak kamu **gak nyimpan apa-apa**. Besoknya kamu lupa total.
+
+> Banyak yang nyangkut di sini. Belajar berbulan-bulan ngerasa udah ngerti, eh giliran disuruh nulis dari nol — bingung. Penyebabnya copy-paste melulu.
+
+Ngetik ulang lambat di awal, tapi otak nyatat tiap karakter. Seminggu kemudian kamu bakal kerasa: "Kok udah otomatis ya?"
 
 ## Aturan #2 — error itu temen, bukan musuh
 
-Pemula sering panik pas lihat error merah. Padahal pesan error itu petunjuk.
+Pemula sering panik begitu lihat error merah. Padahal pesan error itu petunjuk yang udah dikasih gratis.
 
-Coba baca error pelan-pelan. Biasanya bilang:
+Format error standar:
 
-- File yang error: \`script.js\`
-- Baris berapa: \`line 12\`
-- Masalahnya apa: \`Uncaught SyntaxError: Unexpected token\`
+\`\`\`text
+[file]: script.js
+[baris]: line 12
+[masalah]: Uncaught SyntaxError: Unexpected token
+\`\`\`
 
-Tiga info itu udah cukup buat 90% kasus. Kalo masih bingung, copy pesan error itu ke Google, biasanya udah ada yang nanya hal sama.
+Tiga info itu udah cukup buat 90% kasus. Sisanya: copy pesan error ke Google. Pasti ada yang udah pernah nanya hal sama.
 
 ## Aturan #3 — bangun project, bukan ngabisin tutorial
 
-Tutorial itu bagus buat ngenalin konsep. Tapi yang nempel di kepala itu bikin sendiri.
+Tutorial bagus buat ngenalin konsep. Tapi yang nempel itu bikin sendiri.
 
-Setelah lesson, coba bikin sesuatu yang lebih kecil pake materi yang barusan dipelajari. Nggak perlu sempurna. Yang penting jadi.
+\`\`\`text
+Project kecil yang selesai > project gede yang gak pernah kelar
+\`\`\`
 
-Project kecil yang selesai > project besar yang nggak pernah kelar.
+Habis lesson, coba bikin sesuatu yang lebih kecil pake materi yang barusan dipelajarin. Gak perlu sempurna. Yang penting jadi.
 
 ## Aturan #4 — sisihkan waktu rutin
 
-30 menit tiap hari lebih ampuh daripada 5 jam seminggu sekali. Otak butuh pengulangan biar inget.
+30 menit tiap hari **lebih ampuh** dari 5 jam seminggu sekali. Otak butuh pengulangan biar inget.
 
-Pilih jam yang paling tenang buat kamu. Pagi sebelum kerja. Malam sebelum tidur. Konsistensi lebih penting dari durasi.
+| Pola belajar | Hasil setelah 1 bulan |
+| --- | --- |
+| 5 jam, sekali seminggu | Lupa terus, ngulang dari awal |
+| 30 menit, tiap hari | Konsisten, nempel beneran |
 
-## Aturan #5 — jangan banding-bandingin progress
+Pilih jam yang paling tenang buat kamu. Pagi sebelum kerja, malem sebelum tidur, terserah. Konsistensi lebih penting dari durasi.
 
-Di internet kamu bakal sering lihat orang yang katanya "belajar 3 bulan udah jadi developer". Boleh termotivasi, tapi jangan jadikan ukuran.
+## Aturan #5 — jangan banding-bandingin
 
-Setiap orang punya kecepatan sendiri. Banding-bandingin progress diri sama orang lain itu cara tercepat buat nyerah.
+Di internet kamu bakal sering lihat orang yang katanya "belajar 3 bulan udah kerja".
 
-Standar yang sehat: kamu hari ini lebih ngerti dari kamu kemarin. Itu udah cukup.
+Boleh termotivasi, jangan dijadiin ukuran. Setiap orang punya kecepatan sendiri.
+
+Standar sehat yang bisa kamu pake: **kamu hari ini lebih ngerti dari kamu kemarin**. Itu udah cukup.
 
 ## Hal terakhir
 
-Lesson terakhir di Manual Fundamentals ini sengaja ditaruh di akhir. Karena tools dan bahasa bisa dipelajari kapan aja. Tapi mindset belajar yang sehat — itu yang nentuin kamu sampai mana.
+Tools dan bahasa bisa dipelajarin kapan aja. Tapi mindset belajar yang sehat — itu yang nentuin kamu sampe mana.
 
-Pelan-pelan aja. Setiap commit, setiap halaman yang jadi, setiap bug yang dipecahin — semuanya ngantar kamu ke titik yang lebih maju dari kemarin.
+Pelan-pelan aja. Tiap commit, tiap halaman yang jadi, tiap bug yang dipecahin — semuanya ngantar kamu ke titik yang lebih maju dari kemaren.
+
+Habis lesson ini, kamu siap pilih spesialisasi: Frontend, Backend, atau Fullstack.
 `,
   },
 ];
@@ -451,186 +617,258 @@ const VIBE_LESSONS: JalurLesson[] = [
   {
     slug: "apa-itu-vibe-coding",
     title: "Apa itu Vibe Coding",
-    duration: "9 menit",
+    duration: "8 menit",
     summary:
-      "Cara kerja baru: AI yang nulis kode, kamu yang pegang arah dan kualitas.",
+      "Cara kerja baru: AI nulis kodenya, kamu pegang arahnya.",
     content: `# Apa itu Vibe Coding
 
-Vibe coding itu cara kerja baru di mana **AI yang nulis kode**, dan kamu yang **pegang arah, taste, dan kualitas hasilnya**.
+Bayangin kamu punya asisten pribadi yang jago banget ngoding. Kamu tinggal bilang "saya mau bikin landing page kafe", dia langsung kerja.
 
-Bukan berarti AI gantiin developer. Justru sebaliknya — kamu jadi makin penting karena kamu yang nentuin AI mau diarahkan ke mana.
+Itu intinya vibe coding. **AI yang nulis kode**, kamu yang **pegang arah, taste, dan kualitas**.
+
+Bukan berarti AI gantiin developer. Justru sebaliknya — kamu makin penting karena kamu yang nentuin AI mau dibawa ke mana.
 
 ## Bedanya sama coding biasa
 
-Coding tradisional fokus di "gimana cara nulis logic ini". Vibe coding fokus di "apa yang harus dibangun, dan kenapa".
+| Coding tradisional | Vibe coding |
+| --- | --- |
+| "Gimana cara nulis logic ini?" | "Apa yang harus dibangun, dan kenapa?" |
+| Hafal banyak syntax | Hafal sedikit, sisanya AI |
+| Fokus ke baris kode | Fokus ke produk akhir |
+| Lebih lambat tapi dalem | Lebih cepet tapi butuh ngarahin |
 
-Kamu nggak perlu hafal semua syntax. Yang kamu perlu:
+Dua-duanya valid. Vibe coding cuma cara baru — bukan pengganti.
 
-- Tau apa yang kamu mau
-- Bisa ngomong jelas ke AI
-- Bisa baca hasilnya dan ngecek bener atau salah
-- Tau kapan minta revisi
+## Yang perlu kamu kuasai
 
-Hasilnya: build cepet, iterasi cepet, ide cepet jadi produk.
+Vibe coding bukan jalan pintas. Tetep ada hal yang kamu **wajib paham**:
 
-## Realistis dari awal
-
-Vibe coding bukan jalan pintas yang bikin kamu langsung jago. Tetep ada hal yang kamu harus paham:
-
-- Cara kerja web pada umumnya.
+- Cara kerja web umum (browser, server, internet).
 - Mana yang sisi browser, mana yang sisi server.
-- Cara kerja database minimal.
-- Cara baca error dan tau di mana harus benerin.
+- Cara kerja database, minimal level dasar.
+- Cara baca error dan tau di mana benerin.
 
-Tanpa ini, kamu bakal panik tiap kali AI ngasih hasil yang nggak jalan. Karena kamu nggak punya peta buat tau di mana yang salah.
+> Banyak yang ngira vibe coding artinya gak perlu belajar dasar. Salah besar. Tanpa dasar, kamu bakal panik tiap AI ngasih hasil error — karena gak punya peta buat tau di mana yang salah.
 
-## Kapan vibe coding cocok
+## Kapan vibe coding pas dipake
 
-Vibe coding pas banget buat:
+Cocok banget buat:
 
-- MVP yang harus jalan minggu ini, bukan bulan depan.
-- Side project yang fokusnya validasi ide.
-- Solo founder yang butuh shipping cepet tanpa tim besar.
-- Internal tools tim kamu yang butuh dibikin ringan.
+- **MVP** yang harus jalan minggu ini, bukan bulan depan.
+- **Side project** buat validasi ide.
+- **Solo founder** yang shipping cepet tanpa tim.
+- **Internal tools** yang butuh dibikin ringan.
 
-Kurang cocok buat sistem mission-critical yang butuh code review berlapis. Untuk itu, tetep ada engineer manual coding yang ngecek baris per baris.
+Kurang cocok buat sistem mission-critical (rumah sakit, bank) yang butuh code review berlapis. Itu masih ranah engineer manual.
 
 ## Mindset yang sehat
 
-Anggap AI itu junior yang super produktif tapi butuh diarahkan. Kalo kamu kasih perintah jelas, hasilnya bagus. Kalo kamu malas mikir dan asal nyuruh, hasilnya juga acak.
+Anggap AI itu **junior super produktif yang butuh diarahin**.
 
-Kualitas output kamu sama dengan kualitas input kamu. Itu inti vibe coding.
+\`\`\`text
+Kamu kasih perintah jelas      →  hasilnya bagus
+Kamu malas mikir, asal nyuruh  →  hasilnya acak
+\`\`\`
+
+Kualitas output kamu = kualitas input kamu. Itu inti vibe coding.
+
+## Realistis dari awal
+
+Vibe coding gak bikin kamu langsung jago atau kaya. Yang dia kasih:
+
+- Iterasi lebih cepet.
+- Ide cepet jadi produk yang bisa dicoba user.
+- Kamu fokus ke "apa", AI urus "gimana".
+
+Sisanya — taste, problem solving, ngerti user — itu tetep kerjaan kamu, bukan AI.
 `,
   },
   {
     slug: "cara-kerja-ai-coding",
     title: "Cara Kerja AI Coding",
-    duration: "10 menit",
+    duration: "9 menit",
     summary:
-      "AI bukan ajaib. Dia nebak kata berikutnya berdasarkan pola — dan itu kekuatan sekaligus kelemahannya.",
+      "AI bukan ajaib. Dia nebak kata berikutnya berdasarkan pola — dan itu kunci pakai-nya.",
     content: `# Cara Kerja AI Coding
 
 Banyak orang anggap AI itu kayak otak yang ngerti semua. Padahal cara kerjanya jauh lebih sederhana dari yang kamu kira.
 
-## AI itu mesin pola
+Paham cara kerjanya bikin kamu lebih jago pakenya.
 
-Model AI kayak ChatGPT, Claude, atau yang ada di Cursor — mereka semua belajar dari miliaran baris kode yang udah ada di internet.
+## AI itu mesin tebak kata
 
-Cara kerjanya: kamu kasih kalimat, AI nebak **kata berikutnya yang paling masuk akal** berdasarkan pola yang udah dia pelajari.
+Model kayak ChatGPT, Claude, atau Cursor — semuanya **belajar dari miliaran baris kode** yang udah ada di internet.
 
-Itu doang? Iya, itu doang. Tapi karena polanya banyak banget, hasilnya bisa keliatan kayak ngerti.
+Cara kerjanya? Kamu kasih kalimat, AI **nebak kata berikutnya yang paling masuk akal** berdasarkan pola yang dia lihat.
 
-## Apa artinya buat kamu
+\`\`\`text
+Kamu ketik:  "Saya mau bikin tombol berwarna ..."
+AI nebak:    "biru"   (paling sering muncul di pola "tombol berwarna ___")
+\`\`\`
 
-Beberapa konsekuensi penting:
+Itu doang. Cuma karena polanya banyak banget, hasilnya bisa keliatan kayak ngerti.
 
-- **AI suka ngarang.** Kalo dia nggak yakin, dia tetep bakal kasih jawaban yang kelihatan meyakinkan. Jangan langsung percaya.
-- **AI cuma sebagus konteks yang kamu kasih.** Prompt vague = output vague. Prompt detail = output detail.
-- **AI nggak tau project kamu.** Kalo nggak dikasih konteks file, struktur, atau goal — dia nebak dari pengetahuan umum.
+## Konsekuensi yang harus kamu inget
 
-Tugas kamu: kasih konteks yang cukup biar AI nebaknya tepat.
+Karena cara kerjanya begitu, ada 3 hal yang sering bikin pemula nyangkut:
 
-## Tools AI coding modern
-
-Tiga jenis yang sering dipake:
-
-- **Chat AI** (ChatGPT, Claude) — buat brainstorm, nanya konsep, debug kode kecil yang kamu paste.
-- **Editor AI** (Cursor, Copilot) — kerja langsung di kode kamu. Bisa edit file, baca file lain, run command.
-- **AI builder** (V0, Bolt, Lovable) — generate UI atau project utuh dari prompt.
-
-Yang paling banyak dipake harian: Cursor. Karena dia gabungin chat + editor + akses ke seluruh project kamu.
+| Sifat AI | Artinya buat kamu |
+| --- | --- |
+| Suka ngarang | Jangan langsung percaya, selalu cek |
+| Cuma sebagus konteks | Prompt vague = output vague |
+| Gak tau project kamu | Wajib kasih konteks file |
 
 ## Halusinasi — masalah utama
 
 Halusinasi itu istilah saat AI ngasih jawaban yang **kelihatan bener tapi salah**.
 
-Contoh paling sering:
+Contoh paling sering muncul:
 
-- Manggil function yang nggak ada di library.
-- Ngarang nama field dari API.
-- Bikin import dari package yang ternyata nggak ada.
+- Manggil function yang **gak ada** di library.
+- Ngarang nama field di API.
+- Bikin import dari package yang **gak ada**.
 
-Solusi: jangan langsung trust hasil AI. Coba run, lihat kalo error, lalu kasih tau AI bagian yang error. Iterasi.
+Solusinya: jangan trust hasil mentah. Jalanin dulu kodenya. Kalau error, kasih error message-nya balik ke AI buat dibetulin.
 
-## AI bukan pengganti, AI itu pengganda
+> Vibe coder yang udah pengalaman gak panik pas AI salah. Mereka tau itu normal, dan iterasi terus sampe bener.
 
-Engineer yang udah bagus, dengan AI jadi lebih produktif. Tapi engineer yang nggak ngerti dasar, dengan AI tetep nyangkut karena nggak bisa baca hasilnya.
+## Tools AI yang sering dipake
+
+Ada tiga jenis besar:
+
+| Jenis | Contoh | Cocok buat |
+| --- | --- | --- |
+| Chat AI | ChatGPT, Claude | Brainstorm, debug kode kecil |
+| Editor AI | Cursor, Copilot | Edit kode langsung di project |
+| AI builder | V0, Bolt, Lovable | Generate UI atau project utuh |
+
+Yang paling sering dipake harian: **Cursor**. Karena dia gabungin chat + editor + akses ke seluruh project.
+
+## AI itu pengganda, bukan pengganti
+
+Engineer yang udah bagus, sama AI jadi 5x lebih produktif.
+
+Engineer yang gak ngerti dasar, sama AI **tetep nyangkut** — karena gak bisa baca dan ngecek hasilnya.
+
+\`\`\`text
+Engineer bagus + AI = output 5x lipat
+Engineer pemula tanpa dasar + AI = output ngarang yang gak ke-deteksi
+\`\`\`
 
 Pelajari dasar dengan baik. AI bakal jadi pengali, bukan pengganti otak kamu.
+
+## Sederhana aja inget-nya
+
+AI itu nebak pola. Hasilnya sebagus konteks yang kamu kasih. Selalu cek, jangan langsung percaya.
+
+Sisanya — gimana cara nyusun konteks yang bagus — kita bahas di lesson selanjutnya.
 `,
   },
   {
     slug: "cara-ngomong-ke-ai",
-    title: "Cara Ngomong ke AI yang Hasilnya Bagus",
-    duration: "11 menit",
+    title: "Cara Ngomong ke AI Biar Hasilnya Bagus",
+    duration: "10 menit",
     summary:
-      "Prompt jelek = hasil ngarang. Prompt jelas = hasil presisi. Begini cara nulis prompt yang efektif.",
-    content: `# Cara Ngomong ke AI yang Hasilnya Bagus
+      "Prompt jelek = output ngarang. Prompt jelas = output presisi.",
+    content: `# Cara Ngomong ke AI Biar Hasilnya Bagus
 
-Prompt itu kayak briefing ke karyawan baru. Kalo briefing kamu jelas, hasilnya cepet sesuai. Kalo briefing kamu kabur, hasilnya juga ngarang.
+Prompt itu kayak briefing ke karyawan baru.
+
+\`\`\`text
+Briefing jelas    →  hasilnya cepet sesuai
+Briefing kabur    →  hasilnya juga ngawur
+\`\`\`
+
+Skill nulis prompt itu inti dari vibe coding. Beneran. Bukan tentang AI pintar mana — tentang gimana kamu ngomongnya.
 
 ## Anatomi prompt yang bagus
 
-Empat bagian wajib:
+Prompt yang efektif punya empat bagian:
 
-1. **Konteks** — kamu lagi ngapain, di project apa, stack apa.
-2. **Goal** — apa yang kamu mau dihasilin.
-3. **Spesifikasi** — detail teknis: nama file, props, format.
-4. **Constraint** — apa yang nggak boleh, apa yang harus.
+| Bagian | Isinya | Contoh |
+| --- | --- | --- |
+| **Konteks** | Kamu lagi ngapain | "Bikin landing page Next.js + Tailwind" |
+| **Goal** | Apa yang mau dihasilin | "Component Hero" |
+| **Spesifikasi** | Detail teknis | "File \`components/Hero.jsx\`, headline + 2 tombol" |
+| **Constraint** | Apa yang gak boleh | "Jangan pake kata 'amazing' atau 'stunning'" |
 
-Contoh:
+## Bandingin dua prompt ini
 
-> Saya lagi bikin landing page Next.js + Tailwind buat toko kopi. Tolong bikin component Hero di file \`components/Hero.jsx\`. Hero punya headline besar, subheadline 1 kalimat, dan 2 tombol (utama biru, sekunder outline). Pake bahasa Indonesia santai. Hindari kata "amazing" atau "stunning".
-
-Bandingkan dengan:
+**Prompt jelek:**
 
 > Bikinin hero yang bagus.
 
-Yang mana hasilnya lebih dekat sama yang kamu mau? Pasti yang pertama.
+**Prompt bagus:**
 
-## Hindari kata yang ambigu
+> Saya lagi bikin landing page Next.js + Tailwind buat toko kopi. Tolong bikin component Hero di file \`components/Hero.jsx\`. Hero punya headline besar, subheadline 1 kalimat, dan 2 tombol (utama biru, sekunder outline). Pake bahasa Indonesia santai. Hindari kata "amazing" atau "stunning".
 
-Kata-kata yang kerasa "bagus" tapi sebenernya nggak ngasih info:
+Yang mana hasilnya lebih dekat sama yang kamu mau? Yang kedua, jelas.
 
-- "Bikin yang keren"
-- "Bikin yang modern"
-- "Bikin yang professional"
+## Hindari kata samar
 
-AI bakal nebak sendiri. Hasilnya generic.
+Kata-kata yang kerasa "bagus" tapi sebenernya **gak ngasih info apa-apa**:
 
-Ganti dengan kata konkret:
+| Samar (jangan) | Konkret (pake ini) |
+| --- | --- |
+| "Bikin yang keren" | "Pake spacing lega, padding 96px" |
+| "Bikin yang modern" | "Dark mode, accent biru, satu font" |
+| "Bikin yang profesional" | "Border radius 12px, hover halus" |
 
-- "Hero pake spacing lega, padding vertical 96px ke atas"
-- "Pake satu accent color biru, sisanya grayscale"
-- "Animasi hover halus di card, naik 2px"
+Kalimat samar = AI nebak sendiri = hasilnya generic.
 
 ## Iterasi, bukan one-shot
 
-AI jarang ngasih hasil sempurna di percobaan pertama. Itu normal.
+AI **jarang** ngasih hasil sempurna di percobaan pertama. Itu normal.
 
 Strateginya:
 
 1. Kasih prompt awal yang detail.
 2. Lihat hasilnya.
 3. Identifikasi yang masih kurang.
-4. Kasih feedback spesifik: "Tombol kedua kekecilan, padding-nya tambahin". Bukan: "Masih kurang oke."
-5. Ulangi sampai pas.
+4. Kasih feedback **spesifik**: "Tombol kedua kekecilan, padding-nya tambahin". Bukan: "Masih kurang oke."
+5. Ulangi sampe pas.
 
-Vibe coder yang bagus bisa iterasi cepet karena tau cara nyusun feedback yang konkret.
+\`\`\`text
+Prompt awal → hasil 1 → feedback → hasil 2 → feedback → hasil OK
+\`\`\`
+
+Vibe coder bagus bisa iterasi cepet karena tau cara nyusun feedback yang konkret.
 
 ## Kasih konteks file kalau perlu
 
-Di Cursor, kamu bisa drag file ke chat atau pake \`@filename\`. Itu ngasih AI akses ke isi file itu.
+Di Cursor, kamu bisa drag file ke chat atau pake \`@filename\`. Itu ngasih AI akses ke isi file beneran.
 
-Tanpa konteks file, AI bakal nebak struktur project kamu. Sering meleset. Dengan konteks file, dia tau persis apa yang ada dan nyesuaiin sama kode existing.
+\`\`\`text
+Tanpa konteks file:
+  AI nebak struktur project = sering meleset
+  
+Sama konteks file:
+  AI baca file beneran = nyesuaiin sama kode existing
+\`\`\`
 
-Kebiasaan yang sehat: tiap kali minta edit file, kasih juga file related sebagai konteks.
+Kebiasaan yang sehat: tiap minta edit file, kasih juga file yang nyangkut.
 
 ## Jangan males nulis
 
-Prompt panjang yang detail itu investasi waktu. Lebih cepet ngetik 5 menit prompt detail daripada bolak-balik 30 menit minta revisi.
+Prompt panjang yang detail itu **investasi waktu**.
 
-Vibe coding bukan tentang shortcut. Tentang cara baru kerja yang **butuh komunikasi yang jelas** sama AI sebagai partner.
+\`\`\`text
+5 menit nulis prompt detail   →  hasil sekali jadi
+1 menit nulis prompt singkat  →  bolak-balik 30 menit revisi
+\`\`\`
+
+Vibe coding bukan tentang shortcut. Tentang **cara baru kerja yang butuh komunikasi jelas** sama AI sebagai partner.
+
+## Ringkasan formula
+
+Tiap kali kasih prompt, cek empat hal:
+
+- Udah ada **konteks**?
+- Udah jelas **goal**-nya?
+- Udah kasih **spesifikasi** detail?
+- Udah sebut **constraint** yang penting?
+
+Kalau iya semua, prompt kamu udah siap kirim.
 `,
   },
   {
@@ -638,26 +876,44 @@ Vibe coding bukan tentang shortcut. Tentang cara baru kerja yang **butuh komunik
     title: "Workflow Build Cepat dengan AI",
     duration: "10 menit",
     summary:
-      "Cara kerja sehari-hari vibe coder: dari ide ke aplikasi yang live di internet.",
+      "Cara kerja sehari-hari vibe coder: dari ide ke aplikasi yang live.",
     content: `# Workflow Build Cepat dengan AI
 
-Pernah lihat orang yang bisa bikin landing page dari ide jadi live cuma dalam 1 jam? Itu bukan magic. Itu workflow.
+Pernah lihat orang bikin landing page dari ide jadi live cuma dalam 1 jam? Itu bukan magic. Itu workflow.
 
 Ini langkah yang biasa dipake vibe coder produktif.
 
-## Step 1 — Deskripsi singkat ide
+## Alur 6 langkah
 
-Sebelum buka editor, tulis dulu di notes 3-5 baris tentang:
+\`\`\`text
+1. Tulis ide singkat di notes
+        ↓
+2. Generate skeleton di V0 atau Cursor
+        ↓
+3. Iterasi visual di Cursor
+        ↓
+4. Push ke GitHub
+        ↓
+5. Deploy ke Vercel
+        ↓
+6. Update otomatis tiap push baru
+\`\`\`
 
-- App ini buat siapa
-- Masalah apa yang dipecahin
-- Tampilan utama yang dibutuhin
+Ayo bedah satu-satu.
 
-Ini jadi acuan tiap kali kamu kasih prompt ke AI nanti. Tanpa ini, kamu bakal lupa arah.
+## Step 1 — Tulis ide singkat
+
+Sebelum buka editor, tulis dulu di notes 3-5 baris:
+
+- App ini buat siapa?
+- Masalah apa yang dipecahin?
+- Tampilan utama yang dibutuhin?
+
+Ini jadi acuan tiap kali kamu prompt AI nanti. Tanpa ini, kamu bakal lupa arah di tengah jalan.
 
 ## Step 2 — Generate skeleton
 
-Buka Cursor atau V0. Kasih prompt yang ngebangun struktur dasar.
+Buka **V0** atau **Cursor**. Kasih prompt yang bangun struktur dasar.
 
 Contoh prompt buat V0:
 
@@ -667,19 +923,19 @@ V0 bakal kasih kode yang bisa langsung kamu pake. Salin ke project Cursor.
 
 ## Step 3 — Iterasi visual
 
-Sekarang kamu di Cursor dengan kode awal. Buka di browser pake \`npm run dev\`.
+Sekarang kamu di Cursor sama kode awal. Buka di browser pake \`npm run dev\`.
 
-Lihat hasilnya. Identifikasi yang kurang oke. Pake Cursor (\`Cmd+K\` atau \`Ctrl+K\`) buat minta revisi spesifik:
+Lihat hasilnya. Identifikasi yang kurang oke. Pake **Cmd+K** atau **Ctrl+K** di Cursor buat minta revisi spesifik:
 
 - "Spacing di hero kekecilan, naikin py-32"
 - "Kartu fitur kurang lega, padding p-8"
-- "Tombol primary terlalu pucat, gantiin biru yang lebih gelap"
+- "Tombol primary terlalu pucat, ganti biru lebih gelap"
 
-Iterasi sampai puas.
+Iterasi sampe puas.
 
 ## Step 4 — Push ke GitHub
 
-Setelah versi lokal udah enak, simpan ke GitHub:
+Setelah versi lokal udah enak:
 
 \`\`\`bash
 git init
@@ -689,69 +945,88 @@ git remote add origin https://github.com/USERNAME/landing-kopi.git
 git push -u origin main
 \`\`\`
 
-Kalo bingung, tanya AI: "Tolong setup git buat project ini dan push ke repo \`landing-kopi\`."
+Bingung? Tanya ke Cursor: "Tolong setup git buat project ini dan push ke repo \`landing-kopi\`."
 
 ## Step 5 — Deploy ke Vercel
 
 Buka [vercel.com/new](https://vercel.com/new). Login pake GitHub. Pilih repo. Klik Deploy.
 
-Tunggu 1-2 menit. Dapet URL publik. Bagikan ke temen.
+Tunggu 1-2 menit. Dapet URL publik. Selesai.
 
-## Step 6 — Update setelah live
+## Step 6 — Update otomatis
 
-Tiap kali kamu push perubahan baru ke GitHub, Vercel auto-redeploy. Nggak perlu klik apapun.
-
-Workflow harian setelah app live:
+Tiap push baru ke GitHub, Vercel auto-redeploy. Gak perlu klik apapun.
 
 \`\`\`bash
+# Workflow harian setelah app live:
 git add .
 git commit -m "perbaiki padding hero"
 git push
-\`\`\`
 
-Tunggu 30 detik, cek URL Vercel kamu. Udah update.
+# 30 detik kemudian: URL Vercel udah update
+\`\`\`
 
 ## Estimasi waktu realistis
 
 Buat landing page sederhana:
 
-- Step 1-2 (ide + generate): 15 menit
-- Step 3 (iterasi visual): 30-60 menit
-- Step 4-5 (push + deploy): 15 menit
-- **Total: 1-2 jam dari nol ke live**
+| Step | Waktu |
+| --- | --- |
+| 1-2 (ide + generate) | ~15 menit |
+| 3 (iterasi visual) | 30-60 menit |
+| 4-5 (push + deploy) | ~15 menit |
+| **Total** | **1-2 jam dari nol ke live** |
 
-Buat app yang lebih kompleks dengan database dan auth, tambah 2-4 jam. Tetep lebih cepet daripada coding manual dari nol.
+Buat app yang lebih kompleks (ada database & auth), tambah 2-4 jam. Tetep lebih cepet dari coding manual.
 
-## Yang nggak diperlihatin
+## Yang gak diperlihatin di video
 
-Workflow di atas kelihatan smooth. Realitanya ada banyak momen:
+Workflow di atas keliatan smooth. Realitanya selalu ada momen kayak gini:
 
-- AI ngasih kode yang ada error → kamu kasih error message ke AI → dibetulin.
-- Ada library yang nggak ke-install → kamu install manual.
-- Ada konflik versi → kamu googling 5 menit.
+- AI ngasih kode yang error → kasih error message ke AI → dibetulin.
+- Library belum ke-install → install manual.
+- Konflik versi → googling 5 menit.
 
-Itu normal. Vibe coder yang bagus bukan yang nggak pernah error, tapi yang cepet pulih dari error.
+> Itu normal banget. Vibe coder yang bagus bukan yang gak pernah error — tapi yang **cepet pulih dari error**.
+
+## Yang harus kamu inget
+
+Workflow ini bukan rigid. Lama-lama kamu bakal ketemu pola sendiri yang lebih cocok. Yang penting: kamu paham ada **alurnya yang berulang**, bukan asal coba-coba.
 `,
   },
   {
     slug: "tools-ai-modern",
-    title: "Tools AI Modern yang Dipakai Vibe Coder",
+    title: "Tools AI Modern Vibe Coder",
     duration: "8 menit",
     summary:
-      "Kenalan singkat sama tools yang akan jadi senjata harian kamu.",
-    content: `# Tools AI Modern yang Dipakai Vibe Coder
+      "Senjata harian yang bakal kamu pake setiap hari.",
+    content: `# Tools AI Modern Vibe Coder
 
-Semua tools di sini gratis di tier dasar. Cukup buat pemula sampai pro level menengah.
+Semua tools di sini gratis di tier dasar. Cukup buat pemula sampe pro level menengah.
+
+Kabar baiknya: kamu **gak perlu** install semua. Mulai dari tiga utama dulu.
+
+## Tiga tools wajib pemula
+
+| Tools | Fungsi utama | Kapan dipake |
+| --- | --- | --- |
+| **Cursor** | Editor sama AI built-in | Tiap hari, pas ngoding |
+| **Claude / ChatGPT** | Chat AI buat brainstorm | Pas mikir arsitektur, debug |
+| **Vercel** | Deploy otomatis | Pas mau publish |
+
+Cuma tiga ini. Yang lain nyusul kalau udah nyaman.
 
 ## Cursor — editor utama
 
 Cursor itu VS Code yang udah dimodif buat AI. Tampilannya sama, tapi punya:
 
-- Chat AI di sisi kanan editor.
-- \`Cmd+K\` (atau \`Ctrl+K\`) buat edit kode pake natural language.
-- Composer mode buat ngerjain task multi-file.
+- **Chat AI** di sisi kanan editor.
+- **Cmd+K** (atau Ctrl+K) buat edit kode pake bahasa biasa.
+- **Composer mode** buat task multi-file.
 
-Kalo cuma boleh punya satu tool, pilih ini. Download di [cursor.com](https://cursor.com).
+Kalau cuma boleh punya satu tool, pilih ini.
+
+Download di [cursor.com](https://cursor.com).
 
 ## ChatGPT atau Claude — chat AI
 
@@ -762,128 +1037,144 @@ Buat hal yang lebih panjang atau abstrak:
 - Belajar konsep baru.
 - Debug error yang panjang.
 
-Claude (claude.ai) biasanya lebih bagus buat coding panjang. ChatGPT (chat.openai.com) lebih merata buat semua hal.
+| Pilihan | Kelebihan |
+| --- | --- |
+| **Claude** ([claude.ai](https://claude.ai)) | Lebih jago coding panjang, output rapi |
+| **ChatGPT** ([chat.openai.com](https://chat.openai.com)) | Lebih merata, ekosistem plugin gede |
 
-Gratis cukup. Upgrade kalo udah sering banget pake.
+Versi gratis udah cukup buat awal. Upgrade kalau udah sering banget pake.
 
-## V0 — generate UI dari teks
+## Tools tambahan (bukan wajib)
 
-[v0.dev](https://v0.dev) bikin component React + Tailwind dari deskripsi.
+Setelah tiga di atas nyaman, kamu bisa nambah:
 
-Cocok buat:
+- **V0** ([v0.dev](https://v0.dev)) — generate UI dari teks. Cocok buat eksplorasi visual cepet.
+- **Bolt** ([bolt.new](https://bolt.new)) atau **Lovable** ([lovable.dev](https://lovable.dev)) — generate app utuh dari prompt. Cocok buat prototype.
+- **GitHub Copilot** — autocomplete pintar. Banyak dilewat sekarang karena Cursor udah punya yang mirip.
 
-- Bikin section landing page cepet.
-- Eksplorasi opsi visual sebelum commit ke satu desain.
-- Generate form atau dashboard yang lumayan kompleks.
+> Kebanyakan tool di awal malah bikin bingung. Mulai dari tiga utama, kuasai dulu, baru tambahin.
 
-Hasilnya bisa langsung di-copy ke project Cursor kamu.
+## Kapan pake mana
 
-## Bolt atau Lovable — full app builder
+Pertanyaan yang sering muncul: "Kalau Cursor udah bisa chat, kenapa masih perlu Claude?"
 
-[bolt.new](https://bolt.new) dan [lovable.dev](https://lovable.dev) generate **app utuh** dari prompt. Termasuk file structure, routing, state management.
+Jawabannya:
 
-Cocok buat MVP cepet atau prototype yang harus jalan dalam beberapa jam.
+- **Cursor** kuat saat lagi di project. Edit kode, baca file, run command.
+- **Claude/ChatGPT** kuat saat **belum mulai coding**. Brainstorm, plan arsitektur, belajar konsep.
 
-Kelemahannya: kontrol detail kurang. Kalo mau polish, hampir selalu kamu pindah ke Cursor.
+\`\`\`text
+Brainstorm ide      →  ChatGPT/Claude
+Plan arsitektur     →  ChatGPT/Claude
+Mulai coding        →  Cursor
+Debug pas coding    →  Cursor
+Deploy              →  Vercel
+\`\`\`
 
-## GitHub Copilot — autocomplete pintar
+Tiap tool punya tempatnya.
 
-Copilot kayak autocomplete biasa, tapi nebak baris kode penuh berdasarkan konteks file kamu.
+## Inget aja
 
-Berguna buat ngurangin ngetik repetitif. Free buat student. Berbayar selain itu.
+Tools itu cuma alat. Yang nentuin output kamu **cara mikir kamu**, bukan tools-nya.
 
-Banyak vibe coder skip ini sekarang karena Cursor udah punya fitur mirip.
+Ada yang punya akses ke 10 tools premium tapi outputnya generic. Ada yang cuma pake Cursor tapi shipping app yang dipake ribuan orang.
 
-## Vercel — deploy gratis
-
-[vercel.com](https://vercel.com) tempat deploy yang paling cocok buat Next.js. Login pake GitHub, pilih repo, klik Deploy.
-
-Free tier-nya udah cukup buat 99% project pribadi.
-
-## Kebutuhan minimum
-
-Kalo kamu baru mulai, cukup tiga ini:
-
-- **Cursor** — buat coding harian.
-- **Claude atau ChatGPT** — buat brainstorm.
-- **Vercel** — buat deploy.
-
-V0 dan Bolt nyusul kalo udah nyaman. Tools terlalu banyak di awal malah bikin bingung.
+Yang ngebedain: cara mikir, taste, dan kebiasaan kerja. Tools tinggal nyusul.
 `,
   },
   {
     slug: "mindset-builder",
-    title: "Mindset Builder — Bukan Sekadar Coder",
+    title: "Mindset Builder, Bukan Sekadar Coder",
     duration: "9 menit",
     summary:
       "Vibe coder yang sukses bukan yang paling jago AI, tapi yang paling jago bikin produk.",
-    content: `# Mindset Builder — Bukan Sekadar Coder
+    content: `# Mindset Builder, Bukan Sekadar Coder
 
 Coding itu satu skill. Bikin produk itu skill yang lain.
 
-Vibe coding ngebantu kamu di sisi coding. Tapi yang bikin kamu sukses itu yang sisi produk.
+Vibe coding ngebantu kamu di sisi **coding**. Tapi yang bikin sukses itu sisi **produk**.
 
-## Apa bedanya coder dan builder
+## Beda coder dan builder
 
-**Coder** fokus ke pertanyaan: "Gimana cara bikin ini jalan?"
+| Coder | Builder |
+| --- | --- |
+| "Gimana cara bikin ini jalan?" | "Apakah ini worth dibikin?" |
+| Fokus ke kode | Fokus ke user |
+| Bisa bikin app technically perfect | Bisa bikin app yang dipake |
+| Senang pas kode-nya rapi | Senang pas user-nya nambah |
 
-**Builder** fokus ke pertanyaan: "Apakah ini worth dibikin? Siapa yang pake? Apa value-nya buat mereka?"
+Coder hebat bisa bikin app perfect tapi gak ada yang pake. Builder hebat bikin app berantakan tapi banyak yang suka.
 
-Coder yang bagus bisa bikin app yang technically perfect tapi nggak ada yang pake. Builder yang bagus bikin app yang berantakan tapi banyak yang suka.
+Tujuannya jadi keduanya. Tapi kalau harus pilih satu di awal — pilih **builder**.
 
-Goalnya jadi keduanya. Tapi kalo harus pilih satu di awal — pilih builder.
+## Pertanyaan yang harus kamu tanya tiap kali mau project
 
-## Pertanyaan yang harus sering kamu tanya
-
-Sebelum mulai project, jawab dulu:
+Sebelum buka editor, jawab dulu di notes:
 
 - Siapa yang bakal pake ini?
-- Masalah apa yang mereka punya saat ini?
+- Masalah apa yang mereka punya sekarang?
 - Kenapa mereka bakal pake punya kamu, bukan yang lain?
 - Apa indikator sukses-nya? (1000 user? 10 paying customer? Hilangnya satu masalah personal?)
 
-Banyak orang skip pertanyaan ini, langsung coding. Hasilnya project yang technically jalan tapi nggak ada yang butuh.
+> Banyak orang skip pertanyaan ini dan langsung coding. Hasilnya: project yang technically jalan tapi gak ada yang butuh. Sayang banget waktunya.
 
-## Ship cepet, dengarin user
+## Ship cepet, dengerin user
 
-Mindset bahaya di pemula: mau perfect dulu sebelum show ke orang.
+Mindset bahaya di pemula: **mau perfect dulu** sebelum show ke orang.
 
-Realitanya: kamu nggak bakal pernah tau apa yang user mau sampai mereka coba. Yang ada di kepala kamu cuma tebakan.
+Realitanya: kamu **gak akan** pernah tau apa yang user mau sampe mereka coba. Yang ada di kepala kamu cuma tebakan.
 
-Aturan: ship versi yang malu-maluin tapi jalan. Kasih ke 5 orang. Dengerin reaksi mereka. Update.
+\`\`\`text
+Bulan 1-12: ngoding sendiri di laptop
+              vs
+Bulan 1: ship versi malu-maluin → 5 user nyoba
+Bulan 2: dengerin feedback, update
+Bulan 3: udah punya 50 user beneran
+\`\`\`
 
-Ini bedanya developer yang setahun-tahun di laptop dengan builder yang sebulan udah punya 50 user.
+Versi ke-2 jauh lebih cepet belajar.
 
-## Refactor itu mahal, perfeksionis itu bahaya
+## Refactor itu mahal
 
-Tiap kali kamu mau "rapihin kode" sebelum ship — pertimbangkan: kode itu bakal kepake nggak?
+Tiap kali kamu mau "rapihin kode" sebelum ship, tanya: **kode itu bakal kepake gak?**
 
-50% project yang kamu bikin di awal bakal di-throw away. Refactor di kode yang nggak kepake itu buang waktu.
+50% project yang kamu bikin di awal bakal di-throw away. Refactor di kode yang gak kepake itu **buang waktu**.
 
-Tunggu sampai sebuah project terbukti penting (banyak user, atau kamu pake setiap hari), baru investasiin waktu buat kode quality.
+Tunggu sampe sebuah project terbukti penting (banyak user, atau kamu pake setiap hari), baru investasi waktu buat polish.
 
-## Belajar dari user, bukan dari tutorial
+## Belajar dari user, bukan tutorial
 
-Setelah punya app yang dipake walau cuma 5 orang — feedback mereka 100x lebih berharga daripada tutorial mana pun.
+Setelah punya app yang dipake walau cuma 5 orang — feedback mereka **100x lebih berharga** dari tutorial mana pun.
 
-Mereka bakal tunjukin:
+User bakal nunjukin:
 
 - Hal yang kamu pikir "obvious" ternyata bingung.
-- Fitur yang kamu pikir penting ternyata nggak ada yang pake.
-- Bug yang kamu nggak sadar.
-- Permintaan fitur yang nggak kepikiran.
-
-Tugas kamu bukan cuma kasih solusi, tapi juga ngerti masalah lebih dalam dari user-nya sendiri.
+- Fitur yang kamu pikir penting ternyata gak ada yang pake.
+- Bug yang kamu gak sadar.
+- Permintaan fitur yang gak kepikiran.
 
 ## Realistis tentang vibe coding
 
-Vibe coding bikin building lebih cepet. Tapi nggak bikin building lebih gampang.
+Vibe coding bikin building lebih **cepet**. Tapi gak bikin building lebih **gampang**.
 
-Kamu masih harus mikir tentang user, fokus, prioritas, tradeoff. AI nggak ngerti konteks kamu, partner-mu, atau target market-mu.
+Kamu masih harus mikir tentang:
 
-Yang bikin kamu menonjol bukan punya akses ke AI. Yang bikin menonjol kemampuan kamu pake AI buat build something that matters.
+- User mana yang kamu target.
+- Fitur mana yang prioritas.
+- Tradeoff yang harus diambil.
 
-Itu skill yang harus dilatih, sama kayak skill lainnya.
+AI **gak ngerti** konteks personal kamu, partner kamu, atau target market kamu.
+
+Yang bikin kamu menonjol bukan **akses ke AI**. Tapi kemampuan **pake AI buat build something that matters**. Itu skill yang harus dilatih.
+
+## Habis lesson ini
+
+Kamu udah punya pondasi mental vibe coder yang sehat. Selanjutnya kamu bisa:
+
+- Lanjut ke **roadmap Vibe Coding lengkap** buat materi level lanjutan.
+- Atau pilih salah satu **role** yang fokusnya lebih spesifik.
+
+Sampe ketemu di lesson berikutnya. Pelan-pelan aja, yang penting konsisten.
 `,
   },
 ];

@@ -1,12 +1,13 @@
 """
-Progress tracking routes: mark lessons complete, fetch stats, track views.
+Progress tracking routes: mark lessons complete, fetch stats,
+and remember which lesson the user opened most recently.
 """
 
 from fastapi import APIRouter, Depends
 
 from app.core.deps import get_current_user
 from app.schemas.progress import (
-    LessonViewResponse,
+    LessonOpenResponse,
     ProgressResponse,
     StatsResponse,
 )
@@ -39,23 +40,26 @@ async def complete_lesson(
 
 @router.post(
     "/view/{lesson_id}",
-    response_model=LessonViewResponse,
-    summary="Track that the user opened a lesson",
+    response_model=LessonOpenResponse,
+    summary="Remember that the user opened a lesson",
 )
-async def track_view(
+async def remember_open_lesson(
     lesson_id: str,
     current_user=Depends(get_current_user),
-) -> LessonViewResponse:
+) -> LessonOpenResponse:
     """
-    Increment the view counter for a lesson and remember it as the
-    user's last opened lesson. Frontend should call this once per
-    lesson page load (debounced, not on every render).
+    Remember that the user opened this lesson so the dashboard's
+    "Continue learning" can resume exactly where they left off.
+
+    Frontend should call this once per lesson page load (debounced, not
+    on every render). The endpoint deliberately does not track view
+    counts anymore — see git history for the previous behaviour.
     """
     payload = await progress_service.open_lesson(
         user_id=current_user.id,
         lesson_id=lesson_id,
     )
-    return LessonViewResponse(**payload)
+    return LessonOpenResponse(**payload)
 
 
 @router.get(

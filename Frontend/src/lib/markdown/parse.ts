@@ -19,6 +19,7 @@ export type Block =
   | { type: "ul" | "ol"; items: string[] }
   | { type: "code"; lang: string; code: string }
   | { type: "blockquote"; lines: string[] }
+  | { type: "table"; headers: string[]; rows: string[][] }
   | { type: "hr" };
 
 export function slugify(text: string): string {
@@ -81,6 +82,22 @@ export function parseMarkdown(markdown: string): Block[] {
       continue;
     }
 
+    // Pipe-style table (GFM-like, very small subset).
+    //   | Aspek | Browser | Server |
+    //   | --- | --- | --- |
+    //   | Tempat jalan | HP/laptop | Server |
+    if (/^\s*\|/.test(line) && i + 1 < lines.length && /^\s*\|?\s*:?-{2,}/.test(lines[i + 1])) {
+      const headerCells = splitTableRow(line);
+      const rows: string[][] = [];
+      i += 2; // skip the separator line
+      while (i < lines.length && /^\s*\|/.test(lines[i])) {
+        rows.push(splitTableRow(lines[i]));
+        i += 1;
+      }
+      blocks.push({ type: "table", headers: headerCells, rows });
+      continue;
+    }
+
     // Blockquote
     if (/^>\s?/.test(line)) {
       const buf: string[] = [];
@@ -125,7 +142,7 @@ export function parseMarkdown(markdown: string): Block[] {
     while (
       i < lines.length &&
       lines[i].trim() !== "" &&
-      !/^(#{1,4}\s|```|>\s|---+\s*$|\s*[-*+]\s|\s*\d+\.\s)/.test(lines[i])
+      !/^(#{1,4}\s|```|>\s|---+\s*$|\s*[-*+]\s|\s*\d+\.\s|\s*\|)/.test(lines[i])
     ) {
       buf.push(lines[i]);
       i += 1;
@@ -134,6 +151,13 @@ export function parseMarkdown(markdown: string): Block[] {
   }
 
   return blocks;
+}
+
+function splitTableRow(line: string): string[] {
+  // Trim leading/trailing pipes, then split. Empty trailing cell from
+  // `| a | b |` style is dropped.
+  const trimmed = line.trim().replace(/^\|/, "").replace(/\|\s*$/, "");
+  return trimmed.split("|").map((c) => c.trim());
 }
 
 /* ------------------------------------------------------------------ */

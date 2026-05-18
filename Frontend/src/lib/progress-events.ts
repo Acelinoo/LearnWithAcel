@@ -13,7 +13,6 @@
  */
 
 export const PROGRESS_EVENT = "learnwithacel:progress-updated";
-export const VIEW_EVENT = "learnwithacel:view-tracked";
 
 export type ProgressUpdate = {
   lessonId: string;
@@ -28,26 +27,10 @@ export type ProgressUpdate = {
   streak: number;
 };
 
-export type ViewUpdate = {
-  /** Type of entity being tracked. Mirrors backend `EntityType`. */
-  entityType: "lesson" | "level" | "category" | "page" | "project";
-  /** Database id (or string slug for `page` entities). */
-  entityId: string;
-  /** Authoritative new view count after the bump. */
-  views: number;
-};
-
 export function emitProgressUpdate(update: ProgressUpdate): void {
   if (typeof window === "undefined") return;
   window.dispatchEvent(
     new CustomEvent<ProgressUpdate>(PROGRESS_EVENT, { detail: update }),
-  );
-}
-
-export function emitViewUpdate(update: ViewUpdate): void {
-  if (typeof window === "undefined") return;
-  window.dispatchEvent(
-    new CustomEvent<ViewUpdate>(VIEW_EVENT, { detail: update }),
   );
 }
 
@@ -61,16 +44,4 @@ export function onProgressUpdate(
   };
   window.addEventListener(PROGRESS_EVENT, listener);
   return () => window.removeEventListener(PROGRESS_EVENT, listener);
-}
-
-export function onViewUpdate(
-  handler: (update: ViewUpdate) => void,
-): () => void {
-  if (typeof window === "undefined") return () => {};
-  const listener = (e: Event) => {
-    const detail = (e as CustomEvent<ViewUpdate>).detail;
-    if (detail) handler(detail);
-  };
-  window.addEventListener(VIEW_EVENT, listener);
-  return () => window.removeEventListener(VIEW_EVENT, listener);
 }

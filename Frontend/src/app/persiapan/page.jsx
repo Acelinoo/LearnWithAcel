@@ -15,7 +15,6 @@ import {
   Wifi,
 } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
-import ViewTracker from "@/components/ui/ViewTracker";
 import { getRoadmap } from "@/lib/api/content";
 
 export const dynamic = "force-dynamic";
@@ -104,7 +103,6 @@ export default async function PersiapanPage() {
 
   return (
     <div>
-      <ViewTracker entityType="page" entityId="persiapan" />
       <section className="container-page pt-12">
         <Reveal>
           <Link

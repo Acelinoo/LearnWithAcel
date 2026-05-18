@@ -13,7 +13,6 @@ import {
   Wrench,
 } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
-import ViewTracker from "@/components/ui/ViewTracker";
 import { JALUR_META, getJalurMeta } from "@/lib/jalur-data";
 
 export const dynamic = "force-dynamic";
@@ -64,7 +63,6 @@ export default function JalurPathPage({ params }) {
 
   return (
     <div className="container-page py-16">
-      <ViewTracker entityType="page" entityId={`jalur-${meta.path}`} />
 
       <Reveal>
         <Link

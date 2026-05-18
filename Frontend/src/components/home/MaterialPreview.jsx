@@ -3,25 +3,29 @@ import { ArrowUpRight, Clock, PlayCircle } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
 import { getRoadmap } from "@/lib/api/content";
-import { getPopularLessons } from "@/lib/roadmap-utils";
 
+/**
+ * Showcases a few representative lessons across paths. Picks the first
+ * lesson of each level to give a balanced cross-section of the catalog.
+ */
 async function loadPreviews() {
   const out = [];
   for (const slug of ["frontend", "vibe"]) {
     try {
       const r = await getRoadmap(slug);
-      const popular = getPopularLessons(r.levels, 4);
-      for (const lesson of popular) {
+      for (const level of r.levels.slice(0, 4)) {
+        const lesson = level.lessons[0];
+        if (!lesson) continue;
         out.push({
           tag: r.category.name,
           title: lesson.title,
           desc: lesson.summary,
           href:
             slug === "vibe"
-              ? `/materi/vibe/${lesson.levelSlug}/${lesson.slug}`
-              : `/materi/${lesson.levelSlug}/${lesson.slug}`,
+              ? `/materi/vibe/${level.slug}/${lesson.slug}`
+              : `/materi/${level.slug}/${lesson.slug}`,
           time: lesson.duration,
-          views: lesson.base_viewers,
+          levelNumber: level.number,
         });
       }
     } catch {
@@ -29,7 +33,7 @@ async function loadPreviews() {
     }
   }
   return out
-    .sort((a, b) => b.views - a.views)
+    .sort((a, b) => a.levelNumber - b.levelNumber)
     .slice(0, 4)
     .map((p, i) => ({ ...p, featured: i === 0 }));
 }

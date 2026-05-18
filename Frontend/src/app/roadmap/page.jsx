@@ -6,20 +6,15 @@ import {
   GraduationCap,
   Rocket,
   Trophy,
-  Users,
 } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
-import LevelViewerBadge from "@/components/ui/LevelViewerBadge";
-import LessonViewerBadge from "@/components/ui/LessonViewerBadge";
 import CategoryTabs from "@/components/ui/CategoryTabs";
-import ViewTracker from "@/components/ui/ViewTracker";
 import { listCategories, getRoadmap } from "@/lib/api/content";
 import {
   aggregateLevels,
   categoryToTab,
   levelTags,
 } from "@/lib/roadmap-utils";
-import { formatCompact } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
@@ -59,12 +54,10 @@ function LevelArticle({ level, i, basePath }) {
                 <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-accent-hover">
                   Level 0{level.number}
                 </span>
-                {isComingSoon ? (
+                {isComingSoon && (
                   <span className="rounded-full border border-border bg-black/30 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider text-muted">
                     Coming Soon
                   </span>
-                ) : (
-                  <LevelViewerBadge count={level.base_viewers} size="xs" />
                 )}
               </div>
               <h2 className="mt-2 font-display text-2xl font-semibold tracking-tight sm:text-3xl">
@@ -143,13 +136,6 @@ function LevelArticle({ level, i, basePath }) {
                     <div className="mt-1 flex items-center gap-2 text-xs text-muted">
                       <Clock size={10} />
                       {lesson.duration}
-                      <span className="text-white/10">·</span>
-                      <LessonViewerBadge
-                        count={lesson.base_viewers}
-                        showLabel={false}
-                        bordered={false}
-                        iconSize={10}
-                      />
                     </div>
                   </div>
                 </Link>
@@ -208,12 +194,10 @@ export default async function RoadmapPage() {
   const allLevels = visibleTabs.flatMap(
     (t) => roadmapMap.get(t.id) || []
   );
-  const { totalLessons, totalViewers } = aggregateLevels(allLevels);
+  const { totalLessons } = aggregateLevels(allLevels);
 
   return (
     <div className="container-page py-16">
-      <ViewTracker entityType="page" entityId="roadmap" />
-
       <Reveal>
         <span className="section-eyebrow">
           <GraduationCap size={12} />
@@ -258,13 +242,8 @@ export default async function RoadmapPage() {
       </Reveal>
 
       <Reveal delay={0.15}>
-        <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
+        <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
           {[
-            {
-              icon: Users,
-              label: "Total viewers",
-              value: formatCompact(totalViewers),
-            },
             { icon: BookOpen, label: "Total materi", value: totalLessons },
             { icon: Trophy, label: "Mini project", value: allLevels.length },
             { icon: Clock, label: "Estimasi", value: "15 minggu" },

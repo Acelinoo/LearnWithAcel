@@ -16,8 +16,6 @@ class LessonSummary(BaseModel):
     slug: str
     summary: str
     duration: str
-    base_viewers: int
-    views: int = 0
     order_index: int
     xp_reward: int = 50
     is_project: bool = False
@@ -34,8 +32,6 @@ class LessonDetail(BaseModel):
     summary: str
     content: str
     duration: str
-    base_viewers: int
-    views: int = 0
     order_index: int
     level_id: str
     xp_reward: int = 50
@@ -59,7 +55,6 @@ class LevelSummary(BaseModel):
     accent_color: str
     mini_project: str
     quiz_count: int
-    base_viewers: int
     tags: Any  # JSON array of strings
     coming_soon: bool
     lessons: list[LessonSummary]

@@ -46,7 +46,6 @@ LEVEL_DB_FIELDS = {
     "accent_color",
     "mini_project",
     "quiz_count",
-    "base_viewers",
     "tags",
     "coming_soon",
 }
@@ -57,7 +56,6 @@ LESSON_DB_FIELDS = {
     "summary",
     "content",
     "duration",
-    "base_viewers",
     "order_index",
     "xp_reward",
     "is_project",
@@ -88,7 +86,6 @@ async def _upsert_category(db: Prisma, payload: dict) -> Any:
 async def _upsert_level(db: Prisma, category_id: str, payload: dict) -> Any:
     db_payload = _select(LEVEL_DB_FIELDS, payload)
     db_payload["tags"] = _normalize_tags(db_payload.get("tags", []))
-    db_payload.setdefault("base_viewers", 0)
     db_payload.setdefault("quiz_count", 0)
     db_payload.setdefault("coming_soon", False)
 
@@ -108,7 +105,6 @@ async def _upsert_level(db: Prisma, category_id: str, payload: dict) -> Any:
 
 async def _upsert_lesson(db: Prisma, level_id: str, payload: dict) -> Any:
     db_payload = _select(LESSON_DB_FIELDS, payload)
-    db_payload.setdefault("base_viewers", 0)
 
     return await db.lesson.upsert(
         where={

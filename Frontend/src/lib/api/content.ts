@@ -30,7 +30,6 @@ export type ApiLessonSummary = {
   slug: string;
   summary: string;
   duration: string;
-  base_viewers: number;
   order_index: number;
   xp_reward?: number;
   is_project?: boolean;
@@ -48,7 +47,6 @@ export type ApiLevelSummary = {
   accent_color: string;
   mini_project: string;
   quiz_count: number;
-  base_viewers: number;
   /** JSON array of strings, may arrive as an array or string. */
   tags: string[] | string;
   coming_soon: boolean;
@@ -67,7 +65,6 @@ export type ApiLessonDetail = {
   summary: string;
   content: string;
   duration: string;
-  base_viewers: number;
   order_index: number;
   level_id: string;
   xp_reward?: number;

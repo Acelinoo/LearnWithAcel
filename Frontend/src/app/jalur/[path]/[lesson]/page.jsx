@@ -6,7 +6,6 @@ import LessonHero from "@/components/lesson/LessonHero";
 import LessonShell from "@/components/lesson/LessonShell";
 import LessonSidebar from "@/components/lesson/LessonSidebar";
 import LessonNextCard from "@/components/lesson/LessonNextCard";
-import ViewTracker from "@/components/ui/ViewTracker";
 import { Markdown, extractHeadings } from "@/lib/markdown";
 import {
   JALUR_META,
@@ -57,10 +56,6 @@ export default function JalurLessonPage({ params }) {
   return (
     <>
       <ReadingProgress />
-      <ViewTracker
-        entityType="page"
-        entityId={`jalur-${meta.path}-${lesson.slug}`}
-      />
 
       <LessonShell
         sidebar={
