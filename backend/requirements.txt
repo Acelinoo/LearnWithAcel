@@ -1,9 +1,12 @@
 # Web framework
 fastapi==0.115.5
 uvicorn[standard]==0.32.1
+gunicorn==22.0.0
 
-# Database ORM
+# Database ORM & Drivers
 prisma==0.15.0
+psycopg2-binary==2.9.9
+asyncpg==0.29.0
 
 # Auth & security
 PyJWT==2.10.1
