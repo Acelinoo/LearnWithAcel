@@ -47,7 +47,6 @@ class LevelCreateRequest(BaseModel):
     accent_color: str = Field(..., min_length=1, max_length=200)
     mini_project: str = Field(..., min_length=1, max_length=300)
     quiz_count: int = Field(0, ge=0)
-    base_viewers: int = Field(0, ge=0)
     # JSON array of strings: ["HTML5", "CSS3"]
     tags: Any = Field(default=[], description="JSON array of tag strings")
     coming_soon: bool = False
@@ -65,7 +64,6 @@ class LevelUpdateRequest(BaseModel):
     accent_color: str | None = Field(None, min_length=1, max_length=200)
     mini_project: str | None = Field(None, min_length=1, max_length=300)
     quiz_count: int | None = Field(None, ge=0)
-    base_viewers: int | None = Field(None, ge=0)
     tags: Any | None = None
     coming_soon: bool | None = None
 
@@ -78,7 +76,6 @@ class LessonCreateRequest(BaseModel):
     summary: str = Field(..., min_length=1)
     content: str = Field(..., min_length=1, description="Lesson body in Markdown format")
     duration: str = Field(..., min_length=1, max_length=100)
-    base_viewers: int = Field(0, ge=0)
     order_index: int = Field(..., ge=1, description="Display order within the level (1-based)")
 
 
@@ -89,7 +86,6 @@ class LessonUpdateRequest(BaseModel):
     summary: str | None = Field(None, min_length=1)
     content: str | None = Field(None, min_length=1, description="Lesson body in Markdown format")
     duration: str | None = Field(None, min_length=1, max_length=100)
-    base_viewers: int | None = Field(None, ge=0)
     order_index: int | None = Field(None, ge=1)
 
 

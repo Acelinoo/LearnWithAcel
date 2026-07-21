@@ -61,7 +61,6 @@ def _serialize_level(level) -> LevelSummary:
         accent_color=level.accent_color,
         mini_project=level.mini_project,
         quiz_count=level.quiz_count,
-        base_viewers=level.base_viewers,
         tags=level.tags,
         coming_soon=level.coming_soon,
         lessons=[_serialize_lesson_summary(l) for l in lessons],
@@ -76,7 +75,6 @@ def _serialize_lesson(lesson) -> LessonDetail:
         summary=lesson.summary,
         content=lesson.content,
         duration=lesson.duration,
-        base_viewers=lesson.base_viewers,
         order_index=lesson.order_index,
         level_id=lesson.level_id,
     )
@@ -126,7 +124,6 @@ async def update_category(category_id: str, payload: CategoryUpdateRequest) -> C
         if slug_taken:
             raise ConflictException(f"Category slug '{payload.slug}' is already in use")
 
-    # Build update dict with only the fields that were explicitly provided
     update_data: dict[str, Any] = {}
     if payload.name is not None:
         update_data["name"] = payload.name
@@ -201,7 +198,6 @@ async def create_level(payload: LevelCreateRequest) -> LevelSummary:
             "accent_color": payload.accent_color,
             "mini_project": payload.mini_project,
             "quiz_count": payload.quiz_count,
-            "base_viewers": payload.base_viewers,
             "tags": _to_json_str(payload.tags),
             "coming_soon": payload.coming_soon,
         },
@@ -224,7 +220,6 @@ async def update_level(level_id: str, payload: LevelUpdateRequest) -> LevelSumma
     if existing is None:
         raise NotFoundException(f"Level '{level_id}' not found")
 
-    # Determine the effective category_id after the update
     target_category_id = payload.category_id or existing.category_id
 
     if payload.category_id and payload.category_id != existing.category_id:
@@ -264,8 +259,6 @@ async def update_level(level_id: str, payload: LevelUpdateRequest) -> LevelSumma
         update_data["mini_project"] = payload.mini_project
     if payload.quiz_count is not None:
         update_data["quiz_count"] = payload.quiz_count
-    if payload.base_viewers is not None:
-        update_data["base_viewers"] = payload.base_viewers
     if payload.tags is not None:
         update_data["tags"] = _to_json_str(payload.tags)
     if payload.coming_soon is not None:
@@ -323,7 +316,6 @@ async def create_lesson(payload: LessonCreateRequest) -> LessonDetail:
             "summary": payload.summary,
             "content": payload.content,
             "duration": payload.duration,
-            "base_viewers": payload.base_viewers,
             "order_index": payload.order_index,
         }
     )
@@ -371,8 +363,6 @@ async def update_lesson(lesson_id: str, payload: LessonUpdateRequest) -> LessonD
         update_data["content"] = payload.content
     if payload.duration is not None:
         update_data["duration"] = payload.duration
-    if payload.base_viewers is not None:
-        update_data["base_viewers"] = payload.base_viewers
     if payload.order_index is not None:
         update_data["order_index"] = payload.order_index
 
