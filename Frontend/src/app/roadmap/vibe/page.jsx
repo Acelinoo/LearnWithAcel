@@ -6,10 +6,12 @@ import {
   Clock,
   Rocket,
   Trophy,
+  Users,
 } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import { getRoadmap } from "@/lib/api/content";
 import { aggregateLevels, levelTags } from "@/lib/roadmap-utils";
+import { formatCompact } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
@@ -64,7 +66,7 @@ export default async function VibeRoadmapPage() {
       </Reveal>
 
       <Reveal delay={0.15}>
-        <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-3">
+        <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3">
           {[
             { icon: BookOpen, label: "Total materi", value: totalLessons },
             {
@@ -143,9 +145,11 @@ export default async function VibeRoadmapPage() {
                   <div className="card-base card-hover group p-6 sm:p-8">
                     <div className="flex flex-wrap items-start justify-between gap-4">
                       <div>
-                        <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-sky-300">
-                          Level 0{level.number}
-                        </span>
+                        <div className="flex items-center gap-2">
+                          <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-sky-300">
+                            Level 0{level.number}
+                          </span>
+                        </div>
                         <h2 className="mt-2 font-display text-2xl font-semibold tracking-tight sm:text-3xl">
                           {level.title}
                         </h2>

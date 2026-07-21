@@ -77,6 +77,11 @@ export async function apiFetch<T>(
   });
 
   if (!res.ok) {
+    if (res.status === 401 && typeof window !== "undefined") {
+      // Global 401 interceptor: clear token and redirect to login
+      document.cookie = "lwa_token=; Path=/; Max-Age=0; SameSite=Lax";
+      window.location.href = `/login?redirectTo=${encodeURIComponent(window.location.pathname)}`;
+    }
     const { message, detail } = await parseError(res);
     throw new ApiError(message, res.status, detail);
   }

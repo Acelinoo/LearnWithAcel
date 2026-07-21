@@ -6,6 +6,7 @@ import LessonHero from "@/components/lesson/LessonHero";
 import LessonShell from "@/components/lesson/LessonShell";
 import LessonSidebar from "@/components/lesson/LessonSidebar";
 import LessonNextCard from "@/components/lesson/LessonNextCard";
+import CompleteLessonButton from "@/components/lesson/CompleteLessonButton";
 import { Markdown, extractHeadings } from "@/lib/markdown";
 import {
   JALUR_META,
@@ -13,12 +14,9 @@ import {
   getJalurLesson,
   getAllJalurPaths,
 } from "@/lib/jalur-data";
+import { getServerStats } from "@/lib/api/server";
 
-export const dynamic = "force-static";
-
-export function generateStaticParams() {
-  return getAllJalurPaths().map((p) => ({ path: p.path, lesson: p.slug }));
-}
+export const dynamic = "force-dynamic";
 
 export function generateMetadata({ params }) {
   const lesson = getJalurLesson(params.path, params.lesson);
@@ -29,12 +27,17 @@ export function generateMetadata({ params }) {
   };
 }
 
-export default function JalurLessonPage({ params }) {
+export default async function JalurLessonPage({ params }) {
   const meta = getJalurMeta(params.path);
   if (!meta) notFound();
 
   const lesson = getJalurLesson(meta.path, params.lesson);
   if (!lesson) notFound();
+
+  const stats = await getServerStats().catch(() => null);
+  const completedIds = stats?.completed_lesson_ids ?? [];
+  const generatedLessonId = `jalur-${meta.path}-${lesson.slug}`;
+  const initiallyCompleted = completedIds.includes(generatedLessonId);
 
   const idx = meta.lessons.findIndex((l) => l.slug === params.lesson);
   const next = idx >= 0 ? meta.lessons[idx + 1] : null;
@@ -63,7 +66,7 @@ export default function JalurLessonPage({ params }) {
             levelTitle={meta.eyebrow}
             levelNumber={undefined}
             lessons={sidebarLessons}
-            completedLessonIds={[]}
+            completedLessonIds={completedIds}
             lessonHrefBase={lessonHrefBase}
             headings={headings}
             nextLesson={
@@ -102,22 +105,26 @@ export default function JalurLessonPage({ params }) {
             </div>
 
             {next ? (
-              <Link
-                href={`${lessonHrefBase}/${next.slug}`}
-                className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
-              >
-                Lanjut ke lesson berikutnya
-                <ArrowRight size={14} />
-              </Link>
+              <CompleteLessonButton
+                lessonId={generatedLessonId}
+                initiallyCompleted={initiallyCompleted}
+                nextHref={`${lessonHrefBase}/${next.slug}`}
+              />
             ) : (
-              <Link
-                href={`/jalur/${meta.path}#pilih-role`}
-                className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
-              >
-                Lanjut ke pilih{" "}
-                {meta.path === "vibe" ? "role" : "spesialisasi"}
-                <ArrowRight size={14} />
-              </Link>
+              <div className="flex items-center gap-4">
+                <CompleteLessonButton
+                  lessonId={generatedLessonId}
+                  initiallyCompleted={initiallyCompleted}
+                />
+                <Link
+                  href={`/jalur/${meta.path}#pilih-role`}
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
+                >
+                  Lanjut ke pilih{" "}
+                  {meta.path === "vibe" ? "role" : "spesialisasi"}
+                  <ArrowRight size={14} />
+                </Link>
+              </div>
             )}
           </div>
 

@@ -6,7 +6,7 @@ export default async function sitemap() {
 
   const staticRoutes = [
     "",
-    "/pilih-jalur",
+    "/onboarding",
     "/roadmap",
     "/roadmap/vibe",
     "/dashboard",

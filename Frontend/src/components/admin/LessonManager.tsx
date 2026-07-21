@@ -31,6 +31,7 @@ function emptyDraft(levelId: string): LessonCreate {
     summary: "",
     content: "# Heading\n\nTulis konten lesson di sini dalam format Markdown.",
     duration: "",
+    base_viewers: 0,
     order_index: 1,
   };
 }
@@ -96,6 +97,7 @@ export default function LessonManager({ roadmaps, token, onChange }: Props) {
         summary: detail.summary,
         content: detail.content,
         duration: detail.duration,
+        base_viewers: detail.base_viewers,
         order_index: detail.order_index,
       });
     } catch (e) {
@@ -381,7 +383,7 @@ export default function LessonManager({ roadmaps, token, onChange }: Props) {
             </div>
           )}
 
-          <div className="grid gap-3 sm:grid-cols-2">
+          <div className="grid gap-3 sm:grid-cols-3">
             <TextField
               label="Duration"
               value={draft.duration}
@@ -400,6 +402,15 @@ export default function LessonManager({ roadmaps, token, onChange }: Props) {
                 setDraft({ ...draft, order_index: Number(e.target.value) })
               }
               required
+            />
+            <TextField
+              label="Base viewers"
+              type="number"
+              min={0}
+              value={String(draft.base_viewers ?? 0)}
+              onChange={(e) =>
+                setDraft({ ...draft, base_viewers: Number(e.target.value) })
+              }
             />
           </div>
 

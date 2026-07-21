@@ -12,6 +12,7 @@ import {
   Zap,
 } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
+import ReadingProgress from "@/components/lesson/ReadingProgress";
 import { getRoadmap } from "@/lib/api/content";
 
 export const dynamic = "force-dynamic";
@@ -56,10 +57,11 @@ export default async function PersiapanVibePage() {
   const firstHref = await getFirstVibeLesson();
 
   return (
-    <div>
+    <>
+      <ReadingProgress />
       <section className="container-page pt-12">
         <Reveal>
-          <Link href="/pilih-jalur" className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-foreground">
+          <Link href="/onboarding" className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-foreground">
             ← Kembali ke pilih jalur
           </Link>
         </Reveal>
@@ -183,6 +185,6 @@ export default async function PersiapanVibePage() {
           </div>
         </Reveal>
       </section>
-    </div>
+    </>
   );
 }

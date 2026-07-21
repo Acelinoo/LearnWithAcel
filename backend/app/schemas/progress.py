@@ -70,11 +70,10 @@ class StatsResponse(BaseModel):
 class LessonOpenResponse(BaseModel):
     """Returned by POST /progress/view/{lesson_id}.
 
-    The endpoint just remembers which lesson the user opened so the
-    dashboard's "Continue learning" stays accurate. There is no view
-    counter anymore — the field is kept out of the response shape so
-    callers can't accidentally rely on it.
+    Remembers which lesson the user opened so the dashboard's
+    "Continue learning" stays accurate.
     """
 
     lesson_id: str
+    views: int = 0
     last_opened_at: str

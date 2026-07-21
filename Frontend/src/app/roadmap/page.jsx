@@ -6,15 +6,18 @@ import {
   GraduationCap,
   Rocket,
   Trophy,
+  Users,
 } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
-import CategoryTabs from "@/components/ui/CategoryTabs";
+import RoadmapFilter from "./RoadmapFilter";
 import { listCategories, getRoadmap } from "@/lib/api/content";
+import { getServerUser } from "@/lib/api/server";
 import {
   aggregateLevels,
   categoryToTab,
   levelTags,
 } from "@/lib/roadmap-utils";
+import { formatCompact } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
@@ -175,8 +178,16 @@ async function loadAll() {
 export default async function RoadmapPage() {
   let tabs;
   let roadmapMap;
+  let user;
+  
   try {
-    ({ tabs, roadmapMap } = await loadAll());
+    const [allData, userData] = await Promise.all([
+      loadAll(),
+      getServerUser()
+    ]);
+    tabs = allData.tabs;
+    roadmapMap = allData.roadmapMap;
+    user = userData;
   } catch {
     return (
       <div className="container-page py-16">
@@ -242,7 +253,7 @@ export default async function RoadmapPage() {
       </Reveal>
 
       <Reveal delay={0.15}>
-        <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
+        <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3">
           {[
             { icon: BookOpen, label: "Total materi", value: totalLessons },
             { icon: Trophy, label: "Mini project", value: allLevels.length },
@@ -267,7 +278,9 @@ export default async function RoadmapPage() {
       </Reveal>
 
       <div className="mt-12">
-        <CategoryTabs
+        <RoadmapFilter
+          defaultMainCategory={user?.selected_category}
+          defaultRole={user?.selected_role}
           categories={visibleTabs}
           panels={visibleTabs.map((tab) => ({
             id: tab.id,

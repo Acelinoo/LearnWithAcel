@@ -3,32 +3,40 @@ import { redirect } from "next/navigation";
 import {
   ArrowRight,
   BookOpen,
+  Clock,
   Flame,
   Layers,
   PlayCircle,
   Sparkles,
   TrendingUp,
+  Users,
 } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
+import LevelLeaderboard from "@/components/dashboard/LevelLeaderboard";
 import ProgressByLevel from "@/components/dashboard/ProgressByLevel";
 import ContinueLearning from "@/components/dashboard/ContinueLearning";
 import EngagementHero from "@/components/dashboard/EngagementHero";
 import LogoutButton from "@/components/auth/LogoutButton";
 import { getServerUser, getServerStats } from "@/lib/api/server";
 import { getRoadmap } from "@/lib/api/content";
-import { aggregateLevels } from "@/lib/roadmap-utils";
+import {
+  aggregateLevels,
+  getPopularLessons,
+  getTopLevel,
+} from "@/lib/roadmap-utils";
+import { formatCompact } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "Dashboard — Aktivitas Platform",
   description:
-    "Pantau progress kamu, lanjut ke materi berikutnya, dan jaga streak harian.",
+    "Pantau aktivitas platform: progress kamu, materi terpopuler, level paling banyak dibuka.",
 };
 
-async function loadFrontendRoadmap() {
+async function loadRoleRoadmap(roleSlug) {
   try {
-    return await getRoadmap("frontend");
+    return await getRoadmap(roleSlug);
   } catch {
     return null;
   }
@@ -37,13 +45,16 @@ async function loadFrontendRoadmap() {
 export default async function DashboardPage() {
   const user = await getServerUser();
   if (!user) redirect("/login?redirectTo=/dashboard");
+  if (!user.selected_role) redirect("/onboarding");
 
   const [stats, frontend] = await Promise.all([
     getServerStats(),
-    loadFrontendRoadmap(),
+    loadRoleRoadmap(user.selected_role),
   ]);
 
   const levels = frontend?.levels ?? [];
+  const popularLessons = getPopularLessons(levels, 5);
+  const topLevel = getTopLevel(levels);
   const { totalLessons } = aggregateLevels(levels);
 
   const displayName =
@@ -71,7 +82,7 @@ export default async function DashboardPage() {
           </div>
           <div className="flex items-center gap-2">
             <LogoutButton variant="secondary" />
-            <Link href="/pilih-jalur" className="btn-primary">
+            <Link href="/onboarding" className="btn-primary">
               <PlayCircle size={16} />
               Mulai belajar
             </Link>
@@ -90,9 +101,9 @@ export default async function DashboardPage() {
         </div>
       </Reveal>
 
-      {/* Progress overview */}
+      {/* Bento grid stats */}
       <div className="mt-10 grid gap-4 md:grid-cols-6">
-        <Reveal className="md:col-span-4">
+        <Reveal className="md:col-span-3">
           <div className="card-base relative h-full overflow-hidden p-6 sm:p-8">
             <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-accent/20 blur-3xl" />
             <div className="relative">
@@ -141,12 +152,14 @@ export default async function DashboardPage() {
             value: `${levels.length}`,
             sub: "frontend path",
           },
+          {
+            icon: Users,
+            label: "Paling populer",
+            value: topLevel ? `0${topLevel.number}` : "-",
+            sub: topLevel?.title ?? "Belum ada level",
+          },
         ].map((s, i) => (
-          <Reveal
-            key={s.label}
-            delay={0.05 * (i + 1)}
-            className="md:col-span-1"
-          >
+          <Reveal key={s.label} delay={0.05 * (i + 1)} className="md:col-span-1">
             <div className="card-base flex h-full flex-col justify-between p-5">
               <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-black/30 text-accent-hover">
                 <s.icon size={16} />
@@ -174,13 +187,89 @@ export default async function DashboardPage() {
         </Reveal>
       )}
 
-      {/* Account card */}
-      <div className="mt-10">
-        <Reveal>
-          <section className="relative overflow-hidden rounded-2xl border border-accent/25 bg-gradient-to-br from-accent/10 via-card to-card p-6 sm:p-8">
-            <div className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-accent/20 blur-3xl" />
-            <div className="relative flex flex-wrap items-start justify-between gap-4">
+      <div className="mt-10 grid gap-6 lg:grid-cols-3">
+        {/* Popular lessons */}
+        <Reveal className="lg:col-span-2">
+          <section className="card-base p-6 sm:p-8">
+            <div className="flex items-center justify-between">
               <div>
+                <div className="flex items-center gap-2">
+                  <Flame size={16} className="text-accent-hover" />
+                  <h2 className="font-display text-xl font-semibold">
+                    Materi populer
+                  </h2>
+                </div>
+                <p className="mt-1 text-sm text-muted">
+                  Paling banyak dibuka oleh pengunjung minggu ini.
+                </p>
+              </div>
+              <Link
+                href="/roadmap"
+                className="text-sm text-muted transition-colors hover:text-accent-hover"
+              >
+                Lihat semua
+              </Link>
+            </div>
+
+            <ol className="mt-6 space-y-2">
+              {popularLessons.length === 0 && (
+                <p className="text-sm text-muted">
+                  Belum ada materi. Tambahkan dari panel admin terlebih dulu.
+                </p>
+              )}
+              {popularLessons.map((l, idx) => (
+                <li key={`${l.levelSlug}/${l.slug}`}>
+                  <Link
+                    href={`/materi/${l.levelSlug}/${l.slug}`}
+                    className="group flex items-center gap-4 rounded-xl border border-border bg-black/30 p-4 transition-all hover:border-accent/30 hover:bg-black/30"
+                  >
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-border bg-black/30 font-mono text-xs text-accent-hover">
+                      {String(idx + 1).padStart(2, "0")}
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <div className="text-[11px] uppercase tracking-wider text-muted">
+                        Level 0{l.levelNumber} — {l.levelTitle}
+                      </div>
+                      <div className="mt-0.5 truncate text-sm font-medium text-foreground group-hover:text-accent-hover">
+                        {l.title}
+                      </div>
+                    </div>
+                    <div className="hidden shrink-0 items-center gap-4 sm:flex">
+                      <span className="flex items-center gap-1.5 text-xs text-muted">
+                        <Clock size={12} />
+                        {l.duration}
+                      </span>
+                    </div>
+                    <ArrowRight
+                      size={14}
+                      className="shrink-0 text-muted transition-transform group-hover:translate-x-0.5 group-hover:text-accent-hover"
+                    />
+                  </Link>
+                </li>
+              ))}
+            </ol>
+          </section>
+        </Reveal>
+
+        <div className="space-y-6">
+          <Reveal>
+            <section className="card-base p-6">
+              <div className="flex items-center gap-2">
+                <TrendingUp size={16} className="text-accent-hover" />
+                <h2 className="font-display text-base font-semibold">
+                  Level terpopuler
+                </h2>
+              </div>
+              <div className="mt-4">
+                <LevelLeaderboard levels={levels} />
+              </div>
+            </section>
+          </Reveal>
+
+          <Reveal delay={0.05}>
+            <section className="relative overflow-hidden rounded-2xl border border-accent/25 bg-gradient-to-br from-accent/10 via-card to-card p-6">
+              <div className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-accent/20 blur-3xl" />
+              <div className="relative">
                 <div className="flex items-center gap-2">
                   <Sparkles size={14} className="text-accent-hover" />
                   <h3 className="font-display text-sm font-semibold">
@@ -192,18 +281,15 @@ export default async function DashboardPage() {
                   <span className="text-foreground/90">{user.email}</span>.
                   Progress lesson tersinkron otomatis ke akun ini.
                 </p>
+                <div className="mt-4">
+                  <LogoutButton variant="ghost" className="px-3" />
+                </div>
               </div>
-              <Link
-                href="/roadmap"
-                className="inline-flex items-center gap-1.5 text-sm text-accent-hover transition-colors hover:text-foreground"
-              >
-                Buka roadmap
-                <ArrowRight size={14} />
-              </Link>
-            </div>
-          </section>
-        </Reveal>
+            </section>
+          </Reveal>
+        </div>
       </div>
+
     </div>
   );
 }

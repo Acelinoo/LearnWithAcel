@@ -5,7 +5,7 @@ Authentication routes: register, login, and current user profile.
 from fastapi import APIRouter, Depends, status
 
 from app.core.deps import get_current_user
-from app.schemas.auth import LoginRequest, RegisterRequest, TokenResponse, UserResponse
+from app.schemas.auth import LoginRequest, RegisterRequest, TokenResponse, UserResponse, UserUpdateRole
 from app.services import auth_service
 
 router = APIRouter(prefix="/auth", tags=["Authentication"])
@@ -40,3 +40,12 @@ async def login(payload: LoginRequest) -> TokenResponse:
 async def me(current_user=Depends(get_current_user)) -> UserResponse:
     """Return the profile of the currently authenticated user."""
     return auth_service.get_user_profile(current_user)
+
+@router.put(
+    "/role",
+    response_model=UserResponse,
+    summary="Update selected category and role",
+)
+async def update_role(payload: UserUpdateRole, current_user=Depends(get_current_user)) -> UserResponse:
+    """Update the user's selected category and role."""
+    return await auth_service.update_user_role(current_user.id, payload)

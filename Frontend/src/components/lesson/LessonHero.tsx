@@ -76,13 +76,21 @@ export default function LessonHero({
       />
 
       <Reveal className="">
-        <Link
-          href={roadmapHref}
-          className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-foreground"
-        >
-          <ArrowLeft size={14} />
-          Kembali ke roadmap
-        </Link>
+        <nav aria-label="Breadcrumb" className="flex items-center space-x-2 text-sm text-muted">
+          <Link href={roadmapHref} className="transition-colors hover:text-foreground">
+            Roadmap
+          </Link>
+          <span className="text-muted-foreground/40">/</span>
+          <Link href={roadmapHref} className="transition-colors hover:text-foreground">
+            {pathLabel}
+          </Link>
+          {levelLabel && (
+            <>
+              <span className="text-muted-foreground/40">/</span>
+              <span className="text-foreground">{levelLabel}</span>
+            </>
+          )}
+        </nav>
       </Reveal>
 
       <Reveal delay={0.05} className="">
@@ -92,17 +100,9 @@ export default function LessonHero({
           >
             <Sparkles size={10} />
             {pathLabel}
+            {levelLabel && ` • ${levelLabel}`}
+            {levelTitle && ` — ${levelTitle}`}
           </span>
-
-          {levelLabel && (
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-black/30 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
-              <Layers size={10} className="text-accent-hover" />
-              {levelLabel}
-              {levelTitle && (
-                <span className="text-foreground/70">— {levelTitle}</span>
-              )}
-            </span>
-          )}
         </div>
       </Reveal>
 

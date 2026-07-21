@@ -88,6 +88,7 @@ export type LevelCreate = {
   accent_color: string;
   mini_project: string;
   quiz_count?: number;
+  base_viewers?: number;
   tags: string[];
   coming_soon?: boolean;
 };
@@ -133,6 +134,7 @@ export type LessonCreate = {
   summary: string;
   content: string;
   duration: string;
+  base_viewers?: number;
   order_index: number;
 };
 

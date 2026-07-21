@@ -1,3 +1,4 @@
+// @ts-ignore
 import "./globals.css";
 import { Inter, Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
@@ -59,7 +60,7 @@ export const viewport = {
   initialScale: 1,
 };
 
-export default async function RootLayout({ children }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const user = await getServerUser();
 
   return (

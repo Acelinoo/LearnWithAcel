@@ -1,12 +1,12 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Flame } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
 import CategoryTabs from "@/components/ui/CategoryTabs";
 import { listCategories, getRoadmap } from "@/lib/api/content";
 import { categoryToTab, levelTags } from "@/lib/roadmap-utils";
 
-function LevelCard({ level }) {
+function LevelCard({ level, accentClass = "" }) {
   const isComingSoon = level.coming_soon;
   const tags = levelTags(level);
 

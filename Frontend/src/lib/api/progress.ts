@@ -69,27 +69,11 @@ export type ApiStats = {
   continue_lesson?: ApiContinueLesson | null;
 };
 
-export type ApiLessonView = {
-  lesson_id: string;
-  views: number;
-  last_opened_at: string;
-};
-
 export function completeLesson(
   lessonId: string,
   token: string
 ): Promise<ApiProgress> {
   return apiFetch<ApiProgress>(`/api/v1/progress/complete/${lessonId}`, {
-    method: "POST",
-    token,
-  });
-}
-
-export function trackLessonView(
-  lessonId: string,
-  token: string
-): Promise<ApiLessonView> {
-  return apiFetch<ApiLessonView>(`/api/v1/progress/view/${lessonId}`, {
     method: "POST",
     token,
   });

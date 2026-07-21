@@ -7,6 +7,7 @@ import LessonShell from "@/components/lesson/LessonShell";
 import LessonSidebar from "@/components/lesson/LessonSidebar";
 import LessonNextCard from "@/components/lesson/LessonNextCard";
 import CompleteLessonButton from "@/components/lesson/CompleteLessonButton";
+import QuickQuiz from "@/components/lesson/QuickQuiz";
 import { Markdown, extractHeadings } from "@/lib/markdown";
 import { getLesson, getRoadmap } from "@/lib/api/content";
 import { getServerStats } from "@/lib/api/server";
@@ -124,11 +125,14 @@ export default async function VibeLessonPage({ params }) {
                 <span>Selamat belajar</span>
               )}
             </div>
-            <CompleteLessonButton
-              lessonId={lesson.id}
-              levelId={level?.id}
-              initiallyCompleted={initiallyCompleted}
-            />
+            <QuickQuiz initiallyCompleted={initiallyCompleted}>
+              <CompleteLessonButton
+                lessonId={lesson.id}
+                levelId={level?.id}
+                initiallyCompleted={initiallyCompleted}
+                nextHref={next ? `${lessonHrefBase}/${next.slug}` : undefined}
+              />
+            </QuickQuiz>
           </div>
 
           {next && (

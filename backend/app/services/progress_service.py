@@ -66,11 +66,27 @@ async def open_lesson(user_id: str, lesson_id: str) -> dict:
     counters are intentionally not tracked anymore — see git history for
     the previous EntityView-based implementation.
     """
+    now = datetime.now(timezone.utc)
+    
+    # -----------------------------------------------------------
+    # Support for static "jalur" lessons
+    # -----------------------------------------------------------
+    if lesson_id.startswith("jalur-"):
+        await prisma.user.update(
+            where={"id": user_id},
+            data={
+                "last_opened_lesson_id": lesson_id,
+                "last_opened_at": now,
+            },
+        )
+        return {
+            "lesson_id": lesson_id,
+            "last_opened_at": _to_iso(now),
+        }
+
     lesson = await prisma.lesson.find_unique(where={"id": lesson_id})
     if lesson is None:
         raise NotFoundException(f"Lesson '{lesson_id}' not found")
-
-    now = datetime.now(timezone.utc)
 
     await prisma.user.update(
         where={"id": user_id},
@@ -94,11 +110,59 @@ async def complete_lesson(user_id: str, lesson_id: str) -> ProgressResponse:
     twice. The first transition from false → true is what awards XP and
     bumps the streak.
     """
+    now = datetime.now(timezone.utc)
+
+    # -----------------------------------------------------------
+    # Support for static "jalur" lessons
+    # -----------------------------------------------------------
+    if lesson_id.startswith("jalur-"):
+        user = await prisma.user.find_unique(where={"id": user_id})
+        if user is None:
+            raise NotFoundException("User not found")
+            
+        import json
+        jalur_lessons = []
+        if user.completed_jalur_lessons:
+            try:
+                if isinstance(user.completed_jalur_lessons, str):
+                    jalur_lessons = json.loads(user.completed_jalur_lessons)
+                elif isinstance(user.completed_jalur_lessons, list):
+                    jalur_lessons = user.completed_jalur_lessons
+            except json.JSONDecodeError:
+                pass
+                
+        just_completed = lesson_id not in jalur_lessons
+        
+        new_total_xp = user.xp_total or 0
+        new_streak = user.current_streak or 0
+        xp_reward = 50  # Hardcoded reward for jalur lessons
+        
+        if just_completed:
+            jalur_lessons.append(lesson_id)
+            await prisma.user.update(
+                where={"id": user_id},
+                data={
+                    "completed_jalur_lessons": json.dumps(jalur_lessons)
+                }
+            )
+            new_total_xp, new_streak = await _bump_user_engagement(user_id, xp_reward)
+            
+        return ProgressResponse(
+            id=f"prog-{lesson_id}",
+            user_id=user_id,
+            lesson_id=lesson_id,
+            is_completed=True,
+            completed_at=_to_iso(now),
+            xp_earned=xp_reward if just_completed else 0,
+            new_total_xp=new_total_xp,
+            streak=new_streak,
+            just_completed=just_completed,
+        )
+
     lesson = await prisma.lesson.find_unique(where={"id": lesson_id})
     if lesson is None:
         raise NotFoundException(f"Lesson '{lesson_id}' not found")
 
-    now = datetime.now(timezone.utc)
     existing = await prisma.userprogress.find_unique(
         where={"user_id_lesson_id": {"user_id": user_id, "lesson_id": lesson_id}},
     )
@@ -162,7 +226,25 @@ async def get_user_stats(user_id: str) -> StatsResponse:
     completed_records = await prisma.userprogress.find_many(
         where={"user_id": user_id, "is_completed": True},
     )
+    
+    user = await prisma.user.find_unique(where={"id": user_id})
+    
     completed_ids: set[str] = {r.lesson_id for r in completed_records}
+    
+    import json
+    if user and user.completed_jalur_lessons:
+        try:
+            if isinstance(user.completed_jalur_lessons, str):
+                jalur_lessons = json.loads(user.completed_jalur_lessons)
+            elif isinstance(user.completed_jalur_lessons, list):
+                jalur_lessons = user.completed_jalur_lessons
+            else:
+                jalur_lessons = []
+            
+            for jl in jalur_lessons:
+                completed_ids.add(jl)
+        except json.JSONDecodeError:
+            pass
 
     total_lessons = 0
     total_completed = 0
@@ -196,8 +278,6 @@ async def get_user_stats(user_id: str) -> StatsResponse:
     overall_pct = (
         round(total_completed / total_lessons * 100, 1) if total_lessons > 0 else 0.0
     )
-
-    user = await prisma.user.find_unique(where={"id": user_id})
 
     # Streak grace period: if the user hasn't done anything in 2+ days,
     # surface 0 in the response — the actual reset happens next time

@@ -11,6 +11,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
+import CompleteLessonButton from "@/components/lesson/CompleteLessonButton";
 import { JALUR_META } from "@/lib/jalur-data";
 
 export const dynamic = "force-dynamic";
@@ -149,7 +150,6 @@ export default function VibeRolePage({ params }) {
 
   return (
     <div className="container-page py-16">
-
       <Reveal>
         <Link
           href="/jalur/vibe#pilih-role"

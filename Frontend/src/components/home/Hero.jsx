@@ -52,7 +52,7 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.25 }}
             className="mt-9 flex flex-col items-center gap-3 sm:flex-row"
           >
-            <Link href="/pilih-jalur" className="btn-primary">
+            <Link href="/onboarding" className="btn-primary">
               Mulai Belajar
               <ArrowRight size={16} />
             </Link>

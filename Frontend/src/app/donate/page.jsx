@@ -1,3 +1,4 @@
+import Image from "next/image";
 import {
   Coffee,
   Copy,
@@ -62,30 +63,9 @@ export default function DonatePage() {
 
               {/* QR placeholder */}
               <div className="mt-6 rounded-2xl border border-border bg-black/30 p-4">
-                <div className="relative h-56 w-56 rounded-xl bg-[#f5f5f5] p-3">
-                  <div className="grid h-full w-full grid-cols-10 grid-rows-10 gap-[2px]">
-                    {Array.from({ length: 100 }).map((_, i) => (
-                      <div
-                        key={i}
-                        className="rounded-[1px]"
-                        style={{
-                          background:
-                            (i * 37) % 7 < 3 ? "#0d0d0d" : "transparent",
-                        }}
-                      />
-                    ))}
-                  </div>
-                  {/* corner markers */}
-                  <div className="absolute left-3 top-3 h-10 w-10 rounded-lg border-[6px] border-[#0d0d0d]" />
-                  <div className="absolute right-3 top-3 h-10 w-10 rounded-lg border-[6px] border-[#0d0d0d]" />
-                  <div className="absolute bottom-3 left-3 h-10 w-10 rounded-lg border-[6px] border-[#0d0d0d]" />
-                  {/* center logo */}
-                  <div className="absolute left-1/2 top-1/2 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-lg bg-accent text-white">
-                    <Sparkles size={16} />
-                  </div>
-                </div>
+                <Image src="/images/qris.png" alt="QRIS LearnWithAcel" width={300} height={300} className="rounded-lg mx-auto" />
                 <div className="mt-3 text-center text-[11px] font-mono uppercase tracking-widest text-black/60">
-                  QRIS · Placeholder
+                  QRIS · LearnWithAcel
                 </div>
               </div>
 

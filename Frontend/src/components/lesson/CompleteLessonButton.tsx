@@ -31,6 +31,7 @@ type Props = {
   lessonId: string;
   levelId?: string;
   initiallyCompleted?: boolean;
+  nextHref?: string;
 };
 
 type Celebration = {
@@ -42,6 +43,7 @@ export default function CompleteLessonButton({
   lessonId,
   levelId,
   initiallyCompleted = false,
+  nextHref,
 }: Props) {
   const router = useRouter();
   const { token, user, signOut } = useAuth();
@@ -79,10 +81,22 @@ export default function CompleteLessonButton({
           streak: result.streak ?? 0,
         });
         window.setTimeout(() => setCelebration(null), 5000);
+        
+        if (nextHref) {
+          window.setTimeout(() => {
+            router.push(nextHref);
+          }, 1500);
+        } else {
+          router.refresh();
+        }
+      } else {
+        if (nextHref) {
+          router.push(nextHref);
+        } else {
+          // Server components (lesson page, dashboard) re-fetch.
+          router.refresh();
+        }
       }
-
-      // Server components (lesson page, dashboard) re-fetch.
-      router.refresh();
     } catch (e) {
       // 401 = token invalid OR user account no longer exists in the DB
       // (this happens after a wipe + reseed). Force a fresh session.

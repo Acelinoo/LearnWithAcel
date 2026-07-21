@@ -5,7 +5,7 @@ Business logic for authentication: register, login, and profile retrieval.
 from app.core.database import prisma
 from app.core.exceptions import ConflictException, UnauthorizedException
 from app.core.security import create_access_token, hash_password, verify_password
-from app.schemas.auth import LoginRequest, RegisterRequest, TokenResponse, UserResponse
+from app.schemas.auth import LoginRequest, RegisterRequest, TokenResponse, UserResponse, UserUpdateRole
 
 
 async def register_user(payload: RegisterRequest) -> UserResponse:
@@ -34,6 +34,8 @@ async def register_user(payload: RegisterRequest) -> UserResponse:
         avatar_url=user.avatar_url,
         is_admin=user.is_admin,
         created_at=user.created_at.isoformat(),
+        selected_category=user.selected_category,
+        selected_role=user.selected_role,
     )
 
 
@@ -64,4 +66,17 @@ def get_user_profile(user) -> UserResponse:
         avatar_url=user.avatar_url,
         is_admin=user.is_admin,
         created_at=user.created_at.isoformat(),
+        selected_category=user.selected_category,
+        selected_role=user.selected_role,
     )
+
+async def update_user_role(user_id: str, payload: UserUpdateRole) -> UserResponse:
+    """Update user's selected category and role during onboarding."""
+    user = await prisma.user.update(
+        where={"id": user_id},
+        data={
+            "selected_category": payload.selected_category,
+            "selected_role": payload.selected_role,
+        }
+    )
+    return get_user_profile(user)

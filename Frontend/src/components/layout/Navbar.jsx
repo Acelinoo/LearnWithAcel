@@ -121,7 +121,7 @@ export default function Navbar() {
                 );
               })}
               <Link
-                href="/pilih-jalur"
+                href="/onboarding"
                 className="btn-primary mt-2 w-full"
               >
                 Mulai Belajar

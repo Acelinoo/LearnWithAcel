@@ -28,5 +28,14 @@ class UserResponse(BaseModel):
     avatar_url: str | None
     is_admin: bool
     created_at: str
+    selected_category: str | None = None
+    selected_role: str | None = None
+
+    model_config = {"from_attributes": True}
+
+
+class UserUpdateRole(BaseModel):
+    selected_category: str
+    selected_role: str
 
     model_config = {"from_attributes": True}

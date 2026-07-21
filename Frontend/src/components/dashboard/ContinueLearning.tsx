@@ -189,7 +189,7 @@ function EmptyState() {
       <p className="mt-1.5 max-w-sm text-[13.5px] leading-relaxed text-muted">
         Pilih jalur belajar dan mulai dari Level 01.
       </p>
-      <Link href="/pilih-jalur" className="mt-5 btn-primary">
+      <Link href="/onboarding" className="mt-5 btn-primary">
         Pilih jalur
         <ArrowRight size={14} />
       </Link>

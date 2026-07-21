@@ -131,8 +131,6 @@ export function BlockRenderer({ block, index: _index }: Props) {
           ))}
         </blockquote>
       );
-    case "table":
-      return <TableBlock headers={block.headers} rows={block.rows} />;
     case "hr":
       return <hr className="my-12 border-border" />;
     default:
@@ -153,56 +151,6 @@ function CodeBlock({ code, lang }: { code: string; lang: string }) {
       <pre className="overflow-x-auto px-5 py-5 font-mono text-[13px] leading-[1.7] text-foreground/90">
         <code>{code}</code>
       </pre>
-    </div>
-  );
-}
-
-/** Table block — used for compact comparison and reference rows.
- *  Keeps the same card-style border + dark surface as the rest of the
- *  lesson UI so it doesn't visually jump. */
-function TableBlock({
-  headers,
-  rows,
-}: {
-  headers: string[];
-  rows: string[][];
-}) {
-  if (headers.length === 0) return null;
-  return (
-    <div className="my-7 overflow-hidden rounded-2xl border border-border bg-black/30">
-      <div className="overflow-x-auto">
-        <table className="w-full border-collapse text-left text-[13.5px]">
-          <thead>
-            <tr className="bg-black/40">
-              {headers.map((h, j) => (
-                <th
-                  key={j}
-                  className="border-b border-border px-4 py-3 font-mono text-[10.5px] font-semibold uppercase tracking-[0.16em] text-muted/80"
-                >
-                  {renderInline(h)}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((row, i) => (
-              <tr key={i} className={i < rows.length - 1 ? "border-b border-border" : ""}>
-                {headers.map((_, j) => (
-                  <td
-                    key={j}
-                    className={
-                      "px-4 py-3 align-top text-foreground/85 leading-[1.65]" +
-                      (j === 0 ? " font-medium text-foreground" : "")
-                    }
-                  >
-                    {renderInline(row[j] ?? "")}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
     </div>
   );
 }

@@ -63,10 +63,9 @@ export default function JalurPathPage({ params }) {
 
   return (
     <div className="container-page py-16">
-
       <Reveal>
         <Link
-          href="/pilih-jalur"
+          href="/onboarding"
           className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-foreground"
         >
           ← Kembali ke pilih jalur

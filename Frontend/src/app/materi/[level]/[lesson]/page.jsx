@@ -7,6 +7,7 @@ import LessonShell from "@/components/lesson/LessonShell";
 import LessonSidebar from "@/components/lesson/LessonSidebar";
 import LessonNextCard from "@/components/lesson/LessonNextCard";
 import CompleteLessonButton from "@/components/lesson/CompleteLessonButton";
+import QuickQuiz from "@/components/lesson/QuickQuiz";
 import { Markdown, extractHeadings } from "@/lib/markdown";
 import { getLesson, getRoadmap } from "@/lib/api/content";
 import { getServerStats } from "@/lib/api/server";
@@ -31,7 +32,24 @@ async function resolveContext(levelSlug, lessonSlug) {
     throw e;
   }
 
-  const candidates = ["frontend", "backend", "fullstack"];
+  const candidates = [
+    "frontend-developer",
+    "backend-developer",
+    "full-stack-developer",
+    "penetration-tester",
+    "soc-analyst",
+    "security-engineer",
+    "malware-analyst",
+    "android-developer",
+    "ios-developer",
+    "cross-platform-developer",
+    "network-engineer",
+    "data-scientist",
+    "machine-learning-engineer",
+    "frontend",
+    "backend",
+    "fullstack"
+  ];
   for (const slug of candidates) {
     try {
       const roadmap = await getRoadmap(slug);
@@ -85,11 +103,24 @@ export default async function LessonPage({ params }) {
     : "/roadmap";
 
   const PATH_LABELS = {
-    frontend: "Frontend",
-    backend: "Backend",
-    fullstack: "Fullstack",
+    "frontend-developer": "Frontend Developer",
+    "backend-developer": "Backend Developer",
+    "full-stack-developer": "Fullstack Developer",
+    "penetration-tester": "Penetration Tester",
+    "soc-analyst": "SOC Analyst",
+    "security-engineer": "Security Engineer",
+    "malware-analyst": "Malware Analyst",
+    "android-developer": "Android Developer",
+    "ios-developer": "iOS Developer",
+    "cross-platform-developer": "Cross-Platform Developer",
+    "network-engineer": "Network Engineer",
+    "data-scientist": "Data Scientist",
+    "machine-learning-engineer": "Machine Learning Engineer",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "fullstack": "Fullstack",
   };
-  const pathLabel = categorySlug ? PATH_LABELS[categorySlug] : "Manual Coding";
+  const pathLabel = categorySlug ? PATH_LABELS[categorySlug] || categorySlug.replace("-", " ") : "Manual Coding";
 
   return (
     <>
@@ -154,11 +185,14 @@ export default async function LessonPage({ params }) {
                 <span>Selamat belajar</span>
               )}
             </div>
-            <CompleteLessonButton
-              lessonId={lesson.id}
-              levelId={level?.id}
-              initiallyCompleted={initiallyCompleted}
-            />
+            <QuickQuiz initiallyCompleted={initiallyCompleted}>
+              <CompleteLessonButton
+                lessonId={lesson.id}
+                levelId={level?.id}
+                initiallyCompleted={initiallyCompleted}
+                nextHref={next ? `${lessonHrefBase}/${next.slug}` : undefined}
+              />
+            </QuickQuiz>
           </div>
 
           {next && (

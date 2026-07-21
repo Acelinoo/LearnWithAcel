@@ -35,6 +35,7 @@ function emptyDraft(categoryId: string): LevelCreate {
     accent_color: "from-accent/30 to-accent-hover/10",
     mini_project: "",
     quiz_count: 3,
+    base_viewers: 0,
     tags: [],
     coming_soon: false,
   };
@@ -78,6 +79,7 @@ export default function LevelManager({ roadmaps, token, onChange }: Props) {
       accent_color: level.accent_color,
       mini_project: level.mini_project,
       quiz_count: level.quiz_count,
+      base_viewers: level.base_viewers,
       tags,
       coming_soon: level.coming_soon,
     });
@@ -377,13 +379,23 @@ export default function LevelManager({ roadmaps, token, onChange }: Props) {
               }
             />
             <TextField
-              label="Tags"
-              value={tagsText}
-              onChange={(e) => setTagsText(e.target.value)}
-              placeholder="HTML5, CSS3, Flexbox"
-              hint="Pisahkan dengan koma"
+              label="Base viewers"
+              type="number"
+              min={0}
+              value={String(draft.base_viewers ?? 0)}
+              onChange={(e) =>
+                setDraft({ ...draft, base_viewers: Number(e.target.value) })
+              }
             />
           </div>
+
+          <TextField
+            label="Tags"
+            value={tagsText}
+            onChange={(e) => setTagsText(e.target.value)}
+            placeholder="HTML5, CSS3, Flexbox"
+            hint="Pisahkan dengan koma"
+          />
 
           <CheckBox
             label="Coming soon"

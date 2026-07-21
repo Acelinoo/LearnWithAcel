@@ -14,6 +14,8 @@ export type ApiUser = {
   avatar_url: string | null;
   is_admin: boolean;
   created_at: string;
+  selected_category: string | null;
+  selected_role: string | null;
 };
 
 export type LoginPayload = {
@@ -25,6 +27,11 @@ export type RegisterPayload = {
   email: string;
   password: string;
   full_name: string;
+};
+
+export type UpdateRolePayload = {
+  selected_category: string;
+  selected_role: string;
 };
 
 export type TokenResponse = {
@@ -51,5 +58,13 @@ export function getMe(token: string): Promise<ApiUser> {
     method: "GET",
     token,
     cache: "no-store",
+  });
+}
+
+export function updateRole(token: string, payload: UpdateRolePayload): Promise<ApiUser> {
+  return apiFetch<ApiUser>("/api/v1/auth/role", {
+    method: "PUT",
+    token,
+    body: payload,
   });
 }

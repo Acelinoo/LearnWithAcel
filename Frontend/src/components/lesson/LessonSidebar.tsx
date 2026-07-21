@@ -112,7 +112,7 @@ export default function LessonSidebar({
       : 0;
 
   return (
-    <aside className="hidden lg:block">
+    <aside>
       <div className="sticky top-24 space-y-4">
         {/* Level progress */}
         <section className="rounded-xl border border-border bg-black/30 p-4 backdrop-blur-md">

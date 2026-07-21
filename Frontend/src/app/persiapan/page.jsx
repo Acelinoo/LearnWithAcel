@@ -15,6 +15,7 @@ import {
   Wifi,
 } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
+import ReadingProgress from "@/components/lesson/ReadingProgress";
 import { getRoadmap } from "@/lib/api/content";
 
 export const dynamic = "force-dynamic";
@@ -102,7 +103,8 @@ export default async function PersiapanPage() {
   const firstLessonHref = await getFirstLessonHref();
 
   return (
-    <div>
+    <>
+      <ReadingProgress />
       <section className="container-page pt-12">
         <Reveal>
           <Link
@@ -272,6 +274,6 @@ export default async function PersiapanPage() {
           </div>
         </Reveal>
       </section>
-    </div>
+    </>
   );
 }
