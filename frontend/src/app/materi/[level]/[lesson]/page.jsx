@@ -1,67 +1,33 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Sparkles } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, Clock } from "lucide-react";
+import Reveal from "@/components/ui/Reveal";
 import ReadingProgress from "@/components/lesson/ReadingProgress";
-import LessonHero from "@/components/lesson/LessonHero";
-import LessonShell from "@/components/lesson/LessonShell";
-import LessonSidebar from "@/components/lesson/LessonSidebar";
-import LessonNextCard from "@/components/lesson/LessonNextCard";
+import LessonViewerBadge from "@/components/ui/LessonViewerBadge";
 import CompleteLessonButton from "@/components/lesson/CompleteLessonButton";
-import QuickQuiz from "@/components/lesson/QuickQuiz";
-import { Markdown, extractHeadings } from "@/lib/markdown";
+import { Markdown } from "@/lib/markdown";
 import { getLesson, getRoadmap } from "@/lib/api/content";
-import { getServerStats } from "@/lib/api/server";
 import { ApiError } from "@/lib/api/client";
 
 export const dynamic = "force-dynamic";
 
-/**
- * Try /roadmap/<slug> for the supported manual paths until one yields a
- * level matching `levelSlug`. We don't know up-front whether a lesson
- * belongs to frontend, backend, or fullstack, and the lesson endpoint
- * itself only returns level_id (not category slug).
- */
-async function resolveContext(levelSlug, lessonSlug) {
-  let lesson;
+async function loadLessonContext(level, lessonSlug) {
   try {
-    lesson = await getLesson(levelSlug, lessonSlug);
+    const [lesson, roadmap] = await Promise.all([
+      getLesson(level, lessonSlug),
+      getRoadmap("frontend").catch(() => null),
+    ]);
+    const matchingLevel = roadmap?.levels.find((l) => l.slug === level);
+    const lessonsInLevel = matchingLevel?.lessons ?? [];
+    const idx = lessonsInLevel.findIndex((l) => l.slug === lessonSlug);
+    const next = idx >= 0 ? lessonsInLevel[idx + 1] : null;
+    return { lesson, level: matchingLevel, next };
   } catch (e) {
     if (e instanceof ApiError && e.status === 404) {
-      return { lesson: null };
+      return { lesson: null, level: null, next: null };
     }
     throw e;
   }
-
-  const candidates = [
-    "frontend-developer",
-    "backend-developer",
-    "full-stack-developer",
-    "penetration-tester",
-    "soc-analyst",
-    "security-engineer",
-    "malware-analyst",
-    "android-developer",
-    "ios-developer",
-    "cross-platform-developer",
-    "network-engineer",
-    "data-scientist",
-    "machine-learning-engineer",
-    "frontend",
-    "backend",
-    "fullstack"
-  ];
-  for (const slug of candidates) {
-    try {
-      const roadmap = await getRoadmap(slug);
-      const level = roadmap?.levels?.find((l) => l.slug === levelSlug);
-      if (level) {
-        return { lesson, roadmap, level, categorySlug: slug };
-      }
-    } catch {
-      /* swallow — try the next category */
-    }
-  }
-  return { lesson, level: null };
 }
 
 export async function generateMetadata({ params }) {
@@ -80,133 +46,96 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function LessonPage({ params }) {
-  const { lesson, level, categorySlug } = await resolveContext(
+  const { lesson, level, next } = await loadLessonContext(
     params.level,
-    params.lesson,
+    params.lesson
   );
 
   if (!lesson) notFound();
-
-  const stats = await getServerStats().catch(() => null);
-  const completedIds = stats?.completed_lesson_ids ?? [];
-  const initiallyCompleted = completedIds.includes(lesson.id);
-
-  const lessonsInLevel = level?.lessons ?? [];
-  const idx = lessonsInLevel.findIndex((l) => l.slug === params.lesson);
-  const next = idx >= 0 ? lessonsInLevel[idx + 1] : null;
-
-  const headings = extractHeadings(lesson.content);
-
-  const lessonHrefBase = `/materi/${params.level}`;
-  const roadmapHref = categorySlug
-    ? `/roadmap${categorySlug === "frontend" ? "" : `?path=${categorySlug}`}`
-    : "/roadmap";
-
-  const PATH_LABELS = {
-    "frontend-developer": "Frontend Developer",
-    "backend-developer": "Backend Developer",
-    "full-stack-developer": "Fullstack Developer",
-    "penetration-tester": "Penetration Tester",
-    "soc-analyst": "SOC Analyst",
-    "security-engineer": "Security Engineer",
-    "malware-analyst": "Malware Analyst",
-    "android-developer": "Android Developer",
-    "ios-developer": "iOS Developer",
-    "cross-platform-developer": "Cross-Platform Developer",
-    "network-engineer": "Network Engineer",
-    "data-scientist": "Data Scientist",
-    "machine-learning-engineer": "Machine Learning Engineer",
-    "frontend": "Frontend",
-    "backend": "Backend",
-    "fullstack": "Fullstack",
-  };
-  const pathLabel = categorySlug ? PATH_LABELS[categorySlug] || categorySlug.replace("-", " ") : "Manual Coding";
 
   return (
     <>
       <ReadingProgress />
 
-      <LessonShell
-        sidebar={
-          level && (
-            <LessonSidebar
-              levelTitle={level.title}
-              levelNumber={level.number}
-              lessons={lessonsInLevel.map((l) => ({
-                id: l.id,
-                slug: l.slug,
-                title: l.title,
-                duration: l.duration,
-                isCurrent: l.slug === params.lesson,
-              }))}
-              completedLessonIds={completedIds}
-              lessonHrefBase={lessonHrefBase}
-              headings={headings}
-              nextLesson={next ? { slug: next.slug, title: next.title } : null}
-              tone="accent"
-            />
-          )
-        }
-      >
-        <LessonHero
-          title={lesson.title}
-          summary={lesson.summary}
-          readTime={lesson.duration}
-          pathLabel={pathLabel}
-          pathTone="accent"
-          levelTitle={level?.title}
-          levelNumber={level?.number}
-          roadmapHref={roadmapHref}
-          lessonIndex={idx >= 0 ? idx + 1 : undefined}
-          lessonsTotal={lessonsInLevel.length}
-          xpReward={lesson.xp_reward}
-          completed={initiallyCompleted}
-        />
+      <article className="container-page max-w-3xl py-16">
+        <Reveal>
+          <Link
+            href="/roadmap"
+            className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-foreground"
+          >
+            <ArrowLeft size={14} />
+            Kembali ke roadmap
+          </Link>
+        </Reveal>
 
-        <article className="mt-14 max-w-[68ch]">
+        <Reveal delay={0.05}>
+          <div className="mt-8 flex flex-wrap items-center gap-2">
+            {level && (
+              <span className="section-eyebrow">
+                Level 0{level.number} — {level.title}
+              </span>
+            )}
+            <span className="chip">
+              <Clock size={12} />
+              {lesson.duration}
+            </span>
+            <LessonViewerBadge count={lesson.base_viewers} />
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.1}>
+          <h1 className="mt-5 font-display text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
+            {lesson.title}
+          </h1>
+        </Reveal>
+
+        <Reveal delay={0.15}>
+          <p className="mt-5 text-lg leading-relaxed text-muted">
+            {lesson.summary}
+          </p>
+        </Reveal>
+
+        <div className="mt-12">
           <Markdown source={lesson.content} />
-        </article>
+        </div>
 
-        <footer className="mt-16 max-w-[68ch] border-t border-border pt-10">
-          <div className="flex flex-wrap items-center justify-between gap-4">
+        <Reveal>
+          <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-white/5 pt-8">
             <div className="flex items-center gap-2 text-sm text-muted">
-              <Sparkles size={14} className="text-accent-hover" />
-              {level ? (
-                <>
-                  Bagian dari{" "}
-                  <Link
-                    href={`/roadmap#${level.slug}`}
-                    className="text-foreground transition-colors hover:text-accent-hover"
-                  >
-                    {level.title}
-                  </Link>
-                </>
-              ) : (
-                <span>Selamat belajar</span>
+              <BookOpen size={14} />
+              Bagian dari{" "}
+              {level && (
+                <Link
+                  href={`/roadmap#${level.slug}`}
+                  className="text-foreground hover:text-accent-hover"
+                >
+                  {level.title}
+                </Link>
               )}
             </div>
-            <QuickQuiz initiallyCompleted={initiallyCompleted}>
-              <CompleteLessonButton
-                lessonId={lesson.id}
-                levelId={level?.id}
-                initiallyCompleted={initiallyCompleted}
-                nextHref={next ? `${lessonHrefBase}/${next.slug}` : undefined}
-              />
-            </QuickQuiz>
+            <CompleteLessonButton lessonId={lesson.id} />
           </div>
+        </Reveal>
 
-          {next && (
-            <div className="mt-10">
-              <LessonNextCard
-                href={`${lessonHrefBase}/${next.slug}`}
-                title={next.title}
-                duration={next.duration}
-                tone="accent"
-              />
-            </div>
-          )}
-        </footer>
-      </LessonShell>
+        {next && (
+          <Reveal>
+            <Link
+              href={`/materi/${params.level}/${next.slug}`}
+              className="group mt-10 flex items-center justify-between gap-4 rounded-2xl border border-white/5 bg-gradient-to-r from-card to-accent/10 p-6 transition-all hover:border-accent/40"
+            >
+              <div>
+                <div className="text-xs text-muted">Materi berikutnya</div>
+                <div className="mt-1 font-display text-lg font-semibold">
+                  {next.title}
+                </div>
+              </div>
+              <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-muted transition-all group-hover:border-accent/40 group-hover:text-accent-hover">
+                <ArrowRight size={16} />
+              </span>
+            </Link>
+          </Reveal>
+        )}
+      </article>
     </>
   );
 }

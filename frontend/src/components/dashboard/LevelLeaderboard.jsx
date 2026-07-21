@@ -15,7 +15,7 @@ function Row({ level, max }) {
             {formatNumber(value)}
           </span>
         </div>
-        <div className="mt-1.5 h-1 w-full overflow-hidden rounded-full bg-black/40">
+        <div className="mt-1.5 h-1 w-full overflow-hidden rounded-full bg-white/[0.05]">
           <div
             className="h-full rounded-full bg-gradient-to-r from-accent to-accent-hover transition-all duration-700"
             style={{ width: `${pct}%` }}

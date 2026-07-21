@@ -9,6 +9,7 @@ import {
   Users,
 } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
+import LevelViewerBadge from "@/components/ui/LevelViewerBadge";
 import { getRoadmap } from "@/lib/api/content";
 import { aggregateLevels, levelTags } from "@/lib/roadmap-utils";
 import { formatCompact } from "@/lib/utils";
@@ -38,7 +39,7 @@ export default async function VibeRoadmapPage() {
     );
   }
 
-  const { totalLessons } = aggregateLevels(roadmap.levels);
+  const { totalLessons, totalViewers } = aggregateLevels(roadmap.levels);
 
   return (
     <div className="container-page py-16">
@@ -66,8 +67,13 @@ export default async function VibeRoadmapPage() {
       </Reveal>
 
       <Reveal delay={0.15}>
-        <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3">
+        <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
           {[
+            {
+              icon: Users,
+              label: "Total viewers",
+              value: formatCompact(totalViewers),
+            },
             { icon: BookOpen, label: "Total materi", value: totalLessons },
             {
               icon: Trophy,
@@ -80,7 +86,7 @@ export default async function VibeRoadmapPage() {
               key={s.label}
               className="card-base flex items-center gap-3 p-4"
             >
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-black/30 text-accent-hover">
+              <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] text-accent-hover">
                 <s.icon size={16} />
               </div>
               <div>
@@ -132,7 +138,7 @@ export default async function VibeRoadmapPage() {
                   id={level.slug}
                   className="relative scroll-mt-24 pl-16 md:pl-20"
                 >
-                  <div className="absolute left-0 top-6 flex h-[52px] w-[52px] items-center justify-center rounded-2xl border border-border bg-card shadow-card md:h-[60px] md:w-[60px]">
+                  <div className="absolute left-0 top-6 flex h-[52px] w-[52px] items-center justify-center rounded-2xl border border-white/10 bg-card shadow-card md:h-[60px] md:w-[60px]">
                     <div
                       className={`flex h-full w-full items-center justify-center rounded-2xl bg-gradient-to-br ${level.accent_color}`}
                     >
@@ -149,6 +155,10 @@ export default async function VibeRoadmapPage() {
                           <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-sky-300">
                             Level 0{level.number}
                           </span>
+                          <LevelViewerBadge
+                            count={level.base_viewers}
+                            size="xs"
+                          />
                         </div>
                         <h2 className="mt-2 font-display text-2xl font-semibold tracking-tight sm:text-3xl">
                           {level.title}
@@ -181,7 +191,7 @@ export default async function VibeRoadmapPage() {
                       ].map((m) => (
                         <div
                           key={m.label}
-                          className="rounded-xl border border-border bg-black/30 px-4 py-3"
+                          className="rounded-xl border border-white/5 bg-white/[0.02] px-4 py-3"
                         >
                           <div className="text-[11px] uppercase tracking-wider text-muted">
                             {m.label}
@@ -193,7 +203,7 @@ export default async function VibeRoadmapPage() {
                       ))}
                     </div>
 
-                    <div className="mt-6 flex flex-wrap items-center gap-3 border-t border-border pt-6">
+                    <div className="mt-6 flex flex-wrap items-center gap-3 border-t border-white/5 pt-6">
                       <div className="flex items-center gap-2 text-sm text-muted">
                         <Trophy size={14} className="text-sky-300" />
                         Project:{" "}
@@ -204,7 +214,7 @@ export default async function VibeRoadmapPage() {
                     </div>
 
                     {firstLesson && (
-                      <div className="mt-6 border-t border-border pt-6">
+                      <div className="mt-6 border-t border-white/5 pt-6">
                         <Link
                           href={`/materi/vibe/${level.slug}/${firstLesson.slug}`}
                           className="inline-flex items-center gap-2 rounded-xl border border-sky-400/30 bg-sky-400/10 px-4 py-2.5 text-sm font-medium text-sky-300 transition-all hover:border-sky-400/50 hover:bg-sky-400/20 hover:text-foreground"
@@ -222,9 +232,9 @@ export default async function VibeRoadmapPage() {
                           <Link
                             key={lesson.slug}
                             href={`/materi/vibe/${level.slug}/${lesson.slug}`}
-                            className="flex items-center gap-3 rounded-xl border border-border bg-black/30 p-3 transition-all hover:border-sky-400/30 hover:bg-sky-400/[0.04]"
+                            className="flex items-center gap-3 rounded-xl border border-white/5 bg-white/[0.02] p-3 transition-all hover:border-sky-400/30 hover:bg-sky-400/[0.04]"
                           >
-                            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-border bg-black/30 text-sky-300">
+                            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] text-sky-300">
                               <BookOpen size={14} />
                             </span>
                             <div className="min-w-0 flex-1">

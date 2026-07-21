@@ -39,3 +39,23 @@ class UserUpdateRole(BaseModel):
     selected_role: str
 
     model_config = {"from_attributes": True}
+
+
+# ── Forgot / reset password ───────────────────────────────────────────────────
+class ForgotPasswordRequest(BaseModel):
+    email: EmailStr
+
+
+class ResetPasswordRequest(BaseModel):
+    token: str = Field(..., min_length=1, description="Reset token received via email")
+    new_password: str = Field(
+        ...,
+        min_length=8,
+        max_length=128,
+        description="New password (min 8 characters)",
+    )
+
+
+class MessageResponse(BaseModel):
+    """Generic success message response."""
+    message: str

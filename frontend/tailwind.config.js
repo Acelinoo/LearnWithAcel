@@ -1,7 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./src/**/*.{js,jsx,ts,tsx,mdx}",
+    "./src/app/**/*.{js,jsx,ts,tsx,mdx}",
+    "./src/components/**/*.{js,jsx,ts,tsx,mdx}",
+    "./src/pages/**/*.{js,jsx,ts,tsx,mdx}",
   ],
   darkMode: "class",
   theme: {
@@ -10,8 +12,7 @@ module.exports = {
         background: "#0D0D0D",
         surface: "#151515",
         card: "#1C1C1C",
-        border: "#1F1F1F",
-        "border-strong": "#262626",
+        border: "#262626",
         foreground: "#F5F5F5",
         muted: "#A1A1AA",
         accent: {
@@ -38,10 +39,9 @@ module.exports = {
       },
       animation: {
         "fade-in": "fadeIn 0.6s ease-out forwards",
-        "fade-up": "fadeUp 0.6s ease-out forwards",
+        "fade-up": "fadeUp 0.8s ease-out forwards",
         shimmer: "shimmer 2.5s linear infinite",
         float: "float 6s ease-in-out infinite",
-        shake: "shake 0.4s cubic-bezier(.36,.07,.19,.97) both",
       },
       keyframes: {
         fadeIn: {
@@ -49,7 +49,7 @@ module.exports = {
           "100%": { opacity: 1 },
         },
         fadeUp: {
-          "0%": { opacity: 0, transform: "translateY(8px)" },
+          "0%": { opacity: 0, transform: "translateY(20px)" },
           "100%": { opacity: 1, transform: "translateY(0)" },
         },
         shimmer: {
@@ -59,12 +59,6 @@ module.exports = {
         float: {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-8px)" },
-        },
-        shake: {
-          "10%, 90%": { transform: "translateX(-1px)" },
-          "20%, 80%": { transform: "translateX(2px)" },
-          "30%, 50%, 70%": { transform: "translateX(-3px)" },
-          "40%, 60%": { transform: "translateX(3px)" },
         },
       },
     },

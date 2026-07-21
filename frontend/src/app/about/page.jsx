@@ -81,7 +81,7 @@ export default function AboutPage() {
           <div className="card-base overflow-hidden p-8 sm:p-10">
             <div className="grid gap-8 md:grid-cols-[auto_1fr] md:items-center">
               <div className="relative">
-                <div className="relative h-36 w-36 overflow-hidden rounded-2xl border border-border">
+                <div className="relative h-36 w-36 overflow-hidden rounded-2xl border border-white/10">
                   <Image
                     src="/me.png"
                     alt="Foto Acel"
@@ -188,7 +188,7 @@ export default function AboutPage() {
           {journey.map((j, i) => (
             <Reveal key={j.year} delay={i * 0.05}>
               <div className="relative pl-12">
-                <div className="absolute left-0 top-4 flex h-9 w-9 items-center justify-center rounded-xl border border-border bg-card">
+                <div className="absolute left-0 top-4 flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-card">
                   <Heart size={14} className="text-accent-hover" />
                 </div>
                 <div className="card-base p-5">
@@ -235,7 +235,7 @@ export default function AboutPage() {
       {/* Support CTA */}
       <section className="container-page pb-24">
         <Reveal>
-          <div className="flex flex-wrap items-center justify-between gap-6 rounded-2xl border border-border bg-gradient-to-r from-card to-accent/10 p-8">
+          <div className="flex flex-wrap items-center justify-between gap-6 rounded-2xl border border-white/5 bg-gradient-to-r from-card to-accent/10 p-8">
             <div>
               <div className="font-display text-lg font-semibold">
                 Ingin mendukung platform ini?

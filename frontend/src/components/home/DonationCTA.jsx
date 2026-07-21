@@ -6,7 +6,7 @@ export default function DonationCTA() {
   return (
     <section className="container-page py-24">
       <Reveal>
-        <div className="relative overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-accent/15 via-card to-card p-10 sm:p-14">
+        <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-accent/15 via-card to-card p-10 sm:p-14">
           <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-accent/30 blur-3xl" />
           <div className="pointer-events-none absolute -bottom-24 left-1/3 h-64 w-64 rounded-full bg-accent-hover/20 blur-3xl" />
 

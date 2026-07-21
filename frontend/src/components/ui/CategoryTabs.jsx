@@ -1,66 +1,10 @@
 "use client";
 
-import { Suspense, useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useState } from "react";
 import { Lock, Briefcase, Wrench, Code2 } from "lucide-react";
 
-/**
- * Tabs for switching between learning paths.
- *
- * The active tab can be preselected via the URL `?path=<id>` query
- * param. That hook is wrapped in its own Suspense boundary so callers
- * don't need to know about the dynamic rendering quirk Next.js 14
- * imposes on `useSearchParams`.
- */
 export default function CategoryTabs({ categories, panels }) {
-  const fallbackId = categories[0]?.id;
-  return (
-    <Suspense
-      fallback={
-        <CategoryTabsBody
-          categories={categories}
-          panels={panels}
-          requested={null}
-          fallbackId={fallbackId}
-        />
-      }
-    >
-      <CategoryTabsWithSearch
-        categories={categories}
-        panels={panels}
-        fallbackId={fallbackId}
-      />
-    </Suspense>
-  );
-}
-
-function CategoryTabsWithSearch({ categories, panels, fallbackId }) {
-  const searchParams = useSearchParams();
-  const requested = searchParams?.get("path") ?? null;
-  return (
-    <CategoryTabsBody
-      categories={categories}
-      panels={panels}
-      requested={requested}
-      fallbackId={fallbackId}
-    />
-  );
-}
-
-function CategoryTabsBody({ categories, panels, requested, fallbackId }) {
-  const initial =
-    requested && categories.some((c) => c.id === requested)
-      ? requested
-      : fallbackId;
-
-  const [active, setActive] = useState(initial);
-
-  useEffect(() => {
-    if (requested && categories.some((c) => c.id === requested)) {
-      setActive(requested);
-    }
-  }, [requested, categories]);
-
+  const [active, setActive] = useState(categories[0].id);
   const activeCategory = categories.find((c) => c.id === active);
 
   return (
@@ -73,7 +17,7 @@ function CategoryTabsBody({ categories, panels, requested, fallbackId }) {
             className={`flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium transition-all ${
               active === cat.id
                 ? "bg-accent/20 text-accent-hover border border-accent/30"
-                : "border border-border bg-black/30 text-muted hover:border-border-strong hover:text-foreground"
+                : "border border-white/10 bg-white/[0.02] text-muted hover:border-white/20 hover:text-foreground"
             }`}
           >
             {cat.label}
@@ -84,7 +28,7 @@ function CategoryTabsBody({ categories, panels, requested, fallbackId }) {
 
       {/* Role info card */}
       {activeCategory && (
-        <div className="mt-6 rounded-2xl border border-border bg-black/30 p-5 sm:p-6">
+        <div className="mt-6 rounded-2xl border border-white/10 bg-white/[0.02] p-5 sm:p-6">
           <div className="flex items-center gap-2">
             <Briefcase size={14} className="text-accent-hover" />
             <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent-hover">
@@ -125,7 +69,7 @@ function CategoryTabsBody({ categories, panels, requested, fallbackId }) {
                       {group.items.map((item) => (
                         <span
                           key={item}
-                          className="rounded-full border border-border bg-black/40 px-2 py-0.5 text-[11px] text-foreground/80"
+                          className="rounded-full border border-white/10 bg-white/[0.04] px-2 py-0.5 text-[11px] text-foreground/80"
                         >
                           {item}
                         </span>

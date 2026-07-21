@@ -52,7 +52,7 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.25 }}
             className="mt-9 flex flex-col items-center gap-3 sm:flex-row"
           >
-            <Link href="/onboarding" className="btn-primary">
+            <Link href="/pilih-jalur" className="btn-primary">
               Mulai Belajar
               <ArrowRight size={16} />
             </Link>
@@ -91,12 +91,12 @@ export default function Hero() {
           transition={{ duration: 0.9, delay: 0.35 }}
           className="relative mx-auto mt-20 max-w-5xl"
         >
-          <div className="rounded-2xl border border-border bg-gradient-to-b from-white/[0.04] to-transparent p-1.5 shadow-glow-lg">
-            <div className="overflow-hidden rounded-xl border border-border bg-card">
-              <div className="flex items-center gap-1.5 border-b border-border px-4 py-2.5">
-                <span className="h-2.5 w-2.5 rounded-full bg-black/40" />
-                <span className="h-2.5 w-2.5 rounded-full bg-black/40" />
-                <span className="h-2.5 w-2.5 rounded-full bg-black/40" />
+          <div className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-transparent p-1.5 shadow-glow-lg">
+            <div className="overflow-hidden rounded-xl border border-white/5 bg-card">
+              <div className="flex items-center gap-1.5 border-b border-white/5 px-4 py-2.5">
+                <span className="h-2.5 w-2.5 rounded-full bg-white/10" />
+                <span className="h-2.5 w-2.5 rounded-full bg-white/10" />
+                <span className="h-2.5 w-2.5 rounded-full bg-white/10" />
                 <span className="ml-3 font-mono text-[11px] text-muted">
                   learnwithacel.dev/roadmap
                 </span>

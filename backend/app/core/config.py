@@ -26,6 +26,23 @@ class Settings(BaseSettings):
     JWT_ALGORITHM: str = "HS256"
     JWT_ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24  # 24 hours
 
+    # ── Password reset ────────────────────────────────────────────────────────
+    # How long (minutes) a reset token stays valid. Default: 15 minutes.
+    RESET_TOKEN_EXPIRE_MINUTES: int = 15
+    # Full URL of the frontend reset-password page.
+    # The token will be appended as a query param: ?token=<token>
+    FRONTEND_RESET_PASSWORD_URL: str = "http://localhost:3000/reset-password"
+
+    # ── Email (SMTP) ──────────────────────────────────────────────────────────
+    MAIL_USERNAME: str = ""
+    MAIL_PASSWORD: str = ""
+    MAIL_FROM: str = "noreply@learnwithacel.com"
+    MAIL_FROM_NAME: str = "LearnWithAcel"
+    MAIL_PORT: int = 587
+    MAIL_SERVER: str = "smtp.gmail.com"
+    MAIL_STARTTLS: bool = True
+    MAIL_SSL_TLS: bool = False
+
     # ── CORS ─────────────────────────────────────────────────────────────────
     # Comma-separated list of allowed origins
     CORS_ORIGINS: str = "http://localhost:3000"
