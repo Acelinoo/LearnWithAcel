@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Github, Globe } from "lucide-react";
+import { ArrowRight, Github, Globe, Instagram, Mail } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
 
@@ -38,18 +38,38 @@ export default function AboutCreator() {
                   <ArrowRight size={16} />
                 </Link>
                 <a
-                  href="https://github.com"
+                  href="https://github.com/acelinoo"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="btn-secondary"
                 >
                   <Github size={16} />
                   GitHub
                 </a>
                 <a
+                  href="https://instagram.com/acelino"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary"
+                >
+                  <Instagram size={16} />
+                  Instagram
+                </a>
+                <a
                   href="https://acelino.vercel.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="btn-secondary"
                 >
                   <Globe size={16} />
                   Portfolio
+                </a>
+                <a
+                  href="mailto:marchelinokurniawan321@gmail.com"
+                  className="btn-secondary"
+                >
+                  <Mail size={16} />
+                  Email
                 </a>
               </div>
             </div>

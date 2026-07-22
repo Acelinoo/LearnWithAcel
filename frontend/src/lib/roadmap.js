@@ -64,7 +64,7 @@ export const levels = [
     lessonsCount: 12,
     miniProject: "Landing page pribadi",
     quizCount: 3,
-    accent: "from-violet-500/30 to-fuchsia-500/10",
+    accent: "from-cyan-500/30 to-blue-500/10",
     tags: ["HTML5", "CSS3", "Flexbox", "Grid", "Responsive"],
     lessons: [
       {
@@ -105,7 +105,7 @@ export const levels = [
     lessonsCount: 18,
     miniProject: "Todo list interaktif",
     quizCount: 4,
-    accent: "from-amber-400/30 to-violet-500/10",
+    accent: "from-amber-400/30 to-cyan-500/10",
     tags: ["ES6+", "DOM", "Fetch API", "Async"],
     lessons: [
       {
@@ -146,7 +146,7 @@ export const levels = [
     lessonsCount: 22,
     miniProject: "Dashboard admin mini",
     quizCount: 5,
-    accent: "from-cyan-400/30 to-violet-500/10",
+    accent: "from-cyan-400/30 to-cyan-500/10",
     tags: ["React", "Hooks", "Tailwind", "Component"],
     lessons: [
       {
@@ -180,7 +180,7 @@ export const levels = [
     lessonsCount: 10,
     miniProject: "Clone landing page SaaS",
     quizCount: 2,
-    accent: "from-emerald-400/30 to-violet-500/10",
+    accent: "from-emerald-400/30 to-cyan-500/10",
     tags: ["Project", "Next.js", "Deployment"],
     lessons: [
       {
@@ -207,7 +207,7 @@ export const levels = [
     lessonsCount: 8,
     miniProject: "Portfolio website + studi kasus",
     quizCount: 1,
-    accent: "from-rose-400/30 to-violet-500/10",
+    accent: "from-rose-400/30 to-cyan-500/10",
     tags: ["Portfolio", "CV", "Freelance", "Career"],
     lessons: [
       {
@@ -298,7 +298,7 @@ export const backendLevels = [
     lessonsCount: 8,
     miniProject: "Full-stack app deployed",
     quizCount: 2,
-    accent: "from-purple-500/30 to-indigo-500/10",
+    accent: "from-sky-400/30 to-blue-500/10",
     tags: ["Docker", "CI/CD", "Vercel", "AWS"],
     lessons: [],
     comingSoon: true,
@@ -322,7 +322,7 @@ export const fullstackLevels = [
     lessonsCount: 10,
     miniProject: "Fullstack todo app",
     quizCount: 3,
-    accent: "from-indigo-500/30 to-violet-500/10",
+    accent: "from-indigo-500/30 to-cyan-500/10",
     tags: ["API Integration", "Fullstack", "Architecture"],
     lessons: [],
     comingSoon: true,
@@ -342,7 +342,7 @@ export const fullstackLevels = [
     lessonsCount: 16,
     miniProject: "SaaS app sederhana",
     quizCount: 4,
-    accent: "from-slate-400/30 to-indigo-500/10",
+    accent: "from-slate-400/30 to-blue-500/10",
     tags: ["Next.js", "Server Actions", "Prisma", "Vercel"],
     lessons: [],
     comingSoon: true,

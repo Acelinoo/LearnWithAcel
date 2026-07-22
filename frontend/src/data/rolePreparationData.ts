@@ -56,7 +56,7 @@ export const rolePreparationData = {
     essentials: [
       { name: "Visual Studio Code", tag: "Code editor", desc: "Satu editor untuk semua kebutuhanmu.", link: "https://code.visualstudio.com", size: "~90 MB", icon: Code2, tone: "from-accent/30 to-accent-hover/10", must: true },
       { name: "Node.js (LTS)", tag: "Runtime", desc: "Standar industri untuk fullstack JS.", link: "https://nodejs.org", size: "~30 MB", icon: Package, tone: "from-emerald-400/30 to-sky-500/10", must: true },
-      { name: "Docker", tag: "Container", desc: "Sangat membantu untuk virtualisasi server.", link: "https://www.docker.com/", size: "~600 MB", icon: Cpu, tone: "from-blue-400/30 to-indigo-500/10", must: false }
+      { name: "Docker", tag: "Container", desc: "Sangat membantu untuk virtualisasi server.", link: "https://www.docker.com/", size: "~600 MB", icon: Cpu, tone: "from-blue-400/30 to-blue-500/10", must: false }
     ],
     extensions: [
       { name: "Prettier", desc: "Merakit kode otomatis." },

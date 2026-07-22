@@ -353,7 +353,7 @@ export default function LevelManager({ roadmaps, token, onChange }: Props) {
             onChange={(e) =>
               setDraft({ ...draft, accent_color: e.target.value })
             }
-            placeholder="from-violet-500/30 to-fuchsia-500/10"
+            placeholder="from-cyan-500/30 to-blue-500/10"
             hint="Class Tailwind gradient"
             required
           />

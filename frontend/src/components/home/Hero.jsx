@@ -13,17 +13,6 @@ export default function Hero() {
 
       <div className="container-page relative pb-24 pt-20 sm:pt-28">
         <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="flex flex-wrap items-center justify-center gap-2"
-          >
-            <span className="section-eyebrow">
-              <Sparkles size={12} />
-              Platform belajar Web Developer.
-            </span>
-          </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 20 }}

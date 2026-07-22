@@ -170,7 +170,7 @@ export default async function VibeRoadmapPage() {
                       {level.description}
                     </p>
 
-                    <div className="mt-6 grid gap-4 sm:grid-cols-3">
+                    <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3 w-full">
                       {[
                         { label: "Durasi", value: level.duration },
                         {
@@ -193,11 +193,11 @@ export default async function VibeRoadmapPage() {
                       ))}
                     </div>
 
-                    <div className="mt-6 flex flex-col sm:flex-row sm:items-center gap-3 border-t border-white/5 pt-6">
+                    <div className="mt-6 flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between w-full border-t border-white/5 pt-6">
                       <div className="flex items-center gap-2 text-sm text-muted min-w-0 flex-1">
                         <Trophy size={14} className="text-sky-300 shrink-0" />
                         <span className="shrink-0">Project:</span>
-                        <span className="text-foreground truncate">
+                        <span className="text-foreground line-clamp-2 break-words">
                           {level.mini_project}
                         </span>
                       </div>
@@ -228,7 +228,7 @@ export default async function VibeRoadmapPage() {
                               <BookOpen size={14} />
                             </span>
                             <div className="min-w-0 flex-1">
-                              <div className="truncate text-sm font-medium text-foreground">
+                              <div className="text-sm font-medium text-foreground line-clamp-2 break-words min-w-0">
                                 {lesson.title}
                               </div>
                               <div className="mt-0.5 text-xs text-muted">

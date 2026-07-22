@@ -36,7 +36,7 @@ function LevelArticle({ level, i, basePath }) {
       >
         <div className="absolute left-0 top-6 flex h-[52px] w-[52px] items-center justify-center rounded-2xl border border-white/10 bg-card shadow-card md:h-[60px] md:w-[60px]">
           <div
-            className={`flex h-full w-full items-center justify-center rounded-2xl bg-gradient-to-br ${level.accent_color || "from-blue-500/20 to-purple-500/20"}`}
+            className={`flex h-full w-full items-center justify-center rounded-2xl bg-gradient-to-br ${level.accent_color || "from-blue-500/20 to-cyan-500/20"}`}
           >
             <span className="font-display text-lg font-semibold text-foreground md:text-xl">
               0{level.number}
@@ -75,7 +75,7 @@ function LevelArticle({ level, i, basePath }) {
             {level.description}
           </p>
 
-          <div className="mt-6 grid gap-4 sm:grid-cols-3">
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3 w-full">
             {[
               { label: "Durasi", value: level.duration },
               { label: "Level", value: level.difficulty },
@@ -95,11 +95,11 @@ function LevelArticle({ level, i, basePath }) {
             ))}
           </div>
 
-          <div className="mt-6 flex flex-col sm:flex-row sm:items-center gap-3 border-t border-white/5 pt-6">
+          <div className="mt-6 flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between w-full border-t border-white/5 pt-6">
             <div className="flex items-center gap-2 text-sm text-muted min-w-0 flex-1">
               <Trophy size={14} className="text-accent-hover shrink-0" />
               <span className="shrink-0">Mini project:</span>
-              <span className="text-foreground truncate">{level.mini_project}</span>
+              <span className="text-foreground line-clamp-2 break-words">{level.mini_project}</span>
             </div>
             {!isComingSoon && level.lessons?.[0] && (
               <div className="ml-auto flex gap-2">
@@ -126,7 +126,7 @@ function LevelArticle({ level, i, basePath }) {
                     <BookOpen size={14} />
                   </span>
                   <div className="min-w-0 flex-1">
-                    <div className="truncate text-sm font-medium text-foreground">
+                    <div className="text-sm font-medium text-foreground line-clamp-2 break-words min-w-0">
                       {lesson.title}
                     </div>
                     <div className="mt-1 flex items-center gap-2 text-xs text-muted">
