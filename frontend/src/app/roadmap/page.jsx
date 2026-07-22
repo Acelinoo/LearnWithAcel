@@ -44,9 +44,9 @@ function LevelArticle({ level, i, basePath }) {
           </div>
         </div>
 
-        <div className={`card-base group p-6 sm:p-8 ${!isComingSoon ? "card-hover" : ""}`}>
+        <div className={`card-base group p-6 sm:p-8 w-full min-w-0 flex-1 ${!isComingSoon ? "card-hover" : ""}`}>
           <div className="flex flex-wrap items-start justify-between gap-4">
-            <div>
+            <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2">
                 <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-accent-hover">
                   Level 0{level.number}
@@ -57,10 +57,10 @@ function LevelArticle({ level, i, basePath }) {
                   </span>
                 )}
               </div>
-              <h2 className="mt-2 font-display text-2xl font-semibold tracking-tight sm:text-3xl">
+              <h2 className="mt-2 font-display text-2xl font-semibold tracking-tight sm:text-3xl line-clamp-2">
                 {level.title}
               </h2>
-              <p className="mt-1 text-[15px] text-muted">{level.subtitle}</p>
+              <p className="mt-1 text-[15px] text-muted line-clamp-2">{level.subtitle}</p>
             </div>
             <div className="flex flex-wrap gap-2">
               {tags.slice(0, 4).map((t) => (
@@ -216,7 +216,7 @@ export default async function RoadmapPage() {
   }));
 
   return (
-    <div className="container-page py-24">
+    <div className="container-page py-24 w-full max-w-full overflow-x-hidden px-4">
       <Reveal>
         <span className="section-eyebrow">
           <GraduationCap size={12} />

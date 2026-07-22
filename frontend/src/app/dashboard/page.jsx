@@ -17,12 +17,13 @@ import ProgressByLevel from "@/components/dashboard/ProgressByLevel";
 import ContinueLearning from "@/components/dashboard/ContinueLearning";
 import LogoutButton from "@/components/auth/LogoutButton";
 import { getServerUser, getServerStats } from "@/lib/api/server";
-import { getRoadmap } from "@/lib/api/content";
+import { listCategories, getRoadmap } from "@/lib/api/content";
 import {
   aggregateLevels,
   getPopularLessons,
   getTopLevel,
 } from "@/lib/roadmap-utils";
+import DashboardProgressCard from "@/components/dashboard/DashboardProgressCard";
 import { formatCompact } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
@@ -39,10 +40,24 @@ export default async function DashboardPage() {
   if (!user) redirect("/login?redirectTo=/dashboard");
   if (!user.selected_role) redirect("/onboarding");
 
-  const [stats, frontend] = await Promise.all([
+  const [stats, categories] = await Promise.all([
     getServerStats().catch(() => null),
-    getRoadmap(user.selected_role).catch(() => null),
+    listCategories().catch(() => []),
   ]);
+
+  const roadmaps = await Promise.all(
+    categories.map(async (c) => {
+      try {
+        const r = await getRoadmap(c.slug);
+        return [c.slug, r.levels];
+      } catch {
+        return [c.slug, []];
+      }
+    })
+  );
+  const roadmapMap = Object.fromEntries(roadmaps);
+  
+  const frontend = { levels: roadmapMap[user.selected_role] || [] };
 
   const levels = frontend?.levels ?? [];
   const popularLessons = getPopularLessons(levels, 5);
@@ -79,78 +94,53 @@ export default async function DashboardPage() {
       </Reveal>
 
       {/* Bento grid stats */}
-      <div className="mt-10 grid gap-4 grid-cols-1 md:grid-cols-6">
-        <Reveal className="md:col-span-3">
-          <div className="card-base relative h-full overflow-hidden p-4 sm:p-6 md:p-8">
-            <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-accent/20 blur-3xl" />
-            <div className="relative">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2 text-xs uppercase tracking-[0.14em] text-muted">
-                  <TrendingUp size={12} />
-                  Progress kamu
-                </div>
-              </div>
-              <div className="mt-5 flex flex-wrap items-end justify-between gap-4 sm:gap-6">
-                <div>
-                  <div className="font-display text-5xl font-semibold tabular-nums">
-                    {stats
-                      ? `${stats.completed_lessons} / ${stats.total_lessons}`
-                      : "-"}
-                  </div>
-                  <div className="mt-2 text-sm text-muted">
-                    materi sudah kamu selesaikan
-                  </div>
-                </div>
-                <div className="flex items-center gap-1.5 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1 text-xs font-medium text-emerald-300">
-                  <Flame size={12} />
-                  {stats ? `${stats.overall_percentage.toFixed(0)}%` : "0%"}
-                </div>
-              </div>
-
-              {stats && (
-                <div className="mt-8">
-                  <ProgressByLevel byLevel={stats.by_level} />
-                </div>
-              )}
-            </div>
-          </div>
+      <div className="mt-10 grid gap-4 grid-cols-1 lg:grid-cols-2 items-start">
+        <Reveal>
+          <DashboardProgressCard 
+            stats={stats}
+            categories={categories}
+            roadmapMap={roadmapMap}
+            defaultRole={user.selected_role}
+          />
         </Reveal>
 
-        {[
-          {
-            icon: BookOpen,
-            label: "Total materi",
-            value: totalLessons,
-            sub: "di seluruh level",
-          },
-          {
-            icon: Layers,
-            label: "Level tersedia",
-            value: `${levels.length}`,
-            sub: "frontend path",
-          },
-          {
-            icon: Users,
-            label: "Paling populer",
-            value: topLevel ? `0${topLevel.number}` : "-",
-            sub: topLevel?.title ?? "Belum ada level",
-          },
-        ].map((s, i) => (
-          <Reveal key={s.label} delay={0.05 * (i + 1)} className="md:col-span-1">
-            <div className="card-base flex h-full flex-col justify-between p-4 sm:p-5">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] text-accent-hover">
-                <s.icon size={16} />
-              </div>
-              <div className="mt-6">
-                <div className="font-display text-2xl font-semibold">
-                  {s.value}
+        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-2 gap-4">
+          {[
+            {
+              icon: BookOpen,
+              label: "Total materi",
+              value: totalLessons,
+              sub: "di seluruh level",
+            },
+            {
+              icon: Layers,
+              label: "Level tersedia",
+              value: `${levels.length}`,
+              sub: "frontend path",
+            },
+            {
+              icon: Users,
+              label: "Paling populer",
+              value: topLevel ? `0${topLevel.number}` : "-",
+              sub: topLevel?.title ?? "Belum ada level",
+            },
+          ].map((s, i) => (
+            <Reveal key={s.label} delay={0.05 * (i + 1)}>
+              <div className="card-base flex h-[160px] flex-col justify-between p-4 sm:p-5">
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] text-accent-hover">
+                  <s.icon size={16} />
                 </div>
-                <div className="mt-1 text-xs text-muted">{s.label}</div>
-                <div className="text-xs text-muted/70">{s.sub}</div>
+                <div className="mt-6">
+                  <div className="font-display text-2xl font-semibold">
+                    {s.value}
+                  </div>
+                  <div className="mt-1 text-xs text-muted">{s.label}</div>
+                  <div className="text-xs text-muted/70 line-clamp-1">{s.sub}</div>
+                </div>
               </div>
-            </div>
-          </Reveal>
-        ))}
+            </Reveal>
+          ))}
+        </div>
       </div>
 
       {stats && (
