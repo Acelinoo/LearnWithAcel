@@ -31,15 +31,28 @@ class ForbiddenException(HTTPException):
 
 
 # ── Global exception handlers ─────────────────────────────────────────────────
+from app.core.config import settings
+
 async def http_exception_handler(request: Request, exc: HTTPException) -> JSONResponse:
-    return JSONResponse(
+    response = JSONResponse(
         status_code=exc.status_code,
         content={"detail": exc.detail},
     )
+    origin = request.headers.get("origin")
+    if origin and origin in settings.cors_origins_list:
+        response.headers["Access-Control-Allow-Origin"] = origin
+        response.headers["Access-Control-Allow-Credentials"] = "true"
+    return response
 
 
 async def unhandled_exception_handler(request: Request, exc: Exception) -> JSONResponse:
-    return JSONResponse(
+    response = JSONResponse(
         status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
         content={"detail": "An unexpected error occurred. Please try again later."},
     )
+    origin = request.headers.get("origin")
+    if origin and origin in settings.cors_origins_list:
+        response.headers["Access-Control-Allow-Origin"] = origin
+        response.headers["Access-Control-Allow-Credentials"] = "true"
+    return response
+
