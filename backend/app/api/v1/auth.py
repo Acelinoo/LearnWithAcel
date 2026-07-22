@@ -14,6 +14,7 @@ from app.schemas.auth import (
     ResetPasswordRequest,
     TokenResponse,
     UserResponse,
+    UserUpdateRole,
 )
 from app.services import auth_service
 
@@ -49,6 +50,18 @@ async def login(payload: LoginRequest) -> TokenResponse:
 async def me(current_user=Depends(get_current_user)) -> UserResponse:
     """Return the profile of the currently authenticated user."""
     return auth_service.get_user_profile(current_user)
+
+
+@router.put(
+    "/role",
+    response_model=UserResponse,
+    summary="Update user's selected category and role",
+)
+async def update_role(
+    payload: UserUpdateRole, current_user=Depends(get_current_user)
+) -> UserResponse:
+    """Update the current user's selected category and role."""
+    return await auth_service.update_user_role(current_user, payload)
 
 
 @router.post(

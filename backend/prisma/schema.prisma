@@ -14,15 +14,27 @@ datasource db {
 }
 
 model User {
-  id              String               @id @default(uuid())
-  email           String               @unique
-  full_name       String
-  hashed_password String
-  avatar_url      String?
-  is_admin        Boolean              @default(false)
-  created_at      DateTime             @default(now())
-  progress        UserProgress[]
-  reset_tokens    PasswordResetToken[]
+  id                String               @id @default(uuid())
+  email             String               @unique
+  full_name         String
+  hashed_password   String
+  avatar_url        String?
+  selected_category String?
+  selected_role     String?
+  is_admin          Boolean              @default(false)
+  created_at        DateTime             @default(now())
+  
+  // Progress tracking fields
+  xp_total                Int      @default(0)
+  current_streak          Int      @default(0)
+  longest_streak          Int      @default(0)
+  last_activity_at        DateTime?
+  last_opened_lesson_id   String?
+  last_opened_at          DateTime?
+  completed_jalur_lessons String?
+
+  progress          UserProgress[]
+  reset_tokens      PasswordResetToken[]
 
   @@map("users")
 }

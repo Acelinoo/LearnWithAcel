@@ -14,6 +14,7 @@
 
 export const PROGRESS_EVENT = "learnwithacel:progress-updated";
 export const VIEW_EVENT = "learnwithacel:view-tracked";
+export const QUIZ_EVENT = "learnwithacel:quiz-completed";
 
 export type ProgressUpdate = {
   lessonId: string;
@@ -51,6 +52,11 @@ export function emitViewUpdate(update: ViewUpdate): void {
   );
 }
 
+export function emitQuizCompleted(): void {
+  if (typeof window === "undefined") return;
+  window.dispatchEvent(new CustomEvent(QUIZ_EVENT));
+}
+
 export function onProgressUpdate(
   handler: (update: ProgressUpdate) => void,
 ): () => void {
@@ -73,4 +79,13 @@ export function onViewUpdate(
   };
   window.addEventListener(VIEW_EVENT, listener);
   return () => window.removeEventListener(VIEW_EVENT, listener);
+}
+
+export function onQuizCompleted(
+  handler: () => void,
+): () => void {
+  if (typeof window === "undefined") return () => {};
+  const listener = () => handler();
+  window.addEventListener(QUIZ_EVENT, listener);
+  return () => window.removeEventListener(QUIZ_EVENT, listener);
 }

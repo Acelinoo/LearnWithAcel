@@ -6,26 +6,19 @@ import {
   GraduationCap,
   Rocket,
   Trophy,
-  Users,
 } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
-import LevelViewerBadge from "@/components/ui/LevelViewerBadge";
-import LessonViewerBadge from "@/components/ui/LessonViewerBadge";
-import CategoryTabs from "@/components/ui/CategoryTabs";
+import RoadmapFilter from "./RoadmapFilter";
 import { listCategories, getRoadmap } from "@/lib/api/content";
-import {
-  aggregateLevels,
-  categoryToTab,
-  levelTags,
-} from "@/lib/roadmap-utils";
-import { formatCompact } from "@/lib/utils";
+import { getServerUser } from "@/lib/api/server";
+import { levelTags } from "@/lib/roadmap-utils";
 
 export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "Roadmap — Jalur Belajar Developer",
   description:
-    "Jalur belajar terstruktur untuk Frontend, Backend, dan Vibe Coding. Setiap level memiliki materi, quiz, dan mini project.",
+    "Jalur belajar terstruktur untuk Web Development, Cybersecurity, dan Mobile Development.",
 };
 
 function LevelArticle({ level, i, basePath }) {
@@ -43,7 +36,7 @@ function LevelArticle({ level, i, basePath }) {
       >
         <div className="absolute left-0 top-6 flex h-[52px] w-[52px] items-center justify-center rounded-2xl border border-white/10 bg-card shadow-card md:h-[60px] md:w-[60px]">
           <div
-            className={`flex h-full w-full items-center justify-center rounded-2xl bg-gradient-to-br ${level.accent_color}`}
+            className={`flex h-full w-full items-center justify-center rounded-2xl bg-gradient-to-br ${level.accent_color || "from-blue-500/20 to-purple-500/20"}`}
           >
             <span className="font-display text-lg font-semibold text-foreground md:text-xl">
               0{level.number}
@@ -58,12 +51,10 @@ function LevelArticle({ level, i, basePath }) {
                 <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-accent-hover">
                   Level 0{level.number}
                 </span>
-                {isComingSoon ? (
+                {isComingSoon && (
                   <span className="rounded-full border border-white/10 bg-white/[0.04] px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider text-muted">
                     Coming Soon
                   </span>
-                ) : (
-                  <LevelViewerBadge count={level.base_viewers} size="xs" />
                 )}
               </div>
               <h2 className="mt-2 font-display text-2xl font-semibold tracking-tight sm:text-3xl">
@@ -84,12 +75,11 @@ function LevelArticle({ level, i, basePath }) {
             {level.description}
           </p>
 
-          <div className="mt-6 grid gap-4 sm:grid-cols-4">
+          <div className="mt-6 grid gap-4 sm:grid-cols-3">
             {[
               { label: "Durasi", value: level.duration },
               { label: "Level", value: level.difficulty },
-              { label: "Materi", value: `${level.lessons.length} lesson` },
-              { label: "Quiz", value: `${level.quiz_count || 3} soal` },
+              { label: "Materi", value: `${level.lessons?.length || 0} lesson` },
             ].map((m) => (
               <div
                 key={m.label}
@@ -111,7 +101,7 @@ function LevelArticle({ level, i, basePath }) {
               Mini project:{" "}
               <span className="text-foreground">{level.mini_project}</span>
             </div>
-            {!isComingSoon && level.lessons[0] && (
+            {!isComingSoon && level.lessons?.[0] && (
               <div className="ml-auto flex gap-2">
                 <Link
                   href={lessonHref(level.lessons[0].slug)}
@@ -124,7 +114,7 @@ function LevelArticle({ level, i, basePath }) {
             )}
           </div>
 
-          {!isComingSoon && level.lessons.length > 0 && (
+          {!isComingSoon && level.lessons?.length > 0 && (
             <div className="mt-6 grid gap-2 border-t border-white/5 pt-6 sm:grid-cols-2 lg:grid-cols-3">
               {level.lessons.map((lesson) => (
                 <Link
@@ -142,13 +132,6 @@ function LevelArticle({ level, i, basePath }) {
                     <div className="mt-1 flex items-center gap-2 text-xs text-muted">
                       <Clock size={10} />
                       {lesson.duration}
-                      <span className="text-white/10">·</span>
-                      <LessonViewerBadge
-                        count={lesson.base_viewers}
-                        showLabel={false}
-                        bordered={false}
-                        iconSize={10}
-                      />
                     </div>
                   </div>
                 </Link>
@@ -171,7 +154,6 @@ function LevelArticle({ level, i, basePath }) {
 
 async function loadAll() {
   const categories = await listCategories();
-  const tabs = categories.map(categoryToTab);
   const roadmaps = await Promise.all(
     categories.map(async (c) => {
       try {
@@ -182,32 +164,54 @@ async function loadAll() {
       }
     })
   );
-  return { tabs, roadmapMap: new Map(roadmaps) };
+  return { categories, roadmapMap: new Map(roadmaps) };
 }
 
 export default async function RoadmapPage() {
-  let tabs;
-  let roadmapMap;
+  const user = await getServerUser().catch(() => null);
+  let categories = [];
+  let roadmapMap = new Map();
   try {
-    ({ tabs, roadmapMap } = await loadAll());
+    const loaded = await loadAll();
+    categories = loaded.categories;
+    roadmapMap = loaded.roadmapMap;
   } catch {
     return (
       <div className="container-page py-16">
         <h1 className="font-display text-3xl font-semibold">Roadmap</h1>
         <p className="mt-4 text-sm text-muted">
-          Backend belum bisa dijangkau. Jalankan FastAPI di port 8000 dan
-          coba lagi.
+          Gagal mengambil data dari server.
         </p>
       </div>
     );
   }
 
-  // Manual path = "frontend" by default. Vibe has its own dedicated page.
-  const visibleTabs = tabs.filter((t) => t.id !== "vibe");
-  const allLevels = visibleTabs.flatMap(
-    (t) => roadmapMap.get(t.id) || []
-  );
-  const { totalLessons, totalViewers } = aggregateLevels(allLevels);
+  const defaultMainCategory = user?.selected_category || "web";
+  const defaultRole = user?.selected_role || "frontend-developer";
+
+  const panels = categories.map((cat) => ({
+    id: cat.slug,
+    content: (
+      <div className="relative">
+        <div className="absolute left-[26px] top-6 bottom-6 w-px bg-gradient-to-b from-accent/40 via-white/10 to-transparent md:left-[30px]" />
+        <div className="space-y-5">
+          {(roadmapMap.get(cat.slug) || []).map((level, i) => (
+            <LevelArticle
+              key={level.id}
+              level={level}
+              i={i}
+              basePath="/materi"
+            />
+          ))}
+          {(roadmapMap.get(cat.slug) || []).length === 0 && (
+            <p className="text-sm text-muted">
+              Belum ada level untuk kategori ini.
+            </p>
+          )}
+        </div>
+      </div>
+    ),
+  }));
 
   return (
     <div className="container-page py-16">
@@ -254,62 +258,12 @@ export default async function RoadmapPage() {
         </Link>
       </Reveal>
 
-      <Reveal delay={0.15}>
-        <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
-          {[
-            {
-              icon: Users,
-              label: "Total viewers",
-              value: formatCompact(totalViewers),
-            },
-            { icon: BookOpen, label: "Total materi", value: totalLessons },
-            { icon: Trophy, label: "Mini project", value: allLevels.length },
-            { icon: Clock, label: "Estimasi", value: "15 minggu" },
-          ].map((s) => (
-            <div
-              key={s.label}
-              className="card-base flex items-center gap-3 p-4"
-            >
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] text-accent-hover">
-                <s.icon size={16} />
-              </div>
-              <div>
-                <div className="text-xs text-muted">{s.label}</div>
-                <div className="font-display text-lg font-semibold">
-                  {s.value}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </Reveal>
-
       <div className="mt-12">
-        <CategoryTabs
-          categories={visibleTabs}
-          panels={visibleTabs.map((tab) => ({
-            id: tab.id,
-            content: (
-              <div className="relative">
-                <div className="absolute left-[26px] top-6 bottom-6 w-px bg-gradient-to-b from-accent/40 via-white/10 to-transparent md:left-[30px]" />
-                <div className="space-y-5">
-                  {(roadmapMap.get(tab.id) || []).map((level, i) => (
-                    <LevelArticle
-                      key={level.id}
-                      level={level}
-                      i={i}
-                      basePath="/materi"
-                    />
-                  ))}
-                  {(roadmapMap.get(tab.id) || []).length === 0 && (
-                    <p className="text-sm text-muted">
-                      Belum ada level untuk kategori ini.
-                    </p>
-                  )}
-                </div>
-              </div>
-            ),
-          }))}
+        <RoadmapFilter
+          categories={categories}
+          panels={panels}
+          defaultMainCategory={defaultMainCategory}
+          defaultRole={defaultRole}
         />
       </div>
     </div>

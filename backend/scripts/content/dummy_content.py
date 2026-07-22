@@ -1351,24 +1351,90 @@ def generate_rich_lessons(role_name: str, role_slug: str, level_num: int, module
         lesson_data = SPECIFIC_CONTENT[module_title]
         lessons = []
         for i, (title, analogi, pentingnya, lang, code, penjelasan, summary) in enumerate(lesson_data):
+            visual_desc = penjelasan.split('.')[0] if '.' in penjelasan else penjelasan
             content = f"""# {title}
 
-💡 **Analogi Sederhana**
+🏗️ **Analogi & Gambaran Besar**
+
 {analogi}
 
-🚀 **Kenapa Ini Penting?**
+> 💡 **Gambaran Singkat**:
+> Konsep ini sengaja dirancang agar kamu tidak perlu pusing menghafal istilah teknis yang rumit terlebih dahulu. Bayangkan bentuk dan fungsinya di dunia nyata, baru kita bedah kodenya bersama-sama!
+
+---
+
+📖 **Penjelasan Sederhana**
+
+**Kenapa sih teknologi atau konsep ini harus ada dan kita pakai?**
 {pentingnya}
 
-💻 **Contoh Nyata & Kode Sederhana**
+Tanpa pemahaman yang tepat mengenai konsep ini, alur kerja pengembang akan terasa membingungkan, serabutan, dan rawan masalah saat aplikasi bertambah besar. Dengan menguasai materi ini, kodenmu akan jauh lebih terstruktur, efisien, dan siap dipakai di lingkungan profesional!
+
+---
+
+💻 **Contoh Kode & Visualisasi Hasil**
+
+Berikut adalah contoh potongan kode sederhana dan bersih yang menerapkan konsep ini:
+
 ```{lang}
 {code}
 ```
 
-🔍 **Penjelasan Baris per Baris**
+> 🖥️ **Visualisasi & Hasil di Komputer**:
+> Ketika kode di atas dijalankan, sistem/browser akan mengeksekusinya secara berurutan: {visual_desc}. Kamu bisa langsung melihat dampaknya pada aplikasi!
+
+---
+
+🛠️ **Elemen / Fitur Utama yang Sering Dipakai**
+
+Untuk menguasai materi ini dengan cepat, perhatikan komponen-komponen kunci yang paling sering digunakan sehari-hari:
+
 {penjelasan}
 
-📌 **Rangkuman Kilat**
-- {summary}
+---
+
+🔍 **Mitos vs Fakta / Perbandingan Penting**
+
+| Aspek | Mitos (Miskonsepsi Pemula) | Fakta Sebenarnya |
+|---|---|---|
+| **Cara Belajar** | Harus menghafal luar kepala semua kode & atribut. | Cukup pahami logika dasarnya & manfaatkan dokumentasi resmi. |
+| **Penggunaan** | Hanya dipakai di proyek skala besar / industri enterprise. | Digunakan sebagai pilar dasar di *setiap* proyek aplikasi nyata. |
+| **Tujuan** | Untuk membuat kode terlihat rumit & canggih. | Untuk membuat sistem lebih rapi, cepat, aman, dan mudah dirawat. |
+
+---
+
+⚡ **Bagaimana Teknologi Ini Bekerja Bersama Stack Lain**
+
+Di dalam ekosistem **{role_name}**, materi **{title}** tidak berdiri sendiri. Ia adalah jembatan utama yang menghubungkan instruksi dasar dengan modul-modul lanjutan.
+
+Ketika kamu menggabungkan **{title}** dengan tools dan stack pendukung lainnya di role **{role_name}**, aplikasimu akan mendadak jadi jauh lebih interaktif, tangguh, dan siap pakai untuk skala produksi!
+
+---
+
+📌 **Kesimpulan & Rangkuman Ringkas**
+
+- 🎯 **Poin Utama**: {summary}
+- 💡 **Tips Belajar**: Selalu utamakan konsistensi dan pemahaman konsep dasar sebelum melangkah ke fitur yang lebih kompleks.
+- 🚀 **Langkah Selanjutnya**: Coba ketik ulang potongan kode di atas di editor kodenmu sendiri dan rasakan sensasi berhasilnya!
+
+> 💬 *"Koding itu seperti belajar bahasa baru: makin sering kamu berlatih dan mencoba, makin alami kamu mengekspresikan ide-idemu lewat baris kode."*
+
+---
+
+## Quiz
+
+### Soal 1
+
+Apa tujuan utama dari mempelajari dan menerapkan konsep **{title}** pada modul ini?
+
+- A. Mengurangi fungsionalitas sistem agar lebih sederhana.
+- B. Memastikan kode tidak dapat dipahami oleh pihak lain.
+- C. Meningkatkan kualitas, keamanan, atau performa aplikasi secara terstruktur.
+- D. Hanya sekedar tambahan dekoratif tanpa efek teknis nyata.
+
+Jawaban benar: C
+
+Penjelasan: Setiap konsep fundamental yang dipelajari pada role ini ditujukan untuk membangun struktur dan standar aplikasi yang berkualitas tinggi, aman, dan efisien.
 """
             lessons.append({
                 "slug": f"{role_slug}-lesson-{level_num}-{i+1}",
@@ -1382,7 +1448,7 @@ def generate_rich_lessons(role_name: str, role_slug: str, level_num: int, module
             })
         return lessons
 
-    # Universal Fallback (should never be reached if all module titles are covered)
+    # Universal Fallback
     lesson_titles = [
         f"Konsep Mendasar: {module_title}",
         f"Komponen Utama: {module_title}",
@@ -1393,24 +1459,81 @@ def generate_rich_lessons(role_name: str, role_slug: str, level_num: int, module
     for i in range(4):
         content = f"""# {lesson_titles[i]}
 
-💡 **Analogi Sederhana**
-Mempelajari {module_title} itu ibarat belajar mengendarai kendaraan baru. Awalnya terasa kagok dan butuh penyesuaian, namun setelah kamu memahami prinsip dasarnya, seluruh navigasi akan terasa sangat alami.
+🏗️ **Analogi & Gambaran Besar**
 
-🚀 **Kenapa Ini Penting?**
-Sebagai seorang **{role_name}**, modul **{module_title}** adalah pilar utama yang mendasari pekerjaan harian di industri teknologi modern.
+Mempelajari **{module_title}** itu ibarat belajar mengendarai kendaraan baru! Awalnya mungkin terasa canggung, namun setelah kamu memahami prinsip dasarnya, seluruh navigasi dan kontrol akan terasa sangat alami dan menyenangkan.
 
-💻 **Contoh Nyata & Kode**
+> 💡 **Gambaran Singkat**:
+> Mulailah dari membayangkan fungsi utamanya di dunia nyata. Jangan pusing dengan hafalan rumit terlebih dahulu!
+
+---
+
+📖 **Penjelasan Sederhana**
+
+Sebagai seorang **{role_name}**, modul **{module_title}** adalah salah satu pilar utama. Memahaminya dengan baik akan membantumu menyelesaikan tugas harian dengan percaya diri tanpa perlu menyalin kode tanpa arah.
+
+Tanpa konsep ini, kodenmu akan rawan bug dan sulit dikembangkan saat proyek membesar.
+
+---
+
+💻 **Contoh Kode & Visualisasi Hasil**
+
+Lihatlah contoh eksekusi dasar untuk modul ini:
+
 ```text
-// Contoh eksekusi dasar untuk {module_title}
-Execute-Module --title "{module_title}" --step {i+1}
+// Inisialisasi & Eksekusi Modul {module_title}
+Execute-Module --title "{module_title}" --step {i+1} --mode "Beginner-Friendly"
 ```
 
-🔍 **Penjelasan Baris per Baris**
-- Baris di atas menginisialisasi instruksi dasar dari {module_title}.
-- Menjalankan tahapan proses pembelajaran berurutan.
+> 🖥️ **Visualisasi Hasil di Komputer**:
+> Instruksi di atas akan menyiapkan fondasi lingkungan kerja, memproses input dasar, dan menampilkan hasil secara instan di layar console.
 
-📌 **Rangkuman Kilat**
-- Kuasai konsep dasar ini dan selalu jadikan dokumentasi resmi sebagai rujukan utama.
+---
+
+🛠️ **Elemen / Fitur Utama yang Sering Dipakai**
+
+- **Inisialisasi**: Menyiapkan variabel, modul & dependensi awal.
+- **Eksekusi Utama**: Menjalankan logika bisnis, perintah sistem, atau manipulasi data.
+- **Validasi & Output**: Memastikan tidak ada error dan hasil ditampilkan dengan rapi kepada pengguna.
+
+---
+
+🔍 **Mitos vs Fakta / Perbandingan Penting**
+
+| Perbandingan | Konsep Dasar | Praktik Industri |
+|---|---|---|
+| **Fokus Utama** | Memahami *kenapa* kode ditulis. | Mengoptimalkan *efisiensi*, *performa*, dan *keamanan*. |
+| **Pendekatan** | Belajar dari contoh sederhana & analogi. | Membangun komponen yang reusable dan mudah diuji. |
+
+---
+
+⚡ **Bagaimana Teknologi Ini Bekerja Bersama Stack Lain**
+
+Modul ini terhubung langsung dengan alur pembelajaran **{role_name}**. Dengan menguasai bab ini, kamu siap untuk melangkah ke modul berikutnya yang jauh lebih seru!
+
+---
+
+📌 **Kesimpulan & Rangkuman Ringkas**
+
+- 🎯 **Poin Utama**: Kuasai konsep dasar ini dan selalu jadikan dokumentasi resmi sebagai rujukan utama.
+- 🚀 **Aksi**: Jangan ragu untuk mencoba, bereksperimen, dan membuat salah di editor kodenmu!
+
+---
+
+## Quiz
+
+### Soal 1
+
+Apa tujuan utama dari mempelajari modul fundamental seperti **{module_title}**?
+
+- A. Menghafal kode tanpa memahaminya.
+- B. Memahami prinsip dasar agar dapat menyelesaikan masalah teknis yang kompleks secara mandiri.
+- C. Menyalin dan menempel solusi orang lain.
+- D. Mempersulit pengembangan di masa depan.
+
+Jawaban benar: B
+
+Penjelasan: Memahami prinsip dasar yang fundamental adalah kunci untuk menjadi profesional yang dapat memecahkan masalah teknis kompleks secara mandiri.
 """
         lessons.append({
             "slug": f"{role_slug}-lesson-{level_num}-{i+1}",

@@ -168,7 +168,7 @@ async def complete_lesson(user_id: str, lesson_id: str) -> ProgressResponse:
     )
 
     just_completed = existing is None or not existing.is_completed
-    xp_reward = lesson.xp_reward or 0
+    xp_reward = 50  # Hardcoded reward, since it's not in the Prisma schema
 
     progress = await prisma.userprogress.upsert(
         where={"user_id_lesson_id": {"user_id": user_id, "lesson_id": lesson_id}},

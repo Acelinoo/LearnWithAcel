@@ -1,4 +1,4 @@
-import { Monitor, Smartphone, Shield, Database } from "lucide-react";
+import { Monitor, Smartphone, Shield } from "lucide-react";
 
 export const ROLE_CATEGORIES = [
   {
@@ -20,10 +20,42 @@ export const ROLE_CATEGORIES = [
         tasks: ["Node.js", "Python", "Database"],
       },
       {
-        slug: "full-stack-developer",
-        name: "Full-Stack Developer",
+        slug: "fullstack-developer",
+        name: "Fullstack Developer",
         description: "Menguasai frontend dan backend, mampu membangun aplikasi web utuh sendirian.",
-        tasks: ["Frontend", "Backend", "DevOps Dasar"],
+        tasks: ["Frontend", "Backend", "Integration"],
+      },
+    ],
+  },
+  {
+    id: "cyber",
+    title: "Cybersecurity & Security",
+    icon: Shield,
+    description: "Amankan sistem, tangani insiden siber, dan uji celah keamanan.",
+    roles: [
+      {
+        slug: "penetration-tester",
+        name: "Penetration Tester",
+        description: "Hacker etis yang bertugas mencari celah keamanan sistem sebelum diretas pihak jahat.",
+        tasks: ["Uji Penetrasi", "OWASP Top 10", "Burp Suite"],
+      },
+      {
+        slug: "soc-analyst",
+        name: "SOC Analyst",
+        description: "Menganalisis log dan mendeteksi ancaman secara real-time di jaringan.",
+        tasks: ["SIEM", "Wireshark", "Log Analysis"],
+      },
+      {
+        slug: "security-engineer",
+        name: "Security Engineer",
+        description: "Merancang dan membangun arsitektur keamanan untuk sistem perusahaan.",
+        tasks: ["Firewall", "IDS/IPS", "Cloud Security"],
+      },
+      {
+        slug: "malware-analyst",
+        name: "Malware Analyst",
+        description: "Menganalisis dan membedah perangkat lunak berbahaya untuk memahami cara kerjanya.",
+        tasks: ["Bahasa C", "Assembly", "Ghidra / IDA"],
       },
     ],
   },
@@ -37,59 +69,19 @@ export const ROLE_CATEGORIES = [
         slug: "android-developer",
         name: "Android Developer",
         description: "Membangun aplikasi native khusus untuk sistem operasi Android.",
-        tasks: ["Kotlin", "Android Studio", "UI Mobile"],
+        tasks: ["Kotlin", "Android Studio", "Compose"],
       },
       {
         slug: "ios-developer",
         name: "iOS Developer",
         description: "Membangun aplikasi native eksklusif untuk ekosistem Apple (iPhone, iPad).",
-        tasks: ["Swift", "Xcode", "Standar Apple"],
+        tasks: ["Swift", "SwiftUI", "Xcode"],
       },
       {
-        slug: "cross-platform-developer",
-        name: "Cross-Platform Developer",
+        slug: "flutter-developer",
+        name: "Flutter Developer",
         description: "Membangun aplikasi mobile yang bisa berjalan di Android maupun iOS dengan satu basis kode.",
-        tasks: ["Flutter", "React Native", "Optimasi"],
-      },
-    ],
-  },
-  {
-    id: "cyber",
-    title: "Cybersecurity & Network",
-    icon: Shield,
-    description: "Amankan sistem dan kelola infrastruktur jaringan.",
-    roles: [
-      {
-        slug: "penetration-tester",
-        name: "Penetration Tester",
-        description: "Hacker etis yang bertugas mencari celah keamanan sistem sebelum diretas pihak jahat.",
-        tasks: ["Uji Penetrasi", "Laporan Kerentanan", "Kali Linux"],
-      },
-      {
-        slug: "network-engineer",
-        name: "Network Engineer",
-        description: "Merancang, mengimplementasikan, dan mengelola jaringan komputer.",
-        tasks: ["Routing", "Switching", "TCP/IP"],
-      },
-    ],
-  },
-  {
-    id: "data",
-    title: "Data & AI",
-    icon: Database,
-    description: "Olah data dan kembangkan model kecerdasan buatan.",
-    roles: [
-      {
-        slug: "data-scientist",
-        name: "Data Analyst / Scientist",
-        description: "Menganalisis data dalam jumlah besar untuk menemukan pola dan insight bisnis.",
-        tasks: ["Python", "SQL", "Visualisasi Data"],
-      },
-      {
-        slug: "machine-learning-engineer",
-        name: "Machine Learning Engineer",
-        description: "Mengembangkan model kecerdasan buatan (AI) yang dapat belajar dari data.",
-        tasks: ["TensorFlow", "PyTorch", "Optimasi AI"],
+        tasks: ["Dart", "Flutter UI", "State Management"],
       },
     ],
   },

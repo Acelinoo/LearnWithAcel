@@ -1,32 +1,33 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
   ArrowLeft,
-  Monitor,
-  Smartphone,
-  Shield,
-  Database,
   CheckCircle2,
   Sparkles,
 } from "lucide-react";
-import { updateRole } from "@/lib/api/auth";
+import { updateRole, getMe } from "@/lib/api/auth";
 import { getClientToken } from "@/lib/auth/token";
 import { getRoadmap } from "@/lib/api/content";
 import { ROLE_CATEGORIES as CATEGORIES } from "@/lib/constants";
 
-
-
-
-export default function PilihJalurPage() {
+export default function OnboardingPage() {
   const router = useRouter();
   const [step, setStep] = useState(1);
   const [selectedCat, setSelectedCat] = useState(null);
   const [selectedRole, setSelectedRole] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    const token = getClientToken();
+    if (!token) {
+      router.push("/login?redirectTo=/onboarding");
+      return;
+    }
+  }, [router]);
 
   const activeCategory = CATEGORIES.find((c) => c.id === selectedCat);
 
@@ -53,11 +54,13 @@ export default function PilihJalurPage() {
         return;
       }
       
+      // Update selected category and role in backend
       await updateRole(token, {
         selected_category: selectedCat,
         selected_role: selectedRole,
       });
 
+      // Fetch first level & first lesson for this role
       let targetUrl = "/dashboard";
       try {
         const roadmap = await getRoadmap(selectedRole);
@@ -67,13 +70,13 @@ export default function PilihJalurPage() {
           targetUrl = `/materi/${firstLevel.slug}/${firstLesson.slug}`;
         }
       } catch (err) {
-        console.warn("Gagal mendapatkan roadmap, fallback ke dashboard", err);
+        console.warn("Gagal mengambil roadmap, fallback ke dashboard", err);
       }
 
       window.location.href = targetUrl;
     } catch (err) {
       console.error(err);
-      alert("Terjadi kesalahan. Silakan coba lagi.");
+      alert("Terjadi kesalahan saat menyimpan pilihan role. Silakan coba lagi.");
       setIsSubmitting(false);
     }
   };
@@ -110,7 +113,7 @@ export default function PilihJalurPage() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 20 }}
-                className="grid gap-4 sm:grid-cols-2"
+                className="grid gap-4 sm:grid-cols-3"
               >
                 {CATEGORIES.map((cat) => (
                   <button
@@ -176,7 +179,7 @@ export default function PilihJalurPage() {
         {/* Footer Actions */}
         <div className="mt-12 flex items-center justify-between border-t border-border pt-6">
           {step === 1 ? (
-            <div /> // Spacer
+            <div />
           ) : (
             <button
               onClick={handleBack}

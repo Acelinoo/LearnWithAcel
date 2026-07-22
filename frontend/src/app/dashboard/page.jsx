@@ -46,6 +46,7 @@ async function loadFrontendRoadmap() {
 export default async function DashboardPage() {
   const user = await getServerUser();
   if (!user) redirect("/login?redirectTo=/dashboard");
+  if (!user.selected_role) redirect("/onboarding");
 
   const [stats, frontend] = await Promise.all([
     getServerStats(),
@@ -78,7 +79,7 @@ export default async function DashboardPage() {
           </div>
           <div className="flex items-center gap-2">
             <LogoutButton variant="secondary" />
-            <Link href="/pilih-jalur" className="btn-primary">
+            <Link href="/roadmap" className="btn-primary">
               <PlayCircle size={16} />
               Mulai belajar
             </Link>
@@ -97,7 +98,6 @@ export default async function DashboardPage() {
                   <TrendingUp size={12} />
                   Progress kamu
                 </div>
-                <ViewerBadge count={totalViewers} compact />
               </div>
               <div className="mt-5 flex items-end justify-between gap-6">
                 <div>

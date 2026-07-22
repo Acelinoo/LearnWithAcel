@@ -14,7 +14,7 @@
  * still the source of truth for question text and answers.
  */
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import {
   Check,
   CircleHelp,
@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import type { QuizQuestion } from "@/lib/markdown/extract";
 import { renderInline } from "@/lib/markdown/inline";
+import { emitQuizCompleted } from "@/lib/progress-events";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -86,6 +87,12 @@ export default function Quiz({ questions }: Props) {
 
   const allDone = totalCleared === questions.length;
   const progressPct = (totalCleared / questions.length) * 100;
+
+  useEffect(() => {
+    if (allDone) {
+      emitQuizCompleted();
+    }
+  }, [allDone]);
 
   return (
     <div className="space-y-5">

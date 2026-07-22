@@ -17,14 +17,14 @@
  *     the canonical state.
  */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { CheckCircle2, Flame, Loader2, Sparkles } from "lucide-react";
 import { completeLesson } from "@/lib/api/progress";
 import { ApiError } from "@/lib/api/client";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { friendlyAuthError } from "@/lib/auth/errors";
-import { emitProgressUpdate } from "@/lib/progress-events";
+import { emitProgressUpdate, onQuizCompleted } from "@/lib/progress-events";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -32,6 +32,7 @@ type Props = {
   levelId?: string;
   initiallyCompleted?: boolean;
   nextHref?: string;
+  hasQuiz?: boolean;
 };
 
 type Celebration = {
@@ -44,6 +45,7 @@ export default function CompleteLessonButton({
   levelId,
   initiallyCompleted = false,
   nextHref,
+  hasQuiz = false,
 }: Props) {
   const router = useRouter();
   const { token, user, signOut } = useAuth();
@@ -51,6 +53,11 @@ export default function CompleteLessonButton({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [celebration, setCelebration] = useState<Celebration | null>(null);
+  const [quizCompleted, setQuizCompleted] = useState(initiallyCompleted || !hasQuiz);
+
+  useEffect(() => {
+    return onQuizCompleted(() => setQuizCompleted(true));
+  }, []);
 
   async function handleClick() {
     if (loading || done) return;
@@ -134,13 +141,15 @@ export default function CompleteLessonButton({
       <button
         type="button"
         onClick={handleClick}
-        disabled={loading || done}
+        disabled={loading || done || (!quizCompleted && hasQuiz)}
         className={cn(
           "inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-all",
           done
             ? "border border-emerald-400/30 bg-emerald-400/[0.08] text-emerald-300"
-            : "bg-accent text-white shadow-glow hover:bg-accent-hover hover:shadow-glow-lg active:scale-[0.98]",
-          (loading || done) && "cursor-default",
+            : !quizCompleted && hasQuiz
+              ? "bg-muted/10 text-muted cursor-not-allowed"
+              : "bg-accent text-white shadow-glow hover:bg-accent-hover hover:shadow-glow-lg active:scale-[0.98]",
+          (loading || done || (!quizCompleted && hasQuiz)) && "cursor-default",
         )}
       >
         {loading ? (
@@ -152,6 +161,10 @@ export default function CompleteLessonButton({
           <>
             <CheckCircle2 size={15} />
             Sudah selesai
+          </>
+        ) : !quizCompleted && hasQuiz ? (
+          <>
+            Selesaikan kuis di atas
           </>
         ) : (
           <>

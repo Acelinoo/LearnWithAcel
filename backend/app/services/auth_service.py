@@ -19,6 +19,7 @@ from app.schemas.auth import (
     ResetPasswordRequest,
     TokenResponse,
     UserResponse,
+    UserUpdateRole,
 )
 from app.core.config import settings
 
@@ -81,7 +82,21 @@ def get_user_profile(user) -> UserResponse:
         avatar_url=user.avatar_url,
         is_admin=user.is_admin,
         created_at=user.created_at.isoformat(),
+        selected_category=user.selected_category,
+        selected_role=user.selected_role,
     )
+
+
+async def update_user_role(user, payload: UserUpdateRole) -> UserResponse:
+    """Update the user's selected category and role."""
+    updated_user = await prisma.user.update(
+        where={"id": user.id},
+        data={
+            "selected_category": payload.selected_category,
+            "selected_role": payload.selected_role,
+        },
+    )
+    return get_user_profile(updated_user)
 
 
 # ── Forgot / reset password ───────────────────────────────────────────────────
