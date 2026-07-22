@@ -90,7 +90,7 @@ export default async function DashboardPage() {
                   Progress kamu
                 </div>
               </div>
-              <div className="mt-5 flex items-end justify-between gap-6">
+              <div className="mt-5 flex flex-wrap items-end justify-between gap-4 sm:gap-6">
                 <div>
                   <div className="font-display text-5xl font-semibold tabular-nums">
                     {stats
@@ -165,7 +165,7 @@ export default async function DashboardPage() {
         {/* Popular lessons */}
         <Reveal className="lg:col-span-2">
           <section className="card-base p-6 sm:p-8">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <div className="flex items-center gap-2">
                   <Flame size={16} className="text-accent-hover" />
@@ -179,7 +179,7 @@ export default async function DashboardPage() {
               </div>
               <Link
                 href="/roadmap"
-                className="text-sm text-muted transition-colors hover:text-accent-hover"
+                className="shrink-0 text-sm text-muted transition-colors hover:text-accent-hover"
               >
                 Lihat semua
               </Link>

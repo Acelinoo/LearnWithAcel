@@ -45,7 +45,7 @@ export default function AboutCreator() {
                   GitHub
                 </a>
                 <a
-                  href="https://example.com"
+                  href="https://acelino.vercel.app"
                   className="btn-secondary"
                 >
                   <Globe size={16} />

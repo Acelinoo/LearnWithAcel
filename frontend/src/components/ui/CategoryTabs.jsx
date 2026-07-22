@@ -9,21 +9,25 @@ export default function CategoryTabs({ categories, panels }) {
 
   return (
     <div>
-      <div className="flex flex-wrap gap-2">
-        {categories.map((cat) => (
-          <button
-            key={cat.id}
-            onClick={() => setActive(cat.id)}
-            className={`flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium transition-all ${
-              active === cat.id
-                ? "bg-accent/20 text-accent-hover border border-accent/30"
-                : "border border-white/10 bg-white/[0.02] text-muted hover:border-white/20 hover:text-foreground"
-            }`}
-          >
-            {cat.label}
-            {!cat.available && <Lock size={12} className="text-muted" />}
-          </button>
-        ))}
+      <div className="relative -mx-5 px-5 sm:mx-0 sm:px-0">
+        <div className="flex overflow-x-auto pb-2 gap-2 no-scrollbar scroll-smooth">
+          {categories.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setActive(cat.id)}
+              className={`flex shrink-0 items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium transition-all ${
+                active === cat.id
+                  ? "bg-accent/20 text-accent-hover border border-accent/30"
+                  : "border border-white/10 bg-white/[0.02] text-muted hover:border-white/20 hover:text-foreground"
+              }`}
+            >
+              {cat.label}
+              {!cat.available && <Lock size={12} className="text-muted" />}
+            </button>
+          ))}
+        </div>
+        {/* Right fade mask for hint that it's scrollable */}
+        <div className="pointer-events-none absolute bottom-2 right-0 top-0 w-12 bg-gradient-to-l from-background to-transparent sm:hidden" />
       </div>
 
       {/* Role info card */}
