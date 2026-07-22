@@ -57,8 +57,6 @@ LESSON_DB_FIELDS = {
     "content",
     "duration",
     "order_index",
-    "xp_reward",
-    "is_project",
 }
 
 
