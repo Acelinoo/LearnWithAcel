@@ -34,6 +34,8 @@ export type LessonSidebarLesson = {
   duration?: string;
   /** True when this is the lesson the user is currently reading. */
   isCurrent?: boolean;
+  /** True if this lesson is the final practical lab/project. */
+  isProject?: boolean;
 };
 
 type Props = {
@@ -195,7 +197,10 @@ export default function LessonSidebar({
                         )}
                       </span>
                       <span className="flex-1 text-[13px] leading-snug">
-                        {l.title}
+                        {l.isProject 
+                          ? `🏆 Mini Project: ${l.title.replace(/^(Mini Project(\s*& Studi Kasus)?|Proyek Akhir|Praktik):?\s*/i, "")}`
+                          : l.title
+                        }
                         {l.duration && (
                           <span className="block text-[11px] text-muted/70">
                             {l.duration}

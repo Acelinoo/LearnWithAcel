@@ -30,7 +30,7 @@ function LevelArticle({ level, i, basePath }) {
     <Reveal delay={i * 0.05}>
       <article
         id={level.slug}
-        className={`relative scroll-mt-24 pl-16 md:pl-20 ${
+        className={`relative scroll-mt-24 pl-16 md:pl-20 w-full max-w-full overflow-hidden ${
           isComingSoon ? "opacity-60" : ""
         }`}
       >
@@ -95,11 +95,11 @@ function LevelArticle({ level, i, basePath }) {
             ))}
           </div>
 
-          <div className="mt-6 flex flex-wrap items-center gap-3 border-t border-white/5 pt-6">
-            <div className="flex items-center gap-2 text-sm text-muted">
-              <Trophy size={14} className="text-accent-hover" />
-              Mini project:{" "}
-              <span className="text-foreground">{level.mini_project}</span>
+          <div className="mt-6 flex flex-col sm:flex-row sm:items-center gap-3 border-t border-white/5 pt-6">
+            <div className="flex items-center gap-2 text-sm text-muted min-w-0 flex-1">
+              <Trophy size={14} className="text-accent-hover shrink-0" />
+              <span className="shrink-0">Mini project:</span>
+              <span className="text-foreground truncate">{level.mini_project}</span>
             </div>
             {!isComingSoon && level.lessons?.[0] && (
               <div className="ml-auto flex gap-2">

@@ -7,6 +7,7 @@ import LessonShell from "@/components/lesson/LessonShell";
 import LessonSidebar from "@/components/lesson/LessonSidebar";
 import CompleteLessonButton from "@/components/lesson/CompleteLessonButton";
 import LessonShortcuts from "@/components/lesson/LessonShortcuts";
+import PracticalLabRenderer from "@/components/lesson/PracticalLabRenderer";
 import { Markdown, extractHeadings } from "@/lib/markdown";
 import { getLesson, getRoadmap } from "@/lib/api/content";
 import { getServerStats } from "@/lib/api/server";
@@ -95,6 +96,7 @@ export default async function LessonPage({ params }) {
     title: l.title,
     duration: l.duration,
     isCurrent: l.slug === params.lesson,
+    isProject: l.is_project,
   }));
 
   const roleName = category?.name || category?.role || "LearnWithAcel";
@@ -133,64 +135,72 @@ export default async function LessonPage({ params }) {
           </Link>
         </Reveal>
 
-        {/* Meta Badge Header */}
-        <Reveal delay={0.05}>
-          <div className="mt-6 flex flex-wrap items-center gap-2">
-            <span className="section-eyebrow uppercase tracking-wider">
-              {roleName} • {level ? `LEVEL 0${level.number}` : "LEVEL"}
-            </span>
-            <span className="chip">
-              <Clock size={12} />
-              {lesson.duration}
-            </span>
-            <span className="chip border-accent/30 bg-accent/10 text-accent-hover">
-              <Trophy size={12} />
-              +{xpReward} XP
-            </span>
-            {isCompleted && (
-              <span className="inline-flex items-center gap-1 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-2.5 py-0.5 text-xs font-medium text-emerald-300">
-                <CheckCircle2 size={12} />
-                Selesai
-              </span>
-            )}
+        {/* Meta Badge Header & Content */}
+        {lesson.is_project ? (
+          <div className="mt-8">
+            <PracticalLabRenderer lesson={lesson} />
           </div>
-        </Reveal>
+        ) : (
+          <>
+            <Reveal delay={0.05}>
+              <div className="mt-6 flex flex-wrap items-center gap-2">
+                <span className="section-eyebrow uppercase tracking-wider">
+                  {roleName} • {level ? `LEVEL 0${level.number}` : "LEVEL"}
+                </span>
+                <span className="chip">
+                  <Clock size={12} />
+                  {lesson.duration}
+                </span>
+                <span className="chip border-accent/30 bg-accent/10 text-accent-hover">
+                  <Trophy size={12} />
+                  +{xpReward} XP
+                </span>
+                {isCompleted && (
+                  <span className="inline-flex items-center gap-1 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-2.5 py-0.5 text-xs font-medium text-emerald-300">
+                    <CheckCircle2 size={12} />
+                    Selesai
+                  </span>
+                )}
+              </div>
+            </Reveal>
 
-        <Reveal delay={0.1}>
-          <h1 className="mt-4 font-display text-3xl font-semibold tracking-tight text-balance sm:text-4xl lg:text-5xl">
-            {lesson.title}
-          </h1>
-        </Reveal>
+            <Reveal delay={0.1}>
+              <h1 className="mt-4 font-display text-3xl font-semibold tracking-tight text-balance sm:text-4xl lg:text-5xl">
+                {lesson.title}
+              </h1>
+            </Reveal>
 
-        <Reveal delay={0.15}>
-          <p className="mt-4 text-base leading-relaxed text-muted sm:text-lg">
-            {lesson.summary}
-          </p>
-        </Reveal>
+            <Reveal delay={0.15}>
+              <p className="mt-4 text-base leading-relaxed text-muted sm:text-lg">
+                {lesson.summary}
+              </p>
+            </Reveal>
 
-        {/* Content Body */}
-        <div className="mt-10">
-          <Markdown source={lesson.content} />
-        </div>
-
-        {/* Bottom Bar & Action */}
-        <Reveal>
-          <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-8">
-            <div className="flex items-center gap-2 text-sm text-muted">
-              <BookOpen size={14} className="text-accent-hover" />
-              <span>
-                Materi {lessonIndex} dari {lessonsInLevel.length || 4} di {level?.title || "Level ini"}
-              </span>
+            {/* Content Body */}
+            <div className="mt-10">
+              <Markdown source={lesson.content} />
             </div>
-            <CompleteLessonButton
-              lessonId={lesson.id}
-              levelId={level?.id}
-              initiallyCompleted={isCompleted}
-              nextHref={next ? `/materi/${params.level}/${next.slug}` : undefined}
-              hasQuiz={hasQuiz}
-            />
-          </div>
-        </Reveal>
+
+            {/* Bottom Bar & Action */}
+            <Reveal>
+              <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-8">
+                <div className="flex items-center gap-2 text-sm text-muted">
+                  <BookOpen size={14} className="text-accent-hover" />
+                  <span>
+                    Materi {lessonIndex} dari {lessonsInLevel.length || 4} di {level?.title || "Level ini"}
+                  </span>
+                </div>
+                <CompleteLessonButton
+                  lessonId={lesson.id}
+                  levelId={level?.id}
+                  initiallyCompleted={isCompleted}
+                  nextHref={next ? `/materi/${params.level}/${next.slug}` : undefined}
+                  hasQuiz={hasQuiz}
+                />
+              </div>
+            </Reveal>
+          </>
+        )}
 
         {/* Next Lesson Card */}
         {next && (

@@ -130,7 +130,7 @@ export default async function VibeRoadmapPage() {
               <Reveal key={level.id} delay={i * 0.04}>
                 <article
                   id={level.slug}
-                  className="relative scroll-mt-24 pl-16 md:pl-20"
+                  className="relative scroll-mt-24 pl-16 md:pl-20 w-full max-w-full overflow-hidden"
                 >
                   <div className="absolute left-0 top-6 flex h-[52px] w-[52px] items-center justify-center rounded-2xl border border-white/10 bg-card shadow-card md:h-[60px] md:w-[60px]">
                     <div
@@ -142,18 +142,18 @@ export default async function VibeRoadmapPage() {
                     </div>
                   </div>
 
-                  <div className="card-base card-hover group p-6 sm:p-8">
+                  <div className="card-base card-hover group p-6 sm:p-8 w-full min-w-0 flex-1">
                     <div className="flex flex-wrap items-start justify-between gap-4">
-                      <div>
+                      <div className="min-w-0 flex-1">
                         <div className="flex items-center gap-2">
                           <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-sky-300">
                             Level 0{level.number}
                           </span>
                         </div>
-                        <h2 className="mt-2 font-display text-2xl font-semibold tracking-tight sm:text-3xl">
+                        <h2 className="mt-2 font-display text-2xl font-semibold tracking-tight sm:text-3xl line-clamp-2">
                           {level.title}
                         </h2>
-                        <p className="mt-1 text-[15px] text-muted">
+                        <p className="mt-1 text-[15px] text-muted line-clamp-2">
                           {level.subtitle}
                         </p>
                       </div>
@@ -193,11 +193,11 @@ export default async function VibeRoadmapPage() {
                       ))}
                     </div>
 
-                    <div className="mt-6 flex flex-wrap items-center gap-3 border-t border-white/5 pt-6">
-                      <div className="flex items-center gap-2 text-sm text-muted">
-                        <Trophy size={14} className="text-sky-300" />
-                        Project:{" "}
-                        <span className="text-foreground">
+                    <div className="mt-6 flex flex-col sm:flex-row sm:items-center gap-3 border-t border-white/5 pt-6">
+                      <div className="flex items-center gap-2 text-sm text-muted min-w-0 flex-1">
+                        <Trophy size={14} className="text-sky-300 shrink-0" />
+                        <span className="shrink-0">Project:</span>
+                        <span className="text-foreground truncate">
                           {level.mini_project}
                         </span>
                       </div>
