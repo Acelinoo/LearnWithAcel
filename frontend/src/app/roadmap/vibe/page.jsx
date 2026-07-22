@@ -66,13 +66,8 @@ export default async function VibeRoadmapPage() {
       </Reveal>
 
       <Reveal delay={0.15}>
-        <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
+        <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-3">
           {[
-            {
-              icon: Users,
-              label: "Total viewers",
-              value: formatCompact(totalViewers),
-            },
             { icon: BookOpen, label: "Total materi", value: totalLessons },
             {
               icon: Trophy,

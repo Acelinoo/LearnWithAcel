@@ -264,10 +264,7 @@ export default async function DashboardPage() {
         </div>
       </div>
 
-      {/* Format compact total viewers shown at the bottom */}
-      <p className="mt-12 text-center text-[11px] text-muted/70">
-        Total viewers di platform: {formatCompact(totalViewers)}
-      </p>
+
     </div>
   );
 }
