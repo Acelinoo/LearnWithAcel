@@ -88,7 +88,7 @@ export default function ContinueLearning({ byLevel, continueLesson }: Props) {
   const showHeadline = target !== null;
 
   return (
-    <section className="relative overflow-hidden rounded-2xl border border-border bg-black/30 p-6 backdrop-blur-xl sm:p-8">
+    <section className="relative overflow-hidden rounded-2xl border border-border bg-black/30 p-4 backdrop-blur-xl sm:p-6 md:p-8">
       <div
         aria-hidden
         className="pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full bg-accent/15 blur-3xl"
@@ -114,7 +114,7 @@ export default function ContinueLearning({ byLevel, continueLesson }: Props) {
       {target && (
         <Link
           href={lessonHref(target)}
-          className="group relative mt-6 flex items-center justify-between gap-4 rounded-xl border border-accent/25 bg-accent/[0.05] p-5 transition-all duration-300 hover:border-accent/45 hover:bg-accent/[0.08]"
+          className="group relative mt-6 flex items-center justify-between gap-3 sm:gap-4 rounded-xl border border-accent/25 bg-accent/[0.05] p-4 sm:p-5 transition-all duration-300 hover:border-accent/45 hover:bg-accent/[0.08]"
         >
           <div className="min-w-0 flex-1">
             <div className="text-[11px] uppercase tracking-[0.14em] text-accent-hover/80">
@@ -140,7 +140,7 @@ export default function ContinueLearning({ byLevel, continueLesson }: Props) {
             <li key={row.level_id}>
               <Link
                 href={`/roadmap${row.category_slug && row.category_slug !== "frontend" ? `?path=${row.category_slug}` : ""}#${row.level_slug}`}
-                className="group flex items-center gap-4 rounded-xl border border-border bg-black/30 p-4 transition-all hover:-translate-y-0.5 hover:border-accent/30"
+                className="group flex items-center gap-3 sm:gap-4 rounded-xl border border-border bg-black/30 p-3.5 sm:p-4 transition-all hover:-translate-y-0.5 hover:border-accent/30"
               >
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-border bg-black/40 text-foreground transition-transform group-hover:scale-105">
                   <BookOpen size={15} />

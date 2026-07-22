@@ -53,7 +53,7 @@ export default async function DashboardPage() {
     user.full_name || user.email?.split("@")[0] || "Learner";
 
   return (
-    <div className="container-page py-16">
+    <div className="w-full max-w-full overflow-x-hidden px-4 sm:px-6 lg:px-8 py-16">
       <Reveal>
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
@@ -79,9 +79,9 @@ export default async function DashboardPage() {
       </Reveal>
 
       {/* Bento grid stats */}
-      <div className="mt-10 grid gap-4 md:grid-cols-6">
+      <div className="mt-10 grid gap-4 grid-cols-1 md:grid-cols-6">
         <Reveal className="md:col-span-3">
-          <div className="card-base relative h-full overflow-hidden p-6 sm:p-8">
+          <div className="card-base relative h-full overflow-hidden p-4 sm:p-6 md:p-8">
             <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-accent/20 blur-3xl" />
             <div className="relative">
               <div className="flex items-center justify-between">
@@ -137,7 +137,7 @@ export default async function DashboardPage() {
           },
         ].map((s, i) => (
           <Reveal key={s.label} delay={0.05 * (i + 1)} className="md:col-span-1">
-            <div className="card-base flex h-full flex-col justify-between p-5">
+            <div className="card-base flex h-full flex-col justify-between p-4 sm:p-5">
               <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] text-accent-hover">
                 <s.icon size={16} />
               </div>
@@ -161,10 +161,10 @@ export default async function DashboardPage() {
         </Reveal>
       )}
 
-      <div className="mt-10 grid gap-6 lg:grid-cols-3">
+      <div className="mt-10 grid gap-6 grid-cols-1 lg:grid-cols-3">
         {/* Popular lessons */}
         <Reveal className="lg:col-span-2">
-          <section className="card-base p-6 sm:p-8">
+          <section className="card-base p-4 sm:p-6 md:p-8">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <div className="flex items-center gap-2">
@@ -195,13 +195,13 @@ export default async function DashboardPage() {
                 <li key={`${l.levelSlug}/${l.slug}`}>
                   <Link
                     href={`/materi/${l.levelSlug}/${l.slug}`}
-                    className="group flex items-center gap-4 rounded-xl border border-white/5 bg-white/[0.02] p-4 transition-all hover:border-accent/30 hover:bg-white/[0.04]"
+                    className="group flex items-center gap-3 sm:gap-4 rounded-xl border border-white/5 bg-white/[0.02] p-3 sm:p-4 transition-all hover:border-accent/30 hover:bg-white/[0.04]"
                   >
                     <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] font-mono text-xs text-accent-hover">
                       {String(idx + 1).padStart(2, "0")}
                     </span>
                     <div className="min-w-0 flex-1">
-                      <div className="text-[11px] uppercase tracking-wider text-muted">
+                      <div className="text-[11px] uppercase tracking-wider text-muted truncate">
                         Level 0{l.levelNumber} — {l.levelTitle}
                       </div>
                       <div className="mt-0.5 truncate text-sm font-medium text-foreground group-hover:text-accent-hover">
@@ -227,7 +227,7 @@ export default async function DashboardPage() {
 
         <div className="space-y-6">
           <Reveal>
-            <section className="card-base p-6">
+            <section className="card-base p-4 sm:p-6">
               <div className="flex items-center gap-2">
                 <TrendingUp size={16} className="text-accent-hover" />
                 <h2 className="font-display text-base font-semibold">
@@ -241,7 +241,7 @@ export default async function DashboardPage() {
           </Reveal>
 
           <Reveal delay={0.05}>
-            <section className="relative overflow-hidden rounded-2xl border border-accent/25 bg-gradient-to-br from-accent/10 via-card to-card p-6">
+            <section className="relative overflow-hidden rounded-2xl border border-accent/25 bg-gradient-to-br from-accent/10 via-card to-card p-4 sm:p-6">
               <div className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-accent/20 blur-3xl" />
               <div className="relative">
                 <div className="flex items-center gap-2">
