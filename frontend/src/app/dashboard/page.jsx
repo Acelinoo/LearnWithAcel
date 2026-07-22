@@ -12,8 +12,6 @@ import {
   Users,
 } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
-import LessonViewerBadge from "@/components/ui/LessonViewerBadge";
-import ViewerBadge from "@/components/ui/ViewerBadge";
 import LevelLeaderboard from "@/components/dashboard/LevelLeaderboard";
 import ProgressByLevel from "@/components/dashboard/ProgressByLevel";
 import ContinueLearning from "@/components/dashboard/ContinueLearning";
@@ -35,13 +33,6 @@ export const metadata = {
     "Pantau aktivitas platform: progress kamu, materi terpopuler, level paling banyak dibuka.",
 };
 
-async function loadFrontendRoadmap() {
-  try {
-    return await getRoadmap("frontend");
-  } catch {
-    return null;
-  }
-}
 
 export default async function DashboardPage() {
   const user = await getServerUser();
@@ -49,8 +40,8 @@ export default async function DashboardPage() {
   if (!user.selected_role) redirect("/onboarding");
 
   const [stats, frontend] = await Promise.all([
-    getServerStats(),
-    loadFrontendRoadmap(),
+    getServerStats().catch(() => null),
+    getRoadmap(user.selected_role).catch(() => null),
   ]);
 
   const levels = frontend?.levels ?? [];
@@ -222,12 +213,6 @@ export default async function DashboardPage() {
                         <Clock size={12} />
                         {l.duration}
                       </span>
-                      <LessonViewerBadge
-                        count={l.base_viewers}
-                        showLabel={false}
-                        bordered={false}
-                        iconSize={12}
-                      />
                     </div>
                     <ArrowRight
                       size={14}

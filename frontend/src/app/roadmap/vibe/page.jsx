@@ -9,7 +9,6 @@ import {
   Users,
 } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
-import LevelViewerBadge from "@/components/ui/LevelViewerBadge";
 import { getRoadmap } from "@/lib/api/content";
 import { aggregateLevels, levelTags } from "@/lib/roadmap-utils";
 import { formatCompact } from "@/lib/utils";
@@ -155,10 +154,6 @@ export default async function VibeRoadmapPage() {
                           <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-sky-300">
                             Level 0{level.number}
                           </span>
-                          <LevelViewerBadge
-                            count={level.base_viewers}
-                            size="xs"
-                          />
                         </div>
                         <h2 className="mt-2 font-display text-2xl font-semibold tracking-tight sm:text-3xl">
                           {level.title}

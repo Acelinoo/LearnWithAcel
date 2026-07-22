@@ -1,3 +1,5 @@
+"use client";
+
 import { Monitor, Smartphone, Shield } from "lucide-react";
 
 export const ROLE_CATEGORIES = [

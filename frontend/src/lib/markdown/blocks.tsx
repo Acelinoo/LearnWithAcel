@@ -47,20 +47,16 @@ type Props = { block: Block; index: number };
 export function BlockRenderer({ block, index: _index }: Props) {
   switch (block.type) {
     case "h1":
-      // Lesson page renders the title separately, but still keep h1
-      // available for nested fragments.
       return (
-        <h2 id={block.id} className="scroll-mt-24 font-display text-3xl font-semibold text-foreground">
+        <h1 id={block.id} className="scroll-mt-24 font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
           {renderInline(block.text)}
-        </h2>
+        </h1>
       );
     case "h2":
-      // H2 is normally absorbed by section grouping, but we keep this
-      // path for completeness.
       return (
         <h2
           id={block.id}
-          className="mt-16 mb-5 scroll-mt-24 font-display text-2xl font-semibold tracking-tight text-foreground"
+          className="mt-12 mb-6 scroll-mt-24 font-display text-2xl font-bold tracking-tight text-foreground border-b border-border/40 pb-3.5 sm:text-3xl"
         >
           {renderInline(block.text)}
         </h2>
@@ -69,7 +65,7 @@ export function BlockRenderer({ block, index: _index }: Props) {
       return (
         <h3
           id={block.id}
-          className="mt-10 mb-3 scroll-mt-24 font-display text-lg font-semibold text-foreground"
+          className="mt-9 mb-4 scroll-mt-24 font-display text-xl font-semibold text-foreground/95"
         >
           {renderInline(block.text)}
         </h3>
@@ -78,26 +74,22 @@ export function BlockRenderer({ block, index: _index }: Props) {
       return (
         <h4
           id={block.id}
-          className="mt-8 mb-3 scroll-mt-24 font-display text-base font-semibold text-foreground"
+          className="mt-7 mb-3 scroll-mt-24 font-display text-lg font-medium text-foreground/90"
         >
           {renderInline(block.text)}
         </h4>
       );
     case "p":
       return (
-        <p className="my-5 leading-[1.85] text-foreground/85">
+        <p className="my-5 leading-[1.95] text-foreground/90 font-normal text-base sm:text-[17px]">
           {renderInline(block.text)}
         </p>
       );
     case "ul":
       return (
-        <ul className="my-5 list-none space-y-2.5 pl-1 text-foreground/85">
+        <ul className="my-6 list-disc space-y-3.5 pl-5 text-foreground/90 text-base sm:text-[17px] marker:text-accent-hover">
           {block.items.map((item, j) => (
-            <li key={j} className="relative pl-6 leading-[1.75]">
-              <span
-                aria-hidden
-                className="absolute left-0 top-[0.7em] h-1.5 w-1.5 rounded-full bg-accent/45"
-              />
+            <li key={j} className="leading-[1.85] pl-1">
               {renderInline(item)}
             </li>
           ))}
@@ -105,15 +97,9 @@ export function BlockRenderer({ block, index: _index }: Props) {
       );
     case "ol":
       return (
-        <ol className="my-5 list-none space-y-2.5 pl-1 text-foreground/85">
+        <ol className="my-6 list-decimal space-y-3.5 pl-5 text-foreground/90 text-base sm:text-[17px] marker:font-mono marker:text-accent-hover marker:text-[0.9em]">
           {block.items.map((item, j) => (
-            <li key={j} className="relative pl-9 leading-[1.75]">
-              <span
-                aria-hidden
-                className="absolute left-0 top-[0.15em] inline-flex h-5 min-w-5 items-center justify-center rounded-md border border-border bg-black/40 px-1 font-mono text-[10px] text-accent-hover"
-              >
-                {j + 1}
-              </span>
+            <li key={j} className="leading-[1.85] pl-1">
               {renderInline(item)}
             </li>
           ))}
@@ -121,18 +107,45 @@ export function BlockRenderer({ block, index: _index }: Props) {
       );
     case "code":
       return <CodeBlock code={block.code} lang={block.lang} />;
+    case "table":
+      return (
+        <div className="my-8 overflow-x-auto rounded-2xl border border-border/80 bg-black/40 p-1.5 shadow-md">
+          <table className="w-full text-left text-sm sm:text-[15px] text-foreground/90 border-collapse">
+            <thead>
+              <tr className="border-b border-border/80 bg-white/[0.05]">
+                {block.headers.map((h, j) => (
+                  <th key={j} className="px-5 py-4 font-semibold text-foreground">
+                    {renderInline(h)}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border/30">
+              {block.rows.map((row, rIdx) => (
+                <tr key={rIdx} className="hover:bg-white/[0.03] transition-colors">
+                  {row.map((cell, cIdx) => (
+                    <td key={cIdx} className="px-5 py-4 leading-relaxed">
+                      {renderInline(cell)}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
     case "blockquote":
       return (
-        <blockquote className="my-7 rounded-2xl border border-border bg-black/30 px-6 py-5 text-foreground/85">
+        <blockquote className="my-6 rounded-2xl border-l-4 border-accent/80 bg-accent/[0.08] px-6 py-4.5 text-foreground/95 shadow-sm">
           {block.lines.map((ln, j) => (
-            <p key={j} className="leading-relaxed">
+            <p key={j} className="leading-relaxed my-1.5 text-base sm:text-[17px] font-medium italic">
               {renderInline(ln)}
             </p>
           ))}
         </blockquote>
       );
     case "hr":
-      return <hr className="my-12 border-border" />;
+      return <hr className="my-10 border-border/50" />;
     default:
       return null;
   }

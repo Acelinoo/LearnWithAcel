@@ -83,16 +83,16 @@ export default function Quiz({ questions }: Props) {
     });
   }
 
-  if (questions.length === 0) return null;
-
-  const allDone = totalCleared === questions.length;
-  const progressPct = (totalCleared / questions.length) * 100;
+  const allDone = questions.length > 0 && totalCleared === questions.length;
+  const progressPct = questions.length > 0 ? (totalCleared / questions.length) * 100 : 0;
 
   useEffect(() => {
     if (allDone) {
       emitQuizCompleted();
     }
   }, [allDone]);
+
+  if (questions.length === 0) return null;
 
   return (
     <div className="space-y-5">

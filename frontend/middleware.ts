@@ -28,6 +28,12 @@ export function middleware(request: NextRequest) {
   }
 
   if (token && isAuthPage) {
+    if (request.nextUrl.searchParams.has("redirectTo")) {
+      const response = NextResponse.next();
+      response.cookies.delete(TOKEN_COOKIE);
+      return response;
+    }
+
     const redirectUrl = request.nextUrl.clone();
     redirectUrl.pathname = "/dashboard";
     redirectUrl.searchParams.delete("redirectTo");

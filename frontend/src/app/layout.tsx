@@ -1,4 +1,3 @@
-// @ts-ignore
 import "./globals.css";
 import { Inter, Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";

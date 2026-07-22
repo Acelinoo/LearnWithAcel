@@ -41,8 +41,7 @@ export default function LoginForm() {
         password: values.password,
       });
       await setSession(access_token);
-      router.replace(redirectTo);
-      router.refresh();
+      window.location.href = redirectTo;
     } catch (e) {
       const msg =
         e instanceof ApiError

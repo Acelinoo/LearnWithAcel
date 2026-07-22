@@ -177,7 +177,7 @@ export default async function RoadmapPage() {
     roadmapMap = loaded.roadmapMap;
   } catch {
     return (
-      <div className="container-page py-16">
+      <div className="container-page py-24">
         <h1 className="font-display text-3xl font-semibold">Roadmap</h1>
         <p className="mt-4 text-sm text-muted">
           Gagal mengambil data dari server.
@@ -195,7 +195,9 @@ export default async function RoadmapPage() {
       <div className="relative">
         <div className="absolute left-[26px] top-6 bottom-6 w-px bg-gradient-to-b from-accent/40 via-white/10 to-transparent md:left-[30px]" />
         <div className="space-y-5">
-          {(roadmapMap.get(cat.slug) || []).map((level, i) => (
+          {(roadmapMap.get(cat.slug) || [])
+            .filter((l) => !l.coming_soon)
+            .map((level, i) => (
             <LevelArticle
               key={level.id}
               level={level}
@@ -203,7 +205,7 @@ export default async function RoadmapPage() {
               basePath="/materi"
             />
           ))}
-          {(roadmapMap.get(cat.slug) || []).length === 0 && (
+          {(roadmapMap.get(cat.slug) || []).filter((l) => !l.coming_soon).length === 0 && (
             <p className="text-sm text-muted">
               Belum ada level untuk kategori ini.
             </p>
@@ -214,7 +216,7 @@ export default async function RoadmapPage() {
   }));
 
   return (
-    <div className="container-page py-16">
+    <div className="container-page py-24">
       <Reveal>
         <span className="section-eyebrow">
           <GraduationCap size={12} />

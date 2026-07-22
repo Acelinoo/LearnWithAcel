@@ -9,7 +9,6 @@ import {
 } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import ReadingProgress from "@/components/lesson/ReadingProgress";
-import LessonViewerBadge from "@/components/ui/LessonViewerBadge";
 import CompleteLessonButton from "@/components/lesson/CompleteLessonButton";
 import { Markdown } from "@/lib/markdown";
 import { getLesson, getRoadmap } from "@/lib/api/content";
@@ -86,7 +85,6 @@ export default async function VibeLessonPage({ params }) {
               <Clock size={12} />
               {lesson.duration}
             </span>
-            <LessonViewerBadge count={lesson.base_viewers} />
           </div>
         </Reveal>
 

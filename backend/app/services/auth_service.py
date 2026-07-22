@@ -75,15 +75,20 @@ async def login_user(payload: LoginRequest) -> TokenResponse:
 
 def get_user_profile(user) -> UserResponse:
     """Serialize the authenticated user model into a response schema."""
+    created_at_str = (
+        user.created_at.isoformat()
+        if hasattr(user.created_at, "isoformat")
+        else str(user.created_at)
+    )
     return UserResponse(
         id=user.id,
         email=user.email,
         full_name=user.full_name,
-        avatar_url=user.avatar_url,
-        is_admin=user.is_admin,
-        created_at=user.created_at.isoformat(),
-        selected_category=user.selected_category,
-        selected_role=user.selected_role,
+        avatar_url=getattr(user, "avatar_url", None),
+        is_admin=getattr(user, "is_admin", False),
+        created_at=created_at_str,
+        selected_category=getattr(user, "selected_category", None),
+        selected_role=getattr(user, "selected_role", None),
     )
 
 

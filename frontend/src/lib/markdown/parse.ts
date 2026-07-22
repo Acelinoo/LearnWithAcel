@@ -19,6 +19,7 @@ export type Block =
   | { type: "ul" | "ol"; items: string[] }
   | { type: "code"; lang: string; code: string }
   | { type: "blockquote"; lines: string[] }
+  | { type: "table"; headers: string[]; rows: string[][] }
   | { type: "hr" };
 
 export function slugify(text: string): string {
@@ -92,11 +93,38 @@ export function parseMarkdown(markdown: string): Block[] {
       continue;
     }
 
+    // Table
+    if (/^\s*\|/.test(line)) {
+      const tableLines: string[] = [];
+      while (i < lines.length && /^\s*\|/.test(lines[i])) {
+        tableLines.push(lines[i]);
+        i += 1;
+      }
+      if (tableLines.length >= 2) {
+        const parseRow = (rowStr: string) =>
+          rowStr
+            .trim()
+            .replace(/^\|/, "")
+            .replace(/\|$/, "")
+            .split("|")
+            .map((cell) => cell.trim());
+
+        const headers = parseRow(tableLines[0]);
+        const contentRows = tableLines
+          .slice(1)
+          .filter((l) => !/^\s*\|?\s*:?-+:?\s*(\||\s*$)/.test(l));
+        const rows = contentRows.map(parseRow);
+
+        blocks.push({ type: "table", headers, rows });
+        continue;
+      }
+    }
+
     // Unordered list
     if (/^\s*[-*+]\s+/.test(line)) {
       const items: string[] = [];
       while (i < lines.length && /^\s*[-*+]\s+/.test(lines[i])) {
-        items.push(lines[i].replace(/^\s*[-*+]\s+/, ""));
+        items.push(lines[i].replace(/^\s*[-*+]\s+/.test(lines[i]) ? lines[i].match(/^\s*[-*+]\s+/)?.[0] || "" : "", ""));
         i += 1;
       }
       blocks.push({ type: "ul", items });
@@ -125,7 +153,7 @@ export function parseMarkdown(markdown: string): Block[] {
     while (
       i < lines.length &&
       lines[i].trim() !== "" &&
-      !/^(#{1,4}\s|```|>\s|---+\s*$|\s*[-*+]\s|\s*\d+\.\s)/.test(lines[i])
+      !/^(#{1,4}\s|```|>\s|---+\s*$|\s*\||\s*[-*+]\s|\s*\d+\.\s)/.test(lines[i])
     ) {
       buf.push(lines[i]);
       i += 1;

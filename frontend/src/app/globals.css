@@ -105,6 +105,9 @@ html {
   .prose-article blockquote {
     @apply my-6 rounded-xl border border-accent/30 bg-accent/5 px-5 py-4 text-foreground/80;
   }
+  .prose-article img {
+    @apply my-8 rounded-xl border border-white/10 shadow-lg;
+  }
 }
 
 @layer utilities {

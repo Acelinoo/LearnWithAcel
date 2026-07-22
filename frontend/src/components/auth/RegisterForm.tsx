@@ -88,8 +88,7 @@ export default function RegisterForm() {
 
     // 3. Redirect.
     setStage("redirecting");
-    router.replace("/onboarding");
-    router.refresh();
+    window.location.href = "/onboarding";
   };
 
   const busy = isSubmitting || stage !== "idle";

@@ -1347,77 +1347,340 @@ def generate_rich_lessons(role_name: str, role_slug: str, level_num: int, module
         ],
     }
 
-    if module_title in SPECIFIC_CONTENT:
-        lesson_data = SPECIFIC_CONTENT[module_title]
-        lessons = []
-        for i, (title, analogi, pentingnya, lang, code, penjelasan, summary) in enumerate(lesson_data):
-            visual_desc = penjelasan.split('.')[0] if '.' in penjelasan else penjelasan
-            content = f"""# {title}
+def _build_human_html_lesson() -> str:
+    return """# Pengenalan HTML & Struktur Dokumen Web
 
-🏗️ **Analogi & Gambaran Besar**
+Bayangkan kamu ingin membangun sebuah rumah.
 
-{analogi}
+* **HTML** = kerangka dan susunan ruangan rumah.
+* **CSS** = cat, warna, dekorasi, dan desain rumah.
+* **JavaScript** = listrik, pintu otomatis, lampu yang bisa dinyalakan, dan semua fitur yang bisa bergerak atau berinteraksi.
 
-> 💡 **Gambaran Singkat**:
-> Konsep ini sengaja dirancang agar kamu tidak perlu pusing menghafal istilah teknis yang rumit terlebih dahulu. Bayangkan bentuk dan fungsinya di dunia nyata, baru kita bedah kodenya bersama-sama!
+Jadi, **HTML (HyperText Markup Language)** adalah bahasa yang digunakan untuk **membuat struktur sebuah halaman website**.
 
 ---
 
-📖 **Penjelasan Sederhana**
+## Penjelasan sederhana
 
-**Kenapa sih teknologi atau konsep ini harus ada dan kita pakai?**
-{pentingnya}
+Misalkan kamu membuka sebuah website berita.
 
-Tanpa pemahaman yang tepat mengenai konsep ini, alur kerja pengembang akan terasa membingungkan, serabutan, dan rawan masalah saat aplikasi bertambah besar. Dengan menguasai materi ini, kodenmu akan jauh lebih terstruktur, efisien, dan siap dipakai di lingkungan profesional!
+Di dalamnya ada:
+
+* Judul berita
+* Gambar
+* Isi artikel
+* Tombol
+* Menu navigasi
+* Footer
+
+Semua bagian tersebut pertama kali dibuat menggunakan HTML.
+
+HTML memberi tahu browser:
+
+> "Ini adalah judul."
+
+> "Ini adalah paragraf."
+
+> "Ini adalah gambar."
+
+> "Ini adalah tombol."
+
+Tanpa HTML, browser tidak tahu mana judul, mana gambar, atau mana isi tulisan.
 
 ---
 
-💻 **Contoh Kode & Visualisasi Hasil**
+## Analogi kehidupan sehari-hari
 
-Berikut adalah contoh potongan kode sederhana dan bersih yang menerapkan konsep ini:
+Bayangkan kamu ingin membuat buku.
 
-```{lang}
-{code}
+HTML adalah orang yang menyusun:
+
+* Halaman pertama
+* Judul buku
+* Daftar isi
+* Bab 1
+* Bab 2
+* Nomor halaman
+
+Tetapi bukunya masih hitam putih dan polos.
+
+Agar bukunya menarik, dibutuhkan CSS.
+
+Kalau ingin ada tombol yang bisa diklik atau animasi, digunakan JavaScript.
+
+---
+
+## Contoh HTML sederhana
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Website Pertama Saya</title>
+</head>
+<body>
+
+    <h1>Halo Dunia!</h1>
+
+    <p>Selamat datang di website pertama saya.</p>
+
+</body>
+</html>
 ```
 
-> 🖥️ **Visualisasi & Hasil di Komputer**:
-> Ketika kode di atas dijalankan, sistem/browser akan mengeksekusinya secara berurutan: {visual_desc}. Kamu bisa langsung melihat dampaknya pada aplikasi!
+Kalau dibuka di browser hasilnya kira-kira seperti ini:
+
+```text
+Halo Dunia!
+
+Selamat datang di website pertama saya.
+```
 
 ---
 
-🛠️ **Elemen / Fitur Utama yang Sering Dipakai**
+## Penjelasan setiap bagian
 
-Untuk menguasai materi ini dengan cepat, perhatikan komponen-komponen kunci yang paling sering digunakan sehari-hari:
+### 1. `<html>`
 
-{penjelasan}
+Artinya:
 
----
+> "Semua isi website berada di dalam sini."
 
-🔍 **Mitos vs Fakta / Perbandingan Penting**
+```html
+<html>
 
-| Aspek | Mitos (Miskonsepsi Pemula) | Fakta Sebenarnya |
-|---|---|---|
-| **Cara Belajar** | Harus menghafal luar kepala semua kode & atribut. | Cukup pahami logika dasarnya & manfaatkan dokumentasi resmi. |
-| **Penggunaan** | Hanya dipakai di proyek skala besar / industri enterprise. | Digunakan sebagai pilar dasar di *setiap* proyek aplikasi nyata. |
-| **Tujuan** | Untuk membuat kode terlihat rumit & canggih. | Untuk membuat sistem lebih rapi, cepat, aman, dan mudah dirawat. |
+</html>
+```
 
 ---
 
-⚡ **Bagaimana Teknologi Ini Bekerja Bersama Stack Lain**
+### 2. `<head>`
 
-Di dalam ekosistem **{role_name}**, materi **{title}** tidak berdiri sendiri. Ia adalah jembatan utama yang menghubungkan instruksi dasar dengan modul-modul lanjutan.
+Bagian ini biasanya **tidak terlihat oleh pengunjung**.
 
-Ketika kamu menggabungkan **{title}** dengan tools dan stack pendukung lainnya di role **{role_name}**, aplikasimu akan mendadak jadi jauh lebih interaktif, tangguh, dan siap pakai untuk skala produksi!
+Isinya seperti:
+
+* Judul tab browser
+* Icon website (favicon)
+* Link CSS
+* Informasi website
+
+Contoh:
+
+```html
+<head>
+    <title>Belajar HTML</title>
+</head>
+```
+
+Yang muncul di tab browser:
+
+```text
+Belajar HTML
+```
 
 ---
 
-📌 **Kesimpulan & Rangkuman Ringkas**
+### 3. `<body>`
 
-- 🎯 **Poin Utama**: {summary}
-- 💡 **Tips Belajar**: Selalu utamakan konsistensi dan pemahaman konsep dasar sebelum melangkah ke fitur yang lebih kompleks.
-- 🚀 **Langkah Selanjutnya**: Coba ketik ulang potongan kode di atas di editor kodenmu sendiri dan rasakan sensasi berhasilnya!
+Bagian ini adalah **isi website yang benar-benar dilihat pengunjung**.
 
-> 💬 *"Koding itu seperti belajar bahasa baru: makin sering kamu berlatih dan mencoba, makin alami kamu mengekspresikan ide-idemu lewat baris kode."*
+Contoh:
+
+```html
+<body>
+
+<h1>Selamat Datang</h1>
+
+<p>Ini adalah website saya.</p>
+
+</body>
+```
+
+---
+
+## HTML menggunakan Tag
+
+HTML terdiri dari **tag**.
+
+Contoh:
+
+```html
+<h1>Judul</h1>
+```
+
+Tag pembuka: `<h1>`
+
+Isi: `Judul`
+
+Tag penutup: `</h1>`
+
+---
+
+## Beberapa tag yang paling sering digunakan
+
+### Judul
+
+```html
+<h1>Judul Besar</h1>
+```
+
+Ada juga:
+
+```html
+<h2></h2>
+<h3></h3>
+<h4></h4>
+<h5></h5>
+<h6></h6>
+```
+
+Semakin besar angkanya, semakin kecil ukuran dan tingkat penting judulnya.
+
+---
+
+### Paragraf
+
+```html
+<p>Ini adalah paragraf.</p>
+```
+
+---
+
+### Gambar
+
+```html
+<img src="gambar.jpg">
+```
+
+Artinya:
+
+"Tampilkan gambar bernama gambar.jpg."
+
+---
+
+### Tombol
+
+```html
+<button>Klik Saya</button>
+```
+
+---
+
+### Link
+
+```html
+<a href="https://google.com">Google</a>
+```
+
+Saat diklik, akan membuka Google.
+
+---
+
+### Daftar
+
+```html
+<ul>
+    <li>Apel</li>
+    <li>Mangga</li>
+    <li>Jeruk</li>
+</ul>
+```
+
+Hasilnya:
+
+* Apel
+* Mangga
+* Jeruk
+
+---
+
+## HTML bukan bahasa pemrograman
+
+Banyak pemula mengira HTML adalah bahasa pemrograman.
+
+Sebenarnya **bukan**.
+
+HTML adalah **bahasa markup**.
+
+Perbedaannya:
+
+| HTML | Bahasa Pemrograman |
+| --- | --- |
+| Menyusun struktur halaman | Membuat logika dan perhitungan |
+| Tidak memiliki logika seperti `if` atau `for` | Memiliki logika dan algoritma |
+| Memberi tahu browser apa yang ditampilkan | Memberi tahu komputer apa yang harus dilakukan |
+
+Contoh bahasa pemrograman:
+
+* JavaScript
+* Python
+* Java
+* C++
+* PHP
+
+---
+
+## HTML, CSS, dan JavaScript bekerja bersama
+
+Misalnya ingin membuat tombol.
+
+### HTML
+
+Membuat tombolnya.
+
+```html
+<button>Login</button>
+```
+
+---
+
+### CSS
+
+Mengubah tampilannya.
+
+```text
+Warna biru
+Sudut membulat
+Tulisan putih
+```
+
+---
+
+### JavaScript
+
+Menambahkan aksi saat tombol diklik.
+
+```text
+Ketika tombol Login diklik
+↓
+Masuk ke halaman Dashboard
+```
+
+---
+
+## Alur kerja browser
+
+Saat kamu membuka sebuah website, browser melakukan langkah berikut:
+
+1. Membaca file HTML.
+2. Menyusun struktur halaman berdasarkan HTML.
+3. Membaca file CSS untuk mempercantik tampilan.
+4. Menjalankan JavaScript agar halaman bisa berinteraksi dengan pengguna.
+
+---
+
+## Kesimpulan
+
+HTML adalah **fondasi dari setiap halaman website**. Tugas utamanya adalah menyusun struktur dan isi halaman, seperti judul, paragraf, gambar, tombol, tautan, dan daftar. HTML sendiri tidak mengatur tampilan visual maupun perilaku interaktif. Untuk itu, HTML bekerja bersama CSS (untuk desain) dan JavaScript (untuk interaksi).
+
+Jika diibaratkan membangun rumah:
+
+* 🏗️ **HTML** → kerangka dan susunan ruangan.
+* 🎨 **CSS** → cat, dekorasi, dan tampilan rumah.
+* ⚡ **JavaScript** → listrik, sakelar, pintu otomatis, dan fitur yang membuat rumah "hidup".
+
+Dengan memahami HTML terlebih dahulu, kamu akan memiliki dasar yang kuat sebelum mempelajari CSS dan JavaScript, karena hampir semua website di internet dibangun dengan kombinasi ketiga teknologi tersebut.
 
 ---
 
@@ -1425,17 +1688,345 @@ Ketika kamu menggabungkan **{title}** dengan tools dan stack pendukung lainnya d
 
 ### Soal 1
 
-Apa tujuan utama dari mempelajari dan menerapkan konsep **{title}** pada modul ini?
+Apa fungsi utama HTML dalam pembuatan halaman web?
 
-- A. Mengurangi fungsionalitas sistem agar lebih sederhana.
-- B. Memastikan kode tidak dapat dipahami oleh pihak lain.
-- C. Meningkatkan kualitas, keamanan, atau performa aplikasi secara terstruktur.
-- D. Hanya sekedar tambahan dekoratif tanpa efek teknis nyata.
+- A. Mengatur warna tombol dan gaya animasi visual.
+- B. Menyusun struktur, kerangka, dan isi konten utama halaman.
+- C. Menjalankan perhitungan logika matematika di server.
+- D. Mengubah font tulisan secara otomatis tanpa aturan.
+
+Jawaban benar: B
+
+Penjelasan: HTML bertugas menentukan kerangka dan struktur elemen seperti judul, teks, gambar, dan tombol.
+"""
+
+
+def _build_generic_human_lesson(
+    title: str,
+    analogi: str,
+    pentingnya: str,
+    lang: str,
+    code: str,
+    penjelasan: str,
+    summary: str,
+    role_name: str,
+) -> str:
+    visual_desc = penjelasan.split('.')[0] if '.' in penjelasan else penjelasan
+    
+    # Format line-by-line explanation items cleanly
+    items_formatted = ""
+    if "\n-" in penjelasan:
+        raw_items = [item.strip() for item in penjelasan.split("\n-") if item.strip()]
+        for idx, item in enumerate(raw_items):
+            clean_item = item.lstrip("-").strip()
+            parts = clean_item.split(":", 1)
+            if len(parts) == 2:
+                name, desc = parts[0].strip(), parts[1].strip()
+                items_formatted += f"### {idx+1}. `{name}`\n\n{desc}\n\n---\n\n"
+            else:
+                items_formatted += f"### {idx+1}. Komponen {idx+1}\n\n{clean_item}\n\n---\n\n"
+    else:
+        items_formatted = f"### 1. `Inisialisasi Utama`\n\n{penjelasan}\n\n---\n\n"
+
+    return f"""# {title}
+
+Bayangkan kamu sedang mempelajari **{title}** dalam peran **{role_name}**.
+
+* **Struktur & Fondasi** = susunan kerangka dan komponen penting.
+* **Pengaturan & Gaya** = aturan agar sistem rapi, jelas, dan aman.
+* **Fitur & Interaksi** = logika utama yang menjalankan perintah secara otomatis.
+
+Jadi, **{title}** adalah konsep yang digunakan untuk **{summary.lower()}**.
+
+---
+
+## Penjelasan sederhana
+
+Misalkan kamu melihat sebuah sistem atau aplikasi nyata yang sedang bekerja.
+
+Di dalamnya ada:
+
+* Pengaturan awal (Inisialisasi)
+* Input masukan dari pengguna
+* Pemrosesan data di belakang layar
+* Perintah aksi atau respon sistem
+* Hasil akhir yang ditampilkan di layar
+
+Semua bagian tersebut diatur dan dijalankan menggunakan **{title}**.
+
+Sistem membaca instruksi secara berurutan:
+
+> "Mulai persiapkan komponen utama."
+
+> "Proses data dan jalankan logika aturan."
+
+> "Tampilkan hasil ke pengguna secara aman."
+
+Tanpa **{title}**, sistem tidak tahu perintah mana yang harus dijalankan pertama kali.
+
+---
+
+## Analogi kehidupan sehari-hari
+
+{analogi}
+
+Mempelajari **{title}** itu ibarat memahami aturan dasar dalam permainan:
+
+* Menyiapkan papan dan pion permainan di awal.
+* Memahami langkah demi langkah yang diperbolehkan.
+* Memastikan hasil akhir dapat dicapai dengan rapi dan efisien.
+
+Dengan pemahaman ini, kamu bisa mengendalikan sistem secara penuh tanpa kebingungan!
+
+---
+
+## Contoh {title} sederhana
+
+```{lang}
+{code}
+```
+
+Kalau dijalankan di sistem atau komputer, hasilnya kira-kira seperti ini:
+
+```text
+{visual_desc}
+```
+
+---
+
+## Penjelasan setiap bagian
+
+### 1. `Inisialisasi & Persiapan`
+
+Artinya:
+
+> "{pentingnya}"
+
+```{lang}
+{code.splitlines()[0] if code else "// Kode inisialisasi"}
+```
+
+---
+
+### 2. `Eksekusi Utama`
+
+Bagian ini bertugas **menjalankan instruksi inti secara aman dan terstruktur**.
+
+Contoh baris utama:
+
+```{lang}
+{code.splitlines()[1] if len(code.splitlines()) > 1 else code}
+```
+
+Yang muncul di layar:
+
+```text
+{visual_desc}
+```
+
+---
+
+## Elemen yang paling sering digunakan
+
+{items_formatted}
+
+## {title} bukan sekadar hafalan rumit
+
+Banyak pemula mengira mempelajari **{title}** itu harus menghafal seluruh baris kode di luar kepala.
+
+Sebenarnya **bukan**.
+
+Mempelajari **{title}** adalah tentang **memahami logika dasar dan alur kerjanya**.
+
+Perbedaannya:
+
+| Pemikiran Pemula (Mitos) | Fakta Sebenarnya (Praktik Industri) |
+| --- | --- |
+| Harus menghafal semua rumus & sintaks. | Cukup pahami logika dasarnya & gunakan dokumentasi. |
+| Hanya dipakai di proyek skala raksasa. | Digunakan sebagai fondasi utama di *setiap* proyek nyata. |
+| Untuk membuat kode terlihat rumit. | Untuk membuat sistem lebih rapi, cepat, dan mudah dirawat. |
+
+---
+
+## Bagaimana komponen bekerja bersama
+
+Misalnya kita ingin membangun sebuah fitur yang utuh:
+
+### 1. Struktur & Input
+Menyiapkan elemen dan data masukan awal.
+
+---
+
+### 2. Aturan & Atribut
+Mengatur standar visual, format, atau keamanan data.
+
+---
+
+### 3. Logika & Aksi
+
+Menambahkan instruksi dan perintah interaktif:
+
+```text
+Ketika masukan diterima
+↓
+Sistem memproses sesuai aturan
+↓
+Hasil atau halaman baru ditampilkan
+```
+
+---
+
+## Alur kerja sistem
+
+Saat fitur ini dijalankan, sistem melakukan langkah berikut:
+
+1. Membaca instruksi dari baris teratas.
+2. Menyusun variabel dan dependensi awal secara berurutan.
+3. Memproses logika utama dan memeriksa keamanan.
+4. Menyampaikan hasil akhir secara instan kepada pengguna.
+
+---
+
+## Kesimpulan
+
+**{title}** adalah **fondasi penting dalam {role_name}**. Tugas utamanya adalah {summary.lower()}.
+
+Jika diibaratkan dalam kehidupan sehari-hari:
+
+* 🏗️ **Pondasi & Kerangka** → Susunan utama dan inisialisasi awal.
+* 🎨 **Aturan & Tampilan** → Dekorasi, kerapian, dan standar keamanan.
+* ⚡ **Logika & Fitur** → Daya penggerak yang membuat sistem hidup dan berinteraksi.
+
+Dengan memahami **{title}** secara bertahap, kamu memiliki dasar yang sangat kuat untuk menguasai teknologi modern!
+
+---
+
+## Quiz
+
+### Soal 1
+
+Apa fungsi utama dari {title}?
+
+- A. Menghapus seluruh data dari memori server tanpa jejak.
+- B. {summary.split('.')[0] if '.' in summary else summary}
+- C. Mengubah warna latar belakang sistem menjadi gelap secara otomatis.
+- D. Memperlambat kinerja aplikasi agar lebih mudah dipantau.
+
+Jawaban benar: B
+
+Penjelasan: Fokus utama dari {title} adalah membangun struktur dan standar aplikasi yang profesional sesuai dengan peranmu sebagai {role_name}.
+
+### Soal 2
+
+Mengapa {title} sangat penting untuk diimplementasikan dalam proyek nyata?
+
+- A. Karena dapat membuat kode menjadi lebih rumit dan sulit dibaca.
+- B. Untuk menambah ukuran file proyek agar terlihat lebih profesional.
+- C. Karena ini adalah fondasi penting yang memastikan sistem berjalan dengan rapi, efisien, dan terstruktur.
+- D. Agar aplikasi cepat rusak ketika digunakan oleh banyak pengguna.
 
 Jawaban benar: C
 
-Penjelasan: Setiap konsep fundamental yang dipelajari pada role ini ditujukan untuk membangun struktur dan standar aplikasi yang berkualitas tinggi, aman, dan efisien.
+Penjelasan: Memahami {title} bukanlah sekadar menghafal rumus, melainkan memahami logika dasar agar sistem lebih rapi, cepat, dan mudah dirawat.
+
+### Soal 3
+
+Jika diibaratkan dalam kehidupan sehari-hari, bagaimana kita bisa mendeskripsikan peran dari {title}?
+
+- A. Ibarat {analogi.split('.')[0] if '.' in analogi else analogi}
+- B. Seperti menghancurkan fondasi rumah sebelum dibangun.
+- C. Sama dengan mengecat rumah tanpa membangun dindingnya terlebih dahulu.
+- D. Bagaikan membeli perabotan tanpa memiliki rumah.
+
+Jawaban benar: A
+
+Penjelasan: {analogi} Analogi ini sangat tepat untuk menggambarkan bagaimana {title} beroperasi di balik layar.
 """
+
+
+def generate_rich_lessons(role_name: str, role_slug: str, level_num: int, module_title: str) -> list[dict[str, Any]]:
+    SPECIFIC_CONTENT: dict[str, list[tuple[str, str, str, str, str, str, str]]] = {
+        # =====================================================================
+        # WEB DEVELOPMENT
+        # =====================================================================
+        "HTML & CSS Dasar": [
+            ("Pengenalan HTML & Struktur Dokumen Web",
+             "Membuat web itu seperti membangun rumah. HTML adalah pondasi dan kerangka betonnya.",
+             "Tanpa HTML, browser tidak tahu bagaimana merender teks, tombol, atau gambar.",
+             "html",
+             "<!DOCTYPE html>\n<html lang=\"id\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Website Saya</title>\n</head>\n<body>\n  <h1>Halo Dunia!</h1>\n  <p>Selamat datang di kelas HTML.</p>\n</body>\n</html>",
+             "- `<!DOCTYPE html>`: Deklarasi standar HTML5.\n- `<html>`: Elemen pembungkus utama.\n- `<head>`: Berisi metadata dan judul halaman.\n- `<body>`: Berisi konten yang tampak di browser.",
+             "Gunakan struktur standar HTML5 untuk semua halaman web modern."),
+
+            ("Element, Tag, Attributes & Semantic HTML",
+             "Semantic HTML ibarat memberi label 'Dapur' atau 'Kamar Tidur' pada denah rumah.",
+             "Meningkatkan SEO di mesin pencari dan mendukung pembaca layar bagi penyandang disabilitas.",
+             "html",
+             "<header>\n  <nav>\n    <a href=\"/\">Beranda</a>\n  </nav>\n</header>\n<main>\n  <article>\n    <h2>Belajar Semantic HTML</h2>\n    <p>Gunakan tag sesuai fungsinya.</p>\n  </article>\n</main>",
+             "- `<header>`: Bagian atas/navigasi website.\n- `<main>`: Konten utama halaman.\n- `<article>`: Konten mandiri seperti postingan blog.",
+             "Hindari div-soup! Gunakan tag semantic seperti `<article>`, `<section>`, dan `<nav>`."),
+
+            ("Dasar CSS (Selector, Properties, Box Model)",
+             "CSS adalah cat dinding, tirai, dan interior yang mempercantik rumah.",
+             "Membuat tampilan web menjadi menarik, rapi, dan nyaman dibaca oleh pengguna.",
+             "css",
+             "/* Reset Margin & Box Sizing */\n* {\n  box-sizing: border-box;\n  margin: 0;\n}\n\n.card {\n  background-color: #1e293b;\n  color: #f8fafc;\n  padding: 24px;\n  border-radius: 12px;\n  margin: 16px;\n}",
+             "- `box-sizing: border-box`: Memastikan padding tidak memperbesar ukuran total elemen.\n- `padding`: Jarak internal dari border ke konten.\n- `margin`: Jarak eksternal ke elemen lain.",
+             "Setiap elemen HTML adalah 'Box' yang terdiri dari Content, Padding, Border, dan Margin."),
+
+            ("Flexbox & Layouting Sederhana",
+             "Flexbox adalah sistem penataan rak otomatis untuk menyusun elemen secara horizontal atau vertikal.",
+             "Memudahkan pembuatan layout responsif seperti navbar, daftar kartu, dan grid fleksibel.",
+             "css",
+             ".container {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  gap: 16px;\n}",
+             "- `display: flex`: Mengaktifkan mode flexbox pada elemen pembungkus.\n- `justify-content: space-between`: Membagi spasi secara rata di antara item.\n- `align-items: center`: Menyelaraskan elemen secara vertikal di tengah.",
+             "Gunakan Flexbox untuk komponen satu dimensi (baris atau kolom)."),
+        ],
+
+        "Modern JavaScript": [
+            ("Variabel & Tipe Data ES6",
+             "Variabel adalah label wadah di memori untuk menyimpan data sementara.",
+             "ES6 memperkenalkan let dan const untuk cakupan variabel yang lebih aman dan terprediksi.",
+             "javascript",
+             "const appName = 'LearnWithAcel'; // Nilai tetap\nlet activeUsers = 150;          // Nilai bisa berubah\n\nactiveUsers += 1;\nconsole.log(`${appName} memiliki ${activeUsers} pengguna aktif.`);",
+             "- `const`: Digunakan untuk variabel konstanta yang tidak di-reassign.\n- `let`: Digunakan untuk variabel yang nilainya akan diubah di kemudian hari.\n- Template Literals (``): Menggabungkan string dan variabel secara praktis.",
+             "Selalu gunakan `const` secara default, gunakan `let` hanya jika nilainya perlu diubah."),
+
+            ("Manipulasi DOM & Event Listener",
+             "DOM (Document Object Model) adalah remote control JavaScript untuk mengendalikan elemen HTML.",
+             "Memungkinkan web merespons aksi pengguna seperti klik tombol, pengetikan form, dan pergerakan mouse.",
+             "javascript",
+             "const button = document.querySelector('#btn-submit');\nconst title = document.querySelector('.title');\n\nbutton.addEventListener('click', () => {\n  title.textContent = 'Form Berhasil Dikirim!';\n  title.style.color = '#10b981';\n});",
+             "- `querySelector`: Mengambil elemen HTML berdasarkan CSS selector.\n- `addEventListener`: Mendengarkan event seperti 'click', 'submit', atau 'keyup'.\n- `textContent`: Mengubah teks di dalam elemen secara aman.",
+             "Pisahkan logika JavaScript dari file HTML agar kode tetap bersih dan modular."),
+
+            ("Asynchronous & Fetch API",
+             "Asynchronous ibarat mengambil nomor antrean di restoran: kamu bisa main HP sambil menunggu makanan matang.",
+             "Mengambil data dari server eksternal tanpa membuat halaman web membeku (freeze).",
+             "javascript",
+             "async function fetchUserData(userId) {\n  try {\n    const response = await fetch(`https://api.example.com/users/${userId}`);\n    if (!response.ok) throw new Error('User tidak ditemukan');\n    const data = await response.json();\n    console.log(data);\n  } catch (error) {\n    console.error('Error fetching:', error.message);\n  }\n}",
+             "- `async/await`: Menyederhanakan penulisan kode asynchronous agar terasa seperti synchronous.\n- `fetch()`: Mengirim request HTTP asynchronous ke backend API.\n- `try...catch`: Membawa penanganan error secara elegan.",
+             "Selalu bungkus `await fetch()` di dalam `try...catch` untuk mengantisipasi kegagalan koneksi."),
+
+            ("Mini Project: Aplikasi To-Do List",
+             "Menggabungkan manipulasi DOM, state array sederhana, dan event listener menjadi aplikasi utuh.",
+             "Melatih logika dasar manipulasi array data dan merender hasilnya ke layar.",
+             "javascript",
+             "const todos = [];\n\nfunction addTodo(text) {\n  const newTodo = { id: Date.now(), text, completed: false };\n  todos.push(newTodo);\n  renderTodos();\n}\n\nfunction renderTodos() {\n  const list = document.querySelector('#todo-list');\n  list.innerHTML = todos.map(t => `<li>${t.text}</li>`).join('');\n}",
+             "- `todos.push()`: Menambahkan item baru ke array state.\n- `Array.prototype.map()`: Mengubah array objek menjadi deretan tag HTML string.\n- `innerHTML`: Mengganti isi elemen DOM dengan HTML baru.",
+             "Pecah aplikasi menjadi fungsi pembantu spesifik: state management, event handler, dan renderer."),
+        ],
+    }
+
+    lessons = []
+    if module_title in SPECIFIC_CONTENT:
+        lesson_data = SPECIFIC_CONTENT[module_title]
+        for i, (title, analogi, pentingnya, lang, code, penjelasan, summary) in enumerate(lesson_data):
+            if title == "Pengenalan HTML & Struktur Dokumen Web":
+                content = _build_human_html_lesson()
+            else:
+                content = _build_generic_human_lesson(title, analogi, pentingnya, lang, code, penjelasan, summary, role_name)
+
             lessons.append({
                 "slug": f"{role_slug}-lesson-{level_num}-{i+1}",
                 "title": title,
@@ -1448,96 +2039,29 @@ Penjelasan: Setiap konsep fundamental yang dipelajari pada role ini ditujukan un
             })
         return lessons
 
-    # Universal Fallback
+    # Universal Fallback Generator
     lesson_titles = [
-        f"Konsep Mendasar: {module_title}",
-        f"Komponen Utama: {module_title}",
-        f"Praktik & Eksperimen: {module_title}",
-        f"Mini Project & Misi Akhir: {module_title}"
+        f"Pengenalan & Konsep Mendasar {module_title}",
+        f"Komponen Utama {module_title}",
+        f"Praktik & Penerapan {module_title}",
+        f"Mini Project & Studi Kasus {module_title}"
     ]
-    lessons = []
     for i in range(4):
-        content = f"""# {lesson_titles[i]}
+        title = lesson_titles[i]
+        if title == "Pengenalan HTML & Struktur Dokumen Web":
+            content = _build_human_html_lesson()
+        else:
+            analogi_text = f"Mempelajari **{title}** itu ibarat merakit seperangkat komputer baru! Kamu harus memastikan setiap modul dipasang pada slot yang tepat agar seluruh sistem berjalan cepat dan tanpa gangguan."
+            pentingnya_text = f"Menyiapkan pondasi dasar agar sistem {module_title} berjalan stabil."
+            lang_code = "javascript" if "javascript" in title.lower() or "react" in title.lower() or "web" in role_slug else ("python" if "python" in title.lower() else "bash")
+            sample_code = f"// Inisialisasi Modul {module_title}\nconst moduleState = {{ active: true, title: '{title}' }};\nconsole.log('Modul siap dijalankan!');"
+            penjelasan_text = f"- `Inisialisasi`: Menyiapkan variabel dan modul {module_title}.\n- `Eksekusi`: Menjalankan fungsi utama.\n- `Output`: Menampilkan respon ke layar."
+            summary_text = f"Memahami konsep inti dan penerapannya di industri."
+            content = _build_generic_human_lesson(title, analogi_text, pentingnya_text, lang_code, sample_code, penjelasan_text, summary_text, role_name)
 
-🏗️ **Analogi & Gambaran Besar**
-
-Mempelajari **{module_title}** itu ibarat belajar mengendarai kendaraan baru! Awalnya mungkin terasa canggung, namun setelah kamu memahami prinsip dasarnya, seluruh navigasi dan kontrol akan terasa sangat alami dan menyenangkan.
-
-> 💡 **Gambaran Singkat**:
-> Mulailah dari membayangkan fungsi utamanya di dunia nyata. Jangan pusing dengan hafalan rumit terlebih dahulu!
-
----
-
-📖 **Penjelasan Sederhana**
-
-Sebagai seorang **{role_name}**, modul **{module_title}** adalah salah satu pilar utama. Memahaminya dengan baik akan membantumu menyelesaikan tugas harian dengan percaya diri tanpa perlu menyalin kode tanpa arah.
-
-Tanpa konsep ini, kodenmu akan rawan bug dan sulit dikembangkan saat proyek membesar.
-
----
-
-💻 **Contoh Kode & Visualisasi Hasil**
-
-Lihatlah contoh eksekusi dasar untuk modul ini:
-
-```text
-// Inisialisasi & Eksekusi Modul {module_title}
-Execute-Module --title "{module_title}" --step {i+1} --mode "Beginner-Friendly"
-```
-
-> 🖥️ **Visualisasi Hasil di Komputer**:
-> Instruksi di atas akan menyiapkan fondasi lingkungan kerja, memproses input dasar, dan menampilkan hasil secara instan di layar console.
-
----
-
-🛠️ **Elemen / Fitur Utama yang Sering Dipakai**
-
-- **Inisialisasi**: Menyiapkan variabel, modul & dependensi awal.
-- **Eksekusi Utama**: Menjalankan logika bisnis, perintah sistem, atau manipulasi data.
-- **Validasi & Output**: Memastikan tidak ada error dan hasil ditampilkan dengan rapi kepada pengguna.
-
----
-
-🔍 **Mitos vs Fakta / Perbandingan Penting**
-
-| Perbandingan | Konsep Dasar | Praktik Industri |
-|---|---|---|
-| **Fokus Utama** | Memahami *kenapa* kode ditulis. | Mengoptimalkan *efisiensi*, *performa*, dan *keamanan*. |
-| **Pendekatan** | Belajar dari contoh sederhana & analogi. | Membangun komponen yang reusable dan mudah diuji. |
-
----
-
-⚡ **Bagaimana Teknologi Ini Bekerja Bersama Stack Lain**
-
-Modul ini terhubung langsung dengan alur pembelajaran **{role_name}**. Dengan menguasai bab ini, kamu siap untuk melangkah ke modul berikutnya yang jauh lebih seru!
-
----
-
-📌 **Kesimpulan & Rangkuman Ringkas**
-
-- 🎯 **Poin Utama**: Kuasai konsep dasar ini dan selalu jadikan dokumentasi resmi sebagai rujukan utama.
-- 🚀 **Aksi**: Jangan ragu untuk mencoba, bereksperimen, dan membuat salah di editor kodenmu!
-
----
-
-## Quiz
-
-### Soal 1
-
-Apa tujuan utama dari mempelajari modul fundamental seperti **{module_title}**?
-
-- A. Menghafal kode tanpa memahaminya.
-- B. Memahami prinsip dasar agar dapat menyelesaikan masalah teknis yang kompleks secara mandiri.
-- C. Menyalin dan menempel solusi orang lain.
-- D. Mempersulit pengembangan di masa depan.
-
-Jawaban benar: B
-
-Penjelasan: Memahami prinsip dasar yang fundamental adalah kunci untuk menjadi profesional yang dapat memecahkan masalah teknis kompleks secara mandiri.
-"""
         lessons.append({
             "slug": f"{role_slug}-lesson-{level_num}-{i+1}",
-            "title": lesson_titles[i],
+            "title": title,
             "summary": f"Membahas konsep dan penerapan utama dari {module_title}.",
             "content": content,
             "duration": f"{15 + (i * 5)} menit",
@@ -1545,6 +2069,7 @@ Penjelasan: Memahami prinsip dasar yang fundamental adalah kunci untuk menjadi p
             "xp_reward": 50 if i < 3 else 100,
             "is_project": i == 3,
         })
+
     return lessons
 
 

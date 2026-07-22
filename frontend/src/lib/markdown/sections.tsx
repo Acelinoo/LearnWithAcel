@@ -174,18 +174,18 @@ type PlainProps = {
 function PlainSection({ section, eyebrow, title }: PlainProps) {
   const heading = title ?? section.title;
   return (
-    <section className="mt-16 scroll-mt-24" id={section.id}>
+    <section className="mt-14 scroll-mt-24 border-t border-border/30 pt-10 first:mt-0 first:border-t-0 first:pt-0" id={section.id}>
       {eyebrow && (
-        <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-foreground/55">
+        <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-accent-hover">
           {eyebrow}
         </div>
       )}
       {heading && (
-        <h2 className="mt-2 font-display text-2xl font-semibold tracking-tight text-foreground sm:text-[1.7rem]">
+        <h2 className="mt-2 font-display text-2xl font-bold tracking-tight text-foreground sm:text-[1.8rem]">
           {heading}
         </h2>
       )}
-      <div className={heading ? "mt-5" : ""}>
+      <div className={heading ? "mt-6 space-y-6" : "space-y-6"}>
         <Blocks blocks={section.blocks} />
       </div>
     </section>
