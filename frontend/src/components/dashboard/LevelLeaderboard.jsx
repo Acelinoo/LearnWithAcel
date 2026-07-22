@@ -8,7 +8,7 @@ function Row({ level, max }) {
     <li>
       <Link href={`/roadmap#${level.slug}`} className="group block">
         <div className="flex items-center justify-between gap-2 text-sm">
-          <span className="truncate font-medium text-foreground group-hover:text-accent-hover min-w-0">
+          <span className="flex-1 min-w-0 line-clamp-2 font-medium text-foreground group-hover:text-accent-hover">
             {level.title}
           </span>
           <span className="shrink-0 font-mono text-xs text-muted tabular-nums">

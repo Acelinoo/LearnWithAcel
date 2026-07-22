@@ -29,7 +29,7 @@ export default function ProgressByLevel({ byLevel }) {
         {visibleLevels.map((row) => (
           <li key={row.level_id} className="animate-fade-in">
             <div className="flex items-center justify-between gap-2 text-sm">
-              <span className="truncate font-medium text-foreground min-w-0">
+              <span className="flex-1 min-w-0 line-clamp-2 font-medium text-foreground">
                 {row.level_title}
               </span>
               <span className="shrink-0 font-mono text-xs text-muted tabular-nums">

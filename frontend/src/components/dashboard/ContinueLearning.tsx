@@ -150,7 +150,7 @@ export default function ContinueLearning({ byLevel, continueLesson }: Props) {
                   <div className="text-[11px] uppercase tracking-[0.12em] text-muted">
                     {row.completed_lessons > 0 ? "In progress" : "Belum dimulai"}
                   </div>
-                  <div className="mt-1 truncate text-sm font-medium text-foreground group-hover:text-accent-hover">
+                  <div className="mt-1 line-clamp-2 text-sm font-medium text-foreground group-hover:text-accent-hover">
                     {row.level_title}
                   </div>
                   <div className="mt-1.5 h-1 w-full overflow-hidden rounded-full bg-black/40">

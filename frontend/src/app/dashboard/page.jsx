@@ -201,10 +201,10 @@ export default async function DashboardPage() {
                       {String(idx + 1).padStart(2, "0")}
                     </span>
                     <div className="min-w-0 flex-1">
-                      <div className="text-[11px] uppercase tracking-wider text-muted truncate">
+                      <div className="text-[11px] uppercase tracking-wider text-muted line-clamp-1">
                         Level 0{l.levelNumber} — {l.levelTitle}
                       </div>
-                      <div className="mt-0.5 truncate text-sm font-medium text-foreground group-hover:text-accent-hover">
+                      <div className="mt-0.5 line-clamp-2 text-sm font-medium text-foreground group-hover:text-accent-hover">
                         {l.title}
                       </div>
                     </div>

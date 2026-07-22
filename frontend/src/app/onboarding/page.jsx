@@ -60,20 +60,7 @@ export default function OnboardingPage() {
         selected_role: selectedRole,
       });
 
-      // Fetch first level & first lesson for this role
-      let targetUrl = "/dashboard";
-      try {
-        const roadmap = await getRoadmap(selectedRole);
-        if (roadmap?.levels?.length > 0 && roadmap.levels[0].lessons?.length > 0) {
-          const firstLevel = roadmap.levels[0];
-          const firstLesson = firstLevel.lessons[0];
-          targetUrl = `/materi/${firstLevel.slug}/${firstLesson.slug}`;
-        }
-      } catch (err) {
-        console.warn("Gagal mengambil roadmap, fallback ke dashboard", err);
-      }
-
-      window.location.href = targetUrl;
+      window.location.href = "/persiapan";
     } catch (err) {
       console.error(err);
       alert("Terjadi kesalahan saat menyimpan pilihan role. Silakan coba lagi.");
