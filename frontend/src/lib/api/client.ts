@@ -1,13 +1,13 @@
 /**
  * Thin fetch wrapper around the LearnWithAcel FastAPI backend.
  *
- * - Reads `NEXT_PUBLIC_API_URL` (defaults to http://localhost:8000)
+ * - Reads `NEXT_PUBLIC_API_URL` (defaults to https://learnwithacel-backend.onrender.com)
  * - Adds `Authorization: Bearer <token>` when a token is provided
  * - Throws `ApiError` on non-2xx responses with a friendly message
  */
 
 export const API_URL =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+  process.env.NEXT_PUBLIC_API_URL || "https://learnwithacel-backend.onrender.com";
 
 export class ApiError extends Error {
   status: number;
