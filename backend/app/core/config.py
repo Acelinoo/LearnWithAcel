@@ -19,10 +19,10 @@ class Settings(BaseSettings):
     DEBUG: bool = False
 
     # ── Database ─────────────────────────────────────────────────────────────
-    DATABASE_URL: str
+    DATABASE_URL: str = "postgresql://postgres:password@localhost:5432/learnwithacel"
 
     # ── JWT ──────────────────────────────────────────────────────────────────
-    JWT_SECRET_KEY: str
+    JWT_SECRET_KEY: str = "your-super-secret-key-change-this-in-production"
     JWT_ALGORITHM: str = "HS256"
     JWT_ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24  # 24 hours
 
