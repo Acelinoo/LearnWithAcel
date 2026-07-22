@@ -9,38 +9,9 @@
 import { Code2 } from "lucide-react";
 import type { Block } from "./parse";
 import { renderInline } from "./inline";
+import CodeBlock from "@/components/ui/CodeBlock";
 
-/** Map of fenced-code language tokens to a friendly label shown in the
- *  pill above the snippet. The list is intentionally short — anything
- *  unknown falls back to the raw token (or "code" if empty). */
-const LANG_LABELS: Record<string, string> = {
-  js: "JavaScript",
-  javascript: "JavaScript",
-  ts: "TypeScript",
-  typescript: "TypeScript",
-  tsx: "TSX",
-  jsx: "JSX",
-  py: "Python",
-  python: "Python",
-  html: "HTML",
-  css: "CSS",
-  json: "JSON",
-  bash: "Bash",
-  shell: "Shell",
-  sh: "Shell",
-  sql: "SQL",
-  prisma: "Prisma",
-  http: "HTTP",
-  md: "Markdown",
-  markdown: "Markdown",
-  text: "Text",
-};
 
-function langLabel(raw: string): string {
-  if (!raw) return "Code";
-  const norm = raw.toLowerCase();
-  return LANG_LABELS[norm] ?? raw;
-}
 
 type Props = { block: Block; index: number };
 
@@ -48,7 +19,7 @@ export function BlockRenderer({ block, index: _index }: Props) {
   switch (block.type) {
     case "h1":
       return (
-        <h1 id={block.id} className="scroll-mt-24 font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+        <h1 id={block.id} className="mb-6 scroll-mt-24 font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
           {renderInline(block.text)}
         </h1>
       );
@@ -65,7 +36,7 @@ export function BlockRenderer({ block, index: _index }: Props) {
       return (
         <h3
           id={block.id}
-          className="mt-9 mb-4 scroll-mt-24 font-display text-xl font-semibold text-foreground/95"
+          className="mt-10 mb-4 scroll-mt-24 font-display text-xl font-semibold text-foreground/95"
         >
           {renderInline(block.text)}
         </h3>
@@ -74,22 +45,22 @@ export function BlockRenderer({ block, index: _index }: Props) {
       return (
         <h4
           id={block.id}
-          className="mt-7 mb-3 scroll-mt-24 font-display text-lg font-medium text-foreground/90"
+          className="mt-8 mb-4 scroll-mt-24 font-display text-lg font-medium text-foreground/90"
         >
           {renderInline(block.text)}
         </h4>
       );
     case "p":
       return (
-        <p className="my-5 leading-[1.95] text-foreground/90 font-normal text-base sm:text-[17px]">
+        <p className="mb-6 leading-relaxed text-foreground/90 font-normal text-base sm:text-[17px]">
           {renderInline(block.text)}
         </p>
       );
     case "ul":
       return (
-        <ul className="my-6 list-disc space-y-3.5 pl-5 text-foreground/90 text-base sm:text-[17px] marker:text-accent-hover">
+        <ul className="mb-6 mt-4 list-disc space-y-4 pl-5 text-foreground/90 text-base sm:text-[17px] marker:text-accent-hover">
           {block.items.map((item, j) => (
-            <li key={j} className="leading-[1.85] pl-1">
+            <li key={j} className="leading-relaxed pl-1">
               {renderInline(item)}
             </li>
           ))}
@@ -97,9 +68,9 @@ export function BlockRenderer({ block, index: _index }: Props) {
       );
     case "ol":
       return (
-        <ol className="my-6 list-decimal space-y-3.5 pl-5 text-foreground/90 text-base sm:text-[17px] marker:font-mono marker:text-accent-hover marker:text-[0.9em]">
+        <ol className="mb-6 mt-4 list-decimal space-y-4 pl-5 text-foreground/90 text-base sm:text-[17px] marker:font-mono marker:text-accent-hover marker:text-[0.9em]">
           {block.items.map((item, j) => (
-            <li key={j} className="leading-[1.85] pl-1">
+            <li key={j} className="leading-relaxed pl-1">
               {renderInline(item)}
             </li>
           ))}
@@ -151,22 +122,7 @@ export function BlockRenderer({ block, index: _index }: Props) {
   }
 }
 
-/** Code block with a header pill (language tag) for visual hierarchy. */
-function CodeBlock({ code, lang }: { code: string; lang: string }) {
-  return (
-    <div className="my-7 overflow-hidden rounded-2xl border border-border bg-[#0a0a0a]">
-      <div className="flex items-center gap-2 border-b border-border bg-black/40 px-4 py-2">
-        <Code2 size={12} className="text-muted/70" />
-        <span className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-muted/70">
-          {langLabel(lang)}
-        </span>
-      </div>
-      <pre className="overflow-x-auto px-5 py-5 font-mono text-[13px] leading-[1.7] text-foreground/90">
-        <code>{code}</code>
-      </pre>
-    </div>
-  );
-}
+
 
 /** Render a list of blocks in source order. */
 export function Blocks({ blocks }: { blocks: Block[] }) {

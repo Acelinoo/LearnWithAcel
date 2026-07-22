@@ -34,7 +34,7 @@ export default function LessonShell({ children, sidebar }: Props) {
       <div className="mx-auto w-full max-w-7xl px-5 py-16 sm:px-8 sm:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           <main className="lg:col-span-8 min-w-0">{children}</main>
-          {sidebar && <div className="hidden lg:block lg:col-span-4">{sidebar}</div>}
+          {sidebar && <div className="hidden lg:block lg:col-span-4 sticky top-24 self-start max-h-[calc(100vh-8rem)] overflow-y-auto no-scrollbar">{sidebar}</div>}
         </div>
       </div>
 

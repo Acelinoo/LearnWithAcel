@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Briefcase, Wrench, Code2 } from "lucide-react";
+import Link from "next/link";
+import { Briefcase, Wrench, Code2, Rocket, ArrowRight } from "lucide-react";
+import Reveal from "@/components/ui/Reveal";
 import { ROLE_CATEGORIES } from "@/lib/constants";
 
 export default function RoadmapFilter({ categories, panels, defaultMainCategory, defaultRole }) {
@@ -21,8 +23,49 @@ export default function RoadmapFilter({ categories, panels, defaultMainCategory,
   // Find the role data from the backend categories array
   const activeRoleData = categories.find(c => c.id === activeRole);
 
+  const bannerContent = {
+    web: {
+      title: "Pertama kali di Web Development? Siapkan alatnya dulu.",
+      subtitle: "Install VS Code, browser devtools, dan kenalan dengan ekstensi wajib.",
+    },
+    cyber: {
+      title: "Pertama kali di Cybersecurity? Siapkan lab & tools-mu dulu.",
+      subtitle: "Install VirtualBox, Kali Linux, Burp Suite, Nmap, dan pahami dasar etika.",
+    },
+    mobile: {
+      title: "Pertama kali di Mobile Development? Siapkan environment-mu dulu.",
+      subtitle: "Install Android Studio / Flutter SDK, VS Code, dan setup emulator.",
+    }
+  };
+  const activeBanner = bannerContent[activeMainCategory] || bannerContent.web;
+
   return (
     <div>
+      <Reveal delay={0.12}>
+        <Link
+          href={`/persiapan?role=${activeRole}`}
+          className="group mb-8 flex items-center justify-between gap-4 rounded-2xl border border-accent/20 bg-gradient-to-r from-accent/10 via-card to-card p-5 transition-colors hover:border-accent/40"
+        >
+          <div className="flex items-center gap-3">
+            <span className="flex h-9 w-9 items-center justify-center rounded-xl border border-accent/30 bg-accent/10 text-accent-hover shrink-0">
+              <Rocket size={15} />
+            </span>
+            <div>
+              <div className="font-display text-sm font-semibold">
+                {activeBanner.title}
+              </div>
+              <div className="text-xs text-muted">
+                {activeBanner.subtitle}
+              </div>
+            </div>
+          </div>
+          <span className="hidden items-center gap-1 text-sm text-accent-hover group-hover:text-foreground sm:inline-flex whitespace-nowrap">
+            Lihat persiapan
+            <ArrowRight size={14} />
+          </span>
+        </Link>
+      </Reveal>
+
       {/* Step 1: Main Category Filter */}
       <div className="mb-6 flex flex-wrap gap-2 border-b border-border pb-6">
         {ROLE_CATEGORIES.map((cat) => {

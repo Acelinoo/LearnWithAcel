@@ -7,6 +7,7 @@ import LessonShell from "@/components/lesson/LessonShell";
 import LessonSidebar from "@/components/lesson/LessonSidebar";
 import LessonNextCard from "@/components/lesson/LessonNextCard";
 import CompleteLessonButton from "@/components/lesson/CompleteLessonButton";
+import LessonShortcuts from "@/components/lesson/LessonShortcuts";
 import { Markdown, extractHeadings } from "@/lib/markdown";
 import {
   JALUR_META,
@@ -40,7 +41,8 @@ export default async function JalurLessonPage({ params }) {
   const initiallyCompleted = completedIds.includes(generatedLessonId);
 
   const idx = meta.lessons.findIndex((l) => l.slug === params.lesson);
-  const next = idx >= 0 ? meta.lessons[idx + 1] : null;
+  const next = idx >= 0 && idx + 1 < meta.lessons.length ? meta.lessons[idx + 1] : null;
+  const prev = idx > 0 ? meta.lessons[idx - 1] : null;
 
   const headings = extractHeadings(lesson.content);
   const lessonHrefBase = `/jalur/${meta.path}`;
@@ -58,7 +60,12 @@ export default async function JalurLessonPage({ params }) {
 
   return (
     <>
-      <ReadingProgress />
+      <ReadingProgress lessonId={generatedLessonId} />
+      <LessonShortcuts
+        nextHref={next ? `/jalur/${meta.path}/${next.slug}` : undefined}
+        prevHref={prev ? `/jalur/${meta.path}/${prev.slug}` : undefined}
+        backHref={`/jalur/${meta.path}`}
+      />
 
       <LessonShell
         sidebar={

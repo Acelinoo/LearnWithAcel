@@ -10,6 +10,7 @@ import {
 import Reveal from "@/components/ui/Reveal";
 import ReadingProgress from "@/components/lesson/ReadingProgress";
 import CompleteLessonButton from "@/components/lesson/CompleteLessonButton";
+import LessonShortcuts from "@/components/lesson/LessonShortcuts";
 import { Markdown } from "@/lib/markdown";
 import { getLesson, getRoadmap } from "@/lib/api/content";
 import { ApiError } from "@/lib/api/client";
@@ -25,11 +26,12 @@ async function loadLessonContext(level, lessonSlug) {
     const matchingLevel = roadmap?.levels.find((l) => l.slug === level);
     const lessonsInLevel = matchingLevel?.lessons ?? [];
     const idx = lessonsInLevel.findIndex((l) => l.slug === lessonSlug);
-    const next = idx >= 0 ? lessonsInLevel[idx + 1] : null;
-    return { lesson, level: matchingLevel, next };
+    const next = idx >= 0 && idx + 1 < lessonsInLevel.length ? lessonsInLevel[idx + 1] : null;
+    const prev = idx > 0 ? lessonsInLevel[idx - 1] : null;
+    return { lesson, level: matchingLevel, next, prev };
   } catch (e) {
     if (e instanceof ApiError && e.status === 404) {
-      return { lesson: null, level: null, next: null };
+      return { lesson: null, level: null, next: null, prev: null };
     }
     throw e;
   }
@@ -48,7 +50,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function VibeLessonPage({ params }) {
-  const { lesson, level, next } = await loadLessonContext(
+  const { lesson, level, next, prev } = await loadLessonContext(
     params.level,
     params.lesson
   );
@@ -57,7 +59,12 @@ export default async function VibeLessonPage({ params }) {
 
   return (
     <>
-      <ReadingProgress />
+      <ReadingProgress lessonId={lesson.id} />
+      <LessonShortcuts
+        nextHref={next ? `/materi/vibe/${params.level}/${next.slug}` : undefined}
+        prevHref={prev ? `/materi/vibe/${params.level}/${prev.slug}` : undefined}
+        backHref="/roadmap/vibe"
+      />
 
       <article className="container-page max-w-3xl py-16">
         <Reveal>

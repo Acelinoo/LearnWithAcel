@@ -47,6 +47,9 @@ export default function Quiz({ questions }: Props) {
   // question active.
   const [answers, setAnswers] = useState<Record<number, AnswerState[]>>({});
 
+  // Strict mode: if any question is answered incorrectly, the entire quiz fails
+  const [failed, setFailed] = useState(false);
+
   const totalCleared = useMemo(() => {
     return Object.values(answers).filter((arr) =>
       arr.some((a) => a.correct),
@@ -54,6 +57,8 @@ export default function Quiz({ questions }: Props) {
   }, [answers]);
 
   function attempt(qIdx: number, optionIdx: number) {
+    if (failed) return;
+
     const q = questions[qIdx];
     const isCorrect = optionIdx === q.correctIndex;
     setAnswers((prev) => {
@@ -72,15 +77,15 @@ export default function Quiz({ questions }: Props) {
       setTimeout(() => {
         setActiveIdx((curr) => Math.min(curr + 1, questions.length));
       }, 1200);
+    } else {
+      setFailed(true);
     }
   }
 
-  function reset(qIdx: number) {
-    setAnswers((prev) => {
-      const next = { ...prev };
-      delete next[qIdx];
-      return next;
-    });
+  function resetAll() {
+    setAnswers({});
+    setActiveIdx(0);
+    setFailed(false);
   }
 
   const allDone = questions.length > 0 && totalCleared === questions.length;
@@ -139,7 +144,8 @@ export default function Quiz({ questions }: Props) {
           question={questions[activeIdx]}
           attempts={answers[activeIdx] ?? []}
           onAttempt={(optIdx) => attempt(activeIdx, optIdx)}
-          onReset={() => reset(activeIdx)}
+          failed={failed}
+          onResetAll={resetAll}
         />
       ) : (
         <div className="rounded-2xl border border-emerald-400/30 bg-emerald-400/[0.06] p-6 text-center">
@@ -168,12 +174,14 @@ function ActiveQuestion({
   question,
   attempts,
   onAttempt,
-  onReset,
+  failed,
+  onResetAll,
 }: {
   question: QuizQuestion;
   attempts: AnswerState[];
   onAttempt: (idx: number) => void;
-  onReset: () => void;
+  failed: boolean;
+  onResetAll: () => void;
 }) {
   const lastAttempt = attempts[attempts.length - 1];
   const cleared = attempts.some((a) => a.correct);
@@ -201,7 +209,7 @@ function ActiveQuestion({
           const isCorrectAndPicked = isPicked && lastAttempt?.correct;
           const isWrongAndPicked = isPicked && !lastAttempt?.correct;
           const wasWrongBefore = wrongIndices.includes(optIdx);
-          const disabled = cleared || wasWrongBefore;
+          const disabled = cleared || failed || wasWrongBefore;
 
           return (
             <li key={optIdx}>
@@ -276,7 +284,7 @@ function ActiveQuestion({
             ) : (
               <>
                 <X size={14} className="text-rose-300" />
-                Belum tepat. Coba lagi.
+                Belum tepat. Anda harus mengulang kuis dari awal.
               </>
             )}
           </div>
@@ -286,15 +294,15 @@ function ActiveQuestion({
         </div>
       )}
 
-      {!cleared && attempts.length > 0 && (
-        <div className="mt-4 flex justify-end">
+      {failed && (
+        <div className="mt-6 flex justify-center animate-fade-up">
           <button
             type="button"
-            onClick={onReset}
-            className="inline-flex items-center gap-1.5 rounded-full border border-border bg-black/30 px-3 py-1.5 text-xs font-medium text-muted transition-colors hover:border-border-strong hover:text-foreground"
+            onClick={onResetAll}
+            className="inline-flex items-center gap-2 rounded-xl border border-rose-500/50 bg-rose-500/10 px-5 py-2.5 text-sm font-semibold text-rose-200 transition-colors hover:bg-rose-500/20"
           >
-            <RotateCcw size={11} />
-            Reset jawaban
+            <RotateCcw size={14} />
+            Coba Lagi dari Awal
           </button>
         </div>
       )}

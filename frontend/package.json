@@ -16,12 +16,14 @@
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-hook-form": "^7.75.0",
+    "react-syntax-highlighter": "^16.1.1",
     "zod": "^4.4.3"
   },
   "devDependencies": {
     "@types/node": "25.7.0",
     "@types/react": "19.2.14",
     "@types/react-dom": "^19.2.3",
+    "@types/react-syntax-highlighter": "^15.5.13",
     "autoprefixer": "10.4.19",
     "eslint": "8.57.0",
     "eslint-config-next": "14.2.5",

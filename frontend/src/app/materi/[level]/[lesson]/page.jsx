@@ -6,6 +6,7 @@ import ReadingProgress from "@/components/lesson/ReadingProgress";
 import LessonShell from "@/components/lesson/LessonShell";
 import LessonSidebar from "@/components/lesson/LessonSidebar";
 import CompleteLessonButton from "@/components/lesson/CompleteLessonButton";
+import LessonShortcuts from "@/components/lesson/LessonShortcuts";
 import { Markdown, extractHeadings } from "@/lib/markdown";
 import { getLesson, getRoadmap } from "@/lib/api/content";
 import { getServerStats } from "@/lib/api/server";
@@ -30,6 +31,7 @@ async function loadLessonContext(levelSlug, lessonSlug) {
     const lessonsInLevel = matchingLevel?.lessons ?? [];
     const idx = lessonsInLevel.findIndex((l) => l.slug === lessonSlug);
     const next = idx >= 0 && idx + 1 < lessonsInLevel.length ? lessonsInLevel[idx + 1] : null;
+    const prev = idx > 0 ? lessonsInLevel[idx - 1] : null;
 
     const completedLessonIds = stats?.completed_lesson_ids ?? [];
     const isCompleted = completedLessonIds.includes(lesson.id);
@@ -39,6 +41,7 @@ async function loadLessonContext(levelSlug, lessonSlug) {
       level: matchingLevel,
       category,
       next,
+      prev,
       lessonsInLevel,
       completedLessonIds,
       isCompleted,
@@ -46,7 +49,7 @@ async function loadLessonContext(levelSlug, lessonSlug) {
     };
   } catch (e) {
     if (e instanceof ApiError && e.status === 404) {
-      return { lesson: null, level: null, category: null, next: null, lessonsInLevel: [], completedLessonIds: [], isCompleted: false, lessonIndex: 1 };
+      return { lesson: null, level: null, category: null, next: null, prev: null, lessonsInLevel: [], completedLessonIds: [], isCompleted: false, lessonIndex: 1 };
     }
     throw e;
   }
@@ -73,6 +76,7 @@ export default async function LessonPage({ params }) {
     level,
     category,
     next,
+    prev,
     lessonsInLevel,
     completedLessonIds,
     isCompleted,
@@ -98,7 +102,12 @@ export default async function LessonPage({ params }) {
 
   return (
     <>
-      <ReadingProgress />
+      <ReadingProgress lessonId={lesson.id} />
+      <LessonShortcuts 
+        nextHref={next ? `/materi/${params.level}/${next.slug}` : undefined}
+        prevHref={prev ? `/materi/${params.level}/${prev.slug}` : undefined}
+        backHref="/roadmap"
+      />
 
       <LessonShell
         sidebar={

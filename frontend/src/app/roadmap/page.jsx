@@ -235,30 +235,6 @@ export default async function RoadmapPage() {
         </p>
       </Reveal>
 
-      <Reveal delay={0.12}>
-        <Link
-          href="/persiapan"
-          className="group mt-8 flex items-center justify-between gap-4 rounded-2xl border border-accent/20 bg-gradient-to-r from-accent/10 via-card to-card p-5 transition-colors hover:border-accent/40"
-        >
-          <div className="flex items-center gap-3">
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl border border-accent/30 bg-accent/10 text-accent-hover">
-              <Rocket size={15} />
-            </span>
-            <div>
-              <div className="font-display text-sm font-semibold">
-                Pertama kali di sini? Siapkan alatnya dulu.
-              </div>
-              <div className="text-xs text-muted">
-                Install VS Code, browser, dan kenalan dengan ekstensi wajib.
-              </div>
-            </div>
-          </div>
-          <span className="hidden items-center gap-1 text-sm text-accent-hover group-hover:text-foreground sm:inline-flex">
-            Lihat persiapan
-            <ArrowRight size={14} />
-          </span>
-        </Link>
-      </Reveal>
 
       <div className="mt-12">
         <RoadmapFilter
