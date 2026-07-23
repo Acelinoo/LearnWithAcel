@@ -3,8 +3,10 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Map, Sparkles } from "lucide-react";
+import { useAuth } from "@/components/providers/AuthProvider";
 
 export default function Hero() {
+  const { user } = useAuth();
   return (
     <section className="relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0">
@@ -41,7 +43,7 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.25 }}
             className="mt-9 flex flex-col items-center gap-3 sm:flex-row"
           >
-            <Link href="/pilih-jalur" className="btn-primary">
+            <Link href={user ? (user.has_completed_onboarding ? "/roadmap" : "/onboarding") : "/onboarding"} className="btn-primary">
               Mulai Belajar
               <ArrowRight size={16} />
             </Link>

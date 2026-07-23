@@ -9,6 +9,8 @@ import {
 } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import RoadmapFilter from "./RoadmapFilter";
+import Loading from "./loading";
+import ErrorToast from "@/components/ui/ErrorToast";
 import { listCategories, getRoadmap } from "@/lib/api/content";
 import { getServerUser } from "@/lib/api/server";
 import { levelTags } from "@/lib/roadmap-utils";
@@ -171,18 +173,21 @@ export default async function RoadmapPage() {
   const user = await getServerUser().catch(() => null);
   let categories = [];
   let roadmapMap = new Map();
+  let hasError = false;
   try {
     const loaded = await loadAll();
     categories = loaded.categories;
     roadmapMap = loaded.roadmapMap;
   } catch {
+    hasError = true;
+  }
+
+  if (hasError) {
     return (
-      <div className="container-page py-24">
-        <h1 className="font-display text-3xl font-semibold">Roadmap</h1>
-        <p className="mt-4 text-sm text-muted">
-          Gagal mengambil data dari server.
-        </p>
-      </div>
+      <>
+        <Loading />
+        <ErrorToast message="Gagal menghubungkan ke server." />
+      </>
     );
   }
 

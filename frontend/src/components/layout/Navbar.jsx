@@ -48,7 +48,7 @@ export default function Navbar() {
     >
       <div className="container-page flex h-16 items-center justify-between">
         <Link
-          href="/"
+          href={user ? "/dashboard" : "/"}
           className="group flex items-center gap-2 font-display text-base font-semibold tracking-tight"
         >
           <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-gradient-to-br from-accent/60 to-accent-hover/40 shadow-glow">
@@ -121,7 +121,7 @@ export default function Navbar() {
                 );
               })}
               <Link
-                href="/pilih-jalur"
+                href={user ? (user.has_completed_onboarding ? "/roadmap" : "/onboarding") : "/onboarding"}
                 className="btn-primary mt-2 w-full"
               >
                 Mulai Belajar
