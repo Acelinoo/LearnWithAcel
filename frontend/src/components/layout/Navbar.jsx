@@ -48,7 +48,7 @@ export default function Navbar() {
     >
       <div className="container-page flex h-16 items-center justify-between">
         <Link
-          href={user ? "/dashboard" : "/"}
+          href="/"
           className="group flex items-center gap-2 font-display text-base font-semibold tracking-tight"
         >
           <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-gradient-to-br from-accent/60 to-accent-hover/40 shadow-glow">

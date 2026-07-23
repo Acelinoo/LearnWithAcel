@@ -34,21 +34,11 @@ export default function PracticalLabRenderer({ lesson }: Props) {
             {cleanTitle}
           </h1>
           <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted">
-            Saatnya menguji pemahamanmu! Terapkan semua yang telah kamu pelajari di level ini ke dalam proyek nyata.
+            {lesson.summary || "Saatnya menguji pemahamanmu! Terapkan semua yang telah kamu pelajari di level ini ke dalam proyek nyata."}
           </p>
         </div>
       </div>
 
-      {/* 🎯 Tujuan Project */}
-      <section className="scroll-mt-24" id="tujuan">
-        <div className="mb-4 flex items-center gap-2 border-b border-white/10 pb-2">
-          <Target className="text-emerald-400" size={24} />
-          <h2 className="font-display text-2xl font-semibold">Tujuan Project</h2>
-        </div>
-        <p className="text-[17px] leading-relaxed text-foreground/90">
-          {lesson.summary}
-        </p>
-      </section>
 
       {/* 📋 Instruksi & Kriteria */}
       <section className="scroll-mt-24" id="instruksi">
