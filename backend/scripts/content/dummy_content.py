@@ -2036,6 +2036,7 @@ def generate_rich_lessons(role_name: str, role_slug: str, level_num: int, module
                 "order_index": i + 1,
                 "xp_reward": 50 if i < 3 else 100,
                 "is_project": i == 3,
+                "video_url": "https://www.youtube.com/embed/UMbbF72vXSM" if title == "Pengenalan HTML & Struktur Dokumen Web" else None,
             })
         return lessons
 
@@ -2068,6 +2069,7 @@ def generate_rich_lessons(role_name: str, role_slug: str, level_num: int, module
             "order_index": i + 1,
             "xp_reward": 50 if i < 3 else 100,
             "is_project": i == 3,
+            "video_url": "https://www.youtube.com/embed/UMbbF72vXSM" if title == "Pengenalan HTML & Struktur Dokumen Web" else None,
         })
 
     return lessons
