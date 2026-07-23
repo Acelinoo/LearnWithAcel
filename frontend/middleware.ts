@@ -40,7 +40,11 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(redirectUrl);
   }
 
-  return NextResponse.next();
+  const response = NextResponse.next();
+  if (isAuthPage) {
+    response.headers.set("Cache-Control", "no-store, max-age=0");
+  }
+  return response;
 }
 
 export const config = {

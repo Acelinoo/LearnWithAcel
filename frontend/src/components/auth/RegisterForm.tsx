@@ -68,11 +68,13 @@ export default function RegisterForm() {
 
     // 2. Auto-login so the user lands on /onboarding already authenticated.
     setStage("signing-in");
+    let token = "";
     try {
       const { access_token } = await login({
         email: values.email,
         password: values.password,
       });
+      token = access_token;
       await setSession(access_token);
     } catch (e) {
       setStage("idle");
@@ -88,7 +90,11 @@ export default function RegisterForm() {
 
     // 3. Redirect.
     setStage("redirecting");
-    window.location.href = "/onboarding";
+    if (typeof window !== "undefined" && token) {
+      window.localStorage.setItem("lwa_token", token);
+    }
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    router.push("/onboarding");
   };
 
   const busy = isSubmitting || stage !== "idle";

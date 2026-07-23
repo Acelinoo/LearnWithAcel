@@ -3,7 +3,7 @@ Authentication routes: register, login, current user profile,
 forgot password, and reset password.
 """
 
-from fastapi import APIRouter, Depends, status
+from fastapi import APIRouter, Depends, status, Response
 
 from app.core.deps import get_current_user
 from app.schemas.auth import (
@@ -37,8 +37,9 @@ async def register(payload: RegisterRequest) -> UserResponse:
     response_model=TokenResponse,
     summary="Login and receive a JWT token",
 )
-async def login(payload: LoginRequest) -> TokenResponse:
+async def login(payload: LoginRequest, response: Response) -> TokenResponse:
     """Authenticate with email and password, returns a Bearer token."""
+    response.headers["Cache-Control"] = "no-store, max-age=0"
     return await auth_service.login_user(payload)
 
 

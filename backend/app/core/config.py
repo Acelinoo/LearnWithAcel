@@ -45,7 +45,7 @@ class Settings(BaseSettings):
 
     # ── CORS ─────────────────────────────────────────────────────────────────
     # Comma-separated list of allowed origins
-    CORS_ORIGINS: str = "http://localhost:3000,https://learnwithacel.vercel.app"
+    CORS_ORIGINS: str = "http://localhost:3000,https://learnwithacel.vercel.app,https://learningwithacel.vercel.app"
 
     @property
     def cors_origins_list(self) -> list[str]:

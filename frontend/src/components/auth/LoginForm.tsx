@@ -40,8 +40,20 @@ export default function LoginForm() {
         email: values.email,
         password: values.password,
       });
+      // Mencegah race condition di mobile:
+      // 1. Simpan di localStorage sebagai backup
+      if (typeof window !== "undefined") {
+        window.localStorage.setItem("lwa_token", access_token);
+      }
+      
+      // 2. Set Session & Cookie
       await setSession(access_token);
-      window.location.href = redirectTo;
+
+      // 3. Tambahkan delay agar browser di HP (Safari/Chrome) sempat sinkronisasi cookies
+      await new Promise((resolve) => setTimeout(resolve, 300));
+
+      // 4. Gunakan router.push daripada window.location.href agar lebih aman di Next.js
+      router.push(redirectTo);
     } catch (e) {
       const msg =
         e instanceof ApiError
