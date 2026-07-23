@@ -16,6 +16,7 @@ export type ApiUser = {
   created_at: string;
   selected_category: string | null;
   selected_role: string | null;
+  has_completed_onboarding: boolean;
 };
 
 export type LoginPayload = {

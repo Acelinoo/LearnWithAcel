@@ -222,9 +222,6 @@ export default async function PersiapanPage() {
                   Saya Sudah Siap!
                   <ArrowRight size={16} />
                 </Link>
-                <Link href={firstLessonHref} className="btn-secondary">
-                  Langsung Baca Materi
-                </Link>
               </div>
             </div>
           </div>

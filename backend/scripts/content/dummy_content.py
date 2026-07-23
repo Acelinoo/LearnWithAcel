@@ -2098,16 +2098,16 @@ def generate_dummy_levels(role_name: str, role_slug: str) -> list[dict[str, Any]
 
         # CYBERSECURITY
         "penetration-tester": [
-            ("Linux Basics", "Modul 1: Penguasaan sistem operasi hacker."),
-            ("Networking Fundamentals", "Modul 2: Cara kerja jaringan dan protokol."),
-            ("OWASP Top 10", "Modul 3: Kerentanan paling umum di aplikasi web."),
-            ("Burp Suite & Web Hacking", "Modul 4: Praktik peretasan aplikasi web.")
+            ("Basic Networking", "Modul 1: Pemahaman cara kerja jaringan dan internet."),
+            ("Web Security OWASP Top 10", "Modul 2: 10 celah keamanan web paling berbahaya."),
+            ("Penetration Testing Basics", "Modul 3: Metodologi dasar penetration testing."),
+            ("Practical Exploitation", "Modul 4: Eksploitasi kerentanan secara praktis.")
         ],
         "soc-analyst": [
-            ("Networking Basics", "Modul 1: Dasar-dasar jaringan komputer."),
-            ("SIEM Fundamentals", "Modul 2: Manajemen log dan insiden keamanan."),
-            ("Windows & Linux Admin", "Modul 3: Administrasi sistem operasi."),
-            ("Log Analysis", "Modul 4: Menganalisa log untuk deteksi ancaman.")
+            ("Basic Networking", "Modul 1: Pemahaman cara kerja jaringan dan internet."),
+            ("Web Security OWASP Top 10", "Modul 2: 10 celah keamanan web paling berbahaya."),
+            ("Security Monitoring", "Modul 3: Memantau dan menganalisis log keamanan."),
+            ("Incident Response", "Modul 4: Merespon insiden keamanan.")
         ],
         "security-engineer": [
             ("Firewall & Network Security", "Modul 1: Mengamankan perimeter jaringan."),
@@ -2124,22 +2124,22 @@ def generate_dummy_levels(role_name: str, role_slug: str) -> list[dict[str, Any]
 
         # MOBILE DEVELOPMENT
         "android-developer": [
-            ("Kotlin Basics", "Modul 1: Sintaks dan fitur bahasa Kotlin."),
-            ("Android Studio Setup", "Modul 2: Pengenalan IDE dan emulator."),
-            ("Jetpack Compose UI", "Modul 3: Membangun UI Android modern."),
-            ("Firebase Integration", "Modul 4: Layanan backend untuk aplikasi mobile.")
+            ("Dasar Pemrograman Kotlin & Structure", "Modul 1: Dasar pemrograman Kotlin dan struktur proyek."),
+            ("UI Layouting dengan Jetpack Compose", "Modul 2: Membangun UI Android yang deklaratif."),
+            ("Data Persistence & Retrofit API", "Modul 3: Room DB untuk data lokal dan Retrofit untuk API."),
+            ("Architecture MVVM & Mini Project App", "Modul 4: Arsitektur aplikasi modern dan praktik akhir.")
         ],
         "ios-developer": [
-            ("Swift Fundamentals", "Modul 1: Bahasa pemrograman untuk ekosistem Apple."),
-            ("SwiftUI Essentials", "Modul 2: Membangun UI reaktif."),
-            ("Xcode Workflow", "Modul 3: Alur kerja pengembangan iOS."),
-            ("iOS App State", "Modul 4: Manajemen state pada aplikasi iOS.")
+            ("Pengenalan Dasar Bahasa Swift & Variable", "Modul 1: Dasar pemrograman Swift untuk Apple ekosistem."),
+            ("UI Design & Layouting dengan SwiftUI", "Modul 2: Membangun UI reaktif dengan SwiftUI."),
+            ("State Management & Fetching REST API", "Modul 3: Manajemen state dan konsumsi API eksternal."),
+            ("Mini Project & Preparation App Store", "Modul 4: Proyek akhir dan rilis ke App Store.")
         ],
         "flutter-developer": [
-            ("Dart Programming", "Modul 1: Bahasa di balik Flutter."),
-            ("Flutter UI Basics", "Modul 2: Widget dan layout dasar."),
-            ("State Management", "Modul 3: Mengelola state aplikasi (Provider/Riverpod)."),
-            ("Firebase Mobile", "Modul 4: Integrasi backend Firebase.")
+            ("Fundamental Bahasa Dart & Widget", "Modul 1: Dasar bahasa Dart dan stateless/stateful widget."),
+            ("Complex Layouting & Responsive UI", "Modul 2: Menyusun tata letak responsif dan kompleks."),
+            ("State Management & API Integration", "Modul 3: Mengelola state (Provider/Bloc) dan konsumsi API."),
+            ("Multi-Platform Build & Mini Project", "Modul 4: Build untuk Android/iOS dan proyek akhir.")
         ]
     }
 
@@ -2163,10 +2163,17 @@ def generate_dummy_levels(role_name: str, role_slug: str) -> list[dict[str, Any]
             "description": f"Pelajari {title.lower()} sebagai langkah penting menjadi seorang {role_name}.",
             "duration": "2 Minggu",
             "difficulty": "Beginner" if level_num <= 2 else "Intermediate",
-            "accent_color": "from-blue-500/20 to-purple-500/20",
+            "accent_color": "from-teal-500/20 to-cyan-500/20",
             "mini_project": f"Proyek Mini {level_num}: {title}",
             "tags": [role_name, "Dasar", f"Modul {level_num}"],
-            "lessons": generate_rich_lessons(role_name, role_slug, level_num, title),
+            "lessons": generate_rich_lessons(role_name, role_slug, level_num, title) + [{
+                "slug": f"mini-project-{level_num}",
+                "title": f"🏆 Mini Project: {title}",
+                "summary": "Tugas praktek untuk menguji pemahamanmu di level ini.",
+                "content": f"# 🏆 Mini Project: {title}\n\nSelamat! Kamu telah mencapai akhir dari level ini. Saatnya mempraktekkan semua yang telah kamu pelajari.\n\nIkuti checklist di halaman ini untuk menyelesaikan tugas praktekmu dengan baik di VS Code atau Antigravity.",
+                "duration": "2 Jam",
+                "order_index": 99,
+            }],
         })
 
     return levels

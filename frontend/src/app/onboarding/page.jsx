@@ -22,11 +22,22 @@ export default function OnboardingPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    const token = getClientToken();
-    if (!token) {
-      router.push("/login?redirectTo=/onboarding");
-      return;
-    }
+    const checkUser = async () => {
+      const token = getClientToken();
+      if (!token) {
+        router.push("/login?redirectTo=/onboarding");
+        return;
+      }
+      try {
+        const user = await getMe(token);
+        if (user.has_completed_onboarding) {
+          router.push("/roadmap");
+        }
+      } catch (err) {
+        console.error("Gagal mendapatkan data user", err);
+      }
+    };
+    checkUser();
   }, [router]);
 
   const activeCategory = CATEGORIES.find((c) => c.id === selectedCat);
@@ -60,7 +71,7 @@ export default function OnboardingPage() {
         selected_role: selectedRole,
       });
 
-      window.location.href = "/persiapan";
+      window.location.href = "/roadmap";
     } catch (err) {
       console.error(err);
       alert("Terjadi kesalahan saat menyimpan pilihan role. Silakan coba lagi.");

@@ -30,6 +30,7 @@ class UserResponse(BaseModel):
     created_at: str
     selected_category: str | None = None
     selected_role: str | None = None
+    has_completed_onboarding: bool = False
 
     model_config = {"from_attributes": True}
 

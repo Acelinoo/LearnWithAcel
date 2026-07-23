@@ -89,6 +89,7 @@ def get_user_profile(user) -> UserResponse:
         created_at=created_at_str,
         selected_category=getattr(user, "selected_category", None),
         selected_role=getattr(user, "selected_role", None),
+        has_completed_onboarding=getattr(user, "has_completed_onboarding", False),
     )
 
 
@@ -99,6 +100,7 @@ async def update_user_role(user, payload: UserUpdateRole) -> UserResponse:
         data={
             "selected_category": payload.selected_category,
             "selected_role": payload.selected_role,
+            "has_completed_onboarding": True,
         },
     )
     return get_user_profile(updated_user)

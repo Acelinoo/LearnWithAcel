@@ -14,6 +14,7 @@ from app.schemas.content import (
 
 
 def _serialize_lesson_summary(lesson) -> LessonSummary:
+    is_project = "Mini Project" in lesson.title
     return LessonSummary(
         id=lesson.id,
         title=lesson.title,
@@ -21,8 +22,8 @@ def _serialize_lesson_summary(lesson) -> LessonSummary:
         summary=lesson.summary,
         duration=lesson.duration,
         order_index=lesson.order_index,
-        xp_reward=getattr(lesson, "xp_reward", 50) or 50,
-        is_project=getattr(lesson, "is_project", False) or False,
+        xp_reward=150 if is_project else 50,
+        is_project=is_project,
     )
 
 
@@ -117,6 +118,7 @@ async def get_lesson_detail(level_slug: str, lesson_slug: str) -> LessonDetail:
             f"Lesson '{lesson_slug}' not found in level '{level_slug}'"
         )
 
+    is_project = "Mini Project" in lesson.title
     return LessonDetail(
         id=lesson.id,
         title=lesson.title,
@@ -126,6 +128,6 @@ async def get_lesson_detail(level_slug: str, lesson_slug: str) -> LessonDetail:
         duration=lesson.duration,
         order_index=lesson.order_index,
         level_id=lesson.level_id,
-        xp_reward=getattr(lesson, "xp_reward", 50) or 50,
-        is_project=getattr(lesson, "is_project", False) or False,
+        xp_reward=150 if is_project else 50,
+        is_project=is_project,
     )

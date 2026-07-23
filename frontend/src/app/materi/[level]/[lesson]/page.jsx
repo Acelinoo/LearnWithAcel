@@ -100,7 +100,7 @@ export default async function LessonPage({ params }) {
   }));
 
   const roleName = category?.name || category?.role || "LearnWithAcel";
-  const xpReward = lesson.order_index === 4 ? 100 : 50;
+  const xpReward = lesson.xp_reward || 50;
 
   return (
     <>

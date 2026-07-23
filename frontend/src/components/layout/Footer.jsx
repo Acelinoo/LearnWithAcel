@@ -14,8 +14,8 @@ const columns = [
     title: "Creator",
     links: [
       { label: "About", href: "/about" },
-      { label: "Portfolio", href: "https://example.com" },
-      { label: "Kontak", href: "mailto:halo@learnwithacel.dev" },
+      { label: "Portfolio", href: "https://acelino.vercel.app" },
+      { label: "Kontak", href: "mailto:marchelinokurniawan321@gmail.com" },
     ],
   },
   {
@@ -45,21 +45,14 @@ export default function Footer() {
           </p>
           <div className="mt-6 flex items-center gap-2">
             <a
-              href="https://github.com"
+              href="https://github.com/acelinoo"
               className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-muted transition-colors hover:border-white/20 hover:text-foreground"
               aria-label="GitHub"
             >
               <Github size={16} />
             </a>
             <a
-              href="https://twitter.com"
-              className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-muted transition-colors hover:border-white/20 hover:text-foreground"
-              aria-label="Twitter"
-            >
-              <Twitter size={16} />
-            </a>
-            <a
-              href="https://instagram.com"
+              href="https://instagram.com/acelino"
               className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-muted transition-colors hover:border-white/20 hover:text-foreground"
               aria-label="Instagram"
             >
