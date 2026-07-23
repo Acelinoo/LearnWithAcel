@@ -8,6 +8,7 @@ import LessonSidebar from "@/components/lesson/LessonSidebar";
 import CompleteLessonButton from "@/components/lesson/CompleteLessonButton";
 import LessonShortcuts from "@/components/lesson/LessonShortcuts";
 import PracticalLabRenderer from "@/components/lesson/PracticalLabRenderer";
+import LessonContentManager from "@/components/lesson/LessonContentManager";
 import { Markdown, extractHeadings } from "@/lib/markdown";
 import { getLesson, getRoadmap } from "@/lib/api/content";
 import { getServerStats } from "@/lib/api/server";
@@ -181,23 +182,9 @@ export default async function LessonPage({ params }) {
               </p>
             </Reveal>
 
-            {lesson.video_url && (
-              <Reveal delay={0.2}>
-                <div className="mt-8 aspect-video w-full overflow-hidden rounded-2xl border border-white/10 bg-black/50 shadow-2xl">
-                  <iframe
-                    src={lesson.video_url}
-                    title={lesson.title}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="h-full w-full border-none"
-                  />
-                </div>
-              </Reveal>
-            )}
-
-            {/* Content Body */}
+            {/* Learning Mode Content Manager */}
             <div className="mt-10">
-              <Markdown source={lesson.content} />
+              <LessonContentManager lesson={lesson} />
             </div>
 
             {/* Bottom Bar & Action */}
