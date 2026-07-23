@@ -102,6 +102,8 @@ model Lesson {
   duration     String
   base_viewers Int            @default(0)
   order_index  Int
+  criteria     Json?          // Array of strings
+  hints        String?        // Markdown text
   level        Level          @relation(fields: [level_id], references: [id], onDelete: Cascade)
   progress     UserProgress[]
 

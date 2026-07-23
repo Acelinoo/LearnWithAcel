@@ -209,6 +209,8 @@ def make_lesson(
     quiz_count: int | None = None,
     xp_reward: int = 0,
     is_project: bool = False,
+    criteria: Sequence[str] | None = None,
+    hints: str | None = None,
 ) -> dict:
     """Assemble a lesson dict with content Markdown + forward-compat metadata.
 
@@ -249,6 +251,8 @@ def make_lesson(
         "quiz_count": quiz_count if quiz_count is not None else len(quiz),
         "xp_reward": xp_reward,
         "is_project": is_project,
+        "criteria": list(criteria) if criteria else None,
+        "hints": hints,
     }
 
 

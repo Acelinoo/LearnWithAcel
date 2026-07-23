@@ -72,6 +72,8 @@ export type ApiLessonDetail = {
   level_id: string;
   xp_reward?: number;
   is_project?: boolean;
+  criteria?: string[] | string | null;
+  hints?: string | null;
 };
 
 /* ------------------------------------------------------------------ */
@@ -95,6 +97,10 @@ export function normalizeTechs(techs: ApiCategory["techs"]): TechGroup[] {
 
 export function normalizeTags(tags: ApiLevelSummary["tags"]): string[] {
   return safeParseJson<string[]>(tags, []);
+}
+
+export function normalizeCriteria(criteria: ApiLessonDetail["criteria"]): string[] {
+  return safeParseJson<string[]>(criteria, []);
 }
 
 /* ------------------------------------------------------------------ */

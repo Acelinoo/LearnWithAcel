@@ -36,6 +36,8 @@ class LessonDetail(BaseModel):
     level_id: str
     xp_reward: int = 50
     is_project: bool = False
+    criteria: list[str] | None = None
+    hints: str | None = None
 
     model_config = {"from_attributes": True}
 

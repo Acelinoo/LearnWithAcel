@@ -56,50 +56,92 @@ export default function PracticalLabRenderer({ lesson }: Props) {
           <ListChecks className="text-amber-400" size={24} />
           <h2 className="font-display text-2xl font-semibold">Instruksi & Kriteria</h2>
         </div>
-        <div className="prose prose-invert max-w-none prose-headings:font-display prose-a:text-accent-hover">
+        <div className="prose prose-invert max-w-none prose-headings:font-display prose-a:text-accent-hover mb-6">
           <MarkdownRenderer source={lesson.content} />
         </div>
-      </section>
 
-      {/* 💡 Interactive Hint */}
-      <section className="scroll-mt-24" id="hint">
-        <button
-          onClick={() => setHintOpen(!hintOpen)}
-          className="group flex w-full items-center justify-between rounded-xl border border-white/10 bg-white/[0.02] p-4 text-left transition-colors hover:bg-white/[0.04]"
-        >
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-sky-500/20 text-sky-400">
-              <Lightbulb size={20} />
-            </div>
-            <div>
-              <div className="font-display text-lg font-semibold text-foreground">
-                Membutuhkan Bantuan?
-              </div>
-              <div className="text-sm text-muted">
-                Lihat panduan step-by-step 💡
-              </div>
-            </div>
-          </div>
-          <ChevronDown
-            size={20}
-            className={cn(
-              "text-muted transition-transform duration-300",
-              hintOpen ? "rotate-180" : ""
-            )}
-          />
-        </button>
-        
-        {hintOpen && (
-          <div className="mt-2 rounded-xl border border-white/5 bg-black/20 p-5 animate-in slide-in-from-top-2 fade-in duration-300">
-            <p className="mb-4 text-sm text-muted">
-              <strong>Tips Pengerjaan:</strong> Cobalah kerjakan sendiri terlebih dahulu. Jangan ragu untuk mencari referensi di Google atau dokumentasi resmi.
-            </p>
-            <div className="prose prose-invert max-w-none text-sm opacity-80">
-              <MarkdownRenderer source={lesson.content} />
+        {lesson.criteria && lesson.criteria.length > 0 && (
+          <div className="mt-8 rounded-xl border border-white/10 bg-white/5 p-5 sm:p-6">
+            <h3 className="mb-4 font-display text-lg font-semibold text-foreground">
+              Checklist Kriteria Kelulusan:
+            </h3>
+            <div className="space-y-3">
+              {(typeof lesson.criteria === "string" ? JSON.parse(lesson.criteria) : lesson.criteria).map((criterion: string, i: number) => (
+                <label
+                  key={i}
+                  className="flex cursor-pointer items-start gap-3 rounded-lg border border-transparent p-2 transition-colors hover:bg-white/5"
+                >
+                  <div className="relative mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded border border-white/20 bg-black/20 text-emerald-400">
+                    <input
+                      type="checkbox"
+                      className="peer absolute h-full w-full cursor-pointer opacity-0"
+                    />
+                    <div className="pointer-events-none absolute hidden peer-checked:block">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="h-3.5 w-3.5"
+                      >
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </div>
+                  </div>
+                  <span className="text-sm leading-relaxed text-foreground/80 peer-checked:text-muted peer-checked:line-through">
+                    <MarkdownRenderer source={criterion} />
+                  </span>
+                </label>
+              ))}
             </div>
           </div>
         )}
       </section>
+
+      {/* 💡 Interactive Hint */}
+      {(lesson.hints || lesson.content) && (
+        <section className="scroll-mt-24" id="hint">
+          <button
+            onClick={() => setHintOpen(!hintOpen)}
+            className="group flex w-full items-center justify-between rounded-xl border border-white/10 bg-white/[0.02] p-4 text-left transition-colors hover:bg-white/[0.04]"
+          >
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-sky-500/20 text-sky-400">
+                <Lightbulb size={20} />
+              </div>
+              <div>
+                <div className="font-display text-lg font-semibold text-foreground">
+                  Membutuhkan Bantuan?
+                </div>
+                <div className="text-sm text-muted">
+                  Lihat panduan step-by-step 💡
+                </div>
+              </div>
+            </div>
+            <ChevronDown
+              size={20}
+              className={cn(
+                "text-muted transition-transform duration-300",
+                hintOpen ? "rotate-180" : ""
+              )}
+            />
+          </button>
+          
+          {hintOpen && (
+            <div className="mt-2 rounded-xl border border-white/5 bg-black/20 p-5 animate-in slide-in-from-top-2 fade-in duration-300">
+              <p className="mb-4 text-sm text-muted">
+                <strong>Tips Pengerjaan:</strong> Cobalah kerjakan sendiri terlebih dahulu. Jangan ragu untuk mencari referensi di Google atau dokumentasi resmi.
+              </p>
+              <div className="prose prose-invert max-w-none text-sm opacity-80">
+                <MarkdownRenderer source={lesson.hints || lesson.content} />
+              </div>
+            </div>
+          )}
+        </section>
+      )}
 
       {/* 🎁 Reward Completion */}
       <section className="mt-12 rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-500/10 via-card to-card p-6 text-center sm:p-10">

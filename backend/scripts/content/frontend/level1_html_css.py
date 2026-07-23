@@ -806,8 +806,31 @@ PROJECT_LANDING = make_lesson(
         """
     ),
     practice=(
-        "Selesain proyek di atas sampe live di Vercel. Salin URL hasilnya "
-        "ke catatan kamu. Itu jadi item pertama portfolio kamu."
+        "Bikin file `index.html` dan `style.css`. Buat struktur dasar lengkap, "
+        "gunakan tag semantik, dan styling dengan Flexbox atau Grid. Hubungkan CSS eksternal "
+        "dan uji coba di browser."
+    ),
+    criteria=[
+        "Buat struktur HTML dasar lengkap (`<!DOCTYPE html>`, `<html>`, `<head>`, `<body>`)",
+        "Gunakan semantic tags (`<header>`, `<nav>`, `<main>`, `<section>`, `<footer>`)",
+        "Terapkan CSS Reset / Normalize dasar",
+        "Styling tampilan dengan Flexbox atau Grid (Mobile Responsive)",
+        "Hubungkan file CSS eksternal ke file HTML",
+    ],
+    hints=dedent(
+        """\
+        **Step 1:** Bikin folder project baru dan buat file `index.html` serta `style.css`.
+        
+        **Step 2:** Di dalam `index.html`, ketik `!` lalu tekan Tab untuk generate struktur HTML dasar (jika menggunakan VS Code).
+        
+        **Step 3:** Hubungkan CSS menggunakan tag `<link rel="stylesheet" href="style.css">` di bagian `<head>`.
+        
+        **Step 4:** Susun layout utama menggunakan tag semantik seperti `<main>` dan `<section>`.
+        
+        **Step 5:** Di `style.css`, terapkan CSS Reset dasar (misalnya `margin: 0; padding: 0; box-sizing: border-box;`) dan beri style layout menggunakan `display: flex` atau `display: grid`.
+        
+        **Step 6:** Uji coba tampilan di browser dan buka Inspect Element (F12) untuk cek error atau mengaktifkan mode device mobile.
+        """
     ),
     fix_error={
         "language": "css",
