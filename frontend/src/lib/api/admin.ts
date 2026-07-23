@@ -136,6 +136,7 @@ export type LessonCreate = {
   duration: string;
   base_viewers?: number;
   order_index: number;
+  video_url?: string | null;
 };
 
 export type LessonUpdate = Partial<LessonCreate>;
@@ -172,3 +173,50 @@ export function deleteLesson(
     token,
   });
 }
+
+/* ── Stats & Users ────────────────────────────────────────────────── */
+
+export type AdminStats = {
+  total_users: number;
+  completed_lessons: number;
+};
+
+export type UserSummary = {
+  id: string;
+  email: string;
+  full_name: string;
+  is_admin: boolean;
+  created_at: string;
+};
+
+export type UserListResponse = {
+  users: UserSummary[];
+  total: number;
+};
+
+export function getAdminStats(token: string): Promise<AdminStats> {
+  return apiFetch<AdminStats>("/api/v1/admin/stats", {
+    method: "GET",
+    token,
+  });
+}
+
+export function listAdminUsers(token: string): Promise<UserListResponse> {
+  return apiFetch<UserListResponse>("/api/v1/admin/users", {
+    method: "GET",
+    token,
+  });
+}
+
+export function updateUserRole(
+  id: string,
+  is_admin: boolean,
+  token: string
+): Promise<UserSummary> {
+  return apiFetch<UserSummary>(`/api/v1/admin/users/${id}/role`, {
+    method: "PATCH",
+    body: { is_admin },
+    token,
+  });
+}
+

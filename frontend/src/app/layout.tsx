@@ -3,6 +3,7 @@ import { Inter, Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { AuthProvider } from "@/components/providers/AuthProvider";
+import { Toaster } from "sonner";
 import { getServerUser } from "@/lib/api/server";
 
 const inter = Inter({
@@ -77,6 +78,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <Navbar />
           <main className="relative pt-20">{children}</main>
           <Footer />
+          <Toaster theme="dark" position="bottom-right" />
         </AuthProvider>
       </body>
     </html>

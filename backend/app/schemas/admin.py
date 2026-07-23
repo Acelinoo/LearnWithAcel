@@ -77,6 +77,7 @@ class LessonCreateRequest(BaseModel):
     content: str = Field(..., min_length=1, description="Lesson body in Markdown format")
     duration: str = Field(..., min_length=1, max_length=100)
     order_index: int = Field(..., ge=1, description="Display order within the level (1-based)")
+    video_url: str | None = Field(None, max_length=500, description="Optional YouTube embed URL")
 
 
 class LessonUpdateRequest(BaseModel):
@@ -87,6 +88,27 @@ class LessonUpdateRequest(BaseModel):
     content: str | None = Field(None, min_length=1, description="Lesson body in Markdown format")
     duration: str | None = Field(None, min_length=1, max_length=100)
     order_index: int | None = Field(None, ge=1)
+    video_url: str | None = Field(None, max_length=500)
+
+# ── Stats & Users ─────────────────────────────────────────────────────────────
+class AdminStatsResponse(BaseModel):
+    total_users: int
+    completed_lessons: int
+
+class UserSummary(BaseModel):
+    id: str
+    email: str
+    full_name: str
+    is_admin: bool
+    created_at: Any
+
+class UserListResponse(BaseModel):
+    users: list[UserSummary]
+    total: int
+
+class UserRoleUpdateRequest(BaseModel):
+    is_admin: bool
+
 
 
 # ── Shared response ───────────────────────────────────────────────────────────

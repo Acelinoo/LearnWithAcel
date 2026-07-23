@@ -104,6 +104,7 @@ model Lesson {
   order_index  Int
   criteria     Json?          // Array of strings
   hints        String?        // Markdown text
+  video_url    String?        // Video embed URL
   level        Level          @relation(fields: [level_id], references: [id], onDelete: Cascade)
   progress     UserProgress[]
 

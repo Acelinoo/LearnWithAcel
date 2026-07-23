@@ -161,6 +161,11 @@ export default async function LessonPage({ params }) {
                     Selesai
                   </span>
                 )}
+                {lesson.video_url && (
+                  <span className="inline-flex items-center gap-1 rounded-full border border-rose-400/30 bg-rose-400/10 px-2.5 py-0.5 text-xs font-medium text-rose-300 tracking-wide">
+                    🎥 BETA TRIAL
+                  </span>
+                )}
               </div>
             </Reveal>
 
@@ -175,6 +180,20 @@ export default async function LessonPage({ params }) {
                 {lesson.summary}
               </p>
             </Reveal>
+
+            {lesson.video_url && (
+              <Reveal delay={0.2}>
+                <div className="mt-8 aspect-video w-full overflow-hidden rounded-2xl border border-white/10 bg-black/50 shadow-2xl">
+                  <iframe
+                    src={lesson.video_url}
+                    title={lesson.title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="h-full w-full border-none"
+                  />
+                </div>
+              </Reveal>
+            )}
 
             {/* Content Body */}
             <div className="mt-10">

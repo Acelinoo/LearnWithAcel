@@ -34,6 +34,7 @@ export type ApiLessonSummary = {
   order_index: number;
   xp_reward?: number;
   is_project?: boolean;
+  video_url?: string | null;
 };
 
 export type ApiLevelSummary = {
@@ -74,6 +75,7 @@ export type ApiLessonDetail = {
   is_project?: boolean;
   criteria?: string[] | string | null;
   hints?: string | null;
+  video_url?: string | null;
 };
 
 /* ------------------------------------------------------------------ */

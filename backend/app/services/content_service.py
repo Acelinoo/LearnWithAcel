@@ -24,6 +24,7 @@ def _serialize_lesson_summary(lesson) -> LessonSummary:
         order_index=lesson.order_index,
         xp_reward=150 if is_project else 50,
         is_project=is_project,
+        video_url=lesson.video_url,
     )
 
 
@@ -130,4 +131,7 @@ async def get_lesson_detail(level_slug: str, lesson_slug: str) -> LessonDetail:
         level_id=lesson.level_id,
         xp_reward=150 if is_project else 50,
         is_project=is_project,
+        video_url=lesson.video_url,
+        criteria=lesson.criteria,
+        hints=lesson.hints,
     )

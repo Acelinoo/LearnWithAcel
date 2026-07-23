@@ -19,6 +19,7 @@ class LessonSummary(BaseModel):
     order_index: int
     xp_reward: int = 50
     is_project: bool = False
+    video_url: str | None = None
 
     model_config = {"from_attributes": True}
 
@@ -38,6 +39,7 @@ class LessonDetail(BaseModel):
     is_project: bool = False
     criteria: list[str] | None = None
     hints: str | None = None
+    video_url: str | None = None
 
     model_config = {"from_attributes": True}
 

@@ -21,8 +21,13 @@ from app.schemas.admin import (
     LessonUpdateRequest,
     LevelCreateRequest,
     LevelUpdateRequest,
+    AdminStatsResponse,
+    UserListResponse,
+    UserRoleUpdateRequest,
+    UserSummary
 )
 from app.schemas.content import CategoryResponse, LessonDetail, LevelSummary
+from app.core.database import prisma
 from app.services import admin_service
 
 router = APIRouter(
@@ -162,3 +167,46 @@ async def delete_lesson(lesson_id: str) -> DeleteResponse:
     This action is irreversible.
     """
     return await admin_service.delete_lesson(lesson_id)
+
+
+# ── Stats & Users ─────────────────────────────────────────────────────────────
+@router.get("/stats", response_model=AdminStatsResponse)
+async def get_stats():
+    total_users = await prisma.user.count()
+    completed_lessons = await prisma.userprogress.count(where={"is_completed": True})
+    return AdminStatsResponse(total_users=total_users, completed_lessons=completed_lessons)
+
+@router.get("/users", response_model=UserListResponse)
+async def list_users():
+    users = await prisma.user.find_many(order={"created_at": "desc"})
+    return UserListResponse(
+        users=[
+            UserSummary(
+                id=u.id,
+                email=u.email,
+                full_name=u.full_name,
+                is_admin=u.is_admin,
+                created_at=u.created_at
+            ) for u in users
+        ],
+        total=len(users)
+    )
+
+@router.patch("/users/{user_id}/role", response_model=UserSummary)
+async def update_user_role(user_id: str, payload: UserRoleUpdateRequest):
+    from app.core.exceptions import NotFoundException
+    user = await prisma.user.find_unique(where={"id": user_id})
+    if not user:
+        raise NotFoundException(f"User {user_id} not found")
+    
+    updated = await prisma.user.update(
+        where={"id": user_id},
+        data={"is_admin": payload.is_admin}
+    )
+    return UserSummary(
+        id=updated.id,
+        email=updated.email,
+        full_name=updated.full_name,
+        is_admin=updated.is_admin,
+        created_at=updated.created_at
+    )

@@ -77,6 +77,7 @@ def _serialize_lesson(lesson) -> LessonDetail:
         duration=lesson.duration,
         order_index=lesson.order_index,
         level_id=lesson.level_id,
+        video_url=lesson.video_url,
     )
 
 
@@ -317,6 +318,7 @@ async def create_lesson(payload: LessonCreateRequest) -> LessonDetail:
             "content": payload.content,
             "duration": payload.duration,
             "order_index": payload.order_index,
+            "video_url": payload.video_url,
         }
     )
     return _serialize_lesson(lesson)
@@ -365,6 +367,8 @@ async def update_lesson(lesson_id: str, payload: LessonUpdateRequest) -> LessonD
         update_data["duration"] = payload.duration
     if payload.order_index is not None:
         update_data["order_index"] = payload.order_index
+    if payload.video_url is not None:
+        update_data["video_url"] = payload.video_url
 
     lesson = await prisma.lesson.update(
         where={"id": lesson_id},

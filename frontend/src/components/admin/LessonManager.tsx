@@ -33,6 +33,7 @@ function emptyDraft(levelId: string): LessonCreate {
     duration: "",
     base_viewers: 0,
     order_index: 1,
+    video_url: "",
   };
 }
 
@@ -99,6 +100,7 @@ export default function LessonManager({ roadmaps, token, onChange }: Props) {
         duration: detail.duration,
         base_viewers: detail.base_viewers,
         order_index: detail.order_index,
+        video_url: detail.video_url || "",
       });
     } catch (e) {
       setError(
@@ -413,6 +415,13 @@ export default function LessonManager({ roadmaps, token, onChange }: Props) {
               }
             />
           </div>
+
+          <TextField
+            label="Video Embed URL (Opsional) [🎥 BETA TRIAL]"
+            value={draft.video_url || ""}
+            onChange={(e) => setDraft({ ...draft, video_url: e.target.value })}
+            placeholder="https://www.youtube.com/embed/XXXXXX"
+          />
 
           <button
             type="submit"
