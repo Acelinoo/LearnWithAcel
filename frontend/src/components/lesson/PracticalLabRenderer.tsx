@@ -57,7 +57,7 @@ export default function PracticalLabRenderer({ lesson }: Props) {
           <h2 className="font-display text-2xl font-semibold">Instruksi & Kriteria</h2>
         </div>
         <div className="prose prose-invert max-w-none prose-headings:font-display prose-a:text-accent-hover mb-6">
-          <MarkdownRenderer source={lesson.content} />
+          <MarkdownRenderer source={lesson.content.replace(/^#\s+.*$/m, '')} />
         </div>
 
         {lesson.criteria && lesson.criteria.length > 0 && (
@@ -102,7 +102,7 @@ export default function PracticalLabRenderer({ lesson }: Props) {
       </section>
 
       {/* 💡 Interactive Hint */}
-      {(lesson.hints || lesson.content) && (
+      {lesson.hints && (
         <section className="scroll-mt-24" id="hint">
           <button
             onClick={() => setHintOpen(!hintOpen)}
@@ -136,7 +136,7 @@ export default function PracticalLabRenderer({ lesson }: Props) {
                 <strong>Tips Pengerjaan:</strong> Cobalah kerjakan sendiri terlebih dahulu. Jangan ragu untuk mencari referensi di Google atau dokumentasi resmi.
               </p>
               <div className="prose prose-invert max-w-none text-sm opacity-80">
-                <MarkdownRenderer source={lesson.hints || lesson.content} />
+                <MarkdownRenderer source={lesson.hints} />
               </div>
             </div>
           )}
