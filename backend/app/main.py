@@ -2,6 +2,7 @@
 FastAPI application factory and lifespan management.
 """
 
+import logging
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, HTTPException
@@ -14,15 +15,35 @@ from app.core.config import settings
 from app.core.database import prisma
 from app.core.exceptions import http_exception_handler, unhandled_exception_handler
 
+logger = logging.getLogger("app.main")
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Connect Prisma and Cache Manager on startup, disconnect on shutdown."""
-    await prisma.connect()
-    await cache_manager.init_cache()
+    try:
+        if not prisma.is_connected():
+            await prisma.connect()
+    except Exception as e:
+        logger.error(f"Prisma connection error during startup: {e}")
+
+    try:
+        await cache_manager.init_cache()
+    except Exception as e:
+        logger.error(f"Cache init error during startup: {e}")
+
     yield
-    await cache_manager.close()
-    await prisma.disconnect()
+
+    try:
+        await cache_manager.close()
+    except Exception:
+        pass
+
+    try:
+        if prisma.is_connected():
+            await prisma.disconnect()
+    except Exception:
+        pass
 
 
 def create_app() -> FastAPI:
@@ -47,7 +68,6 @@ def create_app() -> FastAPI:
         allow_headers=["*"],
     )
 
-
     # ── Exception handlers ────────────────────────────────────────────────────
     app.add_exception_handler(HTTPException, http_exception_handler)
     app.add_exception_handler(Exception, unhandled_exception_handler)
@@ -55,7 +75,15 @@ def create_app() -> FastAPI:
     # ── Routers ───────────────────────────────────────────────────────────────
     app.include_router(api_router)
 
-    # ── Health check ──────────────────────────────────────────────────────────
+    # ── Root & Health check ───────────────────────────────────────────────────
+    @app.get("/", tags=["Health"], summary="Root endpoint")
+    async def root():
+        return {
+            "status": "ok",
+            "name": settings.APP_NAME,
+            "version": settings.APP_VERSION,
+        }
+
     @app.get("/health", tags=["Health"], summary="Health check")
     async def health():
         return {"status": "ok", "version": settings.APP_VERSION}

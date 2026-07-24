@@ -161,12 +161,18 @@ class CacheManager:
 
     async def init_cache(self) -> None:
         """Initialize Upstash Redis REST connection if credentials are set."""
-        if settings.UPSTASH_REDIS_REST_URL and settings.UPSTASH_REDIS_REST_TOKEN:
-            self.upstash_backend = UpstashRestCacheBackend(
-                settings.UPSTASH_REDIS_REST_URL,
-                settings.UPSTASH_REDIS_REST_TOKEN,
-            )
-            await self.upstash_backend.init()
+        try:
+            url = (settings.UPSTASH_REDIS_REST_URL or "").strip()
+            token = (settings.UPSTASH_REDIS_REST_TOKEN or "").strip()
+            if url and token:
+                if not url.startswith("http://") and not url.startswith("https://"):
+                    url = f"https://{url}"
+                self.upstash_backend = UpstashRestCacheBackend(url, token)
+                await self.upstash_backend.init()
+        except Exception as e:
+            logger.warning(f"Failed to initialize Upstash Redis ({e}). Falling back to In-Memory Cache.")
+            self.upstash_backend = None
+
 
     async def close(self) -> None:
         if self.upstash_backend:
