@@ -47,9 +47,18 @@ class Settings(BaseSettings):
     # Comma-separated list of allowed origins
     CORS_ORIGINS: str = "http://localhost:3000,https://learnwithacel.vercel.app,https://learningwithacel.vercel.app"
 
+    # ── Cache & Upstash Redis REST ───────────────────────────────────────────
+    CACHE_ENABLED: bool = True
+    CACHE_DEFAULT_TTL: int = 1800  # Default 30 minutes (in seconds)
+    UPSTASH_REDIS_REST_URL: str = ""  # Upstash REST URL: https://xxx.upstash.io
+    UPSTASH_REDIS_REST_TOKEN: str = ""  # Upstash REST Token
+
+
+
     @property
     def cors_origins_list(self) -> list[str]:
         return [origin.strip() for origin in self.CORS_ORIGINS.split(",")]
+
 
 
 settings = Settings()  # type: ignore[call-arg]
