@@ -22,7 +22,7 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.05 }}
             className="mt-6 font-display text-4xl font-semibold leading-[1.1] tracking-tight text-balance sm:text-6xl"
           >
-            Belajar Web Development{" "}
+            Belajar Berbagai Dasar IT{" "}
             <span className="shimmer-text">Dari Nol GRATIS.</span>
           </motion.h1>
 
@@ -32,9 +32,8 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.15 }}
             className="mt-5 max-w-xl text-[15px] leading-relaxed text-muted sm:text-base"
           >
-            From Beginner to Real Developer. Roadmap terstruktur, materi mudah
-            dipahami, dan praktek langsung di VS Code supaya kamu tidak hanya
-            membaca, tapi juga mencoba.
+            From beginner to real engineer. Pelajari fondasi IT dari nol, pahami
+            konsepnya dengan mudah, dan langsung buat project pertamamu.
           </motion.p>
 
           <motion.div
