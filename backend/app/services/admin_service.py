@@ -78,8 +78,9 @@ def _serialize_lesson(lesson) -> LessonDetail:
         duration=lesson.duration,
         order_index=lesson.order_index,
         level_id=lesson.level_id,
-        video_url=lesson.video_url,
+        video_url=getattr(lesson, "video_url", None),
     )
+
 
 
 # ── Category CRUD ─────────────────────────────────────────────────────────────
